@@ -4,8 +4,8 @@
  */
 
 /**
- *
- * @author Eric
+ *Doing a branch on purpose
+ * @author Eric S
  */
 public class EricSample {
 
