@@ -24,5 +24,18 @@ REQUIREMENTS:
 
 9) There should be a clear distinction between what the program can evaluate and
 	what is left to the instructor to evaluate in regards to the simulation.
-	
+
 10) There should be an unobtrusive timer element to limit the simulation to 15 minutes.
+
+11) The instructor needs to be able to print reports (either to pdf or to a printer)
+
+
+
+ADDITIONAL FUNCTIONALITY (Time permitting)
+1) A way for the instructors to add new scenarios or edit existing scenarios
+
+2) Creating random scenarios on-the-fly
+
+3) Displaying to student which scenarios they have completed already
+
+4) Practice version of the software not requiring a login
