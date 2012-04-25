@@ -11,5 +11,9 @@ import javax.swing.JTable;
 /**
  */
 public class Evaluator {
+    public static String giveSuggestion(Object[][] input){
+    
+        return null;
+    }
 }
 
