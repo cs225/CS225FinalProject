@@ -4,10 +4,10 @@ package CS225FinalProject;
 import CS225FinalProject.DataStructure.Medication;
 import CS225FinalProject.DataStructure.SimulationDataStructure;
 import CS225FinalProject.DataStructure.StudentRecord;
-import CS225FinalProject.GUI.LoginGUI;
-import CS225FinalProject.GUI.MaintenaceManagerGUI;
-import CS225FinalProject.GUI.ScenarioSelectionGUI;
-import CS225FinalProject.GUI.SimulationGUI;
+import CS225FinalProject.GUI.*;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -17,27 +17,20 @@ import javax.swing.JOptionPane;
  * @author Eric Santana
  */
 public class SimulationManager {
-    /**
-     */
-    public static SimulationDataStructure data;
-    /**
-     */
-    public static StudentRecord currentStudentRecord;
     
-       
     public static int state;
-    public final static int LOGIN_STATE = 0;
-    public final static int SCENARIO_STATE = 1;
-    public final static int SIMULATION_STATE = 2;
-    public final static int MAINTENANCE_STATE = 3;
-    public final static int EXIT_STATE= -1;
+    final public static int LOGIN_STATE = 0;
+    final public static int SCENARIO_STATE = 1;
+    final public static int SIMULATION_STATE = 2;
+    final public static int MAINTENANCE_STATE = 3;
+    final public static int EXIT_STATE= -1;
+    
+    
 
     /**
-     * @param args 
+     * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        //this just looks for the Nimbus GUI look
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -46,34 +39,28 @@ public class SimulationManager {
                 }
             }
         } catch (ClassNotFoundException ex) {
-           
+            java.util.logging.Logger.getLogger(SimulationGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            
+            java.util.logging.Logger.getLogger(SimulationGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-           
+            java.util.logging.Logger.getLogger(SimulationGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            
+            java.util.logging.Logger.getLogger(SimulationGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         
-        //just testing the GUI Look
-        int i = JOptionPane.showConfirmDialog(null, "testing");
         
         
-        if(i!= JOptionPane.YES_OPTION)
-            System.exit(0);
-        
-        state = LOGIN_STATE;
-        SimulationManager.data = new SimulationDataStructure();
-        
-        LoginGUI loginDialog = new LoginGUI();
-        SimulationGUI simulationGUI = new SimulationGUI();
-        MaintenaceManagerGUI maintenaceManagerGUI = new MaintenaceManagerGUI();
-        ScenarioSelectionGUI scenarioSelectionGUI = new ScenarioSelectionGUI();
-        state = LOGIN_STATE;
-        while(state!= EXIT_STATE){
-            if(state== LOGIN_STATE && scenarioSelectionGUI.isVisible() || (state== LOGIN_STATE && simulationGUI.isVisible())){
-                scenarioSelectionGUI.setVisible(false);
-                simulationGUI.setVisible(false);
+        SimulationManager manager = new SimulationManager();
+        SimulationGUI mainGUI = new SimulationGUI(manager);
+        LoginGUI loginDialog = new LoginGUI(null, true, manager);
+        MaintenanceManagerGUI proffesorGUIPrototype = new MaintenanceManagerGUI();
+        proffesorGUIPrototype.setVisible(false);
+        ScenarioSelectionGUI scenarioSelectionGUIPrototype = new ScenarioSelectionGUI(manager);
+        SimulationManager.state = LOGIN_STATE;
+        while(SimulationManager.state!= EXIT_STATE){
+            if(SimulationManager.state== LOGIN_STATE && scenarioSelectionGUIPrototype.isVisible() || (SimulationManager.state== LOGIN_STATE && mainGUI.isVisible())){
+                scenarioSelectionGUIPrototype.setVisible(false);
+                mainGUI.setVisible(false);
                 if(!loginDialog.isVisible()){
                     JOptionPane.showMessageDialog(loginDialog,
                   "Welcome to Massbay General Hospital\n"
@@ -81,43 +68,53 @@ public class SimulationManager {
                     loginDialog.setVisible(true);
                 }
             }
-            else if(state==LOGIN_STATE){
+            else if(SimulationManager.state==LOGIN_STATE){
                 if(!loginDialog.isVisible()){
                     JOptionPane.showMessageDialog(loginDialog,
                   "Welcome to Massbay General Hospital\n"
                 + "Please Log in and follow the flow. ");
                 loginDialog.setVisible(true);
                 }
-                simulationGUI.setVisible(false);
-                scenarioSelectionGUI.setVisible(false);
+                mainGUI.setVisible(false);
+                scenarioSelectionGUIPrototype.setVisible(false);
+                proffesorGUIPrototype.setVisible(false);
             }
-            else if(state== SCENARIO_STATE){
-               if(!scenarioSelectionGUI.isVisible())
-                scenarioSelectionGUI.setVisible(true);
-                simulationGUI.setVisible(false);
+            else if(SimulationManager.state== SCENARIO_STATE){
+               if(!scenarioSelectionGUIPrototype.isVisible())
+                scenarioSelectionGUIPrototype.setVisible(true);
+                mainGUI.setVisible(false);
                 loginDialog.setVisible(false);
+                proffesorGUIPrototype.setVisible(false);
             }
-            else if(state == SIMULATION_STATE){
-                if(!simulationGUI.isVisible())
-                simulationGUI.setVisible(true);
+            else if(SimulationManager.state == SIMULATION_STATE){
+                if(!mainGUI.isVisible())
+                mainGUI.setVisible(true);
                 loginDialog.setVisible(false);
-                scenarioSelectionGUI.setVisible(false);
+                proffesorGUIPrototype.setVisible(false);
+                scenarioSelectionGUIPrototype.setVisible(false);
             }
-            else if(state == MAINTENANCE_STATE){
-                maintenaceManagerGUI.setVisible(true);
-                simulationGUI.setVisible(false);
+            else if(SimulationManager.state == MAINTENANCE_STATE){
+                if(!proffesorGUIPrototype.isVisible())
+                proffesorGUIPrototype.setVisible(true);
+                mainGUI.setVisible(false);
                 loginDialog.setVisible(false);
-                scenarioSelectionGUI.setVisible(false);
+                scenarioSelectionGUIPrototype.setVisible(false);
                 
             }
             
             
-            else if((!loginDialog.isVisible()&& state==LOGIN_STATE))
-                state=EXIT_STATE;
+            else if((!loginDialog.isVisible()&& SimulationManager.state==LOGIN_STATE))
+                SimulationManager.state=EXIT_STATE;
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(SimulationManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
         System.exit(0);
         
         
+        
     }
 }
-
