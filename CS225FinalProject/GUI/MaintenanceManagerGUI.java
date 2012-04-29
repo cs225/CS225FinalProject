@@ -113,17 +113,12 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         addScenarioButton = new javax.swing.JButton();
         removeScenarioButton = new javax.swing.JButton();
-        logOutPanel = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         rootTabbedPane.setPreferredSize(new java.awt.Dimension(1037, 727));
-        rootTabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                rootTabbedPaneStateChanged(evt);
-            }
-        });
 
         studentManagerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -157,13 +152,13 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
         studentManagerPanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 55, 200, 120));
 
-        jLabel1.setText("Session");
+        jLabel1.setText("Class");
         studentManagerPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         jLabel2.setText("Student");
         studentManagerPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, -1, -1));
 
-        addSessionButton.setText("Add Session");
+        addSessionButton.setText("Add Class");
         addSessionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addSessionButtonActionPerformed(evt);
@@ -178,7 +173,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         studentManagerPanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(411, 0, 8, 180));
         studentManagerPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 183, 1032, 10));
 
-        jButton4.setText("Remove Session");
+        jButton4.setText("Remove Class");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -257,7 +252,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 .addContainerGap(245, Short.MAX_VALUE))
         );
 
-        studentManagerControlTabbedPane.addTab("Session Control", jPanel2);
+        studentManagerControlTabbedPane.addTab("Class Control", jPanel2);
 
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -539,9 +534,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addContainerGap(713, Short.MAX_VALUE))
+                    .addComponent(jLabel12)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(488, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -549,8 +544,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         previewTabbedPane.addTab("Summary", jPanel6);
@@ -592,111 +587,112 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
         rootTabbedPane.addTab("ScenarioManager", scenarioManagerPanel);
 
-        javax.swing.GroupLayout logOutPanelLayout = new javax.swing.GroupLayout(logOutPanel);
-        logOutPanel.setLayout(logOutPanelLayout);
-        logOutPanelLayout.setHorizontalGroup(
-            logOutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1032, Short.MAX_VALUE)
-        );
-        logOutPanelLayout.setVerticalGroup(
-            logOutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 682, Short.MAX_VALUE)
-        );
-
-        rootTabbedPane.addTab("Log out", logOutPanel);
+        jButton2.setText("LogOut");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(rootTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(176, 176, 176))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(rootTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(rootTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(JOptionPane.showConfirmDialog(this, "Are You Sure You want to Log out?",null,JOptionPane.YES_NO_OPTION)==JOptionPane.OK_OPTION){
+                //System.exit(0);
+                SimulationManager.state = SimulationManager.LOGIN_STATE;
+                
+                setVisible(false);
+                
+                
+            }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void removeScenarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeScenarioButtonActionPerformed
+        String scenario = (String) scenarioListModel.get(scenarioList.getSelectedIndex());//use this string wisely!!! :)
+        scenarioListModel.remove(scenarioList.getSelectedIndex());
+        if (scenarioListModel.getSize() == 0) {
+            previewTabbedPane.setVisible(false);
+        }
+        // TODO remove the 
+    }//GEN-LAST:event_removeScenarioButtonActionPerformed
+
+    private void addScenarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addScenarioButtonActionPerformed
+
+
+        String scenarioName = JOptionPane.showInputDialog("Enter Session name");
+        if (scenarioName != null) {
+            scenarioListModel.addElement(scenarioName);
+        }
+        scenarioList.setSelectedIndex(scenarioListModel.getSize() - 1);
+        if (!previewTabbedPane.isVisible()) {
+            previewTabbedPane.setVisible(true);
+        }
+        // TODO implement adding a new scenario to the DataStructure
+    }//GEN-LAST:event_addScenarioButtonActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        // TODO add your handling code here:
+        ((DefaultTableModel) jTable3.getModel()).removeRow(jTable3.getSelectedRow());
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        ((DefaultTableModel) jTable3.getModel()).addRow(new Object[0]);
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void scenarioListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_scenarioListValueChanged
+        // TODO add your handling code here:
+        if (scenarioList.getSelectedIndex() >= 0) {
+            updateScenarioPreview((String) scenarioListModel.get(scenarioList.getSelectedIndex()));
+        }
+    }//GEN-LAST:event_scenarioListValueChanged
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         sessionListModel.remove(sessionList.getSelectedIndex());
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void sessionListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sessionListFocusGained
-        // TODO add your handling code here:
-        studentList.clearSelection();
-        studentManagerControlTabbedPane.setSelectedIndex(0);
-    }//GEN-LAST:event_sessionListFocusGained
+    private void addSessionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSessionButtonActionPerformed
+        String sessionName = JOptionPane.showInputDialog(this, "Enter the session Name");
+        sessionListModel.addElement(sessionName);
+        //TODO here goes the code for adding a session to the SimulationDataStructure
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-        ((DefaultTableModel)jTable3.getModel()).addRow(new Object[0]);
-    }//GEN-LAST:event_jButton11ActionPerformed
-
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        // TODO add your handling code here:
-        ((DefaultTableModel)jTable3.getModel()).removeRow(jTable3.getSelectedRow());
-    }//GEN-LAST:event_jButton19ActionPerformed
+    }//GEN-LAST:event_addSessionButtonActionPerformed
 
     private void studentListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_studentListFocusGained
         // TODO add your handling code here:
         studentManagerControlTabbedPane.setSelectedIndex(1);
     }//GEN-LAST:event_studentListFocusGained
 
-    private void rootTabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rootTabbedPaneStateChanged
-        if(rootTabbedPane.getSelectedIndex()==2){
-            
-            if(JOptionPane.showConfirmDialog(this, "Are You Sure You want to Log out?",null,JOptionPane.YES_NO_OPTION)==JOptionPane.OK_OPTION){
-                //System.exit(0);
-                SimulationManager.state = SimulationManager.LOGIN_STATE;
-                rootTabbedPane.setSelectedIndex(0);
-                setVisible(false);
-                
-                
-            }
-            else
-                rootTabbedPane.setSelectedIndex(0);
-        }
-    }//GEN-LAST:event_rootTabbedPaneStateChanged
-
-    private void addSessionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSessionButtonActionPerformed
-        String sessionName = JOptionPane.showInputDialog(this, "Enter the session Name");
-        sessionListModel.addElement(sessionName);
-        //TODO here goes the code for adding a session to the SimulationDataStructure
-       
-    }//GEN-LAST:event_addSessionButtonActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void sessionListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sessionListFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void addScenarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addScenarioButtonActionPerformed
-
-        
-        String scenarioName = JOptionPane.showInputDialog("Enter Session name");
-        if(scenarioName!=null)
-            scenarioListModel.addElement(scenarioName);
-        scenarioList.setSelectedIndex(scenarioListModel.getSize()-1);
-        if(!previewTabbedPane.isVisible())
-            previewTabbedPane.setVisible(true);
-        // TODO implement adding a new scenario to the DataStructure
-    }//GEN-LAST:event_addScenarioButtonActionPerformed
-
-    private void removeScenarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeScenarioButtonActionPerformed
-       String scenario = (String)scenarioListModel.get(scenarioList.getSelectedIndex());//use this string wisely!!! :)
-        scenarioListModel.remove(scenarioList.getSelectedIndex());
-        if(scenarioListModel.getSize()==0)
-            previewTabbedPane.setVisible(false);
-         // TODO remove the 
-    }//GEN-LAST:event_removeScenarioButtonActionPerformed
-
-    private void scenarioListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_scenarioListValueChanged
-        // TODO add your handling code here:
-        if(scenarioList.getSelectedIndex()>=0)
-        updateScenarioPreview((String)scenarioListModel.get(scenarioList.getSelectedIndex()));
-    }//GEN-LAST:event_scenarioListValueChanged
+        studentList.clearSelection();
+        studentManagerControlTabbedPane.setSelectedIndex(0);
+    }//GEN-LAST:event_sessionListFocusGained
 
     /**
      * @param args the command line arguments
@@ -784,6 +780,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton19;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
@@ -830,7 +827,6 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JPanel logOutPanel;
     private javax.swing.JTabbedPane previewTabbedPane;
     private javax.swing.JButton printButton;
     private javax.swing.JButton removeScenarioButton;

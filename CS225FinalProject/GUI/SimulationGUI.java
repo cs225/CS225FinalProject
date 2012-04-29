@@ -118,12 +118,10 @@ public class SimulationGUI extends javax.swing.JFrame {
         jcaho_Panel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jcahoLabel = new javax.swing.JLabel();
-        submit_Panel = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        submitButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         timeLabel = new javax.swing.JLabel();
+        submitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Prototype2GUI");
@@ -364,38 +362,6 @@ public class SimulationGUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("JCAHO", jcaho_Panel);
 
-        jLabel13.setText("By clicking the button below you complete the Simulation");
-
-        submitButton.setText("Submit");
-        submitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout submit_PanelLayout = new javax.swing.GroupLayout(submit_Panel);
-        submit_Panel.setLayout(submit_PanelLayout);
-        submit_PanelLayout.setHorizontalGroup(
-            submit_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(submit_PanelLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(submit_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(submitButton)
-                    .addComponent(jLabel13))
-                .addContainerGap(725, Short.MAX_VALUE))
-        );
-        submit_PanelLayout.setVerticalGroup(
-            submit_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(submit_PanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(submitButton)
-                .addContainerGap(485, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Submit", submit_Panel);
-
         jButton2.setText("Logout");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -408,6 +374,13 @@ public class SimulationGUI extends javax.swing.JFrame {
 
         timeLabel.setText("15:00");
 
+        submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -419,7 +392,9 @@ public class SimulationGUI extends javax.swing.JFrame {
                 .addComponent(timeLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 694, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addGap(156, 156, 156))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(submitButton)
+                .addGap(81, 81, 81))
             .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -430,7 +405,8 @@ public class SimulationGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(timeLabel))
+                    .addComponent(timeLabel)
+                    .addComponent(submitButton))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
@@ -850,7 +826,6 @@ private class MedicationDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
@@ -868,7 +843,6 @@ private class MedicationDialog extends javax.swing.JDialog {
     private javax.swing.JLabel patientNameLabel;
     private javax.swing.JLabel roomNumLabel;
     private javax.swing.JButton submitButton;
-    private javax.swing.JPanel submit_Panel;
     private javax.swing.JLabel timeLabel;
     private javax.swing.JButton viewSelectedNarrativeButton;
     // End of variables declaration//GEN-END:variables
