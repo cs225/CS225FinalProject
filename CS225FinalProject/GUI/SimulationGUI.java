@@ -6,18 +6,27 @@ package CS225FinalProject.GUI;
 
 
 import CS225FinalProject.SimulationManager;
-import java.awt.FlowLayout;
-import java.awt.Frame;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.print.attribute.Attribute;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttribute;
+import javax.print.attribute.PrintRequestAttributeSet;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -27,7 +36,7 @@ import javax.swing.table.TableModel;
  *
  * @author Eric
  */
-public class SimulationGUI extends javax.swing.JFrame {
+public class SimulationGUI extends javax.swing.JFrame implements Printable{
 
      public int START_TIME= 15*60;
     
@@ -36,7 +45,7 @@ public class SimulationGUI extends javax.swing.JFrame {
     public void setVisible(boolean b) {
         super.setVisible(b);
         if(b){
-            jTabbedPane1.setSelectedIndex(0);
+            rootTabbedPane.setSelectedIndex(0);
             time = START_TIME;
             //JPanel h = new Jp
             
@@ -93,7 +102,7 @@ public class SimulationGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        rootTabbedPane = new javax.swing.JTabbedPane();
         mar_Panel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         roomNumLabel = new javax.swing.JLabel();
@@ -122,6 +131,7 @@ public class SimulationGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         timeLabel = new javax.swing.JLabel();
         submitButton = new javax.swing.JButton();
+        printSampleButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Prototype2GUI");
@@ -234,7 +244,7 @@ public class SimulationGUI extends javax.swing.JFrame {
                 .addGap(232, 232, 232))
         );
 
-        jTabbedPane1.addTab("MAR", mar_Panel);
+        rootTabbedPane.addTab("MAR", mar_Panel);
 
         documentationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -339,7 +349,7 @@ public class SimulationGUI extends javax.swing.JFrame {
                 .addGap(0, 79, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Documentation", documentation_Panel);
+        rootTabbedPane.addTab("Documentation", documentation_Panel);
 
         jcahoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/JAHCO.png"))); // NOI18N
         jScrollPane4.setViewportView(jcahoLabel);
@@ -360,7 +370,7 @@ public class SimulationGUI extends javax.swing.JFrame {
                 .addGap(0, 1, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("JCAHO", jcaho_Panel);
+        rootTabbedPane.addTab("JCAHO", jcaho_Panel);
 
         jButton2.setText("Logout");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -381,6 +391,13 @@ public class SimulationGUI extends javax.swing.JFrame {
             }
         });
 
+        printSampleButton.setText("Print Sample");
+        printSampleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printSampleButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -388,26 +405,37 @@ public class SimulationGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(timeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 694, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(timeLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(286, 286, 286)
+                        .addComponent(printSampleButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 351, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(submitButton)
                 .addGap(81, 81, 81))
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(rootTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(timeLabel)
-                    .addComponent(submitButton))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addComponent(rootTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(timeLabel)
+                            .addComponent(submitButton))
+                        .addContainerGap(43, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(printSampleButton)
+                        .addGap(24, 24, 24))))
         );
 
         pack();
@@ -541,6 +569,23 @@ public class SimulationGUI extends javax.swing.JFrame {
             t.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         }
     }//GEN-LAST:event_editNarrativeButtonActionPerformed
+
+    private void printSampleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printSampleButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            PrinterJob job = PrinterJob.getPrinterJob();
+            
+           PageFormat format = new PageFormat();
+           format.setOrientation(PageFormat.LANDSCAPE);
+           
+           job.setPrintable(this, format);
+           if(job.printDialog())
+               job.print();
+            
+        } catch (PrinterException ex) {
+            Logger.getLogger(SimulationGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_printSampleButtonActionPerformed
 
     
     
@@ -815,6 +860,37 @@ private class MedicationDialog extends javax.swing.JDialog {
     public JTable getDocumentationTable() {
         return documentationTable;
     }
+    @Override
+    public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
+       // throw new UnsupportedOperationException("Not supported yet.");
+        if (pageIndex > 1) {
+         return NO_SUCH_PAGE;
+    }
+
+        Graphics2D g2d = (Graphics2D)graphics;
+        if(pageIndex ==0){
+        rootTabbedPane.setSelectedIndex(0);
+        pageFormat.setOrientation(PageFormat.LANDSCAPE);
+        g2d.translate(pageFormat.getImageableX()+100,pageFormat.getImageableY()+100);
+        g2d.scale(.60, .60);
+        rootTabbedPane.paint(graphics);
+        graphics.drawString("Hello world!", 100, 100);
+        }
+        else{
+            rootTabbedPane.setSelectedIndex(1);
+        pageFormat.setOrientation(PageFormat.LANDSCAPE);
+        g2d.translate(pageFormat.getImageableX()+100,pageFormat.getImageableY()+100);
+        g2d.scale(.60, .60);
+        rootTabbedPane.paint(graphics);
+        graphics.drawString("Hello world!", 100, 100);
+        }
+   
+    
+
+        
+        
+        return PAGE_EXISTS;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel allergiesLabel;
     private javax.swing.JLabel diagnosisLabel;
@@ -835,13 +911,14 @@ private class MedicationDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel jcahoLabel;
     private javax.swing.JPanel jcaho_Panel;
     private javax.swing.JTable marTable;
     private javax.swing.JPanel mar_Panel;
     private javax.swing.JLabel patientNameLabel;
+    private javax.swing.JButton printSampleButton;
     private javax.swing.JLabel roomNumLabel;
+    private javax.swing.JTabbedPane rootTabbedPane;
     private javax.swing.JButton submitButton;
     private javax.swing.JLabel timeLabel;
     private javax.swing.JButton viewSelectedNarrativeButton;
