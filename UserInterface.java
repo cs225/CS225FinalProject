@@ -8,5 +8,7 @@
  * @author Zack
  */
 public interface UserInterface {
+    boolean login( String name,
+            String password);
     
 }
