@@ -7,6 +7,6 @@
  *
  * @author Zack
  */
-public class StudentRecord {
+public class ScheduledMed {
     
 }

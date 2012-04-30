@@ -7,6 +7,6 @@
  *
  * @author Zack
  */
-public class Session {
+public class Student {
     
 }

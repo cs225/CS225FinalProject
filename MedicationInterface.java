@@ -7,6 +7,6 @@
  *
  * @author Zack
  */
-public class SimulationDataStructre {
+public interface MedicationInterface {
     
 }

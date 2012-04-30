@@ -7,6 +7,6 @@
  *
  * @author Zack
  */
-public class Narrative {
+public class Instructor {
     
 }

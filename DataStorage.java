@@ -7,6 +7,6 @@
  *
  * @author Zack
  */
-public class ScenarioResult {
+public class DataStorage {
     
 }

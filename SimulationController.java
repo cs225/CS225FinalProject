@@ -7,6 +7,6 @@
  *
  * @author Zack
  */
-public class Medication {
+public class SimulationController {
     
 }
