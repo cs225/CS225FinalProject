@@ -24,6 +24,7 @@ public class SimulationManager {
     final public static int SIMULATION_STATE = 2;
     final public static int MAINTENANCE_STATE = 3;
     final public static int EXIT_STATE= -1;
+    final public static SimulationDataStructure SIMULATION_DATA_STRUCTURE = new SimulationDataStructure();
     
     
 
@@ -58,15 +59,17 @@ public class SimulationManager {
         ScenarioSelectionGUI scenarioSelectionGUIPrototype = new ScenarioSelectionGUI(manager);
         SimulationManager.state = LOGIN_STATE;
         while(SimulationManager.state!= EXIT_STATE){
-            if(SimulationManager.state== LOGIN_STATE && scenarioSelectionGUIPrototype.isVisible() || (SimulationManager.state== LOGIN_STATE && mainGUI.isVisible())){
-                scenarioSelectionGUIPrototype.setVisible(false);
-                mainGUI.setVisible(false);
-                if(!loginDialog.isVisible()){
-                    JOptionPane.showMessageDialog(loginDialog,
-                  "Welcome to Massbay General Hospital\n"
-                + "Please Log in and follow the flow. ");
-                    loginDialog.setVisible(true);
-                }
+            if(SimulationManager.state== LOGIN_STATE && 
+                scenarioSelectionGUIPrototype.isVisible() || (SimulationManager.state== LOGIN_STATE && 
+                mainGUI.isVisible())){
+                    scenarioSelectionGUIPrototype.setVisible(false);
+                    mainGUI.setVisible(false);
+                    if(!loginDialog.isVisible()){
+                        JOptionPane.showMessageDialog(loginDialog,
+                    "Welcome to Massbay General Hospital\n"
+                    + "Please Log in and follow the flow. ");
+                        loginDialog.setVisible(true);
+                    }
             }
             else if(SimulationManager.state==LOGIN_STATE){
                 if(!loginDialog.isVisible()){

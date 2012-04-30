@@ -1,8 +1,10 @@
 package CS225FinalProject.DataStructure;
 
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -20,8 +22,27 @@ public class SimulationDataStructure implements Serializable{
      */
     private static ProffesorLogIn proffesorLogIn;
 
+    
+    /**
+     * loads data from files, if professor file is not found, 
+     * it creates a default one, the same thing applies to the 
+     * SimulationDataStructure class file.
+     */
     public SimulationDataStructure() {
         loadResources();
+        
+        
+        /*
+         * if proffesor file is not found, it makes a new one and records it 
+         * to file
+         */
+        if(proffesorLogIn ==null)
+            proffesorLogIn = new ProffesorLogIn();
+        try {
+            recordSimulationDataStructure();
+        } catch (IOException ex) {
+            Logger.getLogger(SimulationDataStructure.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -38,6 +59,23 @@ public class SimulationDataStructure implements Serializable{
    with the file extention .pli
      */
     public static void loadResources() {
+        
+        
+        /*
+         * Example for loading the teacher file login 
+         */
+        //////////////////////////////////////////////
+        try {
+            ObjectInputStream profesorLogin = new ObjectInputStream(new FileInputStream("login.pli"));
+        } catch (IOException ex) {
+           // Logger.getLogger(SimulationDataStructure.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("no proffesor login file found, so default login is made and recorded to file");
+        }
+        /////////////////////////////////////////////
+        
+        /*
+         * Loading Scenarios and the SimulationDataStructure files should be here below
+         */
     }
 
     /**
@@ -55,7 +93,7 @@ public class SimulationDataStructure implements Serializable{
      * @param passWord 
      */
     public boolean validateProffesorLogIn(String userName, String passWord) {
-        return true;
+        return proffesorLogIn.validateLogin(userName, passWord);
     }
 
     /**
@@ -88,7 +126,8 @@ public class SimulationDataStructure implements Serializable{
         return null;
     }
     public StudentRecord getStudentRecord(String sessionName, String userName,String password){
-        return null;
+        validateStudentLogIn(sessionName, userName, password);
+        return sessionMap.get(sessionName).getStudentRecord(userName);
     }
     /**
      */
@@ -105,6 +144,35 @@ public class SimulationDataStructure implements Serializable{
      * @param scenarioName 
      */
     public void removeScenarioFile(String scenarioName) {
+    }
+
+    
+    /**
+     * 
+     * @throws IOException 
+     */
+    private void recordSimulationDataStructure() throws IOException  {
+        
+        //Profesor file saved.
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("login.pli"));
+        out.writeObject(proffesorLogIn);
+        out.close();
+        //Data Structure saved must go here.
+        
+        
+ 
+    }
+    
+    
+    
+    /**
+     * when adding a student or changing an username, this should be called
+     * for multiple copies of userNames prevention.
+     * @param userName
+     * @return 
+     */
+    public boolean isUserNameAvailable(String userName){
+        return true;
     }
 }
 

@@ -1,10 +1,16 @@
 package CS225FinalProject.GUI;
 
+import CS225FinalProject.DataStructure.ProffesorLogIn;
+import CS225FinalProject.DataStructure.SimulationDataStructure;
 import CS225FinalProject.SimulationManager;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
+
+import static  CS225FinalProject.SimulationManager.*;
+import java.awt.event.*;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -47,16 +53,16 @@ public class LoginGUI extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        usernameTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        professorLoginButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -65,18 +71,23 @@ public class LoginGUI extends javax.swing.JDialog {
         jLabel1.setText("UserName:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 103, 65, 27));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        usernameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                usernameTextFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 150, -1));
+        getContentPane().add(usernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 150, -1));
 
         jLabel2.setText("Password:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 139, -1, -1));
 
-        jPasswordField1.setText("test");
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 150, -1));
+        passwordField.setText("test");
+        passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordFieldKeyPressed(evt);
+            }
+        });
+        getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 150, -1));
 
         jButton1.setText("Student Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -109,20 +120,20 @@ public class LoginGUI extends javax.swing.JDialog {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, -1, -1));
 
-        jButton3.setText("login Proffesor");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        professorLoginButton.setText("login Proffesor");
+        professorLoginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                professorLoginButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
+        getContentPane().add(professorLoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_usernameTextFieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -131,16 +142,31 @@ public class LoginGUI extends javax.swing.JDialog {
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void professorLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_professorLoginButtonActionPerformed
         // TODO add your handling code here:
+        
+        
+        if(SIMULATION_DATA_STRUCTURE.validateProffesorLogIn(usernameTextField.getText(), new String (passwordField.getPassword()))){
         SimulationManager.state = SimulationManager.MAINTENANCE_STATE;
         setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        usernameTextField.setText("");
+        passwordField.setText("");
+        }
+        else
+            JOptionPane.showMessageDialog(this, "Your login is not correct");
+            
+    }//GEN-LAST:event_professorLoginButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+            professorLoginButton.getActionListeners()[0].actionPerformed(new ActionEvent(professorLoginButton, 0, null));
+    }//GEN-LAST:event_passwordFieldKeyPressed
 
     /**
      * @param args the command line arguments
@@ -194,14 +220,14 @@ public class LoginGUI extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JList jList1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JButton professorLoginButton;
+    private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }

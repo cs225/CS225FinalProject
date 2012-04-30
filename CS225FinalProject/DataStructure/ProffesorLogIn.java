@@ -14,6 +14,12 @@ public class ProffesorLogIn implements Serializable{
         this.userName = userName;
         this.passWord = passWord;
     }
+
+    public ProffesorLogIn() {
+        userName = "default";
+        passWord = "default";
+    }
+    
     
     public boolean validateLogin(String username,String password){
         if(username.equals(userName)&&

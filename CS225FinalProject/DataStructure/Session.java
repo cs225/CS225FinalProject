@@ -1,10 +1,7 @@
 package CS225FinalProject.DataStructure;
 
 import java.io.Serializable;
-import java.lang.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.JTable;
 
 /**
  */
@@ -21,7 +18,7 @@ public class Session implements Serializable {
      * @return 
      */
     public String getSessionName() {
-        return null;
+        return sessionName;
     }
 
     /**
@@ -34,8 +31,8 @@ public class Session implements Serializable {
      * @param studentName 
      * @return 
      */
-    public StudentRecord getStudentRecord(String studentName) {
-        return studentRecords.get(studentName);
+    public StudentRecord getStudentRecord(String studentUserName) {
+        return studentRecords.get(studentUserName);
     }
 
     /**
@@ -43,7 +40,7 @@ public class Session implements Serializable {
      */
     public void addStudentRecord(StudentRecord studentRecord) {
         if(studentRecord!=null)
-             studentRecords.put(studentRecord.getStudentName(), studentRecord);
+             studentRecords.put(studentRecord.getUserName(), studentRecord);
     }
 
     /**
@@ -52,6 +49,14 @@ public class Session implements Serializable {
      */
     public boolean removeStudent(String studentName) {
         return (studentRecords.remove(studentName)!=null?true:false);
+    }
+    
+    public boolean validateStudentLogin(String userName, String password){
+        StudentRecord record = studentRecords.get(userName);
+        if(studentRecords.get(userName)==null)
+            return false;
+        else
+            return record.validateStudentLogin(userName, password);
     }
 }
 

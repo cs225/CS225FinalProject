@@ -16,8 +16,13 @@ public class Medication implements Serializable{
 
     /**
      */
-    private int[] medicationDueTimes;
+    private String medicationDueTimes;
 
+    public Medication(String medicationName, String dosage, String medicationDueTimes) {
+        this.medicationName = medicationName;
+        this.dosage = dosage;
+        this.medicationDueTimes = medicationDueTimes;
+    }
     /**
      * @return 
      */
@@ -54,7 +59,7 @@ public class Medication implements Serializable{
     /**
      * @param medicationDueTimes 
      */
-    public void setMedicationDueTimes(int[] medicationDueTimes) {
+    public void setMedicationDueTimes(String medicationDueTimes) {
     }
 }
 

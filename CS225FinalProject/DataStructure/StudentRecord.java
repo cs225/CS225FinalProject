@@ -7,6 +7,10 @@ import java.util.HashMap;
 /**
  */
 public class StudentRecord implements Serializable {
+    
+    /**
+     */
+    private String sessionName;
     /**
      */
     private String userName;
@@ -15,6 +19,8 @@ public class StudentRecord implements Serializable {
      */
     private String password;
 
+    
+    
     /**
      */
     private String studentName;
@@ -22,6 +28,30 @@ public class StudentRecord implements Serializable {
     /**
      */
     private HashMap<String, ScenarioResult> simulationResultList;
+
+    public StudentRecord(String sessionName,  String studentName, String userName, String password) {
+        this.sessionName = sessionName;
+        this.userName = userName;
+        this.password = password;
+        this.studentName = studentName;
+        this.simulationResultList = new HashMap<String, ScenarioResult>();
+    }
+    
+    
+    
+    
+    
+
+    public String getSessionName() {
+        return sessionName;
+    }
+    
+    public boolean validateStudentLogin(String userName,String password){
+        return true;
+    }
+    
+    
+    
 
     /**
      * @return 
@@ -67,7 +97,7 @@ public class StudentRecord implements Serializable {
      * @return 
      */
     public ScenarioResult getScenarioResult(String scenarioName) {
-        return null;
+        return simulationResultList.get(scenarioName);
     }
 
     /**
@@ -81,7 +111,7 @@ public class StudentRecord implements Serializable {
      * @return 
      */
     public ScenarioResult[] getScenarioResultList() {
-        return null;
+        return (ScenarioResult[])simulationResultList.values().toArray();
     }
 
     /**
