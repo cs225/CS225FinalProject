@@ -1,0 +1,75 @@
+Hello everyone, 
+
+in this file i will show a list of stuff that needs to be done in the backEnd 
+of this program, which is mostly in the CS225FinalProject.DataStructure Package.
+
+this package is our main focus to have it done.
+
+*****************************************
+if you have any questions please contact me.
+*****************************************
+
+
+
+--------------------------------------------------------------------------------
+
+dont worry about the GUIs implementation and SimulationManager for now. if you 
+want to work on GUIs and the manager contact me so I can introduce you the logic
+and work on it.
+
+in the GUIs and SimulationManager classes im just cleaning up so i can introduce
+it to you later on.
+
+*****************************************************************
+In the overall picture, GUIs are accessing/editing the data through 
+the SimulationDataStructure's methods.
+*****************************************************************
+
+--------------------------------------------------------------------------------
+
+RECORDING AND LOADING DATA DETAILS:
+
+SimulationDataStructure and Scenario classes are the classes that are 
+!!!!!!!!!!!!            Serializable                 !!!!!!!!!!!!!!!!!!!
+which includes all the CS225FinalProject.DataStructure classes are Serializable
+
+meaning you can record the object to a file and load from them.
+
+but we are recording only 3 classes:
+
+  *The SimulationDataStructure class file is store in the ROOT Working Directory
+   with the file extention .sds
+
+  *The Scenario file/s are stored in ROOT/scenarios directory 
+   with the file extention .sco
+
+  *The ProffesorLogIn class is stored the root working directory
+   with the file extention .pli
+  
+--------------------------------------------------------------------------------
+
+
+most of the methods and constructors in these sources files are empty so they need to be 
+implemented (decide who is going to do what)
+
+i did some implementations and documentations for these classes. if you want
+more details contact me
+
+
+--------------------------------------------------------------------------------
+
+
+There is also a SimulationPrinter class that needs to be implemented for 
+printing results to paper.
+
+Also there is a Evaluator class for evaluating the students imput by getting the 
+Scenario input  of the student. THe evaluator just gives suggestions to the 
+proffesor for grading.
+
+
+--------------------------------------------------------------------------------
+
+the zip file have some sample codes for implementing the ideas above. and also has
+sample of HashMap if you dont know about it and other examples.
+
+--------------------------------------------------------------------------------
