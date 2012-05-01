@@ -1,12 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
- * @author Zack
+ * @author kevinmee
  */
 public class PatientRecord {
+    private String patientName;
     
+    
+    public PatientRecord(){
+        patientName = "";
+    }
+    
+    
+    public String getName(){
+        return patientName;
+    }
 }
