@@ -15,7 +15,15 @@ public class Student implements UserInterface{
         this.name = name;
         this.password = password;
     }
-    public boolean login(){
+    public boolean login(String name, String password){
+        String login = "name"+"password";
+        if (login.equals(DataStorage.getLogin()){
+            return true;
+        }
+        else
+            return false;
+        }
+        
     }
     public void displayComplete(){
     }

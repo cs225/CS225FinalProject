@@ -8,5 +8,9 @@
  * @author Zack
  */
 public class DataStorage {
+
+    static Object getLogin() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
     
 }
