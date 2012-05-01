@@ -17,4 +17,24 @@ public class PatientRecord {
     public String getName(){
         return patientName;
     }
+    
+    public void setName(String name){
+        patientName = name;
+    }
+    
+    public int getDosage(){
+        return dosage;
+    }
+    
+    public void setDosage(int number){
+        dosage = number;
+    }
+    
+    public String getMedication(){
+        return medication;
+    }
+    
+    public void setMedicatio(String meds){
+        medication = meds;
+    }
 }
