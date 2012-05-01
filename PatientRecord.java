@@ -4,13 +4,14 @@
  */
 public class PatientRecord {
     private String patientName, medication;
-    private int dosage;
+    private int dosage, room;
     
     
     public PatientRecord(){
         patientName = "";
         medication = "";
         dosage = 0;
+        room = 0;
     }
     
     
@@ -34,7 +35,20 @@ public class PatientRecord {
         return medication;
     }
     
-    public void setMedicatio(String meds){
+    public void setMedication(String meds){
         medication = meds;
+    }
+    
+    public int getRoom(){
+        return room;
+    }
+    
+    public void setRoom(int num){
+        room = num;
+    }
+    
+    public String toString(){
+        return "Patient name: "+patientName + "\nRoom: "+ room 
+                +"\nMedication: "+ medication;
     }
 }
