@@ -5,8 +5,13 @@
 
 /**
  *
- * @author Zack
+ * @author Kevin Mee
  */
 public class Scenario {
+    
+    
+    public Scenario(){
+        
+    }
     
 }
