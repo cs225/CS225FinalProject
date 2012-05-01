@@ -9,6 +9,7 @@ public class Scenario {
     
     public Scenario(){
         description = "";
+        patientRecord = new PatientRecord();
         patientName = patientRecord.getName();
     }
     
