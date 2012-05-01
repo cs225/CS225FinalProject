@@ -1,12 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
- * @author Zack
+ * @author Kevin Mee
  */
 public class Scenario {
+    private String description, patientName;
+    private PatientRecord patientRecord;
+    
+    public Scenario(){
+        description = "";
+        patientName = patientRecord.getName();
+    }
     
 }
