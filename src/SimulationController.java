@@ -5,14 +5,15 @@ import java.util.HashMap;
 
 public class SimulationController {
 
-	private DataIO dataIO;
-	private ArrayList<Scenario> scenarios;
-	private ArrayList<CompletedScenario> completedScenarios;
+	private DataIO dataIO = new DataIO();
+	private ArrayList<CompletedScenario> completedScenarios = new ArrayList<CompletedScenario>();
+	private ArrayList<User> users = new ArrayList<User>();
 
-	private ArrayList<User> users; // will replace with hash map
+	// Scenarios saved in individual files preferably for easy
+	// reading/editing individual scenarios
+	private ArrayList<Scenario> scenarios = new ArrayList<Scenario>();
 
 	// private HashMap<Session, ArrayList<User>> userMap;
-
 	// Sessions are going to be groups of students (like classes, Nursing 101
 	// Section A for example)
 	// So we can save the array list of users as a HashMap<Session,
@@ -22,21 +23,18 @@ public class SimulationController {
 	// It could probably be an internal class to this controller.
 
 	public SimulationController() {
-		dataIO = new DataIO();
-		users = new ArrayList<User>();
-		completedScenarios = new ArrayList<CompletedScenario>();
+		loadAllData();
+	}
 
-		// Scenarios saved in individual files preferably for easy
-		// reading/editing individual scenarios
-		scenarios = new ArrayList<Scenario>();
-
+	// method to be called when program is launched.
+	public void loadAllData() {
 		populateUsers();
 		populateScenarios();
 		populateCompletedScenarios();
 	}
 
-	// Will need session information
 	public boolean validateLogin(String name, String pw) {
+		
 		boolean isValidUser = false;
 
 		for (User user : users) {
@@ -50,48 +48,60 @@ public class SimulationController {
 	// all write methods need to check the current data against the current
 	// stored data as to not overwrite stored data accidentally.
 	public void writeUsers() {
+		
 		if (dataIO.writeUserList(users)) {
 			// data stored, do nothing
+			
 		} else {
 			// data not stored
 		}
 	}
 
 	public void writeCompletedScenarios() {
+		
 		if (dataIO.writeCompletedScenarioList(completedScenarios)) {
 			// data stored, do nothing
-		} else {
+			
+		} else {	
 			// data not stored
 		}
 	}
 
 	public void writeScenarios() {
+		
 		if (dataIO.writeScenarioList(scenarios)) {
 			// data stored, do nothing
+			
 		} else {
 			// data not stored
 		}
 	}
 
 	public void populateUsers() {
+		
 		if (dataIO.loadUserList() != null) {
 			users = dataIO.loadUserList();
 		} else {
+			
 			// loading data failure, file not found
 		}
 	}
 
 	public void populateScenarios() {
+		
 		if (dataIO.loadScenarioList() != null) {
 			scenarios = dataIO.loadScenarioList();
+			
 		} else {
 			// loading data failure, file not found
 		}
 	}
 
 	public void populateCompletedScenarios() {
+		
 		if (dataIO.loadCompletedScenarioList() != null) {
 			completedScenarios = dataIO.loadCompletedScenarioList();
+			
 		} else {
 			// loading data failure, file not found
 		}
@@ -107,8 +117,8 @@ public class SimulationController {
 	}
 
 	// returns completed scenarios that belong to a specific user
-	// we'll change this to reflect change to session
 	public ArrayList<CompletedScenario> getUserSessions(int userID) {
+		
 		ArrayList<CompletedScenario> temp = new ArrayList<CompletedScenario>();
 
 		for (CompletedScenario ses : completedScenarios) {
