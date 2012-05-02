@@ -35,16 +35,43 @@ public class SimulationController {
 		return isValidUser;
 	}
 
-	private void populateUsers() {
-		loader.loadUsers();
+	// everytime object array lists are serialized and written the current
+	// version of those saved objects will be read in and compared with the
+	// current version of the list to be written.
+	public void writeUsers() {
+
 	}
 
-	private void populateScenarios() {
-		scenarios = loader.loadScenarios();
+	public void writeSessions() {
+
 	}
 
-	private void populateSessions(int userID) {
-		sessions = loader.loadUserData(userID);
+	public void writeScenarios() {
+
+	}
+
+	public void populateUsers() {
+		if (loader.loadUsers() != null) {
+			users = loader.loadUsers();
+		} else {
+			// prompt user via gui
+		}
+	}
+
+	public void populateScenarios() {
+		if (loader.loadScenarios() != null) {
+			scenarios = loader.loadScenarios();
+		} else {
+			// prompt user via gui
+		}
+	}
+
+	public void populateSessions(int userID) {
+		if (loader.loadUserData() != null) {
+			sessions = loader.loadUserData();
+		} else {
+			// prompt user via gui
+		}
 	}
 
 	public ArrayList<User> getUsers() {
@@ -55,7 +82,20 @@ public class SimulationController {
 		return scenarios;
 	}
 
-	public ArrayList<Session> getSessions() {
+	// returns sessions that belong to a specific user
+	public ArrayList<Session> getUserSessions(int userID) {
+		ArrayList<Session> temp = new ArrayList<Session>();
+		
+		for (Session ses : sessions) {
+			if (ses.getSessionID() == userID) {
+				temp.add(ses);
+			}
+		}
+		return temp;
+	}
+
+	// returns all sessions to the professor
+	public ArrayList<Session> getAllSessions() {
 		return sessions;
 	}
 }

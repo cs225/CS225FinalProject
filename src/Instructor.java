@@ -7,6 +7,9 @@
  *
  * @author Zack
  */
+
+// should extend user rather than implementing the user interface
+
 public class Instructor implements UserInterface{
     String name, password;
     
