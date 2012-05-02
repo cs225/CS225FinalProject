@@ -43,8 +43,8 @@ public class SimulationController {
 		scenarios = loader.loadScenarios();
 	}
 
-	private void populateSessions() {
-		sessions = loader.loadUserData();
+	private void populateSessions(int userID) {
+		sessions = loader.loadUserData(userID);
 	}
 
 	public ArrayList<User> getUsers() {
