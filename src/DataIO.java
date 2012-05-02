@@ -42,7 +42,7 @@ public class DataIO {
 
 			// cast the object as an arrayList of users and set it
 			userList = (ArrayList<User>) in.readObject();
-			
+
 			in.close();
 
 		} catch (IOException e) {
@@ -72,7 +72,7 @@ public class DataIO {
 					sessionFile));
 
 			sessionList = (ArrayList<Session>) in.readObject();
-			
+
 			in.close();
 
 		} catch (IOException e) {
@@ -94,11 +94,11 @@ public class DataIO {
 		ArrayList<Scenario> scenarioList = new ArrayList<Scenario>();
 
 		try {
-			
+
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
 					sessionFile));
 			scenarioList = (ArrayList<Scenario>) in.readObject();
-			
+
 			in.close();
 
 		} catch (IOException e) {
@@ -117,14 +117,15 @@ public class DataIO {
 
 	}
 
-	public boolean writeUserList() {
+	public boolean writeUserList(ArrayList<User> userList) {
 		try {
 
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(userFile));
-            out.writeObject(repo);
-            out.close();
+			ObjectOutputStream out = new ObjectOutputStream(
+					new FileOutputStream(userFile));
+			out.writeObject(userList);
+			out.close();
 			return true;
-			
+
 		} catch (Exception e) {
 
 			System.out.println(e.getMessage());
@@ -133,10 +134,15 @@ public class DataIO {
 
 	}
 
-	public boolean writeSessionData() {
+	public boolean writeSessionData(ArrayList<Session> sessionList) {
 		try {
 
+			ObjectOutputStream out = new ObjectOutputStream(
+					new FileOutputStream(sessionFile));
+			out.writeObject(sessionList);
+			out.close();
 			return true;
+
 		} catch (Exception e) {
 
 			System.out.println(e.getMessage());
@@ -144,10 +150,15 @@ public class DataIO {
 		}
 	}
 
-	public boolean writeScenarioList() {
+	public boolean writeScenarioList(ArrayList<Scenario> scenarioList) {
 		try {
 
+			ObjectOutputStream out = new ObjectOutputStream(
+					new FileOutputStream(scenarioFile));
+			out.writeObject(scenarioList);
+			out.close();
 			return true;
+
 		} catch (Exception e) {
 
 			System.out.println(e.getMessage());
