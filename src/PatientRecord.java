@@ -4,7 +4,7 @@
  */
 public class PatientRecord {
     private String patientName, medication;
-    private int dosage, room;
+    private int dosage, room, age;
     
     
     public PatientRecord(){
@@ -12,8 +12,15 @@ public class PatientRecord {
         medication = "";
         dosage = 0;
         room = 0;
+        age = 0;
     }
     
+    public  int getAge(){
+        return age;
+    }
+    public void setAge(int a){
+        age = a;
+    }
     
     public String getName(){
         return patientName;
