@@ -3,7 +3,7 @@ import java.util.ArrayList;
 // @author Peter Collins
 public class SimulationController {
 
-	private DataLoader loader;
+	private DataIO loader;
 
 	private DataStorage writer;
 
@@ -14,7 +14,7 @@ public class SimulationController {
 	private ArrayList<Session> sessions;
 
 	public SimulationController() {
-		loader = new DataLoader();
+		loader = new DataIO();
 		writer = new DataStorage();
 		users = new ArrayList<User>();
 		scenarios = new ArrayList<Scenario>();

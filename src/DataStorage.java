@@ -1,16 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
-/**
- *
- * @author Zack
- */
+
 public class DataStorage {
+	
 
-    static Object getLogin() {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
+
+
     
 }

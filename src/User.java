@@ -2,7 +2,7 @@ import java.io.Serializable;
 
 // User should be an abstract class in my opinion, extended by instructor and
 // student. It will be easier to retrieve and store data of a generic type
-// "user" because I have to serialize an array of users to write as well as read
+// "user" because Ramsey has to serialize an array of users to write as well as read
 // in a serialized array.
 // It will also be easier to determine if the user is a professor by using a
 // parent class.
