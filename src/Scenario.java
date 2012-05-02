@@ -3,6 +3,9 @@
  *
  * @author Kevin Mee
  */
+
+//Kevin, overload the constructor so we can make scenario objects when we load data
+
 public class Scenario {
     private String description, patientName;
     private PatientRecord patientRecord;
