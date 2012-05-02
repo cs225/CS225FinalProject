@@ -11,7 +11,7 @@ public class Scenario {
     private SimulationController controller;
     
     public Scenario(){
-        description = controller.getDescription();
+        description = "";
         patientRecord = new PatientRecord();
         patientName = patientRecord.getName();
     }
@@ -29,5 +29,8 @@ public class Scenario {
         description = descript;
     }
     
+    public String getScenario(){
+        return patientRecord.toString() + "\n" + description;
+    }
     
 }
