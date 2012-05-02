@@ -30,7 +30,7 @@ public class DataIO {
 
 	// load the files (indvidually!) in their methods
 	// arraylist of user objects
-	public ArrayList<User> loadUsers() {
+	public ArrayList<User> loadUserList() {
 		// new arraylist
 		ArrayList<User> userList = new ArrayList<User>();
 
@@ -63,7 +63,7 @@ public class DataIO {
 	}
 
 	// Returns an arraylist of session data for SimController to deal with
-	public ArrayList<Session> loadUserData() {
+	public ArrayList<Session> loadSessionList() {
 		ArrayList<Session> sessionList = new ArrayList<Session>();
 
 		try {
@@ -90,7 +90,7 @@ public class DataIO {
 		return sessionList;
 	}
 
-	public ArrayList<Scenario> loadScenarios() {
+	public ArrayList<Scenario> loadScenarioList() {
 		ArrayList<Scenario> scenarioList = new ArrayList<Scenario>();
 
 		try {
@@ -134,7 +134,7 @@ public class DataIO {
 
 	}
 
-	public boolean writeSessionData(ArrayList<Session> sessionList) {
+	public boolean writeSessionList(ArrayList<Session> sessionList) {
 		try {
 
 			ObjectOutputStream out = new ObjectOutputStream(
