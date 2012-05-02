@@ -1,4 +1,7 @@
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 /*
@@ -8,28 +11,44 @@ import java.util.ArrayList;
  * loadData will load in user sessions as objects and pass them back
  *
  */
+
 public class DataLoader {
 
+	private File userFile;
+	private File sessionFile;
+	private File scenarioFile;
+
 	public DataLoader() {
-		//Defile files here
-		File userFile = new File("users.lst");
-		File sessionFile = new File("sessions.lst");
-		File scenarioFile = new File("scenarios.lst");
-		
-		
-		
+		// Defile files here
+		userFile = new File("users.lst");
+		sessionFile = new File("sessions.lst");
+		scenarioFile = new File("scenarios.lst");
+
 	}
 
-	// string will be: Name, password, id
-	public ArrayList<String> loadUsers() {
+	// load the files (indvidually!) in their methods
+	// arraylist of user objects
+	public ArrayList<User> loadUsers() {
+		
 		// new arraylist
-		ArrayList<String> userList = new ArrayList<String>();
+		ArrayList<User> userList = new ArrayList<User>();
 
-		// read file
+		// read file and deserialize
+		try {
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
+					userFile));
 
-		// parse file
+			// cast the object as an arrayList of users and set it
+			userList = (ArrayList<User>) in.readObject();
+		} catch (IOException e) {
+			System.out.println("Error Finding File:"
+					+ userFile.getAbsolutePath());
 
-		// populate arraylist
+			// can allow user to select file if file not found?
+		} catch (ClassNotFoundException e) {
+
+			e.printStackTrace();
+		}
 
 		// return arraylist
 		return userList;
@@ -40,13 +59,22 @@ public class DataLoader {
 
 		ArrayList<Session> sessionList = new ArrayList<Session>();
 
-		// read file
+		// read file and deserialize
+		try {
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
+					sessionFile));
 
-		// parse file
+			// cast the object as an arrayList of users and set it
+			sessionList = (ArrayList<Session>) in.readObject();
+		} catch (IOException e) {
+			System.out.println("Error Finding File:"
+					+ sessionFile.getAbsolutePath());
 
-		// populate arraylist
+			// can allow user to select file if file not found?
+		} catch (ClassNotFoundException e) {
 
-		// return arraylist
+			e.printStackTrace();
+		}
 
 		return sessionList;
 	}
@@ -54,11 +82,22 @@ public class DataLoader {
 	public ArrayList<Scenario> loadScenarios() {
 		ArrayList<Scenario> scenarioList = new ArrayList<Scenario>();
 
-		// read file
+		// read file and deserialize
+		try {
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
+					sessionFile));
 
-		// parse file
+			// cast the object as an arrayList of users and set it
+			scenarioList = (ArrayList<Scenario>) in.readObject();
+		} catch (IOException e) {
+			System.out.println("Error Finding File:"
+					+ sessionFile.getAbsolutePath());
 
-		// populate arraylist
+			// can allow user to select file if file not found?
+		} catch (ClassNotFoundException e) {
+
+			e.printStackTrace();
+		}
 
 		// return arraylist
 
