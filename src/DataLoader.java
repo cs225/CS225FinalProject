@@ -29,8 +29,9 @@ public class DataLoader {
 	// load the files (indvidually!) in their methods
 	// arraylist of user objects
 	public ArrayList<User> loadUsers() {
+		
 		// new arraylist
-		ArrayList<User> userList = new ArrayList<String>();
+		ArrayList<User> userList = new ArrayList<User>();
 
 		// read file and deserialize
 		try {
