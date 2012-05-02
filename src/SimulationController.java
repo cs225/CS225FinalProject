@@ -8,19 +8,24 @@ public class SimulationController {
 	private ArrayList<User> users;
 
 	private ArrayList<Scenario> scenarios;
-
+//Sessions are going to be groups of students (like classes, Nursing 101 Section A for example)
+//So we can save the arraylist of users as a HashMap<Session, ArrayList<Users> to easily get student
+//information by class.  We can change the session class correspondingly and maybe store users in session
+//It could probably be an internal class to this controller.
 	private ArrayList<Session> sessions;
 
 	public SimulationController() {
 		dataIO = new DataIO();
 		users = new ArrayList<User>();
 		scenarios = new ArrayList<Scenario>();
-		sessions = new ArrayList<Session>();
+		//Scenarios saved in individual files preferably for easy reading/editing individual scenarios
+		sessions = new ArrayList<Session>(); 
 
 		populateUsers();
 		populateScenarios();
 	}
 
+//Will need session information
 	public boolean validateLogin(String name, String pw) {
 		boolean isValidUser = false;
 
@@ -42,6 +47,7 @@ public class SimulationController {
 		}
 	}
 
+//will change to reflect session change
 	public void writeSessions() {
 		if (dataIO.writeSessionList(sessions)) {
 			// data stored, do nothing
@@ -74,6 +80,7 @@ public class SimulationController {
 		}
 	}
 
+//Will change to reflect session change
 	public void populateSessions(int userID) {
 		if (dataIO.loadSessionList() != null) {
 			sessions = dataIO.loadSessionList();
@@ -82,6 +89,7 @@ public class SimulationController {
 		}
 	}
 
+//take param session
 	public ArrayList<User> getUsers() {
 		return users;
 	}
@@ -90,7 +98,7 @@ public class SimulationController {
 		return scenarios;
 	}
 
-	// returns sessions that belong to a specific user
+	// returns sessions that belong to a specific user - we'll change this to reflect change to session
 	public ArrayList<Session> getUserSessions(int userID) {
 		ArrayList<Session> temp = new ArrayList<Session>();
 
