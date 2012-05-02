@@ -43,7 +43,7 @@ public class SimulationController {
 	}
 
 	public void writeSessions() {
-		if (dataIO.writeSessionData(sessions)) {
+		if (dataIO.writeSessionList(sessions)) {
 			// data stored, do nothing
 		} else {
 			// data not stored
