@@ -32,18 +32,19 @@ public class SimulationController {
 		return isValidUser;
 	}
 
-	
+	// all write methods need to check the current data against the current
+	// stored data as to not overwrite stored data accidentially.
 	public void writeUsers() {
 		if (dataIO.writeUserList(users)) {
-			// data stored
+			// data stored, do nothing
 		} else {
 			// data not stored
 		}
 	}
 
 	public void writeSessions() {
-		if (dataIO.writeSessionList(sessions)) {
-			// data stored
+		if (dataIO.writeSessionData(sessions)) {
+			// data stored, do nothing
 		} else {
 			// data not stored
 		}
@@ -51,7 +52,7 @@ public class SimulationController {
 
 	public void writeScenarios() {
 		if (dataIO.writeScenarioList(scenarios)) {
-			// data stored
+			// data stored, do nothing
 		} else {
 			// data not stored
 		}
@@ -61,7 +62,7 @@ public class SimulationController {
 		if (dataIO.loadUsers() != null) {
 			users = dataIO.loadUsers();
 		} else {
-			// prompt user via gui
+			// loading data failure, file not found
 		}
 	}
 
@@ -69,7 +70,7 @@ public class SimulationController {
 		if (dataIO.loadScenarios() != null) {
 			scenarios = dataIO.loadScenarios();
 		} else {
-			// prompt user via gui
+			// loading data failure, file not found
 		}
 	}
 
@@ -77,7 +78,7 @@ public class SimulationController {
 		if (dataIO.loadUserData() != null) {
 			sessions = dataIO.loadUserData();
 		} else {
-			// prompt user via gui
+			// loading data failure, file not found
 		}
 	}
 
