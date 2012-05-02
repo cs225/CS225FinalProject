@@ -4,11 +4,11 @@
  */
 
 /**
- *
+ * 
  * @author Zack
  */
+
 public interface UserInterface {
-    boolean login( String name,
-            String password);
-    
+	boolean login(String name, String password);
+
 }

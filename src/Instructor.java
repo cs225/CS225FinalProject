@@ -7,11 +7,13 @@
  *
  * @author Zack
  */
-public class Student implements UserInterface{
-    
+
+// should extend user rather than implementing the user interface
+
+public class Instructor implements UserInterface{
     String name, password;
     
-    public Student(String name, String password){
+    public Instructor(String name, String password){
         this.name = name;
         this.password = password;
     }
@@ -23,9 +25,15 @@ public class Student implements UserInterface{
         else
             return false;
         }
-        
     }
-    public void displayComplete(){
+    public void addSection(){
     }
-    
+    public void addStudent(){
+    }
+    public void removeSection(){
+    }
+    public void removeStudent(){
+    }
+    public void displayScores(){
+    }
 }

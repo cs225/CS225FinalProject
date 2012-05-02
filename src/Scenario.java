@@ -3,6 +3,8 @@
  *
  * @author Kevin Mee
  */
+
+
 public class Scenario {
     private String description, patientName;
     private PatientRecord patientRecord;
@@ -10,6 +12,12 @@ public class Scenario {
     
     public Scenario(){
         description = controller.getDescription();
+        patientRecord = new PatientRecord();
+        patientName = patientRecord.getName();
+    }
+    
+    public Scenario(String descript){
+        description = descript;
         patientRecord = new PatientRecord();
         patientName = patientRecord.getName();
     }
