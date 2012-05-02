@@ -17,24 +17,24 @@ import java.util.ArrayList;
 public class DataIO {
 
 	private File userFile;
-	private File sessionFile;
 	private File scenarioFile;
+	private File completedScenarioFile;
 
 	public DataIO() {
 		// Define files here
 		userFile = new File("users.lst");
-		sessionFile = new File("sessions.lst");
 		scenarioFile = new File("scenarios.lst");
+		completedScenarioFile = new File("completed.lst");
 
 	}
 
-	// load the files (indvidually!) in their methods
-	// arraylist of user objects
+	// load the files (individually!) in their methods
+	// array list of user objects
 	public ArrayList<User> loadUserList() {
-		// new arraylist
+		// new array list
 		ArrayList<User> userList = new ArrayList<User>();
 
-		// read file and deserialize
+		// read file and de-serialize
 		try {
 
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
@@ -58,27 +58,27 @@ public class DataIO {
 			e.printStackTrace();
 		}
 
-		// return arraylist
+		// return array list
 		return userList;
 	}
 
-	// Returns an arraylist of session data for SimController to deal with
-	public ArrayList<Session> loadSessionList() {
-		ArrayList<Session> sessionList = new ArrayList<Session>();
+	// Returns an array list of session data for SimController to deal with
+	public ArrayList<CompletedScenario> loadCompletedScenarioList() {
+		ArrayList<CompletedScenario> sessionList = new ArrayList<CompletedScenario>();
 
 		try {
 
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
-					sessionFile));
+					completedScenarioFile));
 
-			sessionList = (ArrayList<Session>) in.readObject();
+			sessionList = (ArrayList<CompletedScenario>) in.readObject();
 
 			in.close();
 
 		} catch (IOException e) {
 
 			System.out.println("Error Finding File:"
-					+ sessionFile.getAbsolutePath());
+					+ completedScenarioFile.getAbsolutePath());
 
 			return null;
 
@@ -96,7 +96,7 @@ public class DataIO {
 		try {
 
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
-					sessionFile));
+					completedScenarioFile));
 			scenarioList = (ArrayList<Scenario>) in.readObject();
 
 			in.close();
@@ -104,7 +104,7 @@ public class DataIO {
 		} catch (IOException e) {
 
 			System.out.println("Error Finding File:"
-					+ sessionFile.getAbsolutePath());
+					+ completedScenarioFile.getAbsolutePath());
 
 			return null;
 
@@ -134,11 +134,12 @@ public class DataIO {
 
 	}
 
-	public boolean writeSessionList(ArrayList<Session> sessionList) {
+	public boolean writeCompletedScenarioList(
+			ArrayList<CompletedScenario> sessionList) {
 		try {
 
 			ObjectOutputStream out = new ObjectOutputStream(
-					new FileOutputStream(sessionFile));
+					new FileOutputStream(completedScenarioFile));
 			out.writeObject(sessionList);
 			out.close();
 			return true;

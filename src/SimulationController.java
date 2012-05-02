@@ -1,31 +1,41 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 // @author Peter Collins
+
 public class SimulationController {
 
 	private DataIO dataIO;
-
-	private ArrayList<User> users;
-
 	private ArrayList<Scenario> scenarios;
-//Sessions are going to be groups of students (like classes, Nursing 101 Section A for example)
-//So we can save the arraylist of users as a HashMap<Session, ArrayList<Users> to easily get student
-//information by class.  We can change the session class correspondingly and maybe store users in session
-//It could probably be an internal class to this controller.
-	private ArrayList<Session> sessions;
+	private ArrayList<CompletedScenario> completedScenarios;
+
+	private ArrayList<User> users; // will replace with hash map
+
+	// private HashMap<Session, ArrayList<User>> userMap;
+
+	// Sessions are going to be groups of students (like classes, Nursing 101
+	// Section A for example)
+	// So we can save the array list of users as a HashMap<Session,
+	// ArrayList<Users> to easily get student
+	// information by class. We can change the session class correspondingly and
+	// maybe store users in session
+	// It could probably be an internal class to this controller.
 
 	public SimulationController() {
 		dataIO = new DataIO();
 		users = new ArrayList<User>();
+		completedScenarios = new ArrayList<CompletedScenario>();
+
+		// Scenarios saved in individual files preferably for easy
+		// reading/editing individual scenarios
 		scenarios = new ArrayList<Scenario>();
-		//Scenarios saved in individual files preferably for easy reading/editing individual scenarios
-		sessions = new ArrayList<Session>(); 
 
 		populateUsers();
 		populateScenarios();
+		populateCompletedScenarios();
 	}
 
-//Will need session information
+	// Will need session information
 	public boolean validateLogin(String name, String pw) {
 		boolean isValidUser = false;
 
@@ -38,7 +48,7 @@ public class SimulationController {
 	}
 
 	// all write methods need to check the current data against the current
-	// stored data as to not overwrite stored data accidentially.
+	// stored data as to not overwrite stored data accidentally.
 	public void writeUsers() {
 		if (dataIO.writeUserList(users)) {
 			// data stored, do nothing
@@ -47,9 +57,8 @@ public class SimulationController {
 		}
 	}
 
-//will change to reflect session change
-	public void writeSessions() {
-		if (dataIO.writeSessionList(sessions)) {
+	public void writeCompletedScenarios() {
+		if (dataIO.writeCompletedScenarioList(completedScenarios)) {
 			// data stored, do nothing
 		} else {
 			// data not stored
@@ -80,16 +89,15 @@ public class SimulationController {
 		}
 	}
 
-//Will change to reflect session change
-	public void populateSessions(int userID) {
-		if (dataIO.loadSessionList() != null) {
-			sessions = dataIO.loadSessionList();
+	public void populateCompletedScenarios() {
+		if (dataIO.loadCompletedScenarioList() != null) {
+			completedScenarios = dataIO.loadCompletedScenarioList();
 		} else {
 			// loading data failure, file not found
 		}
 	}
 
-//take param session
+	// take param session
 	public ArrayList<User> getUsers() {
 		return users;
 	}
@@ -98,20 +106,21 @@ public class SimulationController {
 		return scenarios;
 	}
 
-	// returns sessions that belong to a specific user - we'll change this to reflect change to session
-	public ArrayList<Session> getUserSessions(int userID) {
-		ArrayList<Session> temp = new ArrayList<Session>();
+	// returns completed scenarios that belong to a specific user
+	// we'll change this to reflect change to session
+	public ArrayList<CompletedScenario> getUserSessions(int userID) {
+		ArrayList<CompletedScenario> temp = new ArrayList<CompletedScenario>();
 
-		for (Session ses : sessions) {
-			if (ses.getSessionID() == userID) {
+		for (CompletedScenario ses : completedScenarios) {
+			if (ses.getScenarioID() == userID) {
 				temp.add(ses);
 			}
 		}
 		return temp;
 	}
 
-	// returns all sessions to the professor
-	public ArrayList<Session> getAllSessions() {
-		return sessions;
+	// returns all completed scenarios to the professor
+	public ArrayList<CompletedScenario> getAllSessions() {
+		return completedScenarios;
 	}
 }
