@@ -59,24 +59,24 @@ public class SimulationController {
 	}
 
 	public void populateUsers() {
-		if (dataIO.loadUsers() != null) {
-			users = dataIO.loadUsers();
+		if (dataIO.loadUserList() != null) {
+			users = dataIO.loadUserList();
 		} else {
 			// loading data failure, file not found
 		}
 	}
 
 	public void populateScenarios() {
-		if (dataIO.loadScenarios() != null) {
-			scenarios = dataIO.loadScenarios();
+		if (dataIO.loadScenarioList() != null) {
+			scenarios = dataIO.loadScenarioList();
 		} else {
 			// loading data failure, file not found
 		}
 	}
 
 	public void populateSessions(int userID) {
-		if (dataIO.loadUserData() != null) {
-			sessions = dataIO.loadUserData();
+		if (dataIO.loadSessionList() != null) {
+			sessions = dataIO.loadSessionList();
 		} else {
 			// loading data failure, file not found
 		}
