@@ -3,9 +3,7 @@ import java.util.ArrayList;
 // @author Peter Collins
 public class SimulationController {
 
-	private DataLoader loader;
-
-	private DataStorage writer;
+	private DataIO dataIO;
 
 	private ArrayList<User> users;
 
@@ -14,8 +12,7 @@ public class SimulationController {
 	private ArrayList<Session> sessions;
 
 	public SimulationController() {
-		loader = new DataLoader();
-		writer = new DataStorage();
+		dataIO = new DataIO();
 		users = new ArrayList<User>();
 		scenarios = new ArrayList<Scenario>();
 		sessions = new ArrayList<Session>();
@@ -39,36 +36,37 @@ public class SimulationController {
 	// version of those saved objects will be read in and compared with the
 	// current version of the list to be written.
 	public void writeUsers() {
-
+		// dataIO.writeUsers(users);
 	}
 
 	public void writeSessions() {
+		// dataIO.writeSessions(sessions);
 
 	}
 
 	public void writeScenarios() {
-
+		// dataIO.writeScenarios(scenarios);
 	}
 
 	public void populateUsers() {
-		if (loader.loadUsers() != null) {
-			users = loader.loadUsers();
+		if (dataIO.loadUsers() != null) {
+			users = dataIO.loadUsers();
 		} else {
 			// prompt user via gui
 		}
 	}
 
 	public void populateScenarios() {
-		if (loader.loadScenarios() != null) {
-			scenarios = loader.loadScenarios();
+		if (dataIO.loadScenarios() != null) {
+			scenarios = dataIO.loadScenarios();
 		} else {
 			// prompt user via gui
 		}
 	}
 
 	public void populateSessions(int userID) {
-		if (loader.loadUserData() != null) {
-			sessions = loader.loadUserData();
+		if (dataIO.loadUserData() != null) {
+			sessions = dataIO.loadUserData();
 		} else {
 			// prompt user via gui
 		}
@@ -85,7 +83,7 @@ public class SimulationController {
 	// returns sessions that belong to a specific user
 	public ArrayList<Session> getUserSessions(int userID) {
 		ArrayList<Session> temp = new ArrayList<Session>();
-		
+
 		for (Session ses : sessions) {
 			if (ses.getSessionID() == userID) {
 				temp.add(ses);
