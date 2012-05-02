@@ -29,6 +29,7 @@ REQUIREMENTS:
 
 11) The instructor needs to be able to print reports (either to pdf or to a printer)
 
+12) Any personal information saved in a file must be encrypted
 
 
 ADDITIONAL FUNCTIONALITY (Time permitting)
