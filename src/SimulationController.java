@@ -32,20 +32,29 @@ public class SimulationController {
 		return isValidUser;
 	}
 
-	// everytime object array lists are serialized and written the current
-	// version of those saved objects will be read in and compared with the
-	// current version of the list to be written.
+	
 	public void writeUsers() {
-		// dataIO.writeUsers(users);
+		if (dataIO.writeUserList(users)) {
+			// data stored
+		} else {
+			// data not stored
+		}
 	}
 
 	public void writeSessions() {
-		// dataIO.writeSessions(sessions);
-
+		if (dataIO.writeSessionList(sessions)) {
+			// data stored
+		} else {
+			// data not stored
+		}
 	}
 
 	public void writeScenarios() {
-		// dataIO.writeScenarios(scenarios);
+		if (dataIO.writeScenarioList(scenarios)) {
+			// data stored
+		} else {
+			// data not stored
+		}
 	}
 
 	public void populateUsers() {
