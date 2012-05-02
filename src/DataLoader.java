@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 
 /*
@@ -10,6 +11,13 @@ import java.util.ArrayList;
 public class DataLoader {
 
 	public DataLoader() {
+		//Defile files here
+		File userFile = new File("users.lst");
+		File sessionFile = new File("sessions.lst");
+		File scenarioFile = new File("scenarios.lst");
+		
+		
+		
 	}
 
 	// string will be: Name, password, id
