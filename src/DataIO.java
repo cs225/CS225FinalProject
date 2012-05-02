@@ -1,7 +1,9 @@
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /*
@@ -12,14 +14,14 @@ import java.util.ArrayList;
  *
  */
 
-public class DataLoader {
+public class DataIO {
 
 	private File userFile;
 	private File sessionFile;
 	private File scenarioFile;
 
-	public DataLoader() {
-		// Defile files here
+	public DataIO() {
+		// Define files here
 		userFile = new File("users.lst");
 		sessionFile = new File("sessions.lst");
 		scenarioFile = new File("scenarios.lst");
@@ -40,6 +42,8 @@ public class DataLoader {
 
 			// cast the object as an arrayList of users and set it
 			userList = (ArrayList<User>) in.readObject();
+			
+			in.close();
 
 		} catch (IOException e) {
 
@@ -68,6 +72,8 @@ public class DataLoader {
 					sessionFile));
 
 			sessionList = (ArrayList<Session>) in.readObject();
+			
+			in.close();
 
 		} catch (IOException e) {
 
@@ -88,9 +94,12 @@ public class DataLoader {
 		ArrayList<Scenario> scenarioList = new ArrayList<Scenario>();
 
 		try {
+			
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
 					sessionFile));
 			scenarioList = (ArrayList<Scenario>) in.readObject();
+			
+			in.close();
 
 		} catch (IOException e) {
 
@@ -108,10 +117,14 @@ public class DataLoader {
 
 	}
 
-	public boolean updateUserList() {
+	public boolean writeUserList() {
 		try {
 
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(userFile));
+            out.writeObject(repo);
+            out.close();
 			return true;
+			
 		} catch (Exception e) {
 
 			System.out.println(e.getMessage());
@@ -120,7 +133,7 @@ public class DataLoader {
 
 	}
 
-	public boolean updateSessionData() {
+	public boolean writeSessionData() {
 		try {
 
 			return true;
@@ -131,7 +144,7 @@ public class DataLoader {
 		}
 	}
 
-	public boolean updateScenarioList() {
+	public boolean writeScenarioList() {
 		try {
 
 			return true;
