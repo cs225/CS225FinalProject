@@ -1,62 +1,61 @@
+import java.util.ArrayList;
+
 // @author Peter Collins
 public class SimulationController {
 
-	private LoadData loader;
+	private DataLoader loader;
 
-	private StoreData writer;
+	private DataStorage writer;
 
-	private ArrayList<Student> students;
-
-	private ArrayList<Instructor> instructors;
+	private ArrayList<User> users;
 
 	private ArrayList<Scenario> scenarios;
 
+	private ArrayList<Session> sessions;
+
 	public SimulationController() {
-		loader = new LoadData();
-		writer = new StoreData();
+		loader = new DataLoader();
+		writer = new DataStorage();
+		users = new ArrayList<User>();
+		scenarios = new ArrayList<Scenario>();
+		sessions = new ArrayList<Session>();
 
 		populateUsers();
 		populateScenarios();
 	}
 
-	private void populateUsers() {
-		// loader.loadUsers();
-	}
-
-	private void populateScenarios() {
-		//loader.loadScenarios();
-	}
-
 	public boolean validateLogin(String name, String pw) {
 		boolean isValidUser = false;
 
-		if (!isInstructor) {
-			for (Student s : students) {
-				if (name == s.getName() && pw == s.getPassword()) {
-					isValidUser = true;
-				}
-			}
-		}
-
-		else if (isInstructor) {
-			for (Instructor i : instructors) {
-				if (name == i.getName() && pw == i.getPassword()) {
-					isValidUser = true;
-				}
+		for (User user : users) {
+			if (name == user.getName() && pw == user.getPassword()) {
+				isValidUser = true;
 			}
 		}
 		return isValidUser;
+	}
+
+	private void populateUsers() {
+		loader.loadUsers();
+	}
+
+	private void populateScenarios() {
+		scenarios = loader.loadScenarios();
+	}
+
+	private void populateSessions() {
+		sessions = loader.loadUserData();
+	}
+
+	public ArrayList<User> getUsers() {
+		return users;
 	}
 
 	public ArrayList<Scenario> getScenarios() {
 		return scenarios;
 	}
 
-	public ArrayList<Student> getStudents() {
-		return students;
-	}
-
-	public ArrayList<Instructor> getInstructors() {
-		return instructors;
+	public ArrayList<Session> getSessions() {
+		return sessions;
 	}
 }
