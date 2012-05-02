@@ -6,6 +6,7 @@
 /**
  *
  * @author Zack
+ * @author Keith
  */
 public interface MedicationInterface {
     
