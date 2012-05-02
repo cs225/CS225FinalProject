@@ -47,6 +47,7 @@ public class PatientRecord {
         room = num;
     }
     
+    @Override
     public String toString(){
         return "Patient name: "+patientName + "\nRoom: "+ room 
                 +"\nMedication: "+ medication;
