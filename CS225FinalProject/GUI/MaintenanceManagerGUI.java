@@ -129,7 +129,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
         sessionListModel = new DefaultListModel();
         for(int i = 0; i<5;i++){
-            sessionListModel.add(i, "Item "+(i+1));
+            sessionListModel.add(i, "Class "+(i+1));
         }
         sessionList.setModel(
             sessionListModel
@@ -144,7 +144,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         studentManagerPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, 150, 120));
 
         studentList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "John", "David", "Carlos", "Eric", "Evan" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

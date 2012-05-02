@@ -227,11 +227,15 @@
                           <Data value="Morphine"/>
                           <Data value="Cocaine"/>
                         </Column>
-                        <Column editable="true" title="Dose" type="java.lang.Object"/>
+                        <Column editable="true" title="Dose" type="java.lang.Object">
+                          <Data value="10 Units"/>
+                          <Data value="3 Grams"/>
+                          <Data value="5 Miligrams"/>
+                        </Column>
                         <Column editable="true" title="Hour Due" type="java.lang.Object">
-                          <Data value=""/>
-                          <Data value="null"/>
-                          <Data value="null"/>
+                          <Data value="8AM, 12PM, 4PM"/>
+                          <Data value="9AM, 12PM, 9PM"/>
+                          <Data value="12AM"/>
                         </Column>
                       </Table>
                     </Property>

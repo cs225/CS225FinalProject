@@ -161,9 +161,9 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
 
         marTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Insulin", null, ""},
-                {"Morphine", null, null},
-                {"Cocaine", null, null}
+                {"Insulin", "10 Units", "8AM, 12PM, 4PM"},
+                {"Morphine", "3 Grams", "9AM, 12PM, 9PM"},
+                {"Cocaine", "5 Miligrams", "12AM"}
             },
             new String [] {
                 "Medication", "Dose", "Hour Due"
@@ -572,6 +572,8 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
 
     private void printSampleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printSampleButtonActionPerformed
         try {
+            
+           setAlwaysOnTop(false);
             // TODO add your handling code here:
             PrinterJob job = PrinterJob.getPrinterJob();
             
@@ -581,7 +583,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
            job.setPrintable(this, format);
            if(job.printDialog())
                job.print();
-            
+            setAlwaysOnTop(true);
         } catch (PrinterException ex) {
             Logger.getLogger(SimulationGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
