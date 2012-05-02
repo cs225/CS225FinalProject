@@ -4,7 +4,6 @@
  * @author Kevin Mee
  */
 
-//Kevin, overload the constructor so we can make scenario objects when we load data
 
 public class Scenario {
     private String description, patientName;
@@ -13,6 +12,12 @@ public class Scenario {
     
     public Scenario(){
         description = controller.getDescription();
+        patientRecord = new PatientRecord();
+        patientName = patientRecord.getName();
+    }
+    
+    public Scenario(String descript){
+        description = descript;
         patientRecord = new PatientRecord();
         patientName = patientRecord.getName();
     }
