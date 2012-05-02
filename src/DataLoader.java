@@ -29,21 +29,25 @@ public class DataLoader {
 	// load the files (indvidually!) in their methods
 	// arraylist of user objects
 	public ArrayList<User> loadUsers() {
-		
 		// new arraylist
 		ArrayList<User> userList = new ArrayList<User>();
 
 		// read file and deserialize
 		try {
+
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
 					userFile));
 
 			// cast the object as an arrayList of users and set it
 			userList = (ArrayList<User>) in.readObject();
+
 		} catch (IOException e) {
+
 			System.out.println("Error Finding File:"
 					+ userFile.getAbsolutePath());
 
+			// returning null if file not found
+			return null;
 			// can allow user to select file if file not found?
 		} catch (ClassNotFoundException e) {
 
@@ -55,22 +59,23 @@ public class DataLoader {
 	}
 
 	// Returns an arraylist of session data for SimController to deal with
-	public ArrayList<Session> loadUserData(int idNumber) {
-
+	public ArrayList<Session> loadUserData() {
 		ArrayList<Session> sessionList = new ArrayList<Session>();
 
-		// read file and deserialize
 		try {
+
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
 					sessionFile));
 
-			// cast the object as an arrayList of users and set it
 			sessionList = (ArrayList<Session>) in.readObject();
+
 		} catch (IOException e) {
+
 			System.out.println("Error Finding File:"
 					+ sessionFile.getAbsolutePath());
 
-			// can allow user to select file if file not found?
+			return null;
+
 		} catch (ClassNotFoundException e) {
 
 			e.printStackTrace();
@@ -82,24 +87,22 @@ public class DataLoader {
 	public ArrayList<Scenario> loadScenarios() {
 		ArrayList<Scenario> scenarioList = new ArrayList<Scenario>();
 
-		// read file and deserialize
 		try {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
 					sessionFile));
-
-			// cast the object as an arrayList of users and set it
 			scenarioList = (ArrayList<Scenario>) in.readObject();
+
 		} catch (IOException e) {
+
 			System.out.println("Error Finding File:"
 					+ sessionFile.getAbsolutePath());
 
-			// can allow user to select file if file not found?
+			return null;
+
 		} catch (ClassNotFoundException e) {
 
 			e.printStackTrace();
 		}
-
-		// return arraylist
 
 		return scenarioList;
 
