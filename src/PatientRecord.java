@@ -1,9 +1,5 @@
 
-import CS225FinalProject.DataStructure.Narrative;
 import java.util.ArrayList;
-//A string for Allergies
-//A string for Diagnosis
-// Change medication to arraylist of Medication
 // finish up the narratives get/set/add/remove
 //------Suggestion by Eric
 
@@ -13,18 +9,21 @@ import java.util.ArrayList;
  * @author kevinmee
  */
 public class PatientRecord {
-    private String patientName, medication;
+    private String patientName, allergies, diagnosis;
+    private ArrayList<MedicationInterface> medication;
     private int dosage, room, age;
-    private ArrayList<Narrative> narratives;
+    //private ArrayList<Narrative> narratives;
     
     
     public PatientRecord(){
         patientName = "";
-        medication = "";
+        medication = new ArrayList<MedicationInterface>();
+        allergies = "";
+        diagnosis = "";
         dosage = 0;
         room = 0;
         age = 0;
-        narratives = new ArrayList<Narrative>();
+        //narratives = new ArrayList<Narrative>();
     }
     
     public  int getAge(){
@@ -50,12 +49,28 @@ public class PatientRecord {
         dosage = number;
     }
     
-    public String getMedication(){
-        return medication;
+    public MedicationInterface getMedication(int i){
+        return medication.get(i);
     }
     
-    public void setMedication(String meds){
-        medication = meds;
+    public void setMedication(MedicationInterface meds){
+        medication.add(meds);
+    }
+    
+    public String getAllergies(){
+        return allergies;
+    }
+    
+    public void setAllergies(String allergy){
+        allergies = allergy;
+    }
+    
+    public String getDiagnosis(){
+        return diagnosis;
+    }
+    
+    public void setDiagnosis(String diagnose){
+        diagnosis = diagnose;
     }
     
     public int getRoom(){
