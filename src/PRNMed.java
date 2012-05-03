@@ -1,12 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author Zack
+ * 
+ * @author keith
+ * The PRNMed is the 'as-needed medication which is a subclass of Medication
  */
-public class PRNMed {
-    
+public class PRNMed extends Medication {
+	
+	
+	public PRNMed (String name, double amount, String units) {
+		super (name, amount, units);
+	}
+	
+	
+
 }
