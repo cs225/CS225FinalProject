@@ -1,3 +1,13 @@
+
+import CS225FinalProject.DataStructure.Narrative;
+import java.util.ArrayList;
+//A string for Allergies
+//A string for Diagnosis
+// Change medication to arraylist of Medication
+// finish up the narratives get/set/add/remove
+//------Suggestion by Eric
+
+
 /**
  *
  * @author kevinmee
@@ -5,6 +15,7 @@
 public class PatientRecord {
     private String patientName, medication;
     private int dosage, room, age;
+    private ArrayList<Narrative> narratives;
     
     
     public PatientRecord(){
@@ -13,6 +24,7 @@ public class PatientRecord {
         dosage = 0;
         room = 0;
         age = 0;
+        narratives = new ArrayList<Narrative>();
     }
     
     public  int getAge(){
