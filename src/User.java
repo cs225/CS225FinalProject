@@ -12,34 +12,26 @@ import java.io.Serializable;
 // User should also implement serializable.
 // Peter C
 
-
-
-
-
-
 public abstract class User implements Serializable {
 
-        /*
-         * Name of the student
-         */
+	// User name
 	private String name;
-        
-        
-	private String password;
-        
-        /*
-         * Username
-         */
-	private String userID;
-        
-        
-	
 
-	public User(String name, String userID, String password ) {
+	// password
+	private String password;
+
+	// used to connect students with completed scenarios
+	private int userID;
+
+	// used to determine if the user is an instructor to provide the user with
+	// the proper application interface.
+	private boolean isInstructor;
+
+	public User(String name, String password, int userID, boolean isInstructor) {
 		this.name = name;
 		this.password = password;
 		this.userID = userID;
-		
+		this.isInstructor = isInstructor;
 	}
 
 	public User() {
@@ -61,24 +53,27 @@ public abstract class User implements Serializable {
 		this.password = password;
 	}
 
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-	
-    
-    public boolean isProfessor() {
-		return isProfessor;
+	public int getUserID() {
+		return userID;
 	}
-        
-    public boolean validateLogin( String userID, String password ){
-        if(userID.equals(this.userID)&&this.password.equals(password))
-            return true;
-        else
-            return false;
-        
-    }
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+
+	public boolean isInstructor() {
+		return isInstructor;
+	}
+
+	// validate login already exists in the simulation controller and will be
+	// called in the button listener for the login button. It will pass the two
+	// strings the user entered and compare them with all current user objects.
+
+	// public boolean validateLogin(String userID, String password) {
+	// if (userID.equals(this.userID) && this.password.equals(password))
+	// return true;
+	// else
+	// return false;
+	//
+	// }
 }
