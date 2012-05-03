@@ -157,10 +157,10 @@ public class SimulationController {
 	}
 	
 	/** Implementing the Singleton pattern */
-	private static class SimulationControllerHolder { 
+	private static class SimControl { 
 		public static final SimulationController instance = new SimulationController();
 	}
-	public static SimulationController getInstance() {
-		 return SimulationControllerHolder.instance;
+	public static SimControl getInstance() {
+		 return SimControl.instance;
 	}
 }
