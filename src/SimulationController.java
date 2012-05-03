@@ -28,12 +28,12 @@ public class SimulationController {
 
 	private DataIO dataIO = new DataIO();
 
-	public static ArrayList<CompletedScenario> completedScenarios = new ArrayList<CompletedScenario>();
-	public static ArrayList<User> users = new ArrayList<User>();
+	private ArrayList<CompletedScenario> completedScenarios = new ArrayList<CompletedScenario>();
+	private ArrayList<User> users = new ArrayList<User>();
 
 	// Scenarios saved in individual files preferably for easy
 	// reading/editing individual scenarios
-	public static ArrayList<Scenario> scenarios = new ArrayList<Scenario>();
+	private ArrayList<Scenario> scenarios = new ArrayList<Scenario>();
 
 	private SimulationController() {
 		loadAllData();
@@ -94,7 +94,7 @@ public class SimulationController {
 
 		if (dataIO.loadUserList() != null) {
 			users = dataIO.loadUserList();
-			
+
 		} else {
 			// loading data failure, file not found
 		}
