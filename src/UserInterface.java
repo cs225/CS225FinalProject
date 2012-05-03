@@ -8,6 +8,14 @@
  * @author Zack
  */
 
+/**
+ * MSG by Eric:
+ * 
+ * Zack, use the User class instead
+ * 
+ * 
+ * @deprecated and replaced by User
+ */
 public interface UserInterface {
 	boolean login(String name, String password);
 
