@@ -17,6 +17,21 @@
 // PJ makes a good point that User should be abstract, and the two types should extend it. 
 // We can then make an array of just Users which can be of either type.--RH
 
+
+
+
+/*Msg from Eric:
+ * 
+ * Both Student and Proffesor should extend the abstract class User, as suggested/Provided by Peter&Ramsey.
+ * Then refer to my CS225FinalProject.DataStructure.StudentRecord class as a sort of template
+ * for getting the the results. The booleans method setDone and getDone should not be implemented 
+ * because we dont know how many test they will give and also we want to make this program flexible for
+ * the proffesors.
+
+
+ *the adding/removing/editing the scenarios is managed by the Controller.
+ */
+
 public class Student implements UserInterface {
 
 	private String name, password;
@@ -26,13 +41,6 @@ public class Student implements UserInterface {
 		this.password = password;
 	}
 
-	public boolean login(String name, String password) {
-		String login = "name" + "password";
-		if (login.equals(DataStorage.getLogin())) { //Login should be handled in the controller.
-			return true;
-		} else
-			return false;
-	}
 
 	public void displayComplete() {
 	}

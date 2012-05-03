@@ -12,18 +12,34 @@ import java.io.Serializable;
 // User should also implement serializable.
 // Peter C
 
+
+
+
+
+
 public abstract class User implements Serializable {
 
+        /*
+         * Name of the student
+         */
 	private String name;
+        
+        
 	private String password;
-	private int userID;
-	private boolean isProfessor;
+        
+        /*
+         * Username
+         */
+	private String userID;
+        
+        
+	
 
-	public User(String name, String password, int userID, boolean isProfessor) {
+	public User(String name, String userID, String password ) {
 		this.name = name;
 		this.password = password;
 		this.userID = userID;
-		this.isProfessor = isProfessor;
+		
 	}
 
 	public User() {
@@ -45,19 +61,24 @@ public abstract class User implements Serializable {
 		this.password = password;
 	}
 
-	public int getUserID() {
-		return userID;
-	}
+    public String getUserID() {
+        return userID;
+    }
 
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
-
-	public boolean isProfessor() {
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+	
+    
+    public boolean isProfessor() {
 		return isProfessor;
 	}
-
-	public void setProfessor(boolean isProfessor) {
-		this.isProfessor = isProfessor;
-	}
+        
+    public boolean validateLogin( String userID, String password ){
+        if(userID.equals(this.userID)&&this.password.equals(password))
+            return true;
+        else
+            return false;
+        
+    }
 }
