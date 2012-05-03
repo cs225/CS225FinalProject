@@ -9,6 +9,10 @@
  */
 
 // should extend user rather than implementing the user interface
+// Zack! you write public class Instructor implements UserInterface
+// UserInterface is not a class; instead User is an interface. 
+// So this should say Instructor implements User (which is an interface) --RH
+
 
 public class Instructor implements UserInterface{
     String name, password;
