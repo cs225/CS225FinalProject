@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /** SimulationController
  *  This class has 3 responsibilities:
@@ -10,10 +9,10 @@ import java.util.HashMap;
  * @author Peter Collins
  * @author epanahi
  * 
- *
  */
 /*
  *       //This is the structure of a singleton in java. I believe we should implement this for this class.
+ *       
  * public class Singleton {
  *       // Private constructor prevents instantiation from other classes
  *       private Singleton() { }
@@ -31,17 +30,24 @@ import java.util.HashMap;
  *       }
  * }
  * 
+ * I am not too familiar with the singleton pattern, however I agree that this seems like a very good way
+ * to manage this class. I have a couple questions though. Will we only be calling getInstance once?
+ * As get instance will create a new singleton object, which will reset all the data to what is read from the file.
+ * If getInstance is only called once at the start of the program this isn't an issue. However if we are updating 
+ * the static data structures while the program is running, will the instance we create in the beginning reflect 
+ * the changes made to our array lists when that single instance is used to write the updated data structures back to a file?
  */
 
 public class SimulationController {
 
 	private DataIO dataIO = new DataIO();
-	private ArrayList<CompletedScenario> completedScenarios = new ArrayList<CompletedScenario>();
-	private ArrayList<User> users = new ArrayList<User>();
+	
+	public static ArrayList<CompletedScenario> completedScenarios = new ArrayList<CompletedScenario>();
+	public static ArrayList<User> users = new ArrayList<User>();
 
 	// Scenarios saved in individual files preferably for easy
 	// reading/editing individual scenarios
-	private ArrayList<Scenario> scenarios = new ArrayList<Scenario>();
+	public static ArrayList<Scenario> scenarios = new ArrayList<Scenario>();
 
 
 	private SimulationController() {
@@ -129,7 +135,6 @@ public class SimulationController {
 		}
 	}
 
-	// take param session
 	public ArrayList<User> getUsers() {
 		return users;
 	}
@@ -160,7 +165,8 @@ public class SimulationController {
 	private static class SimControl { 
 		public static final SimulationController instance = new SimulationController();
 	}
-	public static SimControl getInstance() {
+	
+	public static SimulationController getInstance() {
 		 return SimControl.instance;
 	}
 }
