@@ -1,8 +1,17 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-// @author Peter Collins
-
+/** SimulationController
+ *  This class has 3 responsibilities:
+ *   -receive and resolve requests from the GUI
+ *   -receive and resolve requests for data access
+ *   -coordinate usage of other classes.
+ * 
+ * @author Peter Collins
+ * @author epanahi
+ * 
+ *
+ */
 /*
  *       //This is the structure of a singleton in java. I believe we should implement this for this class.
  * public class Singleton {
@@ -34,16 +43,8 @@ public class SimulationController {
 	// reading/editing individual scenarios
 	private ArrayList<Scenario> scenarios = new ArrayList<Scenario>();
 
-	// private HashMap<Session, ArrayList<User>> userMap;
-	// Sessions are going to be groups of students (like classes, Nursing 101
-	// Section A for example)
-	// So we can save the array list of users as a HashMap<Session,
-	// ArrayList<Users> to easily get student
-	// information by class. We can change the session class correspondingly and
-	// maybe store users in session
-	// It could probably be an internal class to this controller.
 
-	public SimulationController() {
+	private SimulationController() {
 		loadAllData();
 	}
 
@@ -153,5 +154,13 @@ public class SimulationController {
 	// returns all completed scenarios to the professor
 	public ArrayList<CompletedScenario> getAllSessions() {
 		return completedScenarios;
+	}
+	
+	/** Implementing the Singleton pattern */
+	private static class SimulationControllerHolder { 
+		public static final SimulationController instance = new SimulationController();
+	}
+	public static SimulationController getInstance() {
+		 return SimulationControllerHolder.instance;
 	}
 }
