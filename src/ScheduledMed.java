@@ -1,12 +1,23 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author Zack
+ * 
+ * @author keith
+ * This is the ScheduledMed which also is a subclass of the Medication class. 
  */
-public class ScheduledMed {
-    
+public class ScheduledMed extends Medication{
+ 
+	
+	public ScheduledMed (String name, double amount, String units) {
+		super (name, amount, units);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 }
