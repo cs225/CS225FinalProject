@@ -128,6 +128,16 @@ public class SimulationController {
 	public ArrayList<Scenario> getScenarios() {
 		return scenarios;
 	}
+	
+	public Scenario getScenarioByName(String scenarioName){
+		Scenario temp = null;
+		for (Scenario s : scenarios){
+			if (s.getScenarioName().equals(scenarioName)){
+				temp = s;
+			}
+		}
+		return temp;
+	}
 
 	// returns completed scenarios that belong to a specific user
 	public ArrayList<CompletedScenario> getUserSessions(int userID) {
