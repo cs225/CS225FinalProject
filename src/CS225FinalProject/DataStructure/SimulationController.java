@@ -47,26 +47,26 @@ public class SimulationController implements Serializable{
 	private ArrayList<Scenario> scenarios = new ArrayList<Scenario>();
 
 
-	// Private Constructor and Singleton Holder
+// Private Constructor and Singleton Holder
 	/**
 	 * SimulationController implements the Singleton pattern. We will use one
 	 * instance of it at any time, and it is accessible via the static method
 	 * SimControl.getInstance(); Please use this method to access methods you
 	 * need from the controller.
 	 */
-	//private SimulationController() {
-	//	loadAllData();
-	//}
+	private SimulationController() {
+		loadAllData();
+	}
 
 	/** Implementing the Singleton pattern */
-	//private static class SimControl {
-	//	public static final SimulationController instance = new SimulationController();
-	//}
+	private static class SimControl {
+	public static final SimulationController instance = new SimulationController();
+	}
 
-	//public static SimulationController getInstance() {
-	//	return SimControl.instance;
-	//}
-	// Methods
+	public static SimulationController getInstance() {
+		return SimControl.instance;
+	}
+// Methods
 	/**
 	 * This method is called when the SimulationController is created to
 	 * initialize all information from the files, and load up the data
@@ -209,22 +209,22 @@ public class SimulationController implements Serializable{
      * it creates a default one, the same thing applies to the 
      * SimulationDataStructure class file.
      */
-    public SimulationController() {
-        loadResources();
-        
-        
-        /*
-         * if proffesor file is not found, it makes a new one and records it 
-         * to file
-         */
-        if(proffesorLogIn ==null)
-            proffesorLogIn = new ProffesorLogIn();
-        try {
-            recordSimulationDataStructure();
-        } catch (IOException ex) {
-            Logger.getLogger(SimulationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public SimulationController() {
+//        loadResources();
+//        
+//        
+//        /*
+//         * if proffesor file is not found, it makes a new one and records it 
+//         * to file
+//         */
+//        if(proffesorLogIn ==null)
+//            proffesorLogIn = new ProffesorLogIn();
+//        try {
+//            recordSimulationDataStructure();
+//        } catch (IOException ex) {
+//            Logger.getLogger(SimulationController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     /**
      * This method loads all the resourses from file.
