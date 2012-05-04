@@ -883,17 +883,17 @@ private class MedicationDialog extends javax.swing.JDialog {
 
         Graphics2D g2d = (Graphics2D)graphics;
         if(pageIndex ==0){
-        rootTabbedPane.setSelectedIndex(0);
+        rootTabbedPane.setSelectedIndex(1);
         pageFormat.setOrientation(PageFormat.LANDSCAPE);
-        g2d.translate(pageFormat.getImageableX()+100,pageFormat.getImageableY()+100);
+        g2d.translate(pageFormat.getImageableX()+20,pageFormat.getImageableY()+20);
         g2d.scale(.60, .60);
         rootTabbedPane.paint(graphics);
         graphics.drawString("Hello world!", 100, 100);
         }
         else{
-            rootTabbedPane.setSelectedIndex(1);
+            rootTabbedPane.setSelectedIndex(2);
         pageFormat.setOrientation(PageFormat.LANDSCAPE);
-        g2d.translate(pageFormat.getImageableX()+100,pageFormat.getImageableY()+100);
+        g2d.translate(pageFormat.getImageableX()+20,pageFormat.getImageableY()+20);
         g2d.scale(.60, .60);
         rootTabbedPane.paint(graphics);
         graphics.drawString("Hello world!", 100, 100);
