@@ -62,7 +62,13 @@ public class SimulationController {
 		populateScenarios();
 		populateCompletedScenarios();
 	}
-
+	
+	/** Method used for validating a user's login credentials
+	 * 
+	 * @param name The username
+	 * @param pw The password
+	 * @return True if the user is in the list
+	 */
 	public boolean validateLogin(String name, String pw) {
 
 		boolean isValidUser = false;
@@ -75,8 +81,9 @@ public class SimulationController {
 		return isValidUser;
 	}
 
-	// all write methods need to check the current data against the current
-	// stored data as to not overwrite stored data accidentally.
+	/** Write the list of users to file 
+	 *  Needs to check for existing data so as not to overwrite
+	 */
 	public void writeUsers() {
 
 		if (dataIO.writeUserList(users)) {
@@ -87,6 +94,8 @@ public class SimulationController {
 		}
 	}
 
+	/** Write the list of completed scenarios to file
+	 */
 	public void writeCompletedScenarios() {
 
 		if (dataIO.writeCompletedScenarioList(completedScenarios)) {
