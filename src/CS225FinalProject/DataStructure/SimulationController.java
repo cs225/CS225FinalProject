@@ -1,7 +1,5 @@
 package CS225FinalProject.DataStructure;
 
-
-
 import java.io.*;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -37,8 +35,6 @@ import java.util.ArrayList;
  */
 
 public class SimulationController implements Serializable {
-	private static HashMap<String, Scenario> scenarioMap;
-	private static HashMap<String, Session> sessionMap;
 	private static ProffesorLogIn proffesorLogIn;
 	// Begin new data
 	private DataIO dataIO = new DataIO();
@@ -301,21 +297,6 @@ public class SimulationController implements Serializable {
 	}
 
 	/**
-	 * @return
-	 */
-	public Session[] getSessionList() {
-		return null;
-	}
-
-	/**
-	 * @param sessionName
-	 * @return
-	 */
-	public Session getSession(String sessionName) {
-		return null;
-	}
-
-	/**
 	 * @param scenarioName
 	 * @return
 	 */
@@ -323,11 +304,12 @@ public class SimulationController implements Serializable {
 		return null;
 	}
 
-	public StudentRecord getStudentRecord(String sessionName, String userName,
-			String password) {
-		validateStudentLogIn(sessionName, userName, password);
-		return sessionMap.get(sessionName).getStudentRecord(userName);
-	}
+	// public StudentRecord getStudentRecord(String sessionName, String
+	// userName,
+	// String password) {
+	// validateStudentLogIn(sessionName, userName, password);
+	// return sessionMap.get(sessionName).getStudentRecord(userName);
+	// }
 
 	/**
      */
