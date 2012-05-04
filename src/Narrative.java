@@ -1,28 +1,14 @@
 import java.io.Serializable;
 
 /**
+ * @author Kevin Mee
+ * 
  * the narratives that student sees for the patient previous record.
  */
 public class Narrative  implements Serializable{
     /**
      */
-    private String date ;
-
-    /**
-     */
-    private String time ;
-
-    /**
-     */
-    private String narrative;
-
-    /**
-     */
-    private String followUP ;
-
-    /**
-     */
-    private String initials;
+    private String date, time, narrative, followUP, initials;
 
     public Narrative(String date, String time, String narrative, String followUP, String initials) {
         this.date = date;
@@ -31,72 +17,45 @@ public class Narrative  implements Serializable{
         this.followUP = followUP;
         this.initials = initials;
     }
-    
-    
 
-    /**
-     * @return 
-     */
     public String getDate() {
-        return null;
+        return date;
     }
 
-    /**
-     * @param date 
-     */
     public void setDate(String date) {
+        this.date = date;
     }
 
-    /**
-     * @return 
-     */
     public String getTime() {
-        return null;
+        return time;
     }
 
-    /**
-     * @param time 
-     */
     public void setTime(String time) {
+        this.time = time;
     }
 
-    /**
-     * @return 
-     */
     public String getNarrative() {
-        return null;
+        return narrative;
     }
 
-    /**
-     * @param narrative 
-     */
     public void setNarrative(String narrative) {
+        this.narrative = narrative;
     }
 
-    /**
-     * @return 
-     */
     public String getFollowUP() {
-        return null;
+        return followUP;
     }
 
-    /**
-     * @param followUP 
-     */
     public void setFollowUP(String followUP) {
+        this.followUP = followUP;
     }
 
-    /**
-     * @return 
-     */
     public String getInitials() {
-        return null;
+        return initials;
     }
 
-    /**
-     * @param initials 
-     */
     public void setInitials(String initials) {
+        this.initials = initials;
     }
 }
 
