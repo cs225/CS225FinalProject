@@ -1,7 +1,5 @@
 
 import java.util.ArrayList;
-// finish up the narratives get/set/add/remove
-//------Suggestion by Eric
 
 
 /**
@@ -12,7 +10,7 @@ public class PatientRecord {
     private String patientName, allergies, diagnosis;
     private ArrayList<MedicationInterface> medication;
     private int dosage, room, age;
-    //private ArrayList<Narrative> narratives;
+    private ArrayList<Narrative> narratives;
     
     
     public PatientRecord(){
@@ -23,7 +21,7 @@ public class PatientRecord {
         dosage = 0;
         room = 0;
         age = 0;
-        //narratives = new ArrayList<Narrative>();
+        narratives = new ArrayList<Narrative>();
     }
     
     public  int getAge(){
@@ -79,6 +77,16 @@ public class PatientRecord {
     
     public void setRoom(int num){
         room = num;
+    }
+    
+    public void addNarrative(Narrative nar){
+        narratives.add(nar);
+    }
+    public void removeNarrative(Narrative nar){
+        narratives.remove(nar);
+    }
+    public ArrayList<Narrative> getNarrative(){
+        return narratives;
     }
     
     @Override
