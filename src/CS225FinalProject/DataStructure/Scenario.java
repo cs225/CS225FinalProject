@@ -15,25 +15,12 @@ public class Scenario implements Serializable {
 
 	private ArrayList<Narrative> narrativeList;
 
-	private String summary;
+	private String summary, patientName, diagnosis, 
+                allergies, scenarioName, description;
 
-	private String patientName;
-
-	private int roomNumber;
-
-	private String diagnosis;
-
-	private String allergies;
-
-	private String scenarioName;
-	/**
-	 * counter of how many narratives the scenario has
-	 */
-	private int startNumOfNarratives;
+	private int roomNumber, startNumOfNarratives, time;
 
 	private PatientRecord patientRecord;
-
-	private String description;
 
 	public Scenario() {
 	}
@@ -41,7 +28,7 @@ public class Scenario implements Serializable {
 	public Scenario(ArrayList<Medication> medicationList, String summary,
 			String patientName, ArrayList<Narrative> narrativeList,
 			int roomNumber, String diagnosis, String allergies,
-			String scenarioName) {
+			String scenarioName, int time) {
 
 		this.medicationList = medicationList;
 		this.summary = summary;
@@ -52,6 +39,7 @@ public class Scenario implements Serializable {
 		this.allergies = allergies;
 		this.scenarioName = scenarioName;
 		startNumOfNarratives = 0;
+                this.time = time;
 	}
 
 	public Scenario(String descript) {
@@ -72,30 +60,19 @@ public class Scenario implements Serializable {
 		this.summary = summary;
 	}
 
-	/**
-	 * @return
-	 */
+
 	public String getPatientName() {
 		return patientName;
 	}
 
-	/**
-	 * @param patientName
-	 */
 	public void setPatientName(String patientName) {
 		this.patientName = patientName;
 	}
 
-	/**
-	 * @return
-	 */
 	public ArrayList<Narrative> getNarrativeList() {
 		return narrativeList;
 	}
 
-	/**
-	 * @param narrativeList
-	 */
 	public void setNarrativeList(ArrayList<Narrative> narrativeList) {
 		this.narrativeList = narrativeList;
 		startNumOfNarratives = narrativeList.size();
@@ -115,16 +92,10 @@ public class Scenario implements Serializable {
 		return narrativeList.remove(narrative);
 	}
 
-	/**
-	 * @return
-	 */
 	public int getRoomNumber() {
 		return roomNumber;
 	}
 
-	/**
-	 * @param roomNumber
-	 */
 	public void setRoomNumber(int roomNumber) {
 		this.roomNumber = roomNumber;
 	}
@@ -191,5 +162,19 @@ public class Scenario implements Serializable {
 	public String getScenarioName() {
 		return scenarioName;
 	}
+        /**
+         * 
+         * @param time 
+         * 
+         * time is in seconds
+         */
+
+        public void setTime(int time){
+            this.time = time;
+        }
+        
+        public int getTime(){
+            return time;
+        }
 
 }
