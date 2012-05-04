@@ -672,6 +672,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
         rootTabbedPane.addTab("ProfessorLoginManager", jPanel1);
 
+        jButton2.setBackground(new java.awt.Color(255, 0, 0));
         jButton2.setText("Logout");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

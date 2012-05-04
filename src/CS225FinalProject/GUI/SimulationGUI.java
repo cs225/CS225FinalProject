@@ -355,6 +355,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
 
         rootTabbedPane.addTab("Documentation", documentation_Panel);
 
+        jButton2.setBackground(new java.awt.Color(204, 0, 0));
         jButton2.setText("Cancel Simulation");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -367,6 +368,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
 
         timeLabel.setText("15:00");
 
+        submitButton.setBackground(new java.awt.Color(0, 204, 0));
         submitButton.setText("Submit");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -374,7 +376,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
             }
         });
 
-        printSampleButton.setText("Print Sample");
+        printSampleButton.setText("Print");
         printSampleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 printSampleButtonActionPerformed(evt);
@@ -396,7 +398,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(jButton2)
-                        .addGap(183, 183, 183)
+                        .addGap(223, 223, 223)
                         .addComponent(printSampleButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(submitButton)

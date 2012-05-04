@@ -116,6 +116,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jPanel1);
 
+        startButton.setBackground(new java.awt.Color(0, 204, 0));
         startButton.setText("Start");
         startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +131,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
             }
         });
 
+        logOutButton.setBackground(new java.awt.Color(255, 0, 0));
         logOutButton.setText("Logout");
         logOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
