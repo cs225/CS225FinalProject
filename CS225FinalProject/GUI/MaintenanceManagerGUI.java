@@ -787,7 +787,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_sessionListFocusGained
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:fd
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void addStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentButtonActionPerformed
