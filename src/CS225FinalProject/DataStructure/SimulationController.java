@@ -1,16 +1,14 @@
 package CS225FinalProject.DataStructure;
 
 
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
 
-
 //import CS225FinalProject.DataStructure.SimulationController.SimControl;
-
-
 
 /**
  * SimulationController This class has 3 responsibilities: -receive and resolve
@@ -38,18 +36,17 @@ import java.util.ArrayList;
  * of all our data.
  */
 
-public class SimulationController implements Serializable{
-    private static HashMap<String, Scenario> scenarioMap;
-    private static HashMap<String, Session> sessionMap;
-    private static ProffesorLogIn proffesorLogIn;
-//Begin new data
+public class SimulationController implements Serializable {
+	private static HashMap<String, Scenario> scenarioMap;
+	private static HashMap<String, Session> sessionMap;
+	private static ProffesorLogIn proffesorLogIn;
+	// Begin new data
 	private DataIO dataIO = new DataIO();
 	private ArrayList<CompletedScenario> completedScenarios = new ArrayList<CompletedScenario>();
 	private ArrayList<User> users = new ArrayList<User>();
 	private ArrayList<Scenario> scenarios = new ArrayList<Scenario>();
 
-
-// Private Constructor and Singleton Holder
+	// Private Constructor and Singleton Holder
 	/**
 	 * SimulationController implements the Singleton pattern. We will use one
 	 * instance of it at any time, and it is accessible via the static method
@@ -62,13 +59,14 @@ public class SimulationController implements Serializable{
 
 	/** Implementing the Singleton pattern */
 	private static class SimControl {
-	public static final SimulationController instance = new SimulationController();
+		public static final SimulationController instance = new SimulationController();
 	}
 
 	public static SimulationController getInstance() {
 		return SimControl.instance;
 	}
-// Methods
+
+	// Methods
 	/**
 	 * This method is called when the SimulationController is created to
 	 * initialize all information from the files, and load up the data
@@ -78,6 +76,17 @@ public class SimulationController implements Serializable{
 		populateUsers();
 		populateScenarios();
 		populateCompletedScenarios();
+	}
+
+	public int generateNewID() {
+		int lastID = 0;
+		for (User u : users) {
+			if (u.getUserID() > lastID) {
+				lastID = u.getUserID();
+			}
+		}
+
+		return lastID + 1;
 	}
 
 	public boolean validateLogin(String name, String pw) {
@@ -204,158 +213,162 @@ public class SimulationController implements Serializable{
 	public ArrayList<CompletedScenario> getAllSessions() {
 		return completedScenarios;
 	}
-	
-//End new data
-    /**
-     * loads data from files, if professor file is not found, 
-     * it creates a default one, the same thing applies to the 
-     * SimulationDataStructure class file.
-     */
-//    public SimulationController() {
-//        loadResources();
-//        
-//        
-//        /*
-//         * if proffesor file is not found, it makes a new one and records it 
-//         * to file
-//         */
-//        if(proffesorLogIn ==null)
-//            proffesorLogIn = new ProffesorLogIn();
-//        try {
-//            recordSimulationDataStructure();
-//        } catch (IOException ex) {
-//            Logger.getLogger(SimulationController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
 
-    /**
-     * This method loads all the resourses from file.
-     * if some are not found, generate them and are with empty contents.
-     
-  *The SimulationDataStructure class file is store in the ROOT Working Directory
-   with the file extention .sds
+	// End new data
+	/**
+	 * loads data from files, if professor file is not found, it creates a
+	 * default one, the same thing applies to the SimulationDataStructure class
+	 * file.
+	 */
+	// public SimulationController() {
+	// loadResources();
+	//
+	//
+	// /*
+	// * if proffesor file is not found, it makes a new one and records it
+	// * to file
+	// */
+	// if(proffesorLogIn ==null)
+	// proffesorLogIn = new ProffesorLogIn();
+	// try {
+	// recordSimulationDataStructure();
+	// } catch (IOException ex) {
+	// Logger.getLogger(SimulationController.class.getName()).log(Level.SEVERE,
+	// null, ex);
+	// }
+	// }
 
-  *The Scenario file/s are stored in ROOT/scenarios directory 
-   with the file extention .sco
+	/**
+	 * This method loads all the resourses from file. if some are not found,
+	 * generate them and are with empty contents.
+	 * 
+	 * The SimulationDataStructure class file is store in the ROOT Working
+	 * Directory with the file extention .sds
+	 * 
+	 * The Scenario file/s are stored in ROOT/scenarios directory with the file
+	 * extention .sco
+	 * 
+	 * The ProffesorLogIn class is stored the root working directory with the
+	 * file extention .pli
+	 */
+	public static void loadResources() {
 
-  *The ProffesorLogIn class is stored the root working directory
-   with the file extention .pli
-     */
-    public static void loadResources() {
-        
-        
-        /*
-         * Example for loading the teacher file login 
-         */
-        //////////////////////////////////////////////
-        try {
-            ObjectInputStream profesorLogin = new ObjectInputStream(new FileInputStream("login.pli"));
-        } catch (IOException ex) {
-           // Logger.getLogger(SimulationDataStructure.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("no proffesor login file found, so default login is made and recorded to file");
-        }
-        /////////////////////////////////////////////
-        
-        /*
-         * Loading Scenarios and the SimulationDataStructure files should be here below
-         */
-    }
+		/*
+		 * Example for loading the teacher file login
+		 */
+		// ////////////////////////////////////////////
+		try {
+			ObjectInputStream profesorLogin = new ObjectInputStream(
+					new FileInputStream("login.pli"));
+		} catch (IOException ex) {
+			// Logger.getLogger(SimulationDataStructure.class.getName()).log(Level.SEVERE,
+			// null, ex);
+			System.out
+					.println("no proffesor login file found, so default login is made and recorded to file");
+		}
+		// ///////////////////////////////////////////
 
-    /**
-     * @param sessionName
-     * @param userName 
-     * @param password 
-     * @return 
-     */
-    public  boolean validateStudentLogIn(String sessionName,String userName, String password) {
-        return false;
-    }
+		/*
+		 * Loading Scenarios and the SimulationDataStructure files should be
+		 * here below
+		 */
+	}
 
-    /**
-     * @param userName 
-     * @param passWord 
-     */
-    public boolean validateProffesorLogIn(String userName, String passWord) {
-        return proffesorLogIn.validateLogin(userName, passWord);
-    }
+	/**
+	 * @param sessionName
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
+	public boolean validateStudentLogIn(String sessionName, String userName,
+			String password) {
+		return false;
+	}
 
-    /**
-     * @return 
-     */
-    public Scenario[] getScenarioList() {
-        return null;
-    }
+	/**
+	 * @param userName
+	 * @param passWord
+	 */
+	public boolean validateProffesorLogIn(String userName, String passWord) {
+		return proffesorLogIn.validateLogin(userName, passWord);
+	}
 
-    /**
-     * @return 
-     */
-    public Session[] getSessionList() {
-        return null;
-    }
+	/**
+	 * @return
+	 */
+	public Scenario[] getScenarioList() {
+		return null;
+	}
 
-    /**
-     * @param sessionName 
-     * @return 
-     */
-    public  Session getSession(String sessionName) {
-        return null;
-    }
+	/**
+	 * @return
+	 */
+	public Session[] getSessionList() {
+		return null;
+	}
 
-    /**
-     * @param scenarioName 
-     * @return 
-     */
-    public Scenario getScenario(String scenarioName) {
-        return null;
-    }
-    public StudentRecord getStudentRecord(String sessionName, String userName,String password){
-        validateStudentLogIn(sessionName, userName, password);
-        return sessionMap.get(sessionName).getStudentRecord(userName);
-    }
-    /**
-     */
-    public void recordSessionsToFile() {
-    }
+	/**
+	 * @param sessionName
+	 * @return
+	 */
+	public Session getSession(String sessionName) {
+		return null;
+	}
 
-    /**
-     * @param scenario 
-     */
-    public void recordScenarioToFile(Scenario scenario) {
-    }
+	/**
+	 * @param scenarioName
+	 * @return
+	 */
+	public Scenario getScenario(String scenarioName) {
+		return null;
+	}
 
-    /**
-     * @param scenarioName 
-     */
-    public void removeScenarioFile(String scenarioName) {
-    }
+	public StudentRecord getStudentRecord(String sessionName, String userName,
+			String password) {
+		validateStudentLogIn(sessionName, userName, password);
+		return sessionMap.get(sessionName).getStudentRecord(userName);
+	}
 
-    
-    /**
-     * 
-     * @throws IOException 
+	/**
      */
-    private void recordSimulationDataStructure() throws IOException  {
-        
-        //Profesor file saved.
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("login.pli"));
-        out.writeObject(proffesorLogIn);
-        out.close();
-        //Data Structure saved must go here.
-        
-        
- 
-    }
-    
-    
-    
-    /**
-     * when adding a student or changing an username, this should be called
-     * for multiple copies of userNames prevention.
-     * @param userName
-     * @return 
-     */
-    public boolean isUserNameAvailable(String userName){
-        return true;
-    }
+	public void recordSessionsToFile() {
+	}
+
+	/**
+	 * @param scenario
+	 */
+	public void recordScenarioToFile(Scenario scenario) {
+	}
+
+	/**
+	 * @param scenarioName
+	 */
+	public void removeScenarioFile(String scenarioName) {
+	}
+
+	/**
+	 * 
+	 * @throws IOException
+	 */
+	private void recordSimulationDataStructure() throws IOException {
+
+		// Profesor file saved.
+		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(
+				"login.pli"));
+		out.writeObject(proffesorLogIn);
+		out.close();
+		// Data Structure saved must go here.
+
+	}
+
+	/**
+	 * when adding a student or changing an username, this should be called for
+	 * multiple copies of userNames prevention.
+	 * 
+	 * @param userName
+	 * @return
+	 */
+	public boolean isUserNameAvailable(String userName) {
+		return true;
+	}
 }
-
