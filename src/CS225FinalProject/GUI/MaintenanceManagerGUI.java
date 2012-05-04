@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import CS225FinalProject.SimulationManager;
 import CS225FinalProject.DataStructure.SimulationController;
 import CS225FinalProject.DataStructure.Student;
+import CS225FinalProject.DataStructure.User;
 
 /**
  * 
@@ -1065,17 +1066,24 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
 	private void addStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addStudentButtonActionPerformed
 
-		// this listener needs to take a name, password, and classname
+		// taking this data should be handled better.
+
 		String studentName = JOptionPane.showInputDialog(this,
-				"Enter the session Name");
+				"Enter the Student Name");
 
-		String password = "temp"; // needs to be replaced by input
-		String className = "temp"; // needs to be replaced by input
+		String studentPW = JOptionPane.showInputDialog(this,
+				"Enter the Student Password");
 
-		// tempName and tempClass need to be replaced with input values
+		String className = JOptionPane.showInputDialog(this,
+				"Enter the Class Name");
+
 		controller.getUsers().add(
-				new Student(studentName, password, controller.generateNewID(),
+				new Student(studentName, studentPW, controller.generateNewID(),
 						className));
+
+		// print statement for testing
+		for (User u : controller.getUsers())
+			System.out.println(u);
 
 	}// GEN-LAST:event_addStudentButtonActionPerformed
 

@@ -1,8 +1,5 @@
 package CS225FinalProject;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.swing.JOptionPane;
 
 import CS225FinalProject.DataStructure.SimulationController;
@@ -104,20 +101,22 @@ public class SimulationManager {
 				mainGUI.setVisible(false);
 				loginDialog.setVisible(false);
 				scenarioSelectionGUIPrototype.setVisible(false);
-
 			}
 
-			else if ((!loginDialog.isVisible() && SimulationManager.state == LOGIN_STATE))
-				SimulationManager.state = EXIT_STATE;
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException ex) {
-				Logger.getLogger(SimulationManager.class.getName()).log(
-						Level.SEVERE, null, ex);
-			}
+			// this code block is causing the program to not load properly.
+
+			// else if ((!loginDialog.isVisible() && SimulationManager.state ==
+			// LOGIN_STATE))
+			// SimulationManager.state = EXIT_STATE;
+			//
+			// try {
+			// Thread.sleep(100);
+			// } catch (InterruptedException ex) {
+			// Logger.getLogger(SimulationManager.class.getName()).log(
+			// Level.SEVERE, null, ex);
+			// }
 
 		}
 		System.exit(0);
-
 	}
 }

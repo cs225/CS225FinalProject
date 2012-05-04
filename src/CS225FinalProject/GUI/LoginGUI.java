@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import CS225FinalProject.SimulationManager;
 import CS225FinalProject.DataStructure.SimulationController;
+import CS225FinalProject.DataStructure.User;
 
 /**
  * Prototype Diaolog sss
@@ -17,7 +18,9 @@ import CS225FinalProject.DataStructure.SimulationController;
  */
 public class LoginGUI extends javax.swing.JDialog {
 
-	SimulationManager manager;
+	private SimulationManager manager;
+	private SimulationController controller = SimulationController
+			.getInstance();
 
 	/**
 	 * Creates new form LoginGUI
@@ -173,18 +176,32 @@ public class LoginGUI extends javax.swing.JDialog {
 	}// GEN-LAST:event_usernameTextFieldActionPerformed
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		// TODO add your handling code here:
-		manager.state = SimulationManager.SCENARIO_STATE;
-		SimulationManager.state = SimulationManager.SCENARIO_STATE;
-		setVisible(false);
+		// //if(user.isProfessor){
+		// if (controller.validateInstructorLogin(usernameTextField.getText(),
+		// new String(passwordField.getPassword()))) {
+		// SimulationManager.state = SimulationManager.MAINTENANCE_STATE;
+		// setVisible(false);
+		// usernameTextField.setText("");
+		// passwordField.setText("");
+		// } else
+		// JOptionPane.showMessageDialog(this, "Your login is not correct");
+		// //}
+
+		if (controller.validateStudentLogin(usernameTextField.getText(),
+				new String(passwordField.getPassword()))) {
+			SimulationManager.state = SimulationManager.SCENARIO_STATE;
+			setVisible(false);
+			usernameTextField.setText("");
+			passwordField.setText("");
+		} else
+			JOptionPane.showMessageDialog(this, "Your login is not correct");
+
 	}// GEN-LAST:event_jButton1ActionPerformed
 
 	private void professorLoginButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {// GEN-FIRST:event_professorLoginButtonActionPerformed
 
-		// this code allows students to log in as professor. needs to be fixed.
-		if (SimulationController.getInstance().validateLogin(
-				usernameTextField.getText(),
+		if (controller.validateInstructorLogin(usernameTextField.getText(),
 				new String(passwordField.getPassword()))) {
 			SimulationManager.state = SimulationManager.MAINTENANCE_STATE;
 			setVisible(false);

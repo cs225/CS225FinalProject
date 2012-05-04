@@ -83,13 +83,26 @@ public class SimulationController implements Serializable {
 		return lastID + 1;
 	}
 
-	public boolean validateLogin(String name, String pw) {
+	public boolean validateStudentLogin(String name, String pw) {
 
 		boolean isValidUser = false;
 
 		for (User user : users) {
 			if (name.equalsIgnoreCase(user.getName())
-					&& pw.equals(user.getPassword())) {
+					&& pw.equals(user.getPassword()) && !user.isInstructor()) {
+				isValidUser = true;
+			}
+		}
+		return isValidUser;
+	}
+
+	public boolean validateInstructorLogin(String name, String pw) {
+
+		boolean isValidUser = false;
+
+		for (User user : users) {
+			if (name.equalsIgnoreCase(user.getName())
+					&& pw.equals(user.getPassword()) && user.isInstructor()) {
 				isValidUser = true;
 			}
 		}
@@ -105,6 +118,7 @@ public class SimulationController implements Serializable {
 
 		} else {
 			// data not stored
+			System.out.println("no data");
 		}
 	}
 
