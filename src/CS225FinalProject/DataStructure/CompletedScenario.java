@@ -24,6 +24,13 @@ public class CompletedScenario {
 		dateTaken = new Date();
 	}
 
+	//Overloaded constructor to create a new object already populated with relevant information
+	public CompletedScenario(JTable studentInput, String evaluationSuggestion, Scenario scenarioTaken){
+		this.dateTaken = new Date();
+		this.studentInput = studentInput;
+		this.evaluationSuggestion = evaluationSuggestion;
+		this.scenarioTaken = scenarioTaken;
+	}
 	public String getDateTaken() {
 		// returns a formatted string representing the exact date and time the
 		// scenario was completed.
