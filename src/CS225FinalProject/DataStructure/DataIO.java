@@ -8,25 +8,36 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+//import javax.crypto.Cipher;
+//import javax.crypto.CipherInputStream;
+//import javax.crypto.SecretKey;
+//import javax.crypto.SecretKeyFactory;
+//import javax.crypto.spec.
+//import javax.crypto.spec.IvParameterSpec;
+
 /*
  * Author: Ramsey
  * This class will load in an array of data based on the calling method
  * loadUsers will load in a file which is a list of users to be checked on login and pass them to the calling class as an array list
  * loadData will load in user sessions as objects and pass them back
- *
+ * commented out scenario info - as this is now held in the user objects themselves.
  */
 
 public class DataIO {
 
 	private File userFile;
 	private File scenarioFile;
-	private File completedScenarioFile;
+//	private File completedScenarioFile;
 
 	public DataIO() {
 		// Define files here
 		userFile = new File("users.lst");
 		scenarioFile = new File("scenarios.lst");
-		completedScenarioFile = new File("completed.lst");
+//		completedScenarioFile = new File("completed.lst");
+		
+//	    DESKeySpec ks = new DESKeySpec((byte[]) ois.readObject());
+//	    SecretKeyFactory skf = SecretKeyFactory.getInstance("DES");
+//	    SecretKey key = skf.generateSecret(ks);
 
 	}
 
@@ -65,32 +76,32 @@ public class DataIO {
 	}
 
 	// Returns an array list of session data for SimController to deal with
-	public ArrayList<CompletedScenario> loadCompletedScenarioList() {
-		ArrayList<CompletedScenario> sessionList = new ArrayList<CompletedScenario>();
-
-		try {
-
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
-					completedScenarioFile));
-
-			sessionList = (ArrayList<CompletedScenario>) in.readObject();
-
-			in.close();
-
-		} catch (IOException e) {
-
-			System.out.println("Error Finding File:"
-					+ completedScenarioFile.getAbsolutePath());
-
-			return null;
-
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		}
-
-		return sessionList;
-	}
+//	public ArrayList<CompletedScenario> loadCompletedScenarioList() {
+//		ArrayList<CompletedScenario> sessionList = new ArrayList<CompletedScenario>();
+//
+//		try {
+//
+//			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
+//					completedScenarioFile));
+//
+//			sessionList = (ArrayList<CompletedScenario>) in.readObject();
+//
+//			in.close();
+//
+//		} catch (IOException e) {
+//
+//			System.out.println("Error Finding File:"
+//					+ completedScenarioFile.getAbsolutePath());
+//
+//			return null;
+//
+//		} catch (ClassNotFoundException e) {
+//
+//			e.printStackTrace();
+//		}
+//
+//		return sessionList;
+//	}
 
 	public ArrayList<Scenario> loadScenarioList() {
 		ArrayList<Scenario> scenarioList = new ArrayList<Scenario>();
@@ -136,22 +147,22 @@ public class DataIO {
 
 	}
 
-	public boolean writeCompletedScenarioList(
-			ArrayList<CompletedScenario> sessionList) {
-		try {
-
-			ObjectOutputStream out = new ObjectOutputStream(
-					new FileOutputStream(completedScenarioFile));
-			out.writeObject(sessionList);
-			out.close();
-			return true;
-
-		} catch (Exception e) {
-
-			System.out.println(e.getMessage());
-			return false;
-		}
-	}
+//	public boolean writeCompletedScenarioList(
+//			ArrayList<CompletedScenario> sessionList) {
+//		try {
+//
+//			ObjectOutputStream out = new ObjectOutputStream(
+//					new FileOutputStream(completedScenarioFile));
+//			out.writeObject(sessionList);
+//			out.close();
+//			return true;
+//
+//		} catch (Exception e) {
+//
+//			System.out.println(e.getMessage());
+//			return false;
+//		}
+//	}
 
 	public boolean writeScenarioList(ArrayList<Scenario> scenarioList) {
 		try {
