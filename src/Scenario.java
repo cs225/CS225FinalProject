@@ -12,6 +12,7 @@ public class Scenario {
     private SimulationController controller;
     
     public Scenario(){
+        scenarioName = "";
         description = "";
         patientRecord = new PatientRecord();
         patientName = patientRecord.getName();
@@ -60,6 +61,12 @@ public class Scenario {
     }
     public String recordToString(){
         return patientRecord.toString();
+    }
+    public void setScenarioName(String name){
+        scenarioName = name;
+    }
+    public String getScenarioName(){
+        return scenarioName;
     }
     
 }
