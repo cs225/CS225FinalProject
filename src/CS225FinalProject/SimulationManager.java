@@ -2,7 +2,7 @@ package CS225FinalProject;
 
 
 import CS225FinalProject.DataStructure.Medication;
-import CS225FinalProject.DataStructure.SimulationDataStructure;
+import CS225FinalProject.DataStructure.SimulationController;
 import CS225FinalProject.DataStructure.StudentRecord;
 import CS225FinalProject.GUI.*;
 
@@ -24,7 +24,7 @@ public class SimulationManager {
     final public static int SIMULATION_STATE = 2;
     final public static int MAINTENANCE_STATE = 3;
     final public static int EXIT_STATE= -1;
-    final public static SimulationDataStructure SIMULATION_DATA_STRUCTURE = new SimulationDataStructure();
+    final public static SimulationController SIMULATION_DATA_STRUCTURE = new SimulationController();
     
     
 
