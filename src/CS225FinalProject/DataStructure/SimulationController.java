@@ -81,7 +81,7 @@ public class SimulationController implements Serializable {
 	 * all iterations through array lists should first check if the list is
 	 * empty or not
 	 */
-	private void setClassNames() {
+	public void setClassNames() {
 		for (User u : users) {
 
 			if (classNames.isEmpty() && !u.isInstructor()) {
@@ -98,7 +98,7 @@ public class SimulationController implements Serializable {
 		}
 	}
 
-	private ArrayList<String> getClassNames() {
+	public ArrayList<String> getClassNames() {
 		return classNames;
 	}
 
