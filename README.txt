@@ -4,6 +4,12 @@
 +																					+
 *************************************************************************************
 
+IMPORTANT:
+For users running our current program in an IDE such as eclipse or netbeans, please launch the program
+using the SimulationManager class. This class contains the main method and the program will fail to load properly 
+unless launched with SimulationManager.
+
+
 REQUIREMENTS:
 1) JAHCO Rules must be accessible to students
 
