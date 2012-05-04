@@ -794,8 +794,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         String StudentName = JOptionPane.showInputDialog(this, "Enter the session Name");
         //sample of adding a student
-        SimulationManager.SIMULATION_DATA_STRUCTURE.getSession(
-                (String)sessionList.getSelectedValue()).addStudentRecord(new StudentRecord(StudentName));
+//        SimulationManager.SIMULATION_DATA_STRUCTURE.getSession(
+//                (String)sessionList.getSelectedValue()).addStudentRecord(new StudentRecord(StudentName));
     }//GEN-LAST:event_addStudentButtonActionPerformed
 
     private void changeUserNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeUserNameButtonActionPerformed

@@ -97,7 +97,7 @@ public class LoginGUI extends javax.swing.JDialog {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/massachusetts-bay-community-college.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/massbayLogo.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 11, -1, -1));
 
         jLabel4.setText("Session:");
@@ -145,15 +145,15 @@ public class LoginGUI extends javax.swing.JDialog {
     private void professorLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_professorLoginButtonActionPerformed
         // TODO add your handling code here:
         
-        
-        if(SIMULATION_DATA_STRUCTURE.validateProffesorLogIn(usernameTextField.getText(), new String (passwordField.getPassword()))){
-        SimulationManager.state = SimulationManager.MAINTENANCE_STATE;
-        setVisible(false);
-        usernameTextField.setText("");
-        passwordField.setText("");
-        }
-        else
-            JOptionPane.showMessageDialog(this, "Your login is not correct");
+        //professor loginview handled here
+//        if(SIMULATION_DATA_STRUCTURE.validateProffesorLogIn(usernameTextField.getText(), new String (passwordField.getPassword()))){
+//        SimulationManager.state = SimulationManager.MAINTENANCE_STATE;
+//        setVisible(false);
+//        usernameTextField.setText("");
+//        passwordField.setText("");
+//        }
+//        else
+//            JOptionPane.showMessageDialog(this, "Your login is not correct");
             
     }//GEN-LAST:event_professorLoginButtonActionPerformed
 

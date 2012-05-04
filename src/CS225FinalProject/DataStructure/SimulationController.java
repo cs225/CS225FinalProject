@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
 
-import CS225FinalProject.DataStructure.SimulationController.SimControl;
+//import CS225FinalProject.DataStructure.SimulationController.SimControl;
 
 
 /**
