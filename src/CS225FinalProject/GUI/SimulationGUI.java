@@ -200,6 +200,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
             }
         });
         marTable.setRowHeight(45);
+        marTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(marTable);
 
         giveMedicationButton.setText("Give Medication");
@@ -274,6 +275,8 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
 
         rootTabbedPane.addTab("MAR", mar_Panel);
 
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         documentationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -301,12 +304,15 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
         documentationTable.getColumnModel().getColumn(4).setPreferredWidth(50);
         documentationTable.getColumnModel().getColumn(4).setMaxWidth(50);
 
+        jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 985, 370));
+
         insertNewNarrativeButton.setText("Insert a new Narrative");
         insertNewNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertNewNarrativeButtonActionPerformed(evt);
             }
         });
+        jPanel4.add(insertNewNarrativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
 
         viewSelectedNarrativeButton.setText("ViewSelectedNarrative");
         viewSelectedNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -314,6 +320,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
                 viewSelectedNarrativeButtonActionPerformed(evt);
             }
         });
+        jPanel4.add(viewSelectedNarrativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, -1, -1));
 
         jButton1.setText("Delete the Selected Narrative");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -321,6 +328,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, -1, -1));
 
         editNarrativeButton.setText("Edit Selected Narrative");
         editNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -328,39 +336,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
                 editNarrativeButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(insertNewNarrativeButton)
-                        .addGap(28, 28, 28)
-                        .addComponent(viewSelectedNarrativeButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(editNarrativeButton)))
-                .addContainerGap())
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 985, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 32, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(insertNewNarrativeButton)
-                    .addComponent(viewSelectedNarrativeButton)
-                    .addComponent(editNarrativeButton))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(135, 135, 135))
-        );
+        jPanel4.add(editNarrativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
 
         jScrollPane2.setViewportView(jPanel4);
 
@@ -368,18 +344,18 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
         documentation_Panel.setLayout(documentation_PanelLayout);
         documentation_PanelLayout.setHorizontalGroup(
             documentation_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1019, Short.MAX_VALUE)
         );
         documentation_PanelLayout.setVerticalGroup(
             documentation_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(documentation_PanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 79, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         rootTabbedPane.addTab("Documentation", documentation_Panel);
 
-        jButton2.setText("Logout");
+        jButton2.setText("Cancel Simulation");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -415,15 +391,16 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(timeLabel))
+                        .addComponent(timeLabel)
+                        .addGap(81, 915, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(286, 286, 286)
-                        .addComponent(printSampleButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 351, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(submitButton)
-                .addGap(81, 81, 81))
+                        .addGap(38, 38, 38)
+                        .addComponent(jButton2)
+                        .addGap(183, 183, 183)
+                        .addComponent(printSampleButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(submitButton)
+                        .addGap(104, 104, 104))))
             .addComponent(rootTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -434,14 +411,15 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(timeLabel)
-                            .addComponent(submitButton))
+                            .addComponent(timeLabel))
                         .addContainerGap(43, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(printSampleButton)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(printSampleButton)
+                            .addComponent(jButton2)
+                            .addComponent(submitButton))
                         .addGap(24, 24, 24))))
         );
 
@@ -772,7 +750,10 @@ private class MedicationDialog extends javax.swing.JDialog {
               +"\n\nTemperature:\nPulse:\nResp:\nBP:\nO2 Sat:\nPain Scale:\nFSBS:\nSite:\nRelated Diagnosis/Reason for medication:\n",
                 followUpTextField.getText(),
                 initialsTextField.getText()});
+       rootTabbedPane.setSelectedIndex(2);
+       documentationTable.setRowSelectionInterval(documentationTable.getRowCount()-1, documentationTable.getRowCount()-1);
         this.dispose();
+        
     }                                                           
 
     private void unitsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                               
