@@ -20,6 +20,17 @@ public class Instructor extends User {
 		this.setInstuctor(true);
 	}
 
+	@Override
+	public String getClassName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setClassName(String className) {
+		// TODO Auto-generated method stub
+	}
+
 	// all of these methods will be handled in the GUI classes and simulation
 	// controller
 

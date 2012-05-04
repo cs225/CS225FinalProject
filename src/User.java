@@ -69,6 +69,10 @@ public abstract class User implements Serializable {
 		this.isInstructor = isInstructor;
 	}
 
+	public abstract String getClassName();
+
+	public abstract void setClassName(String className);
+
 	// validate login already exists in the simulation controller and will be
 	// called in the button listener for the login button. It will pass the two
 	// strings the user entered and compare them with all current user objects.
