@@ -7,6 +7,7 @@
 
 public class Scenario {
     
+    private String scenarioName;
     private String description, patientName;
     private PatientRecord patientRecord;
     private SimulationController controller;
