@@ -1,7 +1,7 @@
 package CS225FinalProject.GUI;
 
 import CS225FinalProject.DataStructure.ProffesorLogIn;
-import CS225FinalProject.DataStructure.SimulationDataStructure;
+import CS225FinalProject.DataStructure.SimulationController;
 import CS225FinalProject.SimulationManager;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
