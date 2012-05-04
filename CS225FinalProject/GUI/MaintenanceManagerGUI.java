@@ -4,6 +4,7 @@
  */
 package CS225FinalProject.GUI;
 
+import CS225FinalProject.DataStructure.StudentRecord;
 import CS225FinalProject.SimulationManager;
 import java.io.File;
 import javax.swing.DefaultListModel;
@@ -172,6 +173,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         studentManagerPanel.add(addSessionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, -1, -1));
 
         addStudentButton.setText("Add Student");
+        addStudentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addStudentButtonActionPerformed(evt);
+            }
+        });
         studentManagerPanel.add(addStudentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, -1, -1));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -300,6 +306,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         jPanel7.add(changePasswordButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 402, -1, -1));
 
         changeUserNameButton.setText("Change User Name");
+        changeUserNameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeUserNameButtonActionPerformed(evt);
+            }
+        });
         jPanel7.add(changeUserNameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 331, -1, -1));
 
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -353,16 +364,16 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Insulin", "10 units", "10AM,3PM"},
-                {"Morphine", "50 milligrams", null},
-                {"Cocaine", "1 gram", null}
+                {"Insulin", "10 units", null, "10AM,3PM"},
+                {"Morphine", "50 milligrams", null, null},
+                {"Cocaine", "1 gram", null, null}
             },
             new String [] {
-                "Medication", "Dose", "Hour Due"
+                "Medication", "Dose", "Route", "Hour Due"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -433,15 +444,12 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField2))
                             .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(126, 126, 126))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton19)))))
@@ -453,15 +461,13 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
-                        .addComponent(jLabel14)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton11)
-                        .addComponent(jButton19)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel14)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton11)
+                    .addComponent(jButton19))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
@@ -488,6 +494,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         documentationTable.setName("sample");
         documentationTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane9.setViewportView(documentationTable);
+        documentationTable.getColumnModel().getColumn(2).setPreferredWidth(625);
 
         jButton12.setText("Add New Narrative");
 
@@ -502,14 +509,15 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 930, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jButton12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton14)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addComponent(jButton14)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 955, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -711,7 +719,41 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        ((DefaultTableModel) jTable3.getModel()).addRow(new Object[0]);
+        
+        String route = (String) JOptionPane.showInputDialog(this, "Please select the route of medication:",
+                "Route of medication selection",
+                JOptionPane.PLAIN_MESSAGE, null, new Object[]{
+"PO",
+"Buccal",
+"SL",
+"NGT",
+"GT",
+"PEG",
+"IM",
+"SC",
+"IV",
+"IVP",
+"IVPB",
+"ID",
+"Topical",
+"Transdermal",
+"Inhalation",
+"Nasal",
+"AD",
+"AS",
+"AU",
+"OD",
+"OS",
+"OU",
+"PR",	
+"Vaginal"
+}, null);
+        
+        if(route!=null)
+            ((DefaultTableModel) jTable3.getModel()).addRow(new Object[]{"","",route});
+            
+        
+        
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void scenarioListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_scenarioListValueChanged
@@ -745,8 +787,20 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_sessionListFocusGained
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:fd
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void addStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentButtonActionPerformed
+        // TODO add your handling code here:
+        String StudentName = JOptionPane.showInputDialog(this, "Enter the session Name");
+        //sample of adding a student
+        SimulationManager.SIMULATION_DATA_STRUCTURE.getSession(
+                (String)sessionList.getSelectedValue()).addStudentRecord(new StudentRecord(StudentName));
+    }//GEN-LAST:event_addStudentButtonActionPerformed
+
+    private void changeUserNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeUserNameButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_changeUserNameButtonActionPerformed
 
     /**
      * @param args the command line arguments
