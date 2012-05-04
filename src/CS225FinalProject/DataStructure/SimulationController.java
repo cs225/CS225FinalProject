@@ -86,6 +86,36 @@ public class SimulationController implements Serializable {
 		return lastID + 1;
 	}
 
+	// methods for adding and removing students
+	public void addStudent(String name, String password, String className) {
+		users.add(new Student(name, password, generateNewID(), className));
+	}
+
+	public void removeStudent(String name, String password) {
+		for (User u : users) {
+			if (u.getName().equalsIgnoreCase(name)
+					&& u.getPassword().equals(password)) {
+				users.remove(u);
+			}
+		}
+	}
+
+	public void removeStudentsFromClass(String className) {
+		for (User u : users) {
+			if (u.getClassName().equalsIgnoreCase(className)) {
+				users.remove(u);
+			}
+		}
+	}
+
+	public void removeAllStudents() {
+		for (User u : users) {
+			if (!u.isInstructor()) {
+				users.remove(u);
+			}
+		}
+	}
+
 	public boolean validateStudentLogin(String name, String pw) {
 
 		boolean isValidStudent = false;
