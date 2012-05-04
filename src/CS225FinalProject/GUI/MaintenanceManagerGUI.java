@@ -33,6 +33,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	 */
 	public MaintenanceManagerGUI() {
 		initComponents();
+                setTitle("Simulation Data Management");
 		setVisible(true);
 	}
 
@@ -671,7 +672,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
         rootTabbedPane.addTab("ProfessorLoginManager", jPanel1);
 
-        jButton2.setText("LogOut");
+        jButton2.setText("Logout");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -683,10 +684,10 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(rootTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jButton2)
-                .addGap(176, 176, 176))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

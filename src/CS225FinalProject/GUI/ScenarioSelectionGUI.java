@@ -18,6 +18,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
      */
     public ScenarioSelectionGUI(SimulationManager manager) {
         initComponents();
+        setTitle("Scenario Selection");
         summaryLabel.setText("");
         this.manager=manager;
         setLocation(
@@ -155,13 +156,13 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
                         .addGap(271, 271, 271)
                         .addComponent(jButton4))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(314, 314, 314)
+                        .addGap(28, 28, 28)
+                        .addComponent(logOutButton)
+                        .addGap(221, 221, 221)
                         .addComponent(startButton)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nextButton)
-                    .addComponent(logOutButton))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(nextButton)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

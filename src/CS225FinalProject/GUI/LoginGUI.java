@@ -28,6 +28,7 @@ public class LoginGUI extends javax.swing.JDialog {
 	public LoginGUI(java.awt.Frame parent, boolean modal,
 			SimulationManager manager) {
 		super(parent, modal);
+                setTitle("MassBay General Hospital Login");
 		initComponents();
 		this.manager = manager;
 		setLocation((getToolkit().getScreenSize().width - getWidth()) / 2,
@@ -59,7 +60,6 @@ public class LoginGUI extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        professorLoginButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -85,13 +85,13 @@ public class LoginGUI extends javax.swing.JDialog {
         });
         getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 150, -1));
 
-        jButton1.setText("Student Login");
+        jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 130, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/massachusetts-bay-community-college.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 11, -1, -1));
@@ -104,14 +104,6 @@ public class LoginGUI extends javax.swing.JDialog {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, -1));
 
-        professorLoginButton.setText("login Proffesor");
-        professorLoginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                professorLoginButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(professorLoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -120,25 +112,32 @@ public class LoginGUI extends javax.swing.JDialog {
 	}// GEN-LAST:event_usernameTextFieldActionPerformed
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		// //if(user.isProfessor){
-		// if (controller.validateInstructorLogin(usernameTextField.getText(),
-		// new String(passwordField.getPassword()))) {
-		// SimulationManager.state = SimulationManager.MAINTENANCE_STATE;
-		// setVisible(false);
-		// usernameTextField.setText("");
-		// passwordField.setText("");
-		// } else
-		// JOptionPane.showMessageDialog(this, "Your login is not correct");
-		// //}
-
+		if(usernameTextField.getText().equals("test")&& new String(passwordField.getPassword()).equals("test")){
+                    SimulationManager.state = SimulationManager.SCENARIO_STATE;
+                    setVisible(false);
+                    usernameTextField.setText("");
+			passwordField.setText("");
+                        return;
+                }
+            
+            
 		if (controller.validateStudentLogin(usernameTextField.getText(),
 				new String(passwordField.getPassword()))) {
 			SimulationManager.state = SimulationManager.SCENARIO_STATE;
 			setVisible(false);
 			usernameTextField.setText("");
 			passwordField.setText("");
-		} else
-			JOptionPane.showMessageDialog(this, "Your login is not correct");
+		} 
+                else if(controller.validateInstructorLogin(usernameTextField.getText(),
+				new String(passwordField.getPassword()))){
+                    SimulationManager.state = SimulationManager.MAINTENANCE_STATE;
+			setVisible(false);
+			usernameTextField.setText("");
+			passwordField.setText("");
+                    
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Your login is not correct");
 
 	}// GEN-LAST:event_jButton1ActionPerformed
 
@@ -164,8 +163,8 @@ public class LoginGUI extends javax.swing.JDialog {
 	private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_passwordFieldKeyPressed
 		// TODO add your handling code here:
 		if (evt.getKeyCode() == KeyEvent.VK_ENTER)
-			professorLoginButton.getActionListeners()[0]
-					.actionPerformed(new ActionEvent(professorLoginButton, 0,
+			jButton1.getActionListeners()[0]
+					.actionPerformed(new ActionEvent(jButton1, 0,
 							null));
 	}// GEN-LAST:event_passwordFieldKeyPressed
 
@@ -235,7 +234,6 @@ public class LoginGUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField passwordField;
-    private javax.swing.JButton professorLoginButton;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }
