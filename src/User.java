@@ -27,11 +27,11 @@ public abstract class User implements Serializable {
 	// the proper application interface.
 	private boolean isInstructor;
 
-	public User(String name, String password, int userID, boolean isInstructor) {
+	public User(String name, String password, int userID) {
 		this.name = name;
 		this.password = password;
 		this.userID = userID;
-		this.isInstructor = isInstructor;
+		this.isInstructor = false;
 	}
 
 	public User() {
@@ -63,6 +63,10 @@ public abstract class User implements Serializable {
 
 	public boolean isInstructor() {
 		return isInstructor;
+	}
+
+	public void setInstuctor(boolean isInstructor) {
+		this.isInstructor = isInstructor;
 	}
 
 	// validate login already exists in the simulation controller and will be
