@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * 
  */
 
-/*
+/* ++++++++Note to others working on different modules+++++++++++++++++++++++
  * Whenever a SimulationController object needs to be accessed anywhere in the
  * code, you should create a SimulationController object to use as a reference,
  * and set it equal to SimulationController.getInstance();
@@ -27,21 +27,37 @@ import java.util.ArrayList;
 
 public class SimulationController {
 
+//Data Fields
 	private DataIO dataIO = new DataIO();
-
 	private ArrayList<CompletedScenario> completedScenarios = new ArrayList<CompletedScenario>();
 	private ArrayList<User> users = new ArrayList<User>();
-
-	// Scenarios saved in individual files preferably for easy
-	// reading/editing individual scenarios
 	private ArrayList<Scenario> scenarios = new ArrayList<Scenario>();
 
+	
+//Private Constructor and Singleton Holder
+	/** SimulationController implements the Singleton pattern.
+	 * We will use one instance of it at any time, and it is accessible via
+	 * the static method SimControl.getInstance();  Please use this method
+	 * to access methods you need from the controller.
+	 */
 	private SimulationController() {
 		loadAllData();
 	}
+	/** Implementing the Singleton pattern */
+	private static class SimControl {
+		public static final SimulationController instance = new SimulationController();
+	}
 
-	// method to be called when program is launched.
-	public void loadAllData() {
+	public static SimulationController getInstance() {
+		return SimControl.instance;
+	}
+
+	
+//Methods
+	/** This method is called when the SimulationController is created
+	 * to initialize all information from the files, and load up the data structures
+	 */
+	private void loadAllData() {
 		populateUsers();
 		populateScenarios();
 		populateCompletedScenarios();
@@ -168,14 +184,5 @@ public class SimulationController {
 	// returns all completed scenarios to the professor
 	public ArrayList<CompletedScenario> getAllSessions() {
 		return completedScenarios;
-	}
-
-	/** Implementing the Singleton pattern */
-	private static class SimControl {
-		public static final SimulationController instance = new SimulationController();
-	}
-
-	public static SimulationController getInstance() {
-		return SimControl.instance;
 	}
 }
