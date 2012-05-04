@@ -183,4 +183,11 @@ public class SimulationController implements Serializable {
 		}
 		return tempUsers;
 	}
+        private boolean isInstructorAvailable(){
+            for(User u:getUsers()){
+                if(u.isInstructor())
+                    return true;
+            }
+            return false;
+        }
 }
