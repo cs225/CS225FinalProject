@@ -8,17 +8,19 @@ import java.util.ArrayList;
  */
 public class PatientRecord {
     private String patientName, allergies, diagnosis;
-    private ArrayList<MedicationInterface> medication;
+    private ArrayList<Medication> medication;
     private int dosage, room, age;
     private ArrayList<Narrative> narratives;
     
+    //From Eric:
+    //I changed MedicationInterface to Medication
+    //Awsome Job Kevin!!! :)
     
     public PatientRecord(){
         patientName = "";
-        medication = new ArrayList<MedicationInterface>();
+        medication = new ArrayList<Medication>();
         allergies = "";
         diagnosis = "";
-        dosage = 0;
         room = 0;
         age = 0;
         narratives = new ArrayList<Narrative>();
@@ -47,11 +49,16 @@ public class PatientRecord {
         dosage = number;
     }
     
-    public MedicationInterface getMedication(int i){
+    public Medication getMedication(int i){
         return medication.get(i);
     }
+
+    public ArrayList<Medication> getMedicationList() {
+        return medication;
+    }
     
-    public void setMedication(MedicationInterface meds){
+    
+    public void addMedication(Medication meds){
         medication.add(meds);
     }
     
@@ -85,7 +92,7 @@ public class PatientRecord {
     public void removeNarrative(Narrative nar){
         narratives.remove(nar);
     }
-    public ArrayList<Narrative> getNarrative(){
+    public ArrayList<Narrative> getNarrativeList(){
         return narratives;
     }
     

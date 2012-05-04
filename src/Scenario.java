@@ -6,7 +6,9 @@
 
 
 public class Scenario {
-    private String description, patientName, scenarioName;
+    
+    private String scenarioName;
+    private String description, patientName;
     private PatientRecord patientRecord;
     private SimulationController controller;
     
@@ -45,12 +47,6 @@ public class Scenario {
     }
     public int getAge(){
         return patientRecord.getAge();
-    }
-    public void setDosage(int dose){
-        patientRecord.setDosage(dose);
-    }
-    public int getDosage(){
-        return patientRecord.getDosage();
     }
     public void setAllergies(String allergy){
         patientRecord.setAllergies(allergy);
