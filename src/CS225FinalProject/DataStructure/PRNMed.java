@@ -7,8 +7,8 @@ package CS225FinalProject.DataStructure;
 public class PRNMed extends Medication {
 	
 	
-	public PRNMed (String name, String amount, String units) {
-		super (name, amount, units);
+	public PRNMed (String name, String amount, String units, String route) {
+		super (name, amount,route, units);
 	}
 	
 	
