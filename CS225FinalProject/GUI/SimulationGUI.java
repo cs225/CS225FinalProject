@@ -103,6 +103,9 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
     private void initComponents() {
 
         rootTabbedPane = new javax.swing.JTabbedPane();
+        jcaho_Panel = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jcahoLabel = new javax.swing.JLabel();
         mar_Panel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         roomNumLabel = new javax.swing.JLabel();
@@ -115,6 +118,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
         jScrollPane1 = new javax.swing.JScrollPane();
         marTable = new javax.swing.JTable();
         giveMedicationButton = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         documentation_Panel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
@@ -124,9 +128,6 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
         viewSelectedNarrativeButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         editNarrativeButton = new javax.swing.JButton();
-        jcaho_Panel = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jcahoLabel = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         timeLabel = new javax.swing.JLabel();
@@ -138,6 +139,27 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 0, 0));
         setResizable(false);
+
+        jcahoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/JAHCO.png"))); // NOI18N
+        jScrollPane4.setViewportView(jcahoLabel);
+
+        javax.swing.GroupLayout jcaho_PanelLayout = new javax.swing.GroupLayout(jcaho_Panel);
+        jcaho_Panel.setLayout(jcaho_PanelLayout);
+        jcaho_PanelLayout.setHorizontalGroup(
+            jcaho_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jcaho_PanelLayout.createSequentialGroup()
+                .addGap(333, 333, 333)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(230, Short.MAX_VALUE))
+        );
+        jcaho_PanelLayout.setVerticalGroup(
+            jcaho_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jcaho_PanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
+        );
+
+        rootTabbedPane.addTab("JCAHO", jcaho_Panel);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Room:");
@@ -161,16 +183,16 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
 
         marTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Insulin", "10 Units", "8AM, 12PM, 4PM"},
-                {"Morphine", "3 Grams", "9AM, 12PM, 9PM"},
-                {"Cocaine", "5 Miligrams", "12AM"}
+                {"Insulin", null, null, null},
+                {"Morphine", null, null, null},
+                {"Cocaine", null, null, null}
             },
             new String [] {
-                "Medication", "Dose", "Hour Due"
+                "Medication", "Dose", "Route", "Hour Due"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -186,6 +208,8 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
                 giveMedicationButtonActionPerformed(evt);
             }
         });
+
+        jButton3.setText("Hour Due Details");
 
         javax.swing.GroupLayout mar_PanelLayout = new javax.swing.GroupLayout(mar_Panel);
         mar_Panel.setLayout(mar_PanelLayout);
@@ -213,6 +237,8 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(allergiesLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(giveMedicationButton))
                     .addGroup(mar_PanelLayout.createSequentialGroup()
                         .addContainerGap()
@@ -240,7 +266,9 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
                 .addGap(0, 49, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(giveMedicationButton)
+                .addGroup(mar_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(giveMedicationButton)
+                    .addComponent(jButton3))
                 .addGap(232, 232, 232))
         );
 
@@ -351,27 +379,6 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
 
         rootTabbedPane.addTab("Documentation", documentation_Panel);
 
-        jcahoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/JAHCO.png"))); // NOI18N
-        jScrollPane4.setViewportView(jcahoLabel);
-
-        javax.swing.GroupLayout jcaho_PanelLayout = new javax.swing.GroupLayout(jcaho_Panel);
-        jcaho_Panel.setLayout(jcaho_PanelLayout);
-        jcaho_PanelLayout.setHorizontalGroup(
-            jcaho_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jcaho_PanelLayout.createSequentialGroup()
-                .addGap(333, 333, 333)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(230, Short.MAX_VALUE))
-        );
-        jcaho_PanelLayout.setVerticalGroup(
-            jcaho_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jcaho_PanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
-        );
-
-        rootTabbedPane.addTab("JCAHO", jcaho_Panel);
-
         jButton2.setText("Logout");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -447,7 +454,8 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable{
        DateFormat dayFormat = new SimpleDateFormat("HH:mma");
         ((DefaultTableModel)documentationTable.getModel()).addRow(new String[]{
                     dateFormat.format(Calendar.getInstance(TimeZone.getDefault()).getTime()),
-                    dayFormat.format(Calendar.getInstance(TimeZone.getDefault()).getTime())});
+                    dayFormat.format(Calendar.getInstance(TimeZone.getDefault()).getTime()),
+         "Temperature:\nPulse:\n Resp:\n BP:\n O2 Sat:\n Pain Scale:\n FSBS:\n Site:\n Related Diagnosis/Reason for medication:\n"});
       //  documentationTable.isfo
     }//GEN-LAST:event_insertNewNarrativeButtonActionPerformed
 
@@ -757,7 +765,11 @@ private class MedicationDialog extends javax.swing.JDialog {
                 new String[]{
                     dateFormat.format(Calendar.getInstance(TimeZone.getDefault()).getTime()),
                     dayFormat.format(Calendar.getInstance(TimeZone.getDefault()).getTime()),
-"Medication Given: "+medicationNameLabel.getText()+ "\nDose:"+amountTextField.getText()+" "+unitsTextField.getText()+" \nNotes:\n"+notesTextPane.getText(),
+                 "Medication Given: "+medicationNameLabel.getText()+ 
+               "\nDose:"+amountTextField.getText()+
+               "\nRoute: "+ marTable.getValueAt(marTable.getSelectedRow(), 2) +unitsTextField.getText()
+             +" \nNotes:\n"+notesTextPane.getText()            
+              +"\n\nTemperature:\nPulse:\nResp:\nBP:\nO2 Sat:\nPain Scale:\nFSBS:\nSite:\nRelated Diagnosis/Reason for medication:\n",
                 followUpTextField.getText(),
                 initialsTextField.getText()});
         this.dispose();
@@ -903,6 +915,7 @@ private class MedicationDialog extends javax.swing.JDialog {
     private javax.swing.JButton insertNewNarrativeButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
