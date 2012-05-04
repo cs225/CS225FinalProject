@@ -1,5 +1,7 @@
 package CS225FinalProject.DataStructure;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -8,12 +10,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-//import javax.crypto.Cipher;
-//import javax.crypto.CipherInputStream;
-//import javax.crypto.SecretKey;
-//import javax.crypto.SecretKeyFactory;
-//import javax.crypto.spec.
-//import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.Cipher;
+import javax.crypto.CipherInputStream;
+import javax.crypto.CipherOutputStream;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
 
 /*
  * Author: Ramsey
@@ -27,36 +29,55 @@ public class DataIO {
 
 	private File userFile;
 	private File scenarioFile;
-//	private File completedScenarioFile;
+
+	private String password = "cs225yay";
+	private SecretKeyFactory keyFactory;
+	private SecretKey secretKey;
+	private Cipher desCipher;
+
+	// private File completedScenarioFile;
 
 	public DataIO() {
 		// Define files here
 		userFile = new File("users.lst");
 		scenarioFile = new File("scenarios.lst");
-//		completedScenarioFile = new File("completed.lst");
-		
-//	    DESKeySpec ks = new DESKeySpec((byte[]) ois.readObject());
-//	    SecretKeyFactory skf = SecretKeyFactory.getInstance("DES");
-//	    SecretKey key = skf.generateSecret(ks);
+		// completedScenarioFile = new File("completed.lst");
+
+		byte key[] = password.getBytes();
+		DESKeySpec desKeySpec;
+		try {
+			desKeySpec = new DESKeySpec(key);
+
+			keyFactory = SecretKeyFactory.getInstance("DES");
+
+			secretKey = keyFactory.generateSecret(desKeySpec);
+			desCipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
 
 	}
 
-	// load the files (individually!) in their methods
-	// array list of user objects
 	public ArrayList<User> loadUserList() {
 		// new array list
+
 		ArrayList<User> userList = new ArrayList<User>();
 
 		// read file and de-serialize
 		try {
+			desCipher.init(Cipher.DECRYPT_MODE, secretKey);
 
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
-					userFile));
+			FileInputStream fis = new FileInputStream(userFile);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			CipherInputStream cis = new CipherInputStream(bis, desCipher);
+			ObjectInputStream ois = new ObjectInputStream(cis);
 
-			// cast the object as an arrayList of users and set it
-			userList = (ArrayList<User>) in.readObject();
+			userList = (ArrayList<User>) ois.readObject();
 
-			in.close();
+			ois.close();
 
 		} catch (IOException e) {
 
@@ -66,7 +87,7 @@ public class DataIO {
 			// returning null if file not found
 			return null;
 			// can allow user to select file if file not found?
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
@@ -75,45 +96,20 @@ public class DataIO {
 		return userList;
 	}
 
-	// Returns an array list of session data for SimController to deal with
-//	public ArrayList<CompletedScenario> loadCompletedScenarioList() {
-//		ArrayList<CompletedScenario> sessionList = new ArrayList<CompletedScenario>();
-//
-//		try {
-//
-//			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
-//					completedScenarioFile));
-//
-//			sessionList = (ArrayList<CompletedScenario>) in.readObject();
-//
-//			in.close();
-//
-//		} catch (IOException e) {
-//
-//			System.out.println("Error Finding File:"
-//					+ completedScenarioFile.getAbsolutePath());
-//
-//			return null;
-//
-//		} catch (ClassNotFoundException e) {
-//
-//			e.printStackTrace();
-//		}
-//
-//		return sessionList;
-//	}
-
 	public ArrayList<Scenario> loadScenarioList() {
 		ArrayList<Scenario> scenarioList = new ArrayList<Scenario>();
 
 		try {
+			desCipher.init(Cipher.DECRYPT_MODE, secretKey);
 
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
-					scenarioFile));
-			scenarioList = (ArrayList<Scenario>) in.readObject();
+			FileInputStream fis = new FileInputStream(scenarioFile);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			CipherInputStream cis = new CipherInputStream(bis, desCipher);
+			ObjectInputStream ois = new ObjectInputStream(cis);
 
-			in.close();
+			scenarioList = (ArrayList<Scenario>) ois.readObject();
 
+			ois.close();
 		} catch (IOException e) {
 
 			System.out.println("Error Finding File:"
@@ -121,7 +117,7 @@ public class DataIO {
 
 			return null;
 
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
@@ -133,10 +129,17 @@ public class DataIO {
 	public boolean writeUserList(ArrayList<User> userList) {
 		try {
 
-			ObjectOutputStream out = new ObjectOutputStream(
-					new FileOutputStream(userFile));
-			out.writeObject(userList);
-			out.close();
+			desCipher.init(Cipher.ENCRYPT_MODE, secretKey);
+
+			FileOutputStream fos = new FileOutputStream(userFile);
+			BufferedOutputStream bos = new BufferedOutputStream(fos);
+			CipherOutputStream cos = new CipherOutputStream(bos, desCipher);
+			ObjectOutputStream oos = new ObjectOutputStream(cos);
+
+			oos.writeObject(userList);
+			oos.flush();
+			oos.close();
+			// success
 			return true;
 
 		} catch (Exception e) {
@@ -147,30 +150,19 @@ public class DataIO {
 
 	}
 
-//	public boolean writeCompletedScenarioList(
-//			ArrayList<CompletedScenario> sessionList) {
-//		try {
-//
-//			ObjectOutputStream out = new ObjectOutputStream(
-//					new FileOutputStream(completedScenarioFile));
-//			out.writeObject(sessionList);
-//			out.close();
-//			return true;
-//
-//		} catch (Exception e) {
-//
-//			System.out.println(e.getMessage());
-//			return false;
-//		}
-//	}
-
 	public boolean writeScenarioList(ArrayList<Scenario> scenarioList) {
 		try {
 
-			ObjectOutputStream out = new ObjectOutputStream(
-					new FileOutputStream(scenarioFile));
-			out.writeObject(scenarioList);
-			out.close();
+			desCipher.init(Cipher.ENCRYPT_MODE, secretKey);
+
+			FileOutputStream fos = new FileOutputStream(scenarioFile);
+			BufferedOutputStream bos = new BufferedOutputStream(fos);
+			CipherOutputStream cos = new CipherOutputStream(bos, desCipher);
+			ObjectOutputStream oos = new ObjectOutputStream(cos);
+
+			oos.writeObject(scenarioList);
+			oos.flush();
+			oos.close();
 			return true;
 
 		} catch (Exception e) {
