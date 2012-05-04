@@ -50,8 +50,8 @@ public class SimulationController implements Serializable {
 
 		// temporary user objects for testing
 		if (users.isEmpty()) {
-			users.add(new Instructor("test", "password", 0));
-			users.add(new Student("test", "password", 1, "CS225"));
+			users.add(new Instructor("instructor", "password", 0));
+			users.add(new Student("student", "password", 1, "CS225"));
 		}
 	}
 
@@ -88,28 +88,28 @@ public class SimulationController implements Serializable {
 
 	public boolean validateStudentLogin(String name, String pw) {
 
-		boolean isValidUser = false;
+		boolean isValidStudent = false;
 
 		for (User user : users) {
 			if (name.equalsIgnoreCase(user.getName())
 					&& pw.equals(user.getPassword()) && !user.isInstructor()) {
-				isValidUser = true;
+				isValidStudent = true;
 			}
 		}
-		return isValidUser;
+		return isValidStudent;
 	}
 
 	public boolean validateInstructorLogin(String name, String pw) {
 
-		boolean isValidUser = false;
+		boolean isValidInstructor = false;
 
 		for (User user : users) {
 			if (name.equalsIgnoreCase(user.getName())
 					&& pw.equals(user.getPassword()) && user.isInstructor()) {
-				isValidUser = true;
+				isValidInstructor = true;
 			}
 		}
-		return isValidUser;
+		return isValidInstructor;
 	}
 
 	// all write methods need to check the current data against the current
@@ -185,11 +185,12 @@ public class SimulationController implements Serializable {
 		}
 		return tempUsers;
 	}
-        private boolean isInstructorAvailable(){
-            for(User u:getUsers()){
-                if(u.isInstructor())
-                    return true;
-            }
-            return false;
-        }
+
+	private boolean isInstructorAvailable() {
+		for (User u : getUsers()) {
+			if (u.isInstructor())
+				return true;
+		}
+		return false;
+	}
 }
