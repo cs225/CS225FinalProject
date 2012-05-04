@@ -36,6 +36,10 @@ public class StudentRecord implements Serializable {
         this.studentName = studentName;
         this.simulationResultList = new HashMap<String, ScenarioResult>();
     }
+
+    public StudentRecord(String name) {
+    }
+    
     
     
     
