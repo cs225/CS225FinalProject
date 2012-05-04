@@ -129,6 +129,19 @@ public class SimulationController {
 		return scenarios;
 	}
 
+	// returns a list of students that belong to a specific class
+	public ArrayList<User> getStudentsInClass(String className) {
+
+		ArrayList<User> tempUsers = new ArrayList<User>();
+
+		for (User student : users) {
+			if (student.getClassName().equals(className)) {
+				tempUsers.add(student);
+			}
+		}
+		return tempUsers;
+	}
+
 	// returns completed scenarios that belong to a specific user
 	public ArrayList<CompletedScenario> getUserSessions(int userID) {
 
