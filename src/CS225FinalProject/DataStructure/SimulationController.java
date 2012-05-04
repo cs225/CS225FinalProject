@@ -49,8 +49,10 @@ public class SimulationController implements Serializable {
 			System.out.println(u.getName());
 
 		// temporary user objects for testing
-		// users.add(new Instructor("peter", "password", 0));
-		// users.add(new Student("evan", "password", 1, "CS225"));
+		if (users.isEmpty()) {
+			users.add(new Instructor("test", "password", 0));
+			users.add(new Student("test", "password", 1, "CS225"));
+		}
 	}
 
 	/** Implementing the Singleton pattern */
