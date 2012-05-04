@@ -6,11 +6,14 @@
 
 
 public class Scenario {
+    
+    private String scenarioName;
     private String description, patientName;
     private PatientRecord patientRecord;
     private SimulationController controller;
     
     public Scenario(){
+        scenarioName = "";
         description = "";
         patientRecord = new PatientRecord();
         patientName = patientRecord.getName();
@@ -45,12 +48,6 @@ public class Scenario {
     public int getAge(){
         return patientRecord.getAge();
     }
-    public void setDosage(int dose){
-        patientRecord.setDosage(dose);
-    }
-    public int getDosage(){
-        return patientRecord.getDosage();
-    }
     public void setAllergies(String allergy){
         patientRecord.setAllergies(allergy);
     }
@@ -65,6 +62,12 @@ public class Scenario {
     }
     public String recordToString(){
         return patientRecord.toString();
+    }
+    public void setScenarioName(String name){
+        scenarioName = name;
+    }
+    public String getScenarioName(){
+        return scenarioName;
     }
     
 }
