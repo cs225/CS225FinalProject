@@ -10,7 +10,8 @@ import java.util.ArrayList;
  * 
  */
 
-/* ++++++++Note to others working on different modules+++++++++++++++++++++++
+/*
+ * ++++++++Note to others working on different modules+++++++++++++++++++++++
  * Whenever a SimulationController object needs to be accessed anywhere in the
  * code, you should create a SimulationController object to use as a reference,
  * and set it equal to SimulationController.getInstance();
@@ -27,22 +28,23 @@ import java.util.ArrayList;
 
 public class SimulationController {
 
-//Data Fields
+	// Data Fields
 	private DataIO dataIO = new DataIO();
 	private ArrayList<CompletedScenario> completedScenarios = new ArrayList<CompletedScenario>();
 	private ArrayList<User> users = new ArrayList<User>();
 	private ArrayList<Scenario> scenarios = new ArrayList<Scenario>();
 
-	
-//Private Constructor and Singleton Holder
-	/** SimulationController implements the Singleton pattern.
-	 * We will use one instance of it at any time, and it is accessible via
-	 * the static method SimControl.getInstance();  Please use this method
-	 * to access methods you need from the controller.
+	// Private Constructor and Singleton Holder
+	/**
+	 * SimulationController implements the Singleton pattern. We will use one
+	 * instance of it at any time, and it is accessible via the static method
+	 * SimControl.getInstance(); Please use this method to access methods you
+	 * need from the controller.
 	 */
 	private SimulationController() {
 		loadAllData();
 	}
+
 	/** Implementing the Singleton pattern */
 	private static class SimControl {
 		public static final SimulationController instance = new SimulationController();
@@ -52,21 +54,25 @@ public class SimulationController {
 		return SimControl.instance;
 	}
 
-	
-//Methods
-	/** This method is called when the SimulationController is created
-	 * to initialize all information from the files, and load up the data structures
+	// Methods
+	/**
+	 * This method is called when the SimulationController is created to
+	 * initialize all information from the files, and load up the data
+	 * structures
 	 */
 	private void loadAllData() {
 		populateUsers();
 		populateScenarios();
 		populateCompletedScenarios();
 	}
-	
-	/** Method used for validating a user's login credentials
+
+	/**
+	 * Method used for validating a user's login credentials
 	 * 
-	 * @param name The username
-	 * @param pw The password
+	 * @param name
+	 *            The username
+	 * @param pw
+	 *            The password
 	 * @return True if the user is in the list
 	 */
 	public boolean validateLogin(String name, String pw) {
@@ -81,8 +87,20 @@ public class SimulationController {
 		return isValidUser;
 	}
 
-	/** Write the list of users to file 
-	 *  Needs to check for existing data so as not to overwrite
+	public int generateId() {
+		int lastID = 0;
+		for (User u : users) {
+			if (u.getUserID() > lastID) {
+				lastID = u.getUserID();
+			}
+		}
+
+		return lastID +1;
+	}
+
+	/**
+	 * Write the list of users to file Needs to check for existing data so as
+	 * not to overwrite
 	 */
 	public void writeUsers() {
 
@@ -94,7 +112,8 @@ public class SimulationController {
 		}
 	}
 
-	/** Write the list of completed scenarios to file
+	/**
+	 * Write the list of completed scenarios to file
 	 */
 	public void writeCompletedScenarios() {
 
@@ -153,11 +172,11 @@ public class SimulationController {
 	public ArrayList<Scenario> getScenarios() {
 		return scenarios;
 	}
-	
-	public Scenario getScenarioByName(String scenarioName){
+
+	public Scenario getScenarioByName(String scenarioName) {
 		Scenario temp = null;
-		for (Scenario s : scenarios){
-			if (s.getScenarioName().equals(scenarioName)){
+		for (Scenario s : scenarios) {
+			if (s.getScenarioName().equals(scenarioName)) {
 				temp = s;
 			}
 		}
