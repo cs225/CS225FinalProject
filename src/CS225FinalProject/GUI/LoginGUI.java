@@ -182,8 +182,8 @@ public class LoginGUI extends javax.swing.JDialog {
 	private void professorLoginButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {// GEN-FIRST:event_professorLoginButtonActionPerformed
 
-		// professor loginview handled here
-		if (SimulationController.getInstance().validateProffesorLogIn(
+		// this code allows students to log in as professor. needs to be fixed.
+		if (SimulationController.getInstance().validateLogin(
 				usernameTextField.getText(),
 				new String(passwordField.getPassword()))) {
 			SimulationManager.state = SimulationManager.MAINTENANCE_STATE;

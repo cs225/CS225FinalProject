@@ -1,12 +1,15 @@
 package CS225FinalProject;
 
-import CS225FinalProject.DataStructure.Medication;
-import CS225FinalProject.DataStructure.SimulationController;
-import CS225FinalProject.GUI.*;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
+
+import CS225FinalProject.DataStructure.SimulationController;
+import CS225FinalProject.GUI.LoginGUI;
+import CS225FinalProject.GUI.MaintenanceManagerGUI;
+import CS225FinalProject.GUI.ScenarioSelectionGUI;
+import CS225FinalProject.GUI.SimulationGUI;
 
 /**
  * The main class that manages everything

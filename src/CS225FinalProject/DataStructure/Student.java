@@ -1,4 +1,5 @@
 package CS225FinalProject.DataStructure;
+
 /**
  * 
  * @author Zack
@@ -33,6 +34,8 @@ package CS225FinalProject.DataStructure;
 public class Student extends User {
 
 	private String className;
+
+	// private ArrayList<CompletedScenarios> studentData;
 
 	public Student(String name, String password, int userID) {
 		super(name, password, userID);
