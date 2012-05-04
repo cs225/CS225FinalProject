@@ -42,6 +42,16 @@ public class Scenario implements Serializable {
                 this.time = time;
 	}
 
+    public PatientRecord getPatientRecord() {
+        return patientRecord;
+    }
+
+    public void setPatientRecord(PatientRecord patientRecord) {
+        this.patientRecord = patientRecord;
+    }
+        
+        
+
 	public Scenario(String descript) {
 		description = descript;
 		patientRecord = new PatientRecord();

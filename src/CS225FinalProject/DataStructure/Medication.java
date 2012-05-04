@@ -14,12 +14,14 @@ public class Medication implements Serializable {
 	private String medicationName;
 	private String dosage;
 	private String medicationDueTimes;
+        private String routeOfMedication;
 
-	public Medication(String medicationName, String dosage,
+	public Medication(String medicationName, String dosage, String route,
 			String medicationDueTimes) {
 		this.medicationName = medicationName;
 		this.dosage = dosage;
 		this.medicationDueTimes = medicationDueTimes;
+                routeOfMedication = route;
 	}
 
 	/**
@@ -35,6 +37,15 @@ public class Medication implements Serializable {
 	public void setMedicationName(String medicationName) {
 		this.medicationName = medicationName;
 	}
+
+    public String getRouteOfMedication() {
+        return routeOfMedication;
+    }
+
+    public void setRouteOfMedication(String routeOfMedication) {
+        this.routeOfMedication = routeOfMedication;
+    }
+        
 
 	/**
 	 * @return

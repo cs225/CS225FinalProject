@@ -8,8 +8,8 @@ package CS225FinalProject.DataStructure;
 public class ScheduledMed extends Medication{
  
 	
-	public ScheduledMed (String name, String amount, String units) {
-		super (name, amount, units);
+	public ScheduledMed (String name, String amount, String route, String units) {
+		super (name, amount, route,units);
 	}
 	
 	
