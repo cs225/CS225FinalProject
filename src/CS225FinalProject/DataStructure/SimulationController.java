@@ -32,7 +32,6 @@ import java.util.ArrayList;
 public class SimulationController implements Serializable {
 	// Begin new data
 	private DataIO dataIO = new DataIO();
-	private ArrayList<CompletedScenario> completedScenarios = new ArrayList<CompletedScenario>();
 	private ArrayList<User> users = new ArrayList<User>();
 	private ArrayList<Scenario> scenarios = new ArrayList<Scenario>();
 
@@ -46,9 +45,12 @@ public class SimulationController implements Serializable {
 	private SimulationController() {
 		loadAllData();
 
+		for (User u : users)
+			System.out.println(u.getName());
+
 		// temporary user objects for testing
-		users.add(new Instructor("peter", "password", 0));
-		users.add(new Student("evan", "password", 1, "CS225"));
+		// users.add(new Instructor("peter", "password", 0));
+		// users.add(new Student("evan", "password", 1, "CS225"));
 	}
 
 	/** Implementing the Singleton pattern */
@@ -69,7 +71,6 @@ public class SimulationController implements Serializable {
 	private void loadAllData() {
 		populateUsers();
 		populateScenarios();
-//		populateCompletedScenarios();
 	}
 
 	public int generateNewID() {
@@ -122,16 +123,6 @@ public class SimulationController implements Serializable {
 		}
 	}
 
-//	public void writeCompletedScenarios() {
-//
-//		if (dataIO.writeCompletedScenarioList(completedScenarios)) {
-//			// data stored, do nothing
-//
-//		} else {
-//			// data not stored
-//		}
-//	}
-
 	public void writeScenarios() {
 
 		if (dataIO.writeScenarioList(scenarios)) {
@@ -162,16 +153,6 @@ public class SimulationController implements Serializable {
 		}
 	}
 
-//	public void populateCompletedScenarios() {
-//
-//		if (dataIO.loadCompletedScenarioList() != null) {
-//			completedScenarios = dataIO.loadCompletedScenarioList();
-//
-//		} else {
-//			// loading data failure, file not found
-//		}
-//	}
-
 	public ArrayList<User> getUsers() {
 		return users;
 	}
@@ -180,8 +161,6 @@ public class SimulationController implements Serializable {
 		return scenarios;
 	}
 
-	// need to fix getScenarioName in scenario by merging the two scenario
-	// clases
 	public Scenario getScenarioByName(String scenarioName) {
 		Scenario temp = null;
 		for (Scenario s : scenarios) {
@@ -203,23 +182,5 @@ public class SimulationController implements Serializable {
 			}
 		}
 		return tempUsers;
-	}
-
-	// returns completed scenarios that belong to a specific user
-	public ArrayList<CompletedScenario> getUserSessions(int userID) {
-
-		ArrayList<CompletedScenario> temp = new ArrayList<CompletedScenario>();
-
-		for (CompletedScenario ses : completedScenarios) {
-			if (ses.getScenarioID() == userID) {
-				temp.add(ses);
-			}
-		}
-		return temp;
-	}
-
-	// returns all completed scenarios to the professor
-	public ArrayList<CompletedScenario> getAllSessions() {
-		return completedScenarios;
 	}
 }

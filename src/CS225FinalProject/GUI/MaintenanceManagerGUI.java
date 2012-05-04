@@ -1085,7 +1085,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 		for (User u : controller.getUsers())
 			System.out.println(u);
 
-		// testing reading and writing encryption
+		// testing writing encryption
+		controller.writeUsers();
+		
 
 	}// GEN-LAST:event_addStudentButtonActionPerformed
 

@@ -2,7 +2,6 @@ package CS225FinalProject.printer;
 
 import CS225FinalProject.DataStructure.CompletedScenario;
 import CS225FinalProject.DataStructure.Scenario;
-import CS225FinalProject.DataStructure.ScenarioResult;
 
 /**
  * This class contains the methods for printing results USING JAVA API.
@@ -18,7 +17,7 @@ public class SimulationPrinter {
 
 	}
 
-	public static void printScenarioResult(ScenarioResult scenarioResult) {
+	public static void printCompletedScenario(CompletedScenario scenarioResult) {
 
 	}
 }
