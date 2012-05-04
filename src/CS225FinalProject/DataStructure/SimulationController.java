@@ -34,6 +34,7 @@ public class SimulationController implements Serializable {
 	private DataIO dataIO = new DataIO();
 	private ArrayList<User> users = new ArrayList<User>();
 	private ArrayList<Scenario> scenarios = new ArrayList<Scenario>();
+	private ArrayList<String> classNames = new ArrayList<String>();
 
 	// Private Constructor and Singleton Holder
 	/**
@@ -73,6 +74,32 @@ public class SimulationController implements Serializable {
 	private void loadAllData() {
 		populateUsers();
 		populateScenarios();
+		setClassNames();
+	}
+
+	/**
+	 * all iterations through array lists should first check if the list is
+	 * empty or not
+	 */
+	private void setClassNames() {
+		for (User u : users) {
+
+			if (classNames.isEmpty() && !u.isInstructor()) {
+				classNames.add(u.getClassName());
+
+			} else if (!classNames.isEmpty() && !u.isInstructor()) {
+				for (String cn : classNames) {
+
+					if (!cn.equalsIgnoreCase(u.getClassName())) {
+						classNames.add(u.getClassName());
+					}
+				}
+			}
+		}
+	}
+
+	private ArrayList<String> getClassNames() {
+		return classNames;
 	}
 
 	public int generateNewID() {
@@ -82,20 +109,34 @@ public class SimulationController implements Serializable {
 				lastID = u.getUserID();
 			}
 		}
-
 		return lastID + 1;
 	}
 
-	// methods for adding and removing students
-	public void addStudent(String name, String password, String className) {
-		users.add(new Student(name, password, generateNewID(), className));
-	}
+	// methods for adding and removing students / classes
+	public boolean addStudent(String name, String password, String className) {
+		boolean studentAdded = false;
 
-	public void removeStudent(String name, String password) {
 		for (User u : users) {
 			if (u.getName().equalsIgnoreCase(name)
 					&& u.getPassword().equals(password)) {
+				studentAdded = false; // user name + pw rejected
+			} else {
+				users.add(new Student(name, password, generateNewID(),
+						className));
+				studentAdded = true; // user name + pw accepted
+			}
+		}
+		setClassNames();
+		return studentAdded;
+	}
+
+	public void removeStudent(String name, String password, String className) {
+		for (User u : users) {
+			if (u.getName().equalsIgnoreCase(name)
+					&& u.getPassword().equals(password)
+					&& u.getClassName().equalsIgnoreCase(className)) {
 				users.remove(u);
+				setClassNames();
 			}
 		}
 	}
@@ -104,6 +145,7 @@ public class SimulationController implements Serializable {
 		for (User u : users) {
 			if (u.getClassName().equalsIgnoreCase(className)) {
 				users.remove(u);
+				setClassNames();
 			}
 		}
 	}
@@ -112,6 +154,7 @@ public class SimulationController implements Serializable {
 		for (User u : users) {
 			if (!u.isInstructor()) {
 				users.remove(u);
+				setClassNames();
 			}
 		}
 	}
@@ -194,7 +237,7 @@ public class SimulationController implements Serializable {
 	}
 
 	public Scenario getScenarioByName(String scenarioName) {
-		Scenario temp = null;
+		Scenario temp = new Scenario();
 		for (Scenario s : scenarios) {
 			if (s.getScenarioName().equals(scenarioName)) {
 				temp = s;
