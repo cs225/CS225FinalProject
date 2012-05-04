@@ -69,7 +69,7 @@ public class SimulationController implements Serializable {
 	private void loadAllData() {
 		populateUsers();
 		populateScenarios();
-		populateCompletedScenarios();
+//		populateCompletedScenarios();
 	}
 
 	public int generateNewID() {
@@ -122,15 +122,15 @@ public class SimulationController implements Serializable {
 		}
 	}
 
-	public void writeCompletedScenarios() {
-
-		if (dataIO.writeCompletedScenarioList(completedScenarios)) {
-			// data stored, do nothing
-
-		} else {
-			// data not stored
-		}
-	}
+//	public void writeCompletedScenarios() {
+//
+//		if (dataIO.writeCompletedScenarioList(completedScenarios)) {
+//			// data stored, do nothing
+//
+//		} else {
+//			// data not stored
+//		}
+//	}
 
 	public void writeScenarios() {
 
@@ -162,15 +162,15 @@ public class SimulationController implements Serializable {
 		}
 	}
 
-	public void populateCompletedScenarios() {
-
-		if (dataIO.loadCompletedScenarioList() != null) {
-			completedScenarios = dataIO.loadCompletedScenarioList();
-
-		} else {
-			// loading data failure, file not found
-		}
-	}
+//	public void populateCompletedScenarios() {
+//
+//		if (dataIO.loadCompletedScenarioList() != null) {
+//			completedScenarios = dataIO.loadCompletedScenarioList();
+//
+//		} else {
+//			// loading data failure, file not found
+//		}
+//	}
 
 	public ArrayList<User> getUsers() {
 		return users;

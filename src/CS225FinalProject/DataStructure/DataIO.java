@@ -109,7 +109,7 @@ public class DataIO {
 		try {
 
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
-					completedScenarioFile));
+					scenarioFile));
 			scenarioList = (ArrayList<Scenario>) in.readObject();
 
 			in.close();
@@ -117,7 +117,7 @@ public class DataIO {
 		} catch (IOException e) {
 
 			System.out.println("Error Finding File:"
-					+ completedScenarioFile.getAbsolutePath());
+					+ scenarioFile.getAbsolutePath());
 
 			return null;
 
