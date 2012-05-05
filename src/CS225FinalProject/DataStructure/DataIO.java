@@ -29,6 +29,7 @@ public class DataIO {
 
 	private File userFile;
 	private File scenarioFile;
+	private File classNameFile;
 
 	private String password = "cs225yay";
 	private SecretKeyFactory keyFactory;
@@ -41,6 +42,7 @@ public class DataIO {
 		// Define files here
 		userFile = new File("users.lst");
 		scenarioFile = new File("scenarios.lst");
+		classNameFile = new File("classnames.lst");
 		// completedScenarioFile = new File("completed.lst");
 
 		byte key[] = password.getBytes();
@@ -126,6 +128,35 @@ public class DataIO {
 
 	}
 
+	public ArrayList<String> loadClassNameList() {
+		ArrayList<String> classList = new ArrayList<String>();
+
+		try {
+			desCipher.init(Cipher.DECRYPT_MODE, secretKey);
+
+			FileInputStream fis = new FileInputStream(classNameFile);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			CipherInputStream cis = new CipherInputStream(bis, desCipher);
+			ObjectInputStream ois = new ObjectInputStream(cis);
+
+			classList = (ArrayList<String>) ois.readObject();
+
+			ois.close();
+		} catch (IOException e) {
+
+			System.out.println("Error Finding File:"
+					+ classNameFile.getAbsolutePath());
+
+			return null;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return classList;
+	}
+
 	public boolean writeUserList(ArrayList<User> userList) {
 		try {
 
@@ -161,6 +192,28 @@ public class DataIO {
 			ObjectOutputStream oos = new ObjectOutputStream(cos);
 
 			oos.writeObject(scenarioList);
+			oos.flush();
+			oos.close();
+			return true;
+
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean writeClassNameList(ArrayList<String> classNameList) {
+		try {
+
+			desCipher.init(Cipher.ENCRYPT_MODE, secretKey);
+
+			FileOutputStream fos = new FileOutputStream(classNameFile);
+			BufferedOutputStream bos = new BufferedOutputStream(fos);
+			CipherOutputStream cos = new CipherOutputStream(bos, desCipher);
+			ObjectOutputStream oos = new ObjectOutputStream(cos);
+
+			oos.writeObject(classNameList);
 			oos.flush();
 			oos.close();
 			return true;
