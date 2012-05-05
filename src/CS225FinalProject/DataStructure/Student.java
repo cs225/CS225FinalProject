@@ -5,19 +5,26 @@ import java.util.ArrayList;
 
 public class Student extends User {
 
-	private String className;
+	private String className, username;//username is the users actual name
 	private ArrayList<CompletedScenario> completedScenarios = new ArrayList<CompletedScenario>();
 
 	// private ArrayList<CompletedScenarios> studentData;
 
-	public Student(String name, String password, int userID) {
+	public Student(String name, String password, String username, int userID) {
 		super(name, password, userID);
+                this.username = username;
 	}
 
 	public Student(String name, String password, int userID, String className) {
 		super(name, password, userID);
 		this.className = className;
 	}
+        public String getUsername(){
+            return username;
+        }
+        public void setUsername(String username){
+            this.username = username;
+        }
 
 	public String getClassName() {
 		return className;
