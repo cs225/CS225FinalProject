@@ -46,6 +46,8 @@ public class SimulationController implements Serializable {
 	 * instance of it at any time, and it is accessible via the static method
 	 * SimControl.getInstance(); Please use this method to access methods you
 	 * need from the controller.
+	 * 
+	 * 
 	 */
 	private SimulationController() {
 		loadAllData();
@@ -66,7 +68,6 @@ public class SimulationController implements Serializable {
 
 		for (User u : users)
 			System.out.println(u.getName() + "  /  " + u.getPassword());
-
 		for (String cn : classNames)
 			System.out.println(cn);
 	}
@@ -104,15 +105,14 @@ public class SimulationController implements Serializable {
 		return lastID + 1;
 	}
 
-	// methods for adding and removing classes
+	// methods for adding and removing classas
 	@SuppressWarnings("unchecked")
 	public boolean removeClass(String classesName) {
-
 		boolean classRemoved = false;
 
 		if (!classNames.isEmpty()) {
 			for (String cn : (ArrayList<String>) classNames.clone()) {
-				if (classesName.equalsIgnoreCase(cn)) {
+				if (cn.equalsIgnoreCase(classesName)) {
 					classNames.remove(cn);
 					classRemoved = true;
 				}
