@@ -62,7 +62,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 					&& !u.isInstructor()
 					&& classList.getSelectedValue().toString()
 							.equalsIgnoreCase(u.getClassName())) {
-				studentListModel.addElement((String) u.getName());
+				studentListModel.addElement((String) u.getRealName());
 			}
 		}
 	}
@@ -1186,8 +1186,16 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
 	private void removeAllButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		int n = JOptionPane.showConfirmDialog(this,
-				"Are you sure you want to remove all students?",
+				"Are you sure you want to remove all student and class data?",
 				"Confirm Removal", JOptionPane.YES_NO_OPTION);
+
+		if (n == JOptionPane.YES_OPTION) {
+			int x = JOptionPane
+					.showConfirmDialog(
+							this,
+							"Are you sure you want to remove all student and class data?",
+							"Confirm Removal", JOptionPane.YES_NO_OPTION);
+		}
 
 		if (n == JOptionPane.YES_OPTION) {
 			controller.removeAllStudents();
@@ -1333,8 +1341,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	private void addStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
 		// taking this data should be handled better. messy code
+		String userName = JOptionPane.showInputDialog(this,
+				"Enter the Student's User Name");
+
 		String studentName = JOptionPane.showInputDialog(this,
-				"Enter the Student Name");
+				"Enter the Student's Real Name");
 
 		String studentPW = JOptionPane.showInputDialog(this,
 				"Enter the Student Password");
@@ -1348,8 +1359,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 				"Enter the Class Name:", "Class Name",
 				JOptionPane.PLAIN_MESSAGE, null, choices, "ham");
 
-		if (studentName != "" && studentPW != "") {
-			if (controller.addStudent(studentName, studentPW, className)
+		if (userName != "" && studentName != "" && studentPW != "") {
+			if (controller.addStudent(userName, studentName, studentPW,
+					className)
 					&& className.equalsIgnoreCase(classList.getSelectedValue()
 							.toString())) {
 				studentListModel.addElement(studentName);

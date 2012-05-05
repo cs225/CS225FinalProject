@@ -1,14 +1,8 @@
 package CS225FinalProject.DataStructure;
 
 /**
- * 
  * @author Zack
  */
-
-// should extend user rather than implementing the user interface
-// Zack! you write public class Instructor implements UserInterface
-// UserInterface is not a class; instead User is an interface.
-// So this should say Instructor implements User (which is an interface) --RH
 
 public class Instructor extends User {
 
@@ -19,7 +13,6 @@ public class Instructor extends User {
 
 	@Override
 	public String getClassName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -28,26 +21,13 @@ public class Instructor extends User {
 		// TODO Auto-generated method stub
 	}
 
-	// all of these methods will be handled in the GUI classes and simulation
-	// controller
+	@Override
+	public String getRealName() {
+		return null;
+	}
 
-	// public boolean login(String name, String password){
-	// String login = "name"+"password";
-	// if (login.equals(DataStorage.getLogin()){
-	// return true;
-	// }
-	// else
-	// return false;
-	// }
-	// }
-	// public void addSection(){
-	// }
-	// public void addStudent(){
-	// }
-	// public void removeSection(){
-	// }
-	// public void removeStudent(){
-	// }
-	// public void displayScores(){
-	// }
+	@Override
+	public void setRealName(String realName) {
+		// TODO Auto-generated method stub
+	}
 }

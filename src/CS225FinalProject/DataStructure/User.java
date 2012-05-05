@@ -62,4 +62,8 @@ public abstract class User implements Serializable {
 	public abstract String getClassName();
 
 	public abstract void setClassName(String className);
+
+	public abstract String getRealName();
+
+	public abstract void setRealName(String realName);
 }
