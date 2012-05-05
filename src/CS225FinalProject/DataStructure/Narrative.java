@@ -61,5 +61,12 @@ public class Narrative  implements Serializable{
     public void setInitials(String initials) {
         this.initials = initials;
     }
+    /**
+     * Returns the Narrative as an array of String. easy for setting up table in 
+     * the scenario.
+     */
+    public String[] getNarrativeAsArrayStrings(){
+        return new  String[]{date,time,narrative,followUP,initials};
+    }
 }
 

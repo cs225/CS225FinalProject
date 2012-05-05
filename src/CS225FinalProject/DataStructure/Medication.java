@@ -28,7 +28,7 @@ public class Medication implements Serializable {
 	 * @return
 	 */
 	public String getMedicationName() {
-		return medicationDueTimes;
+		return medicationName;
 	}
 
 	/**
@@ -64,8 +64,8 @@ public class Medication implements Serializable {
 	/**
 	 * @return
 	 */
-	public int[] getMedicationDueTimes() {
-		return null;
+	public String getMedicationDueTimes() {
+		return medicationDueTimes;
 	}
 
 	/**
