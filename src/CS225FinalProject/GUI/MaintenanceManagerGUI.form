@@ -83,6 +83,7 @@
                     </Property>
                   </Properties>
                   <Events>
+                    <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="classListValueChanged"/>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="classListFocusGained"/>
                   </Events>
                   <AuxValues>

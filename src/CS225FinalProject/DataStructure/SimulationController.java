@@ -52,9 +52,13 @@ public class SimulationController implements Serializable {
 
 		// temporary objects for testing
 		if (users.isEmpty()) {
-			users.add(new Instructor("instructor", "password", 0));
-			users.add(new Student("student", "password", 1, "CS225"));
+			users.add(new Instructor("instructor", "password", generateNewID()));
+			users.add(new Student("student", "password", generateNewID(),
+					"CS225"));
+			users.add(new Student("James", "password", generateNewID(),
+					"Nursing 101"));
 		}
+
 		if (classNames.isEmpty()) {
 			classNames.add("CS225");
 			classNames.add("Nursing 101");
@@ -62,6 +66,9 @@ public class SimulationController implements Serializable {
 
 		for (User u : users)
 			System.out.println(u.getName() + "  /  " + u.getPassword());
+
+		for (String cn : classNames)
+			System.out.println(cn);
 	}
 
 	/** Implementing the Singleton pattern */
@@ -100,11 +107,12 @@ public class SimulationController implements Serializable {
 	// methods for adding and removing classes
 	@SuppressWarnings("unchecked")
 	public boolean removeClass(String classesName) {
+
 		boolean classRemoved = false;
 
 		if (!classNames.isEmpty()) {
 			for (String cn : (ArrayList<String>) classNames.clone()) {
-				if (cn.equalsIgnoreCase(classesName)) {
+				if (classesName.equalsIgnoreCase(cn)) {
 					classNames.remove(cn);
 					classRemoved = true;
 				}

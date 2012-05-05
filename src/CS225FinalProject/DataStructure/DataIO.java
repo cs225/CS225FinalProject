@@ -175,7 +175,7 @@ public class DataIO {
 
 		} catch (Exception e) {
 
-			System.out.println(e.getMessage());
+			System.out.println(e);
 			return false;
 		}
 
