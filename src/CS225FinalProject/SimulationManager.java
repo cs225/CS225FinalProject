@@ -25,7 +25,7 @@ public class SimulationManager {
 	final public static int MAINTENANCE_STATE = 3;
 	final public static int EXIT_STATE = -1;
 
-	final public static SimulationController SIMULATION_DATA_STRUCTURE = SimulationController
+	private SimulationController controller = SimulationController
 			.getInstance();
 
 	/**
