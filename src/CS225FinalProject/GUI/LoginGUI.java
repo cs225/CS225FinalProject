@@ -28,7 +28,6 @@ public class LoginGUI extends javax.swing.JDialog {
 		initComponents();
 		pack();
 
-		setPreferredSize(new Dimension(400, 600));
 		setLocation((getToolkit().getScreenSize().width - getWidth()) / 2,
 				(getToolkit().getScreenSize().height - getHeight()) / 2);
 		addWindowListener(new WindowAdapter() {

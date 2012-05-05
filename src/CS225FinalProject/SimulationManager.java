@@ -59,6 +59,7 @@ public class SimulationManager {
 		proffesorGUIPrototype.setVisible(false);
 		ScenarioSelectionGUI scenarioSelectionGUIPrototype = new ScenarioSelectionGUI(
 				manager);
+
 		SimulationManager.state = LOGIN_STATE;
 		while (SimulationManager.state != EXIT_STATE) {
 			if (SimulationManager.state == LOGIN_STATE
@@ -67,12 +68,14 @@ public class SimulationManager {
 							.isVisible())) {
 				scenarioSelectionGUIPrototype.setVisible(false);
 				mainGUI.setVisible(false);
+
 				if (!loginDialog.isVisible()) {
 					JOptionPane.showMessageDialog(loginDialog,
 							"Welcome to Massbay General Hospital\n"
 									+ "Please Log in and follow the flow. ");
 					loginDialog.setVisible(true);
 				}
+
 			} else if (SimulationManager.state == LOGIN_STATE) {
 				if (!loginDialog.isVisible()) {
 					JOptionPane.showMessageDialog(loginDialog,
@@ -83,18 +86,21 @@ public class SimulationManager {
 				mainGUI.setVisible(false);
 				scenarioSelectionGUIPrototype.setVisible(false);
 				proffesorGUIPrototype.setVisible(false);
+
 			} else if (SimulationManager.state == SCENARIO_STATE) {
 				if (!scenarioSelectionGUIPrototype.isVisible())
 					scenarioSelectionGUIPrototype.setVisible(true);
 				mainGUI.setVisible(false);
 				loginDialog.setVisible(false);
 				proffesorGUIPrototype.setVisible(false);
+
 			} else if (SimulationManager.state == SIMULATION_STATE) {
 				if (!mainGUI.isVisible())
 					mainGUI.setVisible(true);
 				loginDialog.setVisible(false);
 				proffesorGUIPrototype.setVisible(false);
 				scenarioSelectionGUIPrototype.setVisible(false);
+
 			} else if (SimulationManager.state == MAINTENANCE_STATE) {
 				if (!proffesorGUIPrototype.isVisible())
 					proffesorGUIPrototype.setVisible(true);
@@ -102,8 +108,6 @@ public class SimulationManager {
 				loginDialog.setVisible(false);
 				scenarioSelectionGUIPrototype.setVisible(false);
 			}
-
-			// this code block is causing the program to not load properly.
 
 			else if ((!loginDialog.isVisible() && SimulationManager.state == LOGIN_STATE))
 				SimulationManager.state = EXIT_STATE;
@@ -114,7 +118,6 @@ public class SimulationManager {
 				Logger.getLogger(SimulationManager.class.getName()).log(
 						Level.SEVERE, null, ex);
 			}
-
 		}
 		System.exit(0);
 	}

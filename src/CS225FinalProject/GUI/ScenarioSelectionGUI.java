@@ -23,8 +23,11 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 		initComponents();
 		setTitle("Scenario Selection");
 		summarySetter.setText("");
+
 		setLocation((getToolkit().getScreenSize().width - getWidth()) / 2,
 				(getToolkit().getScreenSize().height - getHeight()) / 2);
+
+		setAlwaysOnTop(true);
 	}
 
 	/**
@@ -274,13 +277,12 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
 
 		SimulationManager.state = SimulationManager.LOGIN_STATE;
 	}
 
 	private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+
 		SimulationManager.state = SimulationManager.SIMULATION_STATE;
 	}
 

@@ -61,16 +61,16 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 		}
 	}
 
-	public SimulationManager manager;
-
 	/**
 	 * Creates new form PrototypeGUI2
 	 */
-	public SimulationGUI(SimulationManager managerr) {
+	public SimulationGUI(SimulationManager manager) {
 		initComponents();
+
 		setLocation((getToolkit().getScreenSize().width - getWidth()) / 2,
 				(getToolkit().getScreenSize().height - getHeight()) / 2);
-		this.manager = managerr;
+
+		setAlwaysOnTop(true);
 		ActionListener timerListener = new ActionListener() {
 
 			@Override

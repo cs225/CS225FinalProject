@@ -114,12 +114,12 @@ public class SimulationController implements Serializable {
 		return studentAdded;
 	}
 
-	public void removeStudent(String name, String password, String className) {
+	public void removeStudent(String name, String password) {
 		if (!users.isEmpty()) {
 			for (User u : users) {
 				if (u.getName().equalsIgnoreCase(name)
 						&& u.getPassword().equals(password)
-						&& u.getClassName().equalsIgnoreCase(className)) {
+						&& !u.isInstructor()) {
 					users.remove(u);
 				}
 			}
