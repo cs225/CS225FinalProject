@@ -25,9 +25,6 @@ public class SimulationManager {
 	final public static int MAINTENANCE_STATE = 3;
 	final public static int EXIT_STATE = -1;
 
-	private SimulationController controller = SimulationController
-			.getInstance();
-
 	/**
 	 * @param args
 	 *            the command line arguments

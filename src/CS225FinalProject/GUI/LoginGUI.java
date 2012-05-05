@@ -1,20 +1,21 @@
 package CS225FinalProject.GUI;
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.JOptionPane;
+
 import CS225FinalProject.SimulationManager;
 import CS225FinalProject.DataStructure.SimulationController;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 
 /**
  * @author Eric Santana
  */
 public class LoginGUI extends javax.swing.JDialog {
 
-	// private SimulationManager manager;
 	private SimulationController controller = SimulationController
 			.getInstance();
 
@@ -47,56 +48,77 @@ public class LoginGUI extends javax.swing.JDialog {
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed"
 	// <editor-fold defaultstate="collapsed"
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+	// <editor-fold defaultstate="collapsed"
+	// desc="Generated Code">//GEN-BEGIN:initComponents
+	private void initComponents() {
 
-        userLabel = new javax.swing.JLabel();
-        usernameTextField = new javax.swing.JTextField();
-        passwordLabel = new javax.swing.JLabel();
-        passwordField = new javax.swing.JPasswordField();
-        loginButton = new javax.swing.JButton();
-        logoLabel = new javax.swing.JLabel();
+		userLabel = new javax.swing.JLabel();
+		usernameTextField = new javax.swing.JTextField();
+		passwordLabel = new javax.swing.JLabel();
+		passwordField = new javax.swing.JPasswordField();
+		loginButton = new javax.swing.JButton();
+		logoLabel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Massbay General Hospital");
-        setAlwaysOnTop(true);
-        setMinimumSize(new java.awt.Dimension(340, 240));
-        setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+		setTitle("Massbay General Hospital");
+		setAlwaysOnTop(true);
+		setMinimumSize(new java.awt.Dimension(340, 240));
+		setResizable(false);
+		getContentPane().setLayout(
+				new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        userLabel.setText("User Name:");
-        getContentPane().add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 103, 70, 27));
+		userLabel.setText("User Name:");
+		getContentPane().add(
+				userLabel,
+				new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 103, 70,
+						27));
 
-        usernameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                usernameTextFieldKeyPressed(evt);
-            }
-        });
-        getContentPane().add(usernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 140, -1));
+		usernameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+			public void keyPressed(java.awt.event.KeyEvent evt) {
+				usernameTextFieldKeyPressed(evt);
+			}
+		});
+		getContentPane().add(
+				usernameTextField,
+				new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110,
+						140, -1));
 
-        passwordLabel.setText("Password:");
-        getContentPane().add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 139, -1, -1));
+		passwordLabel.setText("Password:");
+		getContentPane().add(
+				passwordLabel,
+				new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 139, -1,
+						-1));
 
-        passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                passwordFieldKeyPressed(evt);
-            }
-        });
-        getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 140, -1));
+		passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
+			public void keyPressed(java.awt.event.KeyEvent evt) {
+				passwordFieldKeyPressed(evt);
+			}
+		});
+		getContentPane().add(
+				passwordField,
+				new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140,
+						140, -1));
 
-        loginButton.setText("Log In");
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 90, -1));
+		loginButton.setText("Log In");
+		loginButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				loginButtonActionPerformed(evt);
+			}
+		});
+		getContentPane().add(
+				loginButton,
+				new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 90,
+						-1));
 
-        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/massbayLogo.png"))); // NOI18N
-        getContentPane().add(logoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 11, -1, -1));
+		logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(
+				"/res/massbayLogo.png"))); // NOI18N
+		getContentPane().add(
+				logoLabel,
+				new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 11, -1,
+						-1));
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+		pack();
+	}// </editor-fold>//GEN-END:initComponents
 
 	private void usernameTextFieldKeyPressed(java.awt.event.KeyEvent evt) {
 		if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -192,12 +214,12 @@ public class LoginGUI extends javax.swing.JDialog {
 		});
 	}
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton loginButton;
-    private javax.swing.JLabel logoLabel;
-    private javax.swing.JPasswordField passwordField;
-    private javax.swing.JLabel passwordLabel;
-    private javax.swing.JLabel userLabel;
-    private javax.swing.JTextField usernameTextField;
-    // End of variables declaration//GEN-END:variables
+	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private javax.swing.JButton loginButton;
+	private javax.swing.JLabel logoLabel;
+	private javax.swing.JPasswordField passwordField;
+	private javax.swing.JLabel passwordLabel;
+	private javax.swing.JLabel userLabel;
+	private javax.swing.JTextField usernameTextField;
+	// End of variables declaration//GEN-END:variables
 }
