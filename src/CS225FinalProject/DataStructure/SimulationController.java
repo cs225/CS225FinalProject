@@ -46,19 +46,18 @@ public class SimulationController implements Serializable {
 	private SimulationController() {
 		loadAllData();
 
-		for (User u : users)
-			System.out.println(u.getName());
-
 		// temporary user objects for testing
 		if (users.isEmpty()) {
 			users.add(new Instructor("instructor", "password", 0));
 			users.add(new Student("student", "password", 1, "CS225"));
 		}
+		for (User u : users)
+			System.out.println(u.getName());
 	}
 
 	/** Implementing the Singleton pattern */
 	private static class SimControl {
-		public static final SimulationController instance = new SimulationController();
+		public static SimulationController instance = new SimulationController();
 	}
 
 	public static SimulationController getInstance() {
@@ -74,39 +73,20 @@ public class SimulationController implements Serializable {
 	private void loadAllData() {
 		populateUsers();
 		populateScenarios();
-		setClassNames();
 	}
 
 	/**
 	 * all iterations through array lists should first check if the list is
 	 * empty or not
 	 */
-	public void setClassNames() {
-		for (User u : users) {
-
-			if (classNames.isEmpty() && !u.isInstructor()) {
-				classNames.add(u.getClassName());
-
-			} else if (!classNames.isEmpty() && !u.isInstructor()) {
-				for (String cn : classNames) {
-
-					if (!cn.equalsIgnoreCase(u.getClassName())) {
-						classNames.add(u.getClassName());
-					}
-				}
-			}
-		}
-	}
-
-	public ArrayList<String> getClassNames() {
-		return classNames;
-	}
 
 	public int generateNewID() {
 		int lastID = 0;
-		for (User u : users) {
-			if (u.getUserID() > lastID) {
-				lastID = u.getUserID();
+		if (!users.isEmpty()) {
+			for (User u : users) {
+				if (u.getUserID() > lastID) {
+					lastID = u.getUserID();
+				}
 			}
 		}
 		return lastID + 1;
@@ -114,47 +94,54 @@ public class SimulationController implements Serializable {
 
 	// methods for adding and removing students / classes
 	public boolean addStudent(String name, String password, String className) {
+		boolean studentExists = false;
 		boolean studentAdded = false;
 
-		for (User u : users) {
-			if (u.getName().equalsIgnoreCase(name)
-					&& u.getPassword().equals(password)) {
-				studentAdded = false; // user name + pw rejected
-			} else {
-				users.add(new Student(name, password, generateNewID(),
-						className));
-				studentAdded = true; // user name + pw accepted
+		if (!users.isEmpty()) {
+			for (User u : users) {
+				if (u.getName().equalsIgnoreCase(name)
+						&& u.getPassword().equals(password)) {
+					studentExists = true;
+				}
 			}
 		}
-		setClassNames();
+
+		if (!studentExists) {
+			users.add(new Student(name, password, generateNewID(), className));
+			studentAdded = true;
+		}
+
 		return studentAdded;
 	}
 
 	public void removeStudent(String name, String password, String className) {
-		for (User u : users) {
-			if (u.getName().equalsIgnoreCase(name)
-					&& u.getPassword().equals(password)
-					&& u.getClassName().equalsIgnoreCase(className)) {
-				users.remove(u);
-				setClassNames();
+		if (!users.isEmpty()) {
+			for (User u : users) {
+				if (u.getName().equalsIgnoreCase(name)
+						&& u.getPassword().equals(password)
+						&& u.getClassName().equalsIgnoreCase(className)) {
+					users.remove(u);
+				}
 			}
 		}
 	}
 
 	public void removeStudentsFromClass(String className) {
-		for (User u : users) {
-			if (u.getClassName().equalsIgnoreCase(className)) {
-				users.remove(u);
-				setClassNames();
+		if (!users.isEmpty()) {
+			for (User u : users) {
+				if (u.getClassName().equalsIgnoreCase(className)) {
+					users.remove(u);
+				}
 			}
 		}
 	}
 
 	public void removeAllStudents() {
-		for (User u : users) {
-			if (!u.isInstructor()) {
-				users.remove(u);
-				setClassNames();
+		if (!users.isEmpty()) {
+			for (User u : users) {
+				if (!u.isInstructor()) {
+					users.remove(u);
+				}
 			}
 		}
 	}
@@ -163,10 +150,13 @@ public class SimulationController implements Serializable {
 
 		boolean isValidStudent = false;
 
-		for (User user : users) {
-			if (name.equalsIgnoreCase(user.getName())
-					&& pw.equals(user.getPassword()) && !user.isInstructor()) {
-				isValidStudent = true;
+		if (!users.isEmpty()) {
+			for (User user : users) {
+				if (name.equalsIgnoreCase(user.getName())
+						&& pw.equals(user.getPassword())
+						&& !user.isInstructor()) {
+					isValidStudent = true;
+				}
 			}
 		}
 		return isValidStudent;
@@ -176,10 +166,12 @@ public class SimulationController implements Serializable {
 
 		boolean isValidInstructor = false;
 
-		for (User user : users) {
-			if (name.equalsIgnoreCase(user.getName())
-					&& pw.equals(user.getPassword()) && user.isInstructor()) {
-				isValidInstructor = true;
+		if (!users.isEmpty()) {
+			for (User user : users) {
+				if (name.equalsIgnoreCase(user.getName())
+						&& pw.equals(user.getPassword()) && user.isInstructor()) {
+					isValidInstructor = true;
+				}
 			}
 		}
 		return isValidInstructor;
@@ -238,9 +230,11 @@ public class SimulationController implements Serializable {
 
 	public Scenario getScenarioByName(String scenarioName) {
 		Scenario temp = new Scenario();
-		for (Scenario s : scenarios) {
-			if (s.getScenarioName().equals(scenarioName)) {
-				temp = s;
+		if (!scenarios.isEmpty()) {
+			for (Scenario s : scenarios) {
+				if (s.getScenarioName().equals(scenarioName)) {
+					temp = s;
+				}
 			}
 		}
 		return temp;
@@ -251,18 +245,22 @@ public class SimulationController implements Serializable {
 
 		ArrayList<User> tempUsers = new ArrayList<User>();
 
-		for (User student : users) {
-			if (student.getClassName().equals(className)) {
-				tempUsers.add(student);
+		if (!users.isEmpty()) {
+			for (User student : users) {
+				if (student.getClassName().equals(className)) {
+					tempUsers.add(student);
+				}
 			}
 		}
 		return tempUsers;
 	}
 
-	private boolean isInstructorAvailable() {
-		for (User u : getUsers()) {
-			if (u.isInstructor())
-				return true;
+	public boolean isInstructorAvailable() {
+		if (!users.isEmpty()) {
+			for (User u : getUsers()) {
+				if (u.isInstructor())
+					return true;
+			}
 		}
 		return false;
 	}

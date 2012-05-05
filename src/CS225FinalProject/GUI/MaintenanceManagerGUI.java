@@ -987,8 +987,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
-	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-		// TODO add your handling code here:
+	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+
 		if (JOptionPane.showConfirmDialog(this,
 				"Are You Sure You want to Log out?", null,
 				JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
@@ -998,18 +998,17 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 			setVisible(false);
 
 		}
-	}// GEN-LAST:event_jButton2ActionPerformed
+	}
 
 	private void removeScenarioButtonActionPerformed(
-			java.awt.event.ActionEvent evt) {// GEN-FIRST:event_removeScenarioButtonActionPerformed
+			java.awt.event.ActionEvent evt) {
 		String scenario = (String) scenarioListModel.get(scenarioList
 				.getSelectedIndex());// use this string wisely!!! :)
 		scenarioListModel.remove(scenarioList.getSelectedIndex());
 		if (scenarioListModel.getSize() == 0) {
 			previewTabbedPane.setVisible(false);
 		}
-		// TODO remove the
-	}// GEN-LAST:event_removeScenarioButtonActionPerformed
+	}
 
 	private void addScenarioButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addScenarioButtonActionPerformed
 
@@ -1022,10 +1021,10 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 			previewTabbedPane.setVisible(true);
 		}
 		// TODO implement adding a new scenario to the DataStructure
-	}// GEN-LAST:event_addScenarioButtonActionPerformed
+	}
 
-	private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton10ActionPerformed
-		// TODO add your handling code here:
+	private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {
+
 		String selectedScenarioName = (String) scenarioList.getSelectedValue();
 		if (selectedScenarioName != null) {
 			Scenario scenario = controller
@@ -1043,16 +1042,15 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 			scenario.setNarrativeList(null);
 
 		}
-	}// GEN-LAST:event_jButton10ActionPerformed
+	}
 
-	private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton19ActionPerformed
-		// TODO add your handling code here:
+	private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {
+
 		((DefaultTableModel) jTable3.getModel()).removeRow(jTable3
 				.getSelectedRow());
-	}// GEN-LAST:event_jButton19ActionPerformed
+	}
 
-	private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton11ActionPerformed
-		// TODO add your handling code here:
+	private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {
 
 		String route = (String) JOptionPane.showInputDialog(this,
 				"Please select the route of medication:",
@@ -1066,47 +1064,47 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 			((DefaultTableModel) jTable3.getModel()).addRow(new Object[] { "",
 					"", route });
 
-	}// GEN-LAST:event_jButton11ActionPerformed
+	}
 
 	private void scenarioListValueChanged(
-			javax.swing.event.ListSelectionEvent evt) {// GEN-FIRST:event_scenarioListValueChanged
-		// TODO add your handling code here:
+			javax.swing.event.ListSelectionEvent evt) {
 		if (scenarioList.getSelectedIndex() >= 0) {
 			updateScenarioPreview((String) scenarioListModel.get(scenarioList
 					.getSelectedIndex()));
 		}
-	}// GEN-LAST:event_scenarioListValueChanged
+	}
 
-	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
-		// TODO add your handling code here:
+	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
+		// remove class button
+		// if (sessionList.hasFocus()) {
 		sessionListModel.remove(sessionList.getSelectedIndex());
-	}// GEN-LAST:event_jButton4ActionPerformed
+		// }
+	}
 
-	private void addSessionButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addSessionButtonActionPerformed
+	private void addSessionButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		String sessionName = JOptionPane.showInputDialog(this,
-				"Enter the session Name");
+				"Enter the class name:");
+
 		sessionListModel.addElement(sessionName);
-		// TODO here goes the code for adding a session to the
-		// SimulationDataStructure
 
-	}// GEN-LAST:event_addSessionButtonActionPerformed
+	}
 
-	private void studentListFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_studentListFocusGained
+	private void studentListFocusGained(java.awt.event.FocusEvent evt) {
 		// TODO add your handling code here:
 		studentManagerControlTabbedPane.setSelectedIndex(1);
-	}// GEN-LAST:event_studentListFocusGained
+	}
 
-	private void sessionListFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_sessionListFocusGained
+	private void sessionListFocusGained(java.awt.event.FocusEvent evt) {
 		// TODO add your handling code here:
 		studentList.clearSelection();
 		studentManagerControlTabbedPane.setSelectedIndex(0);
-	}// GEN-LAST:event_sessionListFocusGained
+	}
 
-	private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton6ActionPerformed
+	private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:fd
-	}// GEN-LAST:event_jButton6ActionPerformed
+	}
 
-	private void addStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addStudentButtonActionPerformed
+	private void addStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
 		// taking this data should be handled better.
 
@@ -1128,12 +1126,12 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 		// testing writing
 		controller.writeUsers();
 
-	}// GEN-LAST:event_addStudentButtonActionPerformed
+	}
 
 	private void changeUserNameButtonActionPerformed(
-			java.awt.event.ActionEvent evt) {// GEN-FIRST:event_changeUserNameButtonActionPerformed
+			java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
-	}// GEN-LAST:event_changeUserNameButtonActionPerformed
+	}
 
 	/**
 	 * @param args
