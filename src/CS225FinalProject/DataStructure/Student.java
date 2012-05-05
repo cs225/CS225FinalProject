@@ -1,5 +1,4 @@
 package CS225FinalProject.DataStructure;
-
 //Added Completed Scenarios to the user object, so that they can be more easily organized.
 import java.util.ArrayList;
 
@@ -9,7 +8,12 @@ public class Student extends User {
 	private ArrayList<CompletedScenario> completedScenarios = new ArrayList<CompletedScenario>();
 
 	// private ArrayList<CompletedScenarios> studentData;
-
+	
+/* student constructor takes in the name that is displayed when the user logs in,
+ * the password the user needs to log in
+ * the username so that the teach can tell who the name belongs to
+ * and the user ID
+ */
 	public Student(String name, String password, String username, int userID) {
 		super(name, password, userID);
                 this.username = username;
