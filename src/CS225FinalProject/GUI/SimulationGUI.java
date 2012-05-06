@@ -514,18 +514,53 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
     }// </editor-fold>//GEN-END:initComponents
 
 	private void cancelSimulationButtonActionPerformed(ActionEvent evt) {
+            if(JOptionPane.YES_OPTION==JOptionPane.showConfirmDialog(this,
+                                "Are you sure you want to cancel the simulation and select another problem?", null, JOptionPane.YES_NO_OPTION))
+                                SimulationManager.state = SimulationManager.SCENARIO_STATE;
 
 	}
 
 	private void deleteNarrativeButtonActionPerformed(Object evt) {
-            if(documentationTable.getSelectedRow()< SimulationManager.CURRENT_SCENARIO.getStartNumOfNarratives())
+            if(documentationTable.getSelectedRow()< SimulationManager.CURRENT_SCENARIO.getStartNumOfNarratives() && documentationTable.getSelectedRow()>-1)
                 JOptionPane.showMessageDialog(this, "You can not delete this narrative\n it was made by another nurse");
             else if(documentationTable.getSelectedRow()>-1)
                 ((DefaultTableModel)documentationTable.getModel()).removeRow(documentationTable.getSelectedRow());
+            else if (documentationTable.getSelectedRow() < 0)
+			JOptionPane.showMessageDialog(this, "Please Select a Narrative");
 
 	}
 
 	private void hourDueButtonActionPerformed(Object evt) {
+            
+            if (marTable.getSelectedRow() < 0)
+			JOptionPane.showMessageDialog(this, "Please Select a Medication");
+		else {
+			JDialog t = new JDialog(this,true);
+                        t.setSize(400, 300);
+			t.setLocation(
+					(t.getToolkit().getScreenSize().width - t.getWidth()) / 2,
+					(t.getToolkit().getScreenSize().height - t.getHeight()) / 2);
+
+//			t.setTitle(patientNameLabel.getText()
+//					+ ": "
+//					+ (String) documentationTable.getValueAt(
+//							documentationTable.getSelectedRow(), 0)
+//					+ " at "
+//					+ (String) documentationTable.getValueAt(
+//							documentationTable.getSelectedRow(), 1));
+			
+
+			JTextPane t2 = new JTextPane();
+			t2.setEditable(false);
+			JScrollPane pane = new JScrollPane();
+			pane.setViewportView(t2);
+			t2.setText((String) marTable.getValueAt(
+					marTable.getSelectedRow(), 3));
+			t.add(pane);
+
+			t.setVisible(true);
+			t.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		}
 
 	}
 
@@ -964,7 +999,9 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 		}
 
 		private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {
-			dispose();
+                    
+                    
+			
 		}
 
 		// Variables declaration - do not modify
