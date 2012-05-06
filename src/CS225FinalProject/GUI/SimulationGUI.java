@@ -172,501 +172,346 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed"
 	// <editor-fold defaultstate="collapsed"
-	// desc="Generated Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-		rootTabbedPane = new javax.swing.JTabbedPane();
-		jcaho_Panel = new javax.swing.JPanel();
-		jcahoScrollPane = new javax.swing.JScrollPane();
-		jcahoLabel = new javax.swing.JLabel();
-		mar_Panel = new javax.swing.JPanel();
-		roomNumberText = new javax.swing.JLabel();
-		roomNumSetter = new javax.swing.JLabel();
-		patientNameText = new javax.swing.JLabel();
-		patientNameLabel = new javax.swing.JLabel();
-		diagnosisText = new javax.swing.JLabel();
-		diagnosisSetter = new javax.swing.JLabel();
-		allergiesText = new javax.swing.JLabel();
-		allergiesSetter = new javax.swing.JLabel();
-		marScrollPane = new javax.swing.JScrollPane();
-		marTable = new javax.swing.JTable();
-		giveMedicationButton = new javax.swing.JButton();
-		hourDueButton = new javax.swing.JButton();
-		documentation_Panel = new javax.swing.JPanel();
-		documentationScrollPane = new javax.swing.JScrollPane();
-		documentationPane = new javax.swing.JPanel();
-		docTabelHolder = new javax.swing.JScrollPane();
-		documentationTable = new javax.swing.JTable();
-		insertNewNarrativeButton = new javax.swing.JButton();
-		viewSelectedNarrativeButton = new javax.swing.JButton();
-		deleteNarrativeButton = new javax.swing.JButton();
-		editNarrativeButton = new javax.swing.JButton();
-		cancelSimulationButton = new javax.swing.JButton();
-		timeLeftTextLabel = new javax.swing.JLabel();
-		timeLabel = new javax.swing.JLabel();
-		submitButton = new javax.swing.JButton();
-		printSampleButton = new javax.swing.JButton();
+        rootTabbedPane = new javax.swing.JTabbedPane();
+        jcaho_Panel = new javax.swing.JPanel();
+        jcahoScrollPane = new javax.swing.JScrollPane();
+        jcahoLabel = new javax.swing.JLabel();
+        mar_Panel = new javax.swing.JPanel();
+        roomNumberText = new javax.swing.JLabel();
+        roomNumSetter = new javax.swing.JLabel();
+        patientNameText = new javax.swing.JLabel();
+        patientNameLabel = new javax.swing.JLabel();
+        diagnosisText = new javax.swing.JLabel();
+        diagnosisSetter = new javax.swing.JLabel();
+        allergiesText = new javax.swing.JLabel();
+        allergiesSetter = new javax.swing.JLabel();
+        marScrollPane = new javax.swing.JScrollPane();
+        marTable = new javax.swing.JTable();
+        giveMedicationButton = new javax.swing.JButton();
+        hourDueButton = new javax.swing.JButton();
+        documentation_Panel = new javax.swing.JPanel();
+        documentationScrollPane = new javax.swing.JScrollPane();
+        documentationPane = new javax.swing.JPanel();
+        docTabelHolder = new javax.swing.JScrollPane();
+        documentationTable = new javax.swing.JTable();
+        insertNewNarrativeButton = new javax.swing.JButton();
+        viewSelectedNarrativeButton = new javax.swing.JButton();
+        deleteNarrativeButton = new javax.swing.JButton();
+        editNarrativeButton = new javax.swing.JButton();
+        cancelSimulationButton = new javax.swing.JButton();
+        timeLeftTextLabel = new javax.swing.JLabel();
+        timeLabel = new javax.swing.JLabel();
+        submitButton = new javax.swing.JButton();
+        printSampleButton = new javax.swing.JButton();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("Medical Administration Records");
-		setAlwaysOnTop(true);
-		setBackground(new java.awt.Color(0, 0, 0));
-		setResizable(false);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Medical Administration Records");
+        setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(0, 0, 0));
+        setResizable(false);
 
-		jcahoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/res/JAHCO.png"))); // NOI18N
-		jcahoScrollPane.setViewportView(jcahoLabel);
+        jcahoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/JAHCO.png"))); // NOI18N
+        jcahoScrollPane.setViewportView(jcahoLabel);
 
-		javax.swing.GroupLayout jcaho_PanelLayout = new javax.swing.GroupLayout(
-				jcaho_Panel);
-		jcaho_Panel.setLayout(jcaho_PanelLayout);
-		jcaho_PanelLayout.setHorizontalGroup(jcaho_PanelLayout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						jcaho_PanelLayout
-								.createSequentialGroup()
-								.addGap(333, 333, 333)
-								.addComponent(jcahoScrollPane,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										456,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(230, Short.MAX_VALUE)));
-		jcaho_PanelLayout.setVerticalGroup(jcaho_PanelLayout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						jcaho_PanelLayout
-								.createSequentialGroup()
-								.addComponent(jcahoScrollPane,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										552,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGap(0, 1, Short.MAX_VALUE)));
+        javax.swing.GroupLayout jcaho_PanelLayout = new javax.swing.GroupLayout(jcaho_Panel);
+        jcaho_Panel.setLayout(jcaho_PanelLayout);
+        jcaho_PanelLayout.setHorizontalGroup(
+            jcaho_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jcaho_PanelLayout.createSequentialGroup()
+                .addGap(333, 333, 333)
+                .addComponent(jcahoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(230, Short.MAX_VALUE))
+        );
+        jcaho_PanelLayout.setVerticalGroup(
+            jcaho_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jcaho_PanelLayout.createSequentialGroup()
+                .addComponent(jcahoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
+        );
 
-		rootTabbedPane.addTab("JCAHO", jcaho_Panel);
+        rootTabbedPane.addTab("JCAHO", jcaho_Panel);
 
-		roomNumberText.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-		roomNumberText.setText("Room:");
+        roomNumberText.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        roomNumberText.setText("Room:");
 
-		roomNumSetter.setText("number");
+        roomNumSetter.setText("number");
 
-		patientNameText.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-		patientNameText.setText("Name:");
+        patientNameText.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        patientNameText.setText("Name:");
 
-		patientNameLabel.setText("patientName");
+        patientNameLabel.setText("patientName");
 
-		diagnosisText.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-		diagnosisText.setText("Diagnosis:");
+        diagnosisText.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        diagnosisText.setText("Diagnosis:");
 
-		diagnosisSetter.setText("jLabel8");
+        diagnosisSetter.setText("jLabel8");
 
-		allergiesText.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-		allergiesText.setText("Allergies:");
+        allergiesText.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        allergiesText.setText("Allergies:");
 
-		allergiesSetter.setText("jLabel10");
+        allergiesSetter.setText("jLabel10");
 
-		marTable.setModel(new javax.swing.table.DefaultTableModel(
-				new Object[][] { { "Insulin", null, null, null },
-						{ "Morphine", null, null, null },
-						{ "Cocaine", null, null, null } }, new String[] {
-						"Medication", "Dose", "Route", "Hour Due" }) {
-			Class[] types = new Class[] { java.lang.String.class,
-					java.lang.String.class, java.lang.String.class,
-					java.lang.String.class };
-			boolean[] canEdit = new boolean[] { false, false, false, false };
+        marTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Insulin", null, null, null},
+                {"Morphine", null, null, null},
+                {"Cocaine", null, null, null}
+            },
+            new String [] {
+                "Medication", "Dose", "Route", "Hour Due"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
-			public Class getColumnClass(int columnIndex) {
-				return types[columnIndex];
-			}
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
-			public boolean isCellEditable(int rowIndex, int columnIndex) {
-				return canEdit[columnIndex];
-			}
-		});
-		marTable.setRowHeight(45);
-		marTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-		marScrollPane.setViewportView(marTable);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        marTable.setRowHeight(45);
+        marTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        marScrollPane.setViewportView(marTable);
 
-		giveMedicationButton.setText("Give Medication");
-		giveMedicationButton
-				.addActionListener(new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent evt) {
-						giveMedicationButtonActionPerformed(evt);
-					}
-				});
+        giveMedicationButton.setText("Give Medication");
+        giveMedicationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                giveMedicationButtonActionPerformed(evt);
+            }
+        });
 
-		hourDueButton.setText("Hour Due Details");
-		hourDueButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				hourDueButtonActionPerformed(evt);
-			}
-		});
+        hourDueButton.setText("Hour Due Details");
+        hourDueButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hourDueButtonActionPerformed(evt);
+            }
+        });
 
-		javax.swing.GroupLayout mar_PanelLayout = new javax.swing.GroupLayout(
-				mar_Panel);
-		mar_Panel.setLayout(mar_PanelLayout);
-		mar_PanelLayout
-				.setHorizontalGroup(mar_PanelLayout
-						.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								mar_PanelLayout
-										.createSequentialGroup()
-										.addGroup(
-												mar_PanelLayout
-														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.LEADING)
-														.addGroup(
-																javax.swing.GroupLayout.Alignment.TRAILING,
-																mar_PanelLayout
-																		.createSequentialGroup()
-																		.addGap(40,
-																				40,
-																				40)
-																		.addGroup(
-																				mar_PanelLayout
-																						.createParallelGroup(
-																								javax.swing.GroupLayout.Alignment.LEADING)
-																						.addGroup(
-																								mar_PanelLayout
-																										.createSequentialGroup()
-																										.addComponent(
-																												diagnosisText)
-																										.addPreferredGap(
-																												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																										.addComponent(
-																												diagnosisSetter))
-																						.addGroup(
-																								mar_PanelLayout
-																										.createSequentialGroup()
-																										.addComponent(
-																												patientNameText)
-																										.addPreferredGap(
-																												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																										.addComponent(
-																												patientNameLabel)))
-																		.addGap(123,
-																				123,
-																				123)
-																		.addComponent(
-																				roomNumberText)
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																		.addComponent(
-																				roomNumSetter)
-																		.addGap(61,
-																				61,
-																				61)
-																		.addComponent(
-																				allergiesText)
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																		.addComponent(
-																				allergiesSetter)
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																				Short.MAX_VALUE)
-																		.addComponent(
-																				hourDueButton)
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				giveMedicationButton))
-														.addGroup(
-																mar_PanelLayout
-																		.createSequentialGroup()
-																		.addContainerGap()
-																		.addComponent(
-																				marScrollPane,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				1005,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)
-																		.addGap(0,
-																				0,
-																				Short.MAX_VALUE)))
-										.addGap(1158, 1158, 1158)));
-		mar_PanelLayout
-				.setVerticalGroup(mar_PanelLayout
-						.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								mar_PanelLayout
-										.createSequentialGroup()
-										.addGap(303, 303, 303)
-										.addGroup(
-												mar_PanelLayout
-														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.BASELINE)
-														.addComponent(
-																patientNameText)
-														.addComponent(
-																patientNameLabel)
-														.addComponent(
-																allergiesText)
-														.addComponent(
-																roomNumberText)
-														.addComponent(
-																roomNumSetter)
-														.addComponent(
-																allergiesSetter))
-										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-										.addGroup(
-												mar_PanelLayout
-														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.BASELINE)
-														.addComponent(
-																diagnosisText)
-														.addComponent(
-																diagnosisSetter))
-										.addContainerGap())
-						.addGroup(
-								mar_PanelLayout
-										.createSequentialGroup()
-										.addGap(0, 49, Short.MAX_VALUE)
-										.addComponent(
-												marScrollPane,
-												javax.swing.GroupLayout.PREFERRED_SIZE,
-												243,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addGroup(
-												mar_PanelLayout
-														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.BASELINE)
-														.addComponent(
-																giveMedicationButton)
-														.addComponent(
-																hourDueButton))
-										.addGap(232, 232, 232)));
+        javax.swing.GroupLayout mar_PanelLayout = new javax.swing.GroupLayout(mar_Panel);
+        mar_Panel.setLayout(mar_PanelLayout);
+        mar_PanelLayout.setHorizontalGroup(
+            mar_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mar_PanelLayout.createSequentialGroup()
+                .addGroup(mar_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mar_PanelLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(mar_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mar_PanelLayout.createSequentialGroup()
+                                .addComponent(diagnosisText)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(diagnosisSetter))
+                            .addGroup(mar_PanelLayout.createSequentialGroup()
+                                .addComponent(patientNameText)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(patientNameLabel)))
+                        .addGap(123, 123, 123)
+                        .addComponent(roomNumberText)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roomNumSetter)
+                        .addGap(61, 61, 61)
+                        .addComponent(allergiesText)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(allergiesSetter)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(hourDueButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(giveMedicationButton))
+                    .addGroup(mar_PanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(marScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1005, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(1158, 1158, 1158))
+        );
+        mar_PanelLayout.setVerticalGroup(
+            mar_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mar_PanelLayout.createSequentialGroup()
+                .addGap(303, 303, 303)
+                .addGroup(mar_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(patientNameText)
+                    .addComponent(patientNameLabel)
+                    .addComponent(allergiesText)
+                    .addComponent(roomNumberText)
+                    .addComponent(roomNumSetter)
+                    .addComponent(allergiesSetter))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(mar_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(diagnosisText)
+                    .addComponent(diagnosisSetter))
+                .addContainerGap())
+            .addGroup(mar_PanelLayout.createSequentialGroup()
+                .addGap(0, 49, Short.MAX_VALUE)
+                .addComponent(marScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(mar_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(giveMedicationButton)
+                    .addComponent(hourDueButton))
+                .addGap(232, 232, 232))
+        );
 
-		rootTabbedPane.addTab("MAR", mar_Panel);
+        rootTabbedPane.addTab("MAR", mar_Panel);
 
-		documentationPane
-				.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        documentationPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-		documentationTable.setModel(new javax.swing.table.DefaultTableModel(
-				new Object[][] {
+        documentationTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-				}, new String[] { "Date", "Time", "Narrative", "Follow Up",
-						"Initialls" }));
-		documentationTable
-				.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-		documentationTable.setName("sample");
-		documentationTable.getTableHeader().setReorderingAllowed(false);
-		docTabelHolder.setViewportView(documentationTable);
-		documentationTable.getColumnModel().getColumn(0).setMinWidth(60);
-		documentationTable.getColumnModel().getColumn(0).setPreferredWidth(60);
-		documentationTable.getColumnModel().getColumn(0).setMaxWidth(60);
-		documentationTable.getColumnModel().getColumn(1).setMinWidth(90);
-		documentationTable.getColumnModel().getColumn(1).setPreferredWidth(90);
-		documentationTable.getColumnModel().getColumn(1).setMaxWidth(90);
-		documentationTable.getColumnModel().getColumn(2).setResizable(false);
-		documentationTable.getColumnModel().getColumn(2).setPreferredWidth(695);
-		documentationTable.getColumnModel().getColumn(3).setMinWidth(80);
-		documentationTable.getColumnModel().getColumn(3).setPreferredWidth(80);
-		documentationTable.getColumnModel().getColumn(3).setMaxWidth(80);
-		documentationTable.getColumnModel().getColumn(4).setMinWidth(50);
-		documentationTable.getColumnModel().getColumn(4).setPreferredWidth(50);
-		documentationTable.getColumnModel().getColumn(4).setMaxWidth(50);
+            },
+            new String [] {
+                "Date", "Time", "Narrative", "Follow Up", "Initialls"
+            }
+        ));
+        documentationTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        documentationTable.setName("sample");
+        documentationTable.getTableHeader().setReorderingAllowed(false);
+        docTabelHolder.setViewportView(documentationTable);
+        documentationTable.getColumnModel().getColumn(0).setMinWidth(60);
+        documentationTable.getColumnModel().getColumn(0).setPreferredWidth(60);
+        documentationTable.getColumnModel().getColumn(0).setMaxWidth(60);
+        documentationTable.getColumnModel().getColumn(1).setMinWidth(90);
+        documentationTable.getColumnModel().getColumn(1).setPreferredWidth(90);
+        documentationTable.getColumnModel().getColumn(1).setMaxWidth(90);
+        documentationTable.getColumnModel().getColumn(2).setResizable(false);
+        documentationTable.getColumnModel().getColumn(2).setPreferredWidth(695);
+        documentationTable.getColumnModel().getColumn(3).setMinWidth(80);
+        documentationTable.getColumnModel().getColumn(3).setPreferredWidth(80);
+        documentationTable.getColumnModel().getColumn(3).setMaxWidth(80);
+        documentationTable.getColumnModel().getColumn(4).setMinWidth(50);
+        documentationTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+        documentationTable.getColumnModel().getColumn(4).setMaxWidth(50);
 
-		documentationPane.add(docTabelHolder,
-				new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 985,
-						370));
+        documentationPane.add(docTabelHolder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 985, 370));
 
-		insertNewNarrativeButton.setText("Insert a new Narrative");
-		insertNewNarrativeButton
-				.addActionListener(new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent evt) {
-						insertNewNarrativeButtonActionPerformed(evt);
-					}
-				});
-		documentationPane.add(insertNewNarrativeButton,
-				new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1,
-						-1));
+        insertNewNarrativeButton.setText("Insert a new Narrative");
+        insertNewNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertNewNarrativeButtonActionPerformed(evt);
+            }
+        });
+        documentationPane.add(insertNewNarrativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
 
-		viewSelectedNarrativeButton.setText("ViewSelectedNarrative");
-		viewSelectedNarrativeButton
-				.addActionListener(new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent evt) {
-						viewSelectedNarrativeButtonActionPerformed(evt);
-					}
-				});
-		documentationPane.add(viewSelectedNarrativeButton,
-				new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, -1,
-						-1));
+        viewSelectedNarrativeButton.setText("ViewSelectedNarrative");
+        viewSelectedNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewSelectedNarrativeButtonActionPerformed(evt);
+            }
+        });
+        documentationPane.add(viewSelectedNarrativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, -1, -1));
 
-		deleteNarrativeButton.setText("Delete the Selected Narrative");
-		deleteNarrativeButton
-				.addActionListener(new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent evt) {
-						deleteNarrativeButtonActionPerformed(evt);
-					}
-				});
-		documentationPane.add(deleteNarrativeButton,
-				new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, -1,
-						-1));
+        deleteNarrativeButton.setText("Delete the Selected Narrative");
+        deleteNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteNarrativeButtonActionPerformed(evt);
+            }
+        });
+        documentationPane.add(deleteNarrativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, -1, -1));
 
-		editNarrativeButton.setText("Edit Selected Narrative");
-		editNarrativeButton
-				.addActionListener(new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent evt) {
-						editNarrativeButtonActionPerformed(evt);
-					}
-				});
-		documentationPane.add(editNarrativeButton,
-				new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1,
-						-1));
+        editNarrativeButton.setText("Edit Selected Narrative");
+        editNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editNarrativeButtonActionPerformed(evt);
+            }
+        });
+        documentationPane.add(editNarrativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
 
-		documentationScrollPane.setViewportView(documentationPane);
+        documentationScrollPane.setViewportView(documentationPane);
 
-		javax.swing.GroupLayout documentation_PanelLayout = new javax.swing.GroupLayout(
-				documentation_Panel);
-		documentation_Panel.setLayout(documentation_PanelLayout);
-		documentation_PanelLayout.setHorizontalGroup(documentation_PanelLayout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addComponent(documentationScrollPane,
-						javax.swing.GroupLayout.DEFAULT_SIZE, 1019,
-						Short.MAX_VALUE));
-		documentation_PanelLayout
-				.setVerticalGroup(documentation_PanelLayout
-						.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								documentation_PanelLayout
-										.createSequentialGroup()
-										.addComponent(
-												documentationScrollPane,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												542, Short.MAX_VALUE)
-										.addContainerGap()));
+        javax.swing.GroupLayout documentation_PanelLayout = new javax.swing.GroupLayout(documentation_Panel);
+        documentation_Panel.setLayout(documentation_PanelLayout);
+        documentation_PanelLayout.setHorizontalGroup(
+            documentation_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(documentationScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1019, Short.MAX_VALUE)
+        );
+        documentation_PanelLayout.setVerticalGroup(
+            documentation_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(documentation_PanelLayout.createSequentialGroup()
+                .addComponent(documentationScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
-		rootTabbedPane.addTab("Documentation", documentation_Panel);
+        rootTabbedPane.addTab("Documentation", documentation_Panel);
 
-		cancelSimulationButton.setBackground(new java.awt.Color(204, 0, 0));
-		cancelSimulationButton.setText("Cancel Simulation");
-		cancelSimulationButton
-				.addActionListener(new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent evt) {
-						cancelSimulationButtonActionPerformed(evt);
-					}
-				});
+        cancelSimulationButton.setBackground(new java.awt.Color(204, 0, 0));
+        cancelSimulationButton.setText("Cancel Simulation");
+        cancelSimulationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelSimulationButtonActionPerformed(evt);
+            }
+        });
 
-		timeLeftTextLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-		timeLeftTextLabel.setText("Time Left:");
+        timeLeftTextLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        timeLeftTextLabel.setText("Time Left:");
 
-		timeLabel.setText("15:00");
+        timeLabel.setText("15:00");
 
-		submitButton.setBackground(new java.awt.Color(0, 204, 0));
-		submitButton.setText("Submit");
-		submitButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				submitButtonActionPerformed(evt);
-			}
-		});
+        submitButton.setBackground(new java.awt.Color(0, 204, 0));
+        submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
 
-		printSampleButton.setText("Print");
-		printSampleButton
-				.addActionListener(new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent evt) {
-						printSampleButtonActionPerformed(evt);
-					}
-				});
+        printSampleButton.setText("Print");
+        printSampleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printSampleButtonActionPerformed(evt);
+            }
+        });
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
-				getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addGap(19, 19, 19)
-								.addComponent(timeLeftTextLabel)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																.addComponent(
-																		timeLabel)
-																.addGap(81,
-																		915,
-																		Short.MAX_VALUE))
-												.addGroup(
-														layout.createSequentialGroup()
-																.addGap(38, 38,
-																		38)
-																.addComponent(
-																		cancelSimulationButton)
-																.addGap(223,
-																		223,
-																		223)
-																.addComponent(
-																		printSampleButton)
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		Short.MAX_VALUE)
-																.addComponent(
-																		submitButton)
-																.addGap(104,
-																		104,
-																		104))))
-				.addComponent(rootTabbedPane,
-						javax.swing.GroupLayout.PREFERRED_SIZE, 0,
-						Short.MAX_VALUE));
-		layout.setVerticalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addComponent(rootTabbedPane,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										581,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addGap(28, 28,
-																		28)
-																.addGroup(
-																		layout.createParallelGroup(
-																				javax.swing.GroupLayout.Alignment.BASELINE)
-																				.addComponent(
-																						timeLeftTextLabel,
-																						javax.swing.GroupLayout.PREFERRED_SIZE,
-																						23,
-																						javax.swing.GroupLayout.PREFERRED_SIZE)
-																				.addComponent(
-																						timeLabel))
-																.addContainerGap(
-																		43,
-																		Short.MAX_VALUE))
-												.addGroup(
-														javax.swing.GroupLayout.Alignment.TRAILING,
-														layout.createSequentialGroup()
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		Short.MAX_VALUE)
-																.addGroup(
-																		layout.createParallelGroup(
-																				javax.swing.GroupLayout.Alignment.BASELINE)
-																				.addComponent(
-																						printSampleButton)
-																				.addComponent(
-																						cancelSimulationButton)
-																				.addComponent(
-																						submitButton))
-																.addGap(24, 24,
-																		24)))));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(timeLeftTextLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(timeLabel)
+                        .addGap(81, 915, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(cancelSimulationButton)
+                        .addGap(223, 223, 223)
+                        .addComponent(printSampleButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(submitButton)
+                        .addGap(104, 104, 104))))
+            .addComponent(rootTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(rootTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(timeLeftTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(timeLabel))
+                        .addContainerGap(43, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(printSampleButton)
+                            .addComponent(cancelSimulationButton)
+                            .addComponent(submitButton))
+                        .addGap(24, 24, 24))))
+        );
 
-		pack();
-	}// </editor-fold>//GEN-END:initComponents
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
 	private void cancelSimulationButtonActionPerformed(ActionEvent evt) {
 
@@ -1231,37 +1076,37 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 		return PAGE_EXISTS;
 	}
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JLabel allergiesSetter;
-	private javax.swing.JLabel allergiesText;
-	private javax.swing.JButton cancelSimulationButton;
-	private javax.swing.JButton deleteNarrativeButton;
-	private javax.swing.JLabel diagnosisSetter;
-	private javax.swing.JLabel diagnosisText;
-	private javax.swing.JScrollPane docTabelHolder;
-	private javax.swing.JPanel documentationPane;
-	private javax.swing.JScrollPane documentationScrollPane;
-	private javax.swing.JTable documentationTable;
-	private javax.swing.JPanel documentation_Panel;
-	private javax.swing.JButton editNarrativeButton;
-	private javax.swing.JButton giveMedicationButton;
-	private javax.swing.JButton hourDueButton;
-	private javax.swing.JButton insertNewNarrativeButton;
-	private javax.swing.JLabel jcahoLabel;
-	private javax.swing.JScrollPane jcahoScrollPane;
-	private javax.swing.JPanel jcaho_Panel;
-	private javax.swing.JScrollPane marScrollPane;
-	private javax.swing.JTable marTable;
-	private javax.swing.JPanel mar_Panel;
-	private javax.swing.JLabel patientNameLabel;
-	private javax.swing.JLabel patientNameText;
-	private javax.swing.JButton printSampleButton;
-	private javax.swing.JLabel roomNumSetter;
-	private javax.swing.JLabel roomNumberText;
-	private javax.swing.JTabbedPane rootTabbedPane;
-	private javax.swing.JButton submitButton;
-	private javax.swing.JLabel timeLabel;
-	private javax.swing.JLabel timeLeftTextLabel;
-	private javax.swing.JButton viewSelectedNarrativeButton;
-	// End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel allergiesSetter;
+    private javax.swing.JLabel allergiesText;
+    private javax.swing.JButton cancelSimulationButton;
+    private javax.swing.JButton deleteNarrativeButton;
+    private javax.swing.JLabel diagnosisSetter;
+    private javax.swing.JLabel diagnosisText;
+    private javax.swing.JScrollPane docTabelHolder;
+    private javax.swing.JPanel documentationPane;
+    private javax.swing.JScrollPane documentationScrollPane;
+    private javax.swing.JTable documentationTable;
+    private javax.swing.JPanel documentation_Panel;
+    private javax.swing.JButton editNarrativeButton;
+    private javax.swing.JButton giveMedicationButton;
+    private javax.swing.JButton hourDueButton;
+    private javax.swing.JButton insertNewNarrativeButton;
+    private javax.swing.JLabel jcahoLabel;
+    private javax.swing.JScrollPane jcahoScrollPane;
+    private javax.swing.JPanel jcaho_Panel;
+    private javax.swing.JScrollPane marScrollPane;
+    private javax.swing.JTable marTable;
+    private javax.swing.JPanel mar_Panel;
+    private javax.swing.JLabel patientNameLabel;
+    private javax.swing.JLabel patientNameText;
+    private javax.swing.JButton printSampleButton;
+    private javax.swing.JLabel roomNumSetter;
+    private javax.swing.JLabel roomNumberText;
+    private javax.swing.JTabbedPane rootTabbedPane;
+    private javax.swing.JButton submitButton;
+    private javax.swing.JLabel timeLabel;
+    private javax.swing.JLabel timeLeftTextLabel;
+    private javax.swing.JButton viewSelectedNarrativeButton;
+    // End of variables declaration//GEN-END:variables
 }
