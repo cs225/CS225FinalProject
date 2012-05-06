@@ -518,6 +518,10 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 	}
 
 	private void deleteNarrativeButtonActionPerformed(Object evt) {
+            if(documentationTable.getSelectedRow()< SimulationManager.CURRENT_SCENARIO.getStartNumOfNarratives())
+                JOptionPane.showMessageDialog(this, "You can not delete this narrative\n it was made by another nurse");
+            else if(documentationTable.getSelectedRow()>-1)
+                ((DefaultTableModel)documentationTable.getModel()).removeRow(documentationTable.getSelectedRow());
 
 	}
 
