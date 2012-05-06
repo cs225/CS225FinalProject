@@ -2,6 +2,7 @@ package CS225FinalProject.DataStructure;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JTable;
@@ -14,19 +15,19 @@ public class CompletedScenario {
 	private JTable studentInput;
 	private String evaluationSuggestion;
 	private Scenario scenarioTaken;
-	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	private DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy at HH:mm:ss");
 
 	// finish constructor, getters and setters have been generated.
 	// storing data propely is not implemented.
 
 	public CompletedScenario() {
 		// creating a new date object immediately stores the current time
-		dateTaken = new Date();
+		dateTaken = Calendar.getInstance().getTime();
 	}
 
 	//Overloaded constructor to create a new object already populated with relevant information
 	public CompletedScenario(JTable studentInput, String evaluationSuggestion, Scenario scenarioTaken){
-		this.dateTaken = new Date();
+		this.dateTaken = Calendar.getInstance().getTime();
 		this.studentInput = studentInput;
 		this.evaluationSuggestion = evaluationSuggestion;
 		this.scenarioTaken = scenarioTaken;

@@ -1,15 +1,14 @@
 package CS225FinalProject;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.swing.JOptionPane;
-
-import CS225FinalProject.DataStructure.SimulationController;
+import CS225FinalProject.DataStructure.Scenario;
+import CS225FinalProject.DataStructure.User;
 import CS225FinalProject.GUI.LoginGUI;
 import CS225FinalProject.GUI.MaintenanceManagerGUI;
 import CS225FinalProject.GUI.ScenarioSelectionGUI;
 import CS225FinalProject.GUI.SimulationGUI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  * The main class that manages everything
@@ -24,7 +23,10 @@ public class SimulationManager {
 	final public static int SIMULATION_STATE = 2;
 	final public static int MAINTENANCE_STATE = 3;
 	final public static int EXIT_STATE = -1;
+        
+        public static Scenario  CURRENT_SCENARIO;
 
+        public static User CURRENT_USER;
 	/**
 	 * @param args
 	 *            the command line arguments
@@ -52,6 +54,9 @@ public class SimulationManager {
 					.log(java.util.logging.Level.SEVERE, null, ex);
 		}
 
+                
+                 CURRENT_SCENARIO = new Scenario();
+                
 		SimulationManager manager = new SimulationManager();
 		SimulationGUI mainGUI = new SimulationGUI(manager);
 		LoginGUI loginDialog = new LoginGUI(null, true, manager);
@@ -60,6 +65,8 @@ public class SimulationManager {
 		ScenarioSelectionGUI scenarioSelectionGUIPrototype = new ScenarioSelectionGUI(
 				manager);
 
+               
+                
 		SimulationManager.state = LOGIN_STATE;
 		while (SimulationManager.state != EXIT_STATE) {
 			if (SimulationManager.state == LOGIN_STATE

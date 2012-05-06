@@ -4,8 +4,10 @@
  */
 package CS225FinalProject.GUI;
 
+import CS225FinalProject.DataStructure.Scenario;
 import CS225FinalProject.SimulationManager;
 import CS225FinalProject.DataStructure.SimulationController;
+import java.util.ArrayList;
 
 /**
  * 
@@ -15,6 +17,8 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 
 	private SimulationController controller = SimulationController
 			.getInstance();
+        
+        private int scenarioIterator = 0; 
 
 	/**
 	 * Creates new form ScenarioSelectionGUI
@@ -28,6 +32,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 				(getToolkit().getScreenSize().height - getHeight()) / 2);
 
 		setAlwaysOnTop(true);
+                setSelectedScenarioInfo();
 	}
 
 	/**
@@ -37,245 +42,175 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed"
-	// desc="Generated Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-		nextButton = new javax.swing.JButton();
-		previosButton = new javax.swing.JButton();
-		titleLabel = new javax.swing.JLabel();
-		scenarioDescriptionScrollPanel = new javax.swing.JScrollPane();
-		scenarioDescriptionPanel = new javax.swing.JPanel();
-		patientNameLabel = new javax.swing.JLabel();
-		patientNameSetter = new javax.swing.JLabel();
-		scenarioSummaryLabel = new javax.swing.JLabel();
-		summarySetter = new javax.swing.JLabel();
-		currentTimeLabel = new javax.swing.JLabel();
-		timeSetter = new javax.swing.JLabel();
-		startButton = new javax.swing.JButton();
-		logOutButton = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
+        previosButton = new javax.swing.JButton();
+        titleLabel = new javax.swing.JLabel();
+        scenarioDescriptionScrollPanel = new javax.swing.JScrollPane();
+        scenarioDescriptionPanel = new javax.swing.JPanel();
+        patientNameLabel = new javax.swing.JLabel();
+        patientNameSetter = new javax.swing.JLabel();
+        scenarioSummaryLabel = new javax.swing.JLabel();
+        summarySetter = new javax.swing.JLabel();
+        currentTimeLabel = new javax.swing.JLabel();
+        timeSetter = new javax.swing.JLabel();
+        startButton = new javax.swing.JButton();
+        logOutButton = new javax.swing.JButton();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setAlwaysOnTop(true);
-		setResizable(false);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Scenario Selection");
+        setAlwaysOnTop(true);
+        setResizable(false);
 
-		nextButton.setText("Next");
-		nextButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				nextButtonActionPerformed(evt);
-			}
-		});
+        nextButton.setText("Next");
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
+            }
+        });
 
-		previosButton.setText("Previous");
-		previosButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				previosButtonActionPerformed(evt);
-			}
-		});
+        previosButton.setText("Previous");
+        previosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previosButtonActionPerformed(evt);
+            }
+        });
 
-		titleLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-		titleLabel.setText("Select Scenenario");
+        titleLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        titleLabel.setText("Select Scenenario");
 
-		scenarioDescriptionPanel
-				.setBackground(new java.awt.Color(200, 200, 200));
+        scenarioDescriptionPanel.setBackground(new java.awt.Color(200, 200, 200));
 
-		patientNameLabel.setText("Patient Name:");
+        patientNameLabel.setText("Patient Name:");
 
-		patientNameSetter.setText("name");
+        patientNameSetter.setText("name");
 
-		scenarioSummaryLabel.setText("Scenario Summary:");
+        scenarioSummaryLabel.setText("Scenario Summary:");
 
-		summarySetter.setText("summary");
+        summarySetter.setText("summary");
 
-		currentTimeLabel.setText("Time:");
+        currentTimeLabel.setText("Time:");
 
-		timeSetter.setText("5:00PM");
+        timeSetter.setText("5:00PM");
 
-		javax.swing.GroupLayout scenarioDescriptionPanelLayout = new javax.swing.GroupLayout(
-				scenarioDescriptionPanel);
-		scenarioDescriptionPanel.setLayout(scenarioDescriptionPanelLayout);
-		scenarioDescriptionPanelLayout
-				.setHorizontalGroup(scenarioDescriptionPanelLayout
-						.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								scenarioDescriptionPanelLayout
-										.createSequentialGroup()
-										.addGap(20, 20, 20)
-										.addGroup(
-												scenarioDescriptionPanelLayout
-														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.LEADING)
-														.addGroup(
-																scenarioDescriptionPanelLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				currentTimeLabel)
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																		.addComponent(
-																				timeSetter))
-														.addGroup(
-																scenarioDescriptionPanelLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				patientNameLabel)
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																		.addComponent(
-																				patientNameSetter))
-														.addGroup(
-																scenarioDescriptionPanelLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				scenarioSummaryLabel)
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																		.addComponent(
-																				summarySetter)))
-										.addContainerGap(355, Short.MAX_VALUE)));
-		scenarioDescriptionPanelLayout
-				.setVerticalGroup(scenarioDescriptionPanelLayout
-						.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								scenarioDescriptionPanelLayout
-										.createSequentialGroup()
-										.addGap(25, 25, 25)
-										.addGroup(
-												scenarioDescriptionPanelLayout
-														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.BASELINE)
-														.addComponent(
-																patientNameLabel)
-														.addComponent(
-																patientNameSetter))
-										.addGap(7, 7, 7)
-										.addGroup(
-												scenarioDescriptionPanelLayout
-														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.BASELINE)
-														.addComponent(
-																currentTimeLabel)
-														.addComponent(
-																timeSetter))
-										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addGroup(
-												scenarioDescriptionPanelLayout
-														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.BASELINE)
-														.addComponent(
-																scenarioSummaryLabel)
-														.addComponent(
-																summarySetter))
-										.addContainerGap(273, Short.MAX_VALUE)));
+        javax.swing.GroupLayout scenarioDescriptionPanelLayout = new javax.swing.GroupLayout(scenarioDescriptionPanel);
+        scenarioDescriptionPanel.setLayout(scenarioDescriptionPanelLayout);
+        scenarioDescriptionPanelLayout.setHorizontalGroup(
+            scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
+                        .addComponent(currentTimeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(timeSetter))
+                    .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
+                        .addComponent(patientNameLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(patientNameSetter))
+                    .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
+                        .addComponent(scenarioSummaryLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(summarySetter)))
+                .addContainerGap(355, Short.MAX_VALUE))
+        );
+        scenarioDescriptionPanelLayout.setVerticalGroup(
+            scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(patientNameLabel)
+                    .addComponent(patientNameSetter))
+                .addGap(7, 7, 7)
+                .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(currentTimeLabel)
+                    .addComponent(timeSetter))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(scenarioSummaryLabel)
+                    .addComponent(summarySetter))
+                .addContainerGap(273, Short.MAX_VALUE))
+        );
 
-		scenarioDescriptionScrollPanel
-				.setViewportView(scenarioDescriptionPanel);
+        scenarioDescriptionScrollPanel.setViewportView(scenarioDescriptionPanel);
 
-		startButton.setBackground(new java.awt.Color(0, 204, 0));
-		startButton.setText("Start");
-		startButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				startButtonActionPerformed(evt);
-			}
-		});
+        startButton.setBackground(new java.awt.Color(0, 204, 0));
+        startButton.setText("Start");
+        startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startButtonActionPerformed(evt);
+            }
+        });
 
-		logOutButton.setBackground(new java.awt.Color(255, 0, 0));
-		logOutButton.setText("Logout");
-		logOutButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				logOutButtonActionPerformed(evt);
-			}
-		});
+        logOutButton.setBackground(new java.awt.Color(255, 0, 0));
+        logOutButton.setText("Logout");
+        logOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutButtonActionPerformed(evt);
+            }
+        });
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
-				getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						javax.swing.GroupLayout.Alignment.TRAILING,
-						layout.createSequentialGroup()
-								.addGap(0, 0, Short.MAX_VALUE)
-								.addComponent(titleLabel).addGap(192, 192, 192))
-				.addGroup(
-						layout.createSequentialGroup()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addGap(2, 2, 2)
-																.addComponent(
-																		previosButton)
-																.addGap(18, 18,
-																		18)
-																.addComponent(
-																		scenarioDescriptionScrollPanel,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		518,
-																		javax.swing.GroupLayout.PREFERRED_SIZE))
-												.addGroup(
-														layout.createSequentialGroup()
-																.addGap(28, 28,
-																		28)
-																.addComponent(
-																		logOutButton)
-																.addGap(221,
-																		221,
-																		221)
-																.addComponent(
-																		startButton)))
-								.addGap(18, 18, 18).addComponent(nextButton)
-								.addContainerGap(28, Short.MAX_VALUE)));
-		layout.setVerticalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addContainerGap()
-																.addComponent(
-																		titleLabel)
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																.addComponent(
-																		scenarioDescriptionScrollPanel,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addGap(35, 35,
-																		35)
-																.addGroup(
-																		layout.createParallelGroup(
-																				javax.swing.GroupLayout.Alignment.BASELINE)
-																				.addComponent(
-																						startButton)
-																				.addComponent(
-																						logOutButton)))
-												.addGroup(
-														layout.createSequentialGroup()
-																.addGap(217,
-																		217,
-																		217)
-																.addComponent(
-																		previosButton))
-												.addGroup(
-														layout.createSequentialGroup()
-																.addGap(211,
-																		211,
-																		211)
-																.addComponent(
-																		nextButton)))
-								.addContainerGap(26, Short.MAX_VALUE)));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(titleLabel)
+                .addGap(192, 192, 192))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(previosButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(scenarioDescriptionScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(logOutButton)
+                        .addGap(221, 221, 221)
+                        .addComponent(startButton)))
+                .addGap(18, 18, 18)
+                .addComponent(nextButton)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(titleLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scenarioDescriptionScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(startButton)
+                            .addComponent(logOutButton)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(217, 217, 217)
+                        .addComponent(previosButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(211, 211, 211)
+                        .addComponent(nextButton)))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
 
-		pack();
-	}// </editor-fold>//GEN-END:initComponents
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
+        private void setSelectedScenarioInfo(){
+            ArrayList<Scenario> scenarios = controller.getScenarios();
+            patientNameSetter.setText(scenarios.get(scenarioIterator).getPatientName());
+            
+            summarySetter.setText(scenarios.get(scenarioIterator).getSummary());
+           // timeSetter.setText(scenarios.get(scenarioIterator).get);
+            SimulationManager.CURRENT_SCENARIO =  scenarios.get(scenarioIterator);
+
+          }
+        
 	private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
 		SimulationManager.state = SimulationManager.LOGIN_STATE;
@@ -288,10 +223,21 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 
 	private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+            if(controller.getScenarios().size()==scenarioIterator+1)
+                scenarioIterator=0;
+            else
+                scenarioIterator++;
+            setSelectedScenarioInfo();
 	}
 
 	private void previosButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+            
+                if(-1==scenarioIterator-1)
+                scenarioIterator=controller.getScenarios().size()-1;
+                else
+                scenarioIterator--;
+                setSelectedScenarioInfo();
 	}
 
 	/**
@@ -349,19 +295,19 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 		});
 	}
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JLabel currentTimeLabel;
-	private javax.swing.JButton logOutButton;
-	private javax.swing.JButton nextButton;
-	private javax.swing.JLabel patientNameLabel;
-	private javax.swing.JLabel patientNameSetter;
-	private javax.swing.JButton previosButton;
-	private javax.swing.JPanel scenarioDescriptionPanel;
-	private javax.swing.JScrollPane scenarioDescriptionScrollPanel;
-	private javax.swing.JLabel scenarioSummaryLabel;
-	private javax.swing.JButton startButton;
-	private javax.swing.JLabel summarySetter;
-	private javax.swing.JLabel timeSetter;
-	private javax.swing.JLabel titleLabel;
-	// End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel currentTimeLabel;
+    private javax.swing.JButton logOutButton;
+    private javax.swing.JButton nextButton;
+    private javax.swing.JLabel patientNameLabel;
+    private javax.swing.JLabel patientNameSetter;
+    private javax.swing.JButton previosButton;
+    private javax.swing.JPanel scenarioDescriptionPanel;
+    private javax.swing.JScrollPane scenarioDescriptionScrollPanel;
+    private javax.swing.JLabel scenarioSummaryLabel;
+    private javax.swing.JButton startButton;
+    private javax.swing.JLabel summarySetter;
+    private javax.swing.JLabel timeSetter;
+    private javax.swing.JLabel titleLabel;
+    // End of variables declaration//GEN-END:variables
 }

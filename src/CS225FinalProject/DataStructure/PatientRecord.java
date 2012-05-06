@@ -9,19 +9,37 @@ import java.util.ArrayList;
 public class PatientRecord {
     private String patientName, allergies, diagnosis;
     private ArrayList<Medication> medication;
-    private int dosage, room, age;
+    private int age,room;
     private ArrayList<Narrative> narratives;
     
     //From Eric:
     //I changed MedicationInterface to Medication
     //Awsome Job Kevin!!! :)
+
+    public PatientRecord(
+            String patientName, 
+            String diagnosis,
+            String allergies,  
+            int room, 
+            int age, 
+            ArrayList<Medication> medication,
+            ArrayList<Narrative> narratives) {
+        this.patientName = patientName;
+        this.allergies = allergies;
+        this.diagnosis = diagnosis;
+        this.medication = medication;
+        this.age = age;
+        this.narratives = narratives;
+        this.room = room;
+    }
+    
+    
     
     public PatientRecord(){
         patientName = "";
         medication = new ArrayList<Medication>();
         allergies = "";
         diagnosis = "";
-        room = 0;
         age = 0;
         narratives = new ArrayList<Narrative>();
     }
@@ -41,14 +59,7 @@ public class PatientRecord {
         patientName = name;
     }
     
-    public int getDosage(){
-        return dosage;
-    }
-    
-    public void setDosage(int number){
-        dosage = number;
-    }
-    
+
     public Medication getMedication(int i){
         return medication.get(i);
     }
@@ -95,6 +106,20 @@ public class PatientRecord {
     public ArrayList<Narrative> getNarrativeList(){
         return narratives;
     }
+
+    public void setNarratives(ArrayList<Narrative> narratives) {
+        this.narratives = narratives;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
+
+    public void setMedication(ArrayList<Medication> medication) {
+        this.medication = medication;
+    }
+
+ 
     
     @Override
     public String toString(){

@@ -11,36 +11,41 @@ import java.util.ArrayList;
 
 public class Scenario implements Serializable {
 
-	private ArrayList<Medication> medicationList;
+	private String summary, scenarioName;
 
-	private ArrayList<Narrative> narrativeList;
-
-	private String summary, patientName, diagnosis, 
-                allergies, scenarioName, description;
-
-	private int roomNumber, startNumOfNarratives, time;
+        /**
+         * this is for calculation for later on for recording  the student's narratives.
+         */
+	private int  startNumOfNarratives, 
+                
+                time;
 
 	private PatientRecord patientRecord;
 
 	public Scenario() {
+            summary= "";
+            scenarioName=" Template";
+            patientRecord= new PatientRecord();
 	}
+        /**
+         * this should be the official Constructor of Scenario
+         * @param scenarioName
+         * @param summary
+         * @param patientRecord 
+         */
+        public Scenario(String scenarioName, String summary, PatientRecord patientRecord,int time){
+           this.summary = summary;
+           this.patientRecord = patientRecord;
+           this.time= time*60;
+           startNumOfNarratives = patientRecord.getNarrativeList().size();
+        }
 
-	public Scenario(ArrayList<Medication> medicationList, String summary,
-			String patientName, ArrayList<Narrative> narrativeList,
-			int roomNumber, String diagnosis, String allergies,
-			String scenarioName, int time) {
-
-		this.medicationList = medicationList;
-		this.summary = summary;
-		this.patientName = patientName;
-		this.narrativeList = narrativeList;
-		this.roomNumber = roomNumber;
-		this.diagnosis = diagnosis;
-		this.allergies = allergies;
-		this.scenarioName = scenarioName;
-		startNumOfNarratives = 0;
-                this.time = time;
-	}
+    public int getStartNumOfNarratives() {
+        return startNumOfNarratives;
+    }
+        
+        
+        
 
     public PatientRecord getPatientRecord() {
         return patientRecord;
@@ -50,18 +55,11 @@ public class Scenario implements Serializable {
         this.patientRecord = patientRecord;
     }
         
-        
 
-	public Scenario(String descript) {
-		description = descript;
-		patientRecord = new PatientRecord();
-		patientName = patientRecord.getName();
-	}
-
-	public ArrayList<Medication> getMedicationList() {
-		return medicationList;
-	}
-
+    public String getPatientName(){
+        return patientRecord.getName();
+    }
+    
 	public String getSummary() {
 		return summary;
 	}
@@ -69,45 +67,31 @@ public class Scenario implements Serializable {
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
+        public void setMedicationList(ArrayList<Medication> medications){
+            patientRecord.setMedication(medications);
+        }
+        public ArrayList<Medication> getMedicationList (){
+            return patientRecord.getMedicationList();
+        }
 
-
-	public String getPatientName() {
-		return patientName;
-	}
-
-	public void setPatientName(String patientName) {
-		this.patientName = patientName;
-	}
-
-	public ArrayList<Narrative> getNarrativeList() {
-		return narrativeList;
-	}
 
 	public void setNarrativeList(ArrayList<Narrative> narrativeList) {
-		this.narrativeList = narrativeList;
+		patientRecord.setNarratives(narrativeList);
 		startNumOfNarratives = narrativeList.size();
 	}
 
 	public void addNarrative(Narrative narrative) {
-		narrativeList.add(narrative);
+		patientRecord.getNarrativeList().add(narrative);
 		startNumOfNarratives++;
 	}
 
 	public void removeNarrative(int i) {
-		narrativeList.remove(i);
+		patientRecord.getNarrativeList().remove(i);
 		startNumOfNarratives--;
 	}
 
 	public boolean removeNarrative(Narrative narrative) {
-		return narrativeList.remove(narrative);
-	}
-
-	public int getRoomNumber() {
-		return roomNumber;
-	}
-
-	public void setRoomNumber(int roomNumber) {
-		this.roomNumber = roomNumber;
+		return patientRecord.getNarrativeList().remove(narrative);
 	}
 
 	public String getDiagnosis() {
@@ -129,21 +113,10 @@ public class Scenario implements Serializable {
 
 	public void addNarrative(String date, String time, String narrative,
 			String followUp, String initials) {
-		narrativeList.add(new Narrative(date, time, narrative, followUp,
+		patientRecord.addNarrative(new Narrative(date, time, narrative, followUp,
 				initials));
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String descript) {
-		description = descript;
-	}
-
-	public String getScenario() {
-		return patientRecord.toString() + "\n" + description;
-	}
 
 	public void setRoom(int room) {
 		patientRecord.setRoom(room);
@@ -186,5 +159,9 @@ public class Scenario implements Serializable {
         public int getTime(){
             return time;
         }
+
+    public ArrayList<Narrative> getNarrativeList() {
+       return patientRecord.getNarrativeList();
+    }
 
 }

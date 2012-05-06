@@ -126,7 +126,7 @@ public class LoginGUI extends javax.swing.JDialog {
 	}
 
 	private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
-
+           
 		boolean isInstructor = false;
 		boolean isStudent = false;
 
@@ -139,10 +139,12 @@ public class LoginGUI extends javax.swing.JDialog {
 				new String(passwordField.getPassword()));
 
 		if (isStudent && !isInstructor) {
+                    SimulationManager.CURRENT_USER = controller.getUser(usernameTextField.getText(),new String( passwordField.getPassword()));
 			SimulationManager.state = SimulationManager.SCENARIO_STATE;
 			setVisible(false);
 			usernameTextField.setText("");
 			passwordField.setText("");
+                        
 
 		} else if (isInstructor && !isStudent) {
 			SimulationManager.state = SimulationManager.MAINTENANCE_STATE;
@@ -153,6 +155,9 @@ public class LoginGUI extends javax.swing.JDialog {
 		} else {
 			JOptionPane.showMessageDialog(this, "Your login is not correct");
 		}
+                
+            
+            
 	}
 
 	private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {
