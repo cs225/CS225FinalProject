@@ -65,23 +65,25 @@ public class SimulationController implements Serializable {
 			classNames.add("CS225");
 			classNames.add("Nursing 101");
 		}
-                if(scenarios.isEmpty()){
-                    Narrative sample = new Narrative("Test", "5", "OMG", "no", "Lovely");
-                    ArrayList<Narrative> narratives = new ArrayList<Narrative>();
-                    narratives.add(sample);
-                    
-                    ArrayList<Medication> medications = new ArrayList<Medication>();
-                    medications.add(new  Medication("Insulin", "10 units", "injection", "10AM"));
-                   
-                    
-                     scenarios.add(new Scenario("Test", "Test", 
-                            new PatientRecord("Eric", "Death due to OVER-PROGRAMMING :(", "none", 50, 20, medications, narratives),20));
-                  
-                    scenarios.add(new Scenario("Test2", "Test2", 
-                            new PatientRecord("Eric2", "Death", "none", 50, 20, new ArrayList<Medication>(), narratives),15));
+		if (scenarios.isEmpty()) {
+			Narrative sample = new Narrative("Test", "5", "OMG", "no", "Lovely");
+			ArrayList<Narrative> narratives = new ArrayList<Narrative>();
+			narratives.add(sample);
 
-                    writeScenarios();
-                }
+			ArrayList<Medication> medications = new ArrayList<Medication>();
+			medications.add(new Medication("Insulin", "10 units", "injection",
+					"10AM"));
+
+			scenarios.add(new Scenario("Test", "Test", new PatientRecord(
+					"Eric", "Death due to OVER-PROGRAMMING :(", "none", 50, 20,
+					medications, narratives), 20));
+
+			scenarios.add(new Scenario("Test2", "Test2", new PatientRecord(
+					"Eric2", "Death", "none", 50, 20,
+					new ArrayList<Medication>(), narratives), 15));
+
+			writeScenarios();
+		}
 		for (User u : users)
 			System.out.println(u.getUserName() + "  /  " + u.getPassword());
 		for (String cn : classNames)
@@ -290,14 +292,15 @@ public class SimulationController implements Serializable {
 	public ArrayList<User> getUsers() {
 		return users;
 	}
-        
-        public User getUser(String username, String password){
-            for(User user: users){
-               if(user.getUserName().equals( username) && user.getPassword().equals( password))
-                   return  user;
-            }
-            return null;
-        }
+
+	public User getUser(String username, String password) {
+		for (User user : users) {
+			if (user.getUserName().equals(username)
+					&& user.getPassword().equals(password))
+				return user;
+		}
+		return null;
+	}
 
 	public ArrayList<Scenario> getScenarios() {
 		return scenarios;
