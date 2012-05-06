@@ -568,9 +568,10 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 			JOptionPane.showMessageDialog(this, "Please Select a Narrative");
 		else {
 			JDialog t = new JDialog(this,true);
+                        t.setSize(400, 300);
 			t.setLocation(
-					(t.getToolkit().getScreenSize().width - getWidth()) / 2,
-					(t.getToolkit().getScreenSize().height - getHeight()) / 2);
+					(t.getToolkit().getScreenSize().width - t.getWidth()) / 2,
+					(t.getToolkit().getScreenSize().height - t.getHeight()) / 2);
 
 			t.setTitle(patientNameLabel.getText()
 					+ ": "
@@ -579,7 +580,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 					+ " at "
 					+ (String) documentationTable.getValueAt(
 							documentationTable.getSelectedRow(), 1));
-			t.setSize(400, 300);
+			
 
 			JTextPane t2 = new JTextPane();
 			t2.setEditable(false);
@@ -625,8 +626,10 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 
 			t.setSize(800, 300);
 			t.setLocation(
-					(t.getToolkit().getScreenSize().width - getWidth()) / 2,
-					(t.getToolkit().getScreenSize().height - getHeight()) / 2);
+					(t.getToolkit().getScreenSize().width - t.getWidth()) / 2,
+					(t.getToolkit().getScreenSize().height - t.getHeight()) / 2);
+                        
+                        
 
 			t.setTitle(patientNameLabel.getText()
 					+ ": "
@@ -641,7 +644,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 
 			final JTextPane t3 = t2;
 
-			JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 			// t2.setEditable(false);
 			JScrollPane pane = new JScrollPane();
 			pane.setViewportView(t2);
