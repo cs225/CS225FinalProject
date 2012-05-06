@@ -567,7 +567,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 		if (documentationTable.getSelectedRow() < 0)
 			JOptionPane.showMessageDialog(this, "Please Select a Narrative");
 		else {
-			JDialog t = new JDialog(this);
+			JDialog t = new JDialog(this,true);
 			t.setLocation(
 					(t.getToolkit().getScreenSize().width - getWidth()) / 2,
 					(t.getToolkit().getScreenSize().height - getHeight()) / 2);
@@ -620,7 +620,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 		if (documentationTable.getSelectedRow() < 0)
 			JOptionPane.showMessageDialog(this, "Please Select a Narrative");
 		else {
-			final JDialog t = new JDialog(this);
+			final JDialog t = new JDialog(this,true);
 			t.setLayout(new GridLayout(1, 2));
 
 			t.setSize(800, 300);
