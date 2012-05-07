@@ -23,7 +23,7 @@ public class Instructor extends User {
 
 	@Override
 	public String getRealName() {
-		return null;
+		return "";
 	}
 
 	@Override

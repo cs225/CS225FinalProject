@@ -1059,22 +1059,25 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 			java.awt.event.ActionEvent evt) {
 
 		if (studentList.getSelectedIndex() != -1) {
+                  String name = ((String)studentList.getSelectedValue());
 
-			String studentName = JOptionPane.showInputDialog(this,
-					"Enter the Student User Name");
-
-			String studentPW = JOptionPane.showInputDialog(this,
-					"Enter the Student Password");
-
-			if (controller.removeStudent(studentName, studentPW)
-					&& studentList.getSelectedIndex() > -1) {
-				studentListModel.remove(studentList.getSelectedIndex());
-				controller.writeUsers();
-			} else {
-				// student not removed - try again!
-			}
-		} else {
-			JOptionPane.showMessageDialog(this, "Please Select a Student.");
+                    controller.removeStudentByNameAndClassroom(name,(String) classList.getSelectedValue());
+                    classListValueChanged(null);
+//			String studentName = JOptionPane.showInputDialog(this,
+//					"Enter the Student User Name");
+//
+//			String studentPW = JOptionPane.showInputDialog(this,
+//					"Enter the Student Password");
+//
+//			if (controller.removeStudent(studentName, studentPW)
+//					&& studentList.getSelectedIndex() > -1) {
+//				studentListModel.remove(studentList.getSelectedIndex());
+//				controller.writeUsers();
+//			} else {
+//				// student not removed - try again!
+//			}
+//		} else {
+//			JOptionPane.showMessageDialog(this, "Please Select a Student.");
 		}
 	}
 
