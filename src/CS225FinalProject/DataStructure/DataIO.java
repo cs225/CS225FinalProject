@@ -127,6 +127,44 @@ public class DataIO {
 		return scenarioList;
 
 	}
+        
+        /**
+         * This method is to import from a file. 
+         * 
+         * @param file
+         * @return
+         *@author Eric
+         */
+        public ArrayList<Scenario> loadScenarioList(String file) {
+		ArrayList<Scenario> scenarioList = new ArrayList<Scenario>();
+
+		try {
+			desCipher.init(Cipher.DECRYPT_MODE, secretKey);
+
+			FileInputStream fis = new FileInputStream(file);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			CipherInputStream cis = new CipherInputStream(bis, desCipher);
+			ObjectInputStream ois = new ObjectInputStream(cis);
+
+			scenarioList = (ArrayList<Scenario>) ois.readObject();
+
+			ois.close();
+		} catch (IOException e) {
+
+			System.out.println("Error Finding File:"
+					+ scenarioFile.getAbsolutePath());
+
+			return null;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return scenarioList;
+
+	}
+        
 
 	public ArrayList<String> loadClassNameList() {
 		ArrayList<String> classList = new ArrayList<String>();
@@ -187,6 +225,35 @@ public class DataIO {
 			desCipher.init(Cipher.ENCRYPT_MODE, secretKey);
 
 			FileOutputStream fos = new FileOutputStream(scenarioFile);
+			BufferedOutputStream bos = new BufferedOutputStream(fos);
+			CipherOutputStream cos = new CipherOutputStream(bos, desCipher);
+			ObjectOutputStream oos = new ObjectOutputStream(cos);
+
+			oos.writeObject(scenarioList);
+			oos.flush();
+			oos.close();
+			return true;
+
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+        
+        /**
+         * Exporting method for scenarios
+         * @param file
+         * @param scenarioList
+         * @return 
+         * *@author Eric
+         */
+        public boolean writeScenarioList(String fileName ,ArrayList<Scenario> scenarioList) {
+		try {
+
+			desCipher.init(Cipher.ENCRYPT_MODE, secretKey);
+
+			FileOutputStream fos = new FileOutputStream(fileName);
 			BufferedOutputStream bos = new BufferedOutputStream(fos);
 			CipherOutputStream cos = new CipherOutputStream(bos, desCipher);
 			ObjectOutputStream oos = new ObjectOutputStream(cos);
