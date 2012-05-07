@@ -16,7 +16,7 @@ public class Evaluator {
     private String unit, intUnit, daily, everyOther, trailing0, morphine, 
             sulfate, magSulfate, microgram, halfStrength, threeWeek,
             subcutaneous1, subcutaneous2, discharge, cubic, rightEar, leftEar, 
-            bothEars, leftEye, rightEye, bothEyes;
+            bothEars, leftEye, rightEye, bothEyes, result;
 
     public String giveSuggestion(String input){
     fileScan = new Scanner(input);
@@ -44,47 +44,47 @@ public class Evaluator {
     bothEyes = "O.U.";
     
     if(fileScan.hasNext(unit))
-        return "Student wrote: "+ unit;
+        return result += unit;
     else if(fileScan.hasNext(intUnit))
-        return  "Student wrote: "+ intUnit;
+        return result += intUnit;
     else if(fileScan.hasNext(daily))
-        return  "Student wrote: "+ daily;
+        return result += daily;
     else if(fileScan.hasNext(everyOther))
-        return  "Student wrote: "+ everyOther;
+        return result += everyOther;
     else if(fileScan.hasNext(trailing0))
-        return  "Student wrote: "+ trailing0;
+        return result += trailing0;
     else if(fileScan.hasNext(morphine))
-        return  "Student wrote: "+ morphine;
+        return result += morphine;
     else if(fileScan.hasNext(sulfate))
-        return  "Student wrote: "+ sulfate;
+        return result += sulfate;
     else if(fileScan.hasNext(magSulfate))
-        return  "Student wrote: "+ magSulfate;
+        return result += magSulfate;
     else if(fileScan.hasNext(microgram))
-        return  "Student wrote: "+ microgram;
+        return result += microgram;
     else if(fileScan.hasNext(halfStrength))
-        return  "Student wrote: "+ halfStrength;
+        return result += halfStrength;
     else if(fileScan.hasNext(threeWeek))
-        return  "Student wrote: "+ threeWeek;
+        return result += threeWeek;
     else if(fileScan.hasNext(subcutaneous1))
-        return  "Student wrote: "+ subcutaneous1;
+        return result += subcutaneous1;
     else if(fileScan.hasNext(subcutaneous2))
-        return  "Student wrote: "+ subcutaneous2;
+        return result += subcutaneous2;
     else if(fileScan.hasNext(discharge))
-        return  "Student wrote: "+ discharge;
+        return result += discharge;
     else if(fileScan.hasNext(cubic))
-        return  "Student wrote: "+ cubic;
+        return result += cubic;
     else if(fileScan.hasNext(rightEar))
-        return  "Student wrote: "+ rightEar;
+        return result += rightEar;
     else if(fileScan.hasNext(leftEar))
-        return  "Student wrote: "+ leftEar;
+        return result += leftEar;
     else if(fileScan.hasNext(bothEars))
-        return  "Student wrote: "+ bothEars;
+        return result += bothEars;
     else if(fileScan.hasNext(rightEye))
-        return  "Student wrote: "+ rightEye;
+        return result += rightEye;
     else if(fileScan.hasNext(leftEye))
-        return  "Student wrote: "+ leftEye;
+        return result += leftEye;
     else if(fileScan.hasNext(bothEyes))
-        return  "Student wrote: "+ bothEyes;
+        return result += bothEyes;
     
     else
         return "No errors from JAHCO";
