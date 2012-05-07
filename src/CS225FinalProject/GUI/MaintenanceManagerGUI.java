@@ -4,6 +4,7 @@
  */
 package CS225FinalProject.GUI;
 
+import CS225FinalProject.DataStructure.DataIO;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.ArrayList;
@@ -16,6 +17,8 @@ import CS225FinalProject.SimulationManager;
 import CS225FinalProject.DataStructure.Scenario;
 import CS225FinalProject.DataStructure.SimulationController;
 import CS225FinalProject.DataStructure.User;
+import javax.swing.JFileChooser;
+import javax.xml.crypto.Data;
 
 /**
  * 
@@ -880,11 +883,27 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	private void importScenarioButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+            DataIO io = new DataIO();
+            
+            JFileChooser fileChooser = new JFileChooser();
+            if(JFileChooser.APPROVE_OPTION==fileChooser.showOpenDialog(this)){
+                controller.setScenarios(io.loadScenarioList(fileChooser.getSelectedFile().getAbsolutePath()));
+                controller.writeScenarios();
+                
+            }
 	}
 
 	private void exportScenarioButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+            DataIO io = new DataIO();
+            
+            JFileChooser fileChooser = new JFileChooser();
+            if(JFileChooser.APPROVE_OPTION==fileChooser.showSaveDialog(this)){
+                io.writeScenarioList(fileChooser.getSelectedFile().getAbsolutePath(),controller.getScenarios());
+                
+                
+            }
 	}
 
 	private void UndoAllChangesButtonActionPerformed(
