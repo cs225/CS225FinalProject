@@ -122,6 +122,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="summarySetter" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="currentTimeLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -132,13 +133,9 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="patientNameSetter" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="scenarioSummaryLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="summarySetter" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="scenarioSummaryLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="355" max="32767" attributes="0"/>
+                      <EmptySpace pref="396" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -156,11 +153,10 @@
                           <Component id="timeSetter" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="scenarioSummaryLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="summarySetter" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="273" max="32767" attributes="0"/>
+                      <Component id="scenarioSummaryLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="summarySetter" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="253" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

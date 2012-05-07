@@ -105,6 +105,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
             .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(summarySetter)
                     .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
                         .addComponent(currentTimeLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -113,11 +114,8 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
                         .addComponent(patientNameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(patientNameSetter))
-                    .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
-                        .addComponent(scenarioSummaryLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(summarySetter)))
-                .addContainerGap(355, Short.MAX_VALUE))
+                    .addComponent(scenarioSummaryLabel))
+                .addContainerGap(396, Short.MAX_VALUE))
         );
         scenarioDescriptionPanelLayout.setVerticalGroup(
             scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,10 +129,10 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
                     .addComponent(currentTimeLabel)
                     .addComponent(timeSetter))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(scenarioSummaryLabel)
-                    .addComponent(summarySetter))
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addComponent(scenarioSummaryLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(summarySetter)
+                .addContainerGap(253, Short.MAX_VALUE))
         );
 
         scenarioDescriptionScrollPanel.setViewportView(scenarioDescriptionPanel);
