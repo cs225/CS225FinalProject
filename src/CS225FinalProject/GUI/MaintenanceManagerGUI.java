@@ -47,6 +47,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 
                 scenarioList.addListSelectionListener(new ListSelectionListener() {
 
+                    
+                    
+                    /**
+                     * this is for loading the selected scenario to the gui
+                     */
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(scenarioList.getSelectedIndex()>-1){
@@ -67,6 +72,10 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                     }
                     
                     scenarioSummaryTextPane.setText(scenario.getSummary());
+                    roomNumberTextField.setText(scenario.getRoom()+"");
+                    patientNameTextField.setText(scenario.getPatientName());
+                    diagnosisTextArea.setText(scenario.getDiagnosis());
+                    allergiesTextArea.setText(scenario.getAllergies());
                     
                 }
             }
@@ -103,7 +112,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                     studentManagerControlTabbedPane.setSelectedIndex(0);
                     studentManagerControlTabbedPane.setSelectedIndex(1);
                     int studentListnum = studentList.getSelectedIndex();
-                    studentList.setSelectedIndex(-1);
+                    studentList.clearSelection();
                     studentList.setSelectedIndex(studentListnum);
                 }
             }
@@ -1040,6 +1049,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	private void UndoAllChangesButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+            int num = scenarioList.getSelectedIndex();
+            scenarioList.clearSelection();
+            scenarioList.setSelectedIndex(num);
 	}
 
 	private void sortByNameButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1099,6 +1111,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 			controller.writeScenarios();
 			controller.writeUsers();
 			SimulationManager.state = SimulationManager.LOGIN_STATE;
+                        studentList.clearSelection();
+                        classList.clearSelection();
 
 			setVisible(false);
 		}

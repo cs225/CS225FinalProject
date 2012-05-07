@@ -1,4 +1,5 @@
 package CS225FinalProject.DataStructure;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -6,7 +7,7 @@ import java.util.ArrayList;
  *
  * @author kevinmee
  */
-public class PatientRecord {
+public class PatientRecord implements Serializable{
     private String patientName, allergies, diagnosis;
     private ArrayList<Medication> medication;
     private int age,room;

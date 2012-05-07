@@ -1,5 +1,6 @@
 package CS225FinalProject.DataStructure;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.Date;
 import javax.swing.JTable;
 
 //This will hold user session data
-public class CompletedScenario {
+public class CompletedScenario implements Serializable{
 
 	private Date dateTaken;
 	private int score;

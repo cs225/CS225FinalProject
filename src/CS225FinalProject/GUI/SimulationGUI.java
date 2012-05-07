@@ -599,6 +599,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                     SimulationManager.CURRENT_SCENARIO)); 
 
                     controller.writeUsers();
+                    controller.populateUsers();
                     SimulationManager.state = SimulationManager.LOGIN_STATE;
                  }
 	}
