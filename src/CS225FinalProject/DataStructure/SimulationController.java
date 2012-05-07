@@ -180,6 +180,15 @@ public class SimulationController implements Serializable {
 
 		return studentAdded;
 	}
+        public void removeScenarioByName(String name){
+            for(Scenario scenario: scenarios){
+                if(scenario.getPatientName().equals(name)){
+                    scenarios.remove(scenario);
+                    writeScenarios();
+                    break;
+                }
+            }
+        }
 
 	@SuppressWarnings("unchecked")
 	public boolean removeStudent(String userName, String password) {
@@ -276,7 +285,7 @@ public class SimulationController implements Serializable {
 		Scenario temp = new Scenario();
 		if (!scenarios.isEmpty()) {
 			for (Scenario s : scenarios) {
-				if (s.getScenarioName().equals(scenarioName)) {
+				if (s.getPatientName().equals(scenarioName)) {
 					temp = s;
 				}
 			}

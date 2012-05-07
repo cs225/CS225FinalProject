@@ -34,24 +34,63 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
 	private SimulationController controller = SimulationController
 			.getInstance();
+        
+        
+        
+        
 
 	/**
 	 * Creates new form MaintenanceManagerGUI
 	 */
 	public MaintenanceManagerGUI() {
 		initComponents();
+                
+                scenarioList.addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(scenarioList.getSelectedIndex()>-1){
+                    Scenario scenario = controller.getScenarioByName((String)scenarioList.getSelectedValue());
+                    
+                    while(medJTable.getRowCount()>0){
+                        ((DefaultTableModel)medJTable.getModel()).removeRow(0);
+                    }
+                    for(Medication medication:scenario.getMedicationList()){
+                        ((DefaultTableModel)medJTable.getModel()).addRow(new String[]{medication.getMedicationName(), medication.getDosage(), medication.getRouteOfMedication(), medication.getMedicationDueTimes()});
+                    }
+                    
+                    while(documentationTable.getRowCount()>0){
+                        ((DefaultTableModel)documentationTable.getModel()).removeRow(0);
+                    }
+                    for(Narrative medication:scenario.getNarrativeList()){
+                        ((DefaultTableModel)documentationTable.getModel()).addRow(medication.getNarrativeAsArrayStrings());
+                    }
+                    
+                    scenarioSummaryTextPane.setText(scenario.getSummary());
+                    
+                }
+            }
+        });
+                
+                
+                
+                
                 rootTabbedPane.addChangeListener(new ChangeListener() {
 
             @Override
             public void stateChanged(ChangeEvent e) {
-                if(rootTabbedPane.getSelectedIndex()==2){
+                if(rootTabbedPane.getSelectedIndex()==1){
                     ((DefaultListModel)scenarioList.getModel()).removeAllElements();
                     for(Scenario scenario: controller.getScenarios())
                         ((DefaultListModel)scenarioList.getModel()).addElement(scenario.getPatientName());
                 }
-                if(rootTabbedPane.getSelectedIndex()==1){
+                if(rootTabbedPane.getSelectedIndex()==2){
                     currentProfessorUserNameLabel.setText(controller.getUsers().get(0).getUserName());
                     currentProfessorPasswordLabel.setText(controller.getUsers().get(0).getPassword());
+                    
+//                    ((DefaultListModel)scenarioList.getModel()).removeAllElements();
+//                    for(Scenario scenario: controller.getScenarios())
+//                        ((DefaultListModel)scenarioList.getModel()).addElement(scenario.getPatientName());
             }}
         });
                 
@@ -63,6 +102,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 if(studentList.getSelectedIndex()>0){
                     studentManagerControlTabbedPane.setSelectedIndex(0);
                     studentManagerControlTabbedPane.setSelectedIndex(1);
+                    int studentListnum = studentList.getSelectedIndex();
+                    studentList.setSelectedIndex(-1);
+                    studentList.setSelectedIndex(studentListnum);
                 }
             }
         });
@@ -851,7 +893,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         professorLoginManager.add(currentProfessorUserNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 41, -1, -1));
 
         jLabel1.setText("Username:");
-        professorLoginManager.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 41, 60, -1));
+        professorLoginManager.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 70, -1));
 
         jLabel2.setText("Password:");
         professorLoginManager.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 95, -1, -1));
@@ -1075,6 +1117,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 			if (scenarioListModel.getSize() == 0) {
 				previewTabbedPane.setVisible(false);
 			}
+                        controller.removeScenarioByName(scenario);
 		}
 	}
 
@@ -1378,6 +1421,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 		// TODO implement loading Datastructer into this GUI.
 		if (b) {
 			loadResources();
+                        rootTabbedPane.setSelectedIndex(1);
+                       rootTabbedPane.setSelectedIndex(0);
 		}
 		super.setVisible(b);
 	}

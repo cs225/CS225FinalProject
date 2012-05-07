@@ -598,7 +598,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                     (new CompletedScenario(new ArrayList<Narrative>(), "",
                     SimulationManager.CURRENT_SCENARIO)); 
 
-                    controller.writeScenarios();
+                    controller.writeUsers();
                     SimulationManager.state = SimulationManager.LOGIN_STATE;
                  }
 	}
