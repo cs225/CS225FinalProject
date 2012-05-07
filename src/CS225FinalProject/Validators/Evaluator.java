@@ -86,6 +86,7 @@ public class Evaluator {
     else if(fileScan.hasNext(bothEyes))
         return  "Student wrote: "+ bothEyes;
     
+    else
         return "No errors from JAHCO";
     }
 }
