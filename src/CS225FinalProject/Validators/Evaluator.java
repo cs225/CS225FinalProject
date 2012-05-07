@@ -10,6 +10,8 @@ import java.util.Scanner;
 import javax.swing.JTable;
 
 /**
+ * 
+ * @author Kevin Mee
  */
 public class Evaluator {
 
