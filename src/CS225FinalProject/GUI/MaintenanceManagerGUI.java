@@ -4,7 +4,7 @@
  */
 package CS225FinalProject.GUI;
 
-import CS225FinalProject.DataStructure.DataIO;
+import CS225FinalProject.DataStructure.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.ArrayList;
@@ -14,10 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import CS225FinalProject.SimulationManager;
-import CS225FinalProject.DataStructure.Scenario;
-import CS225FinalProject.DataStructure.SimulationController;
-import CS225FinalProject.DataStructure.User;
+import java.util.Scanner;
 import javax.swing.JFileChooser;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.xml.crypto.Data;
 
 /**
@@ -38,6 +38,20 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	 */
 	public MaintenanceManagerGUI() {
 		initComponents();
+                rootTabbedPane.addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if(rootTabbedPane.getSelectedIndex()==2){
+                    ((DefaultListModel)scenarioList.getModel()).removeAllElements();
+                    for(Scenario scenario: controller.getScenarios())
+                        ((DefaultListModel)scenarioList.getModel()).addElement(scenario.getPatientName());
+                }
+                if(rootTabbedPane.getSelectedIndex()==1){
+                    currentProfessorUserNameLabel.setText(controller.getUsers().get(0).getUserName());
+                    currentProfessorPasswordLabel.setText(controller.getUsers().get(0).getPassword());
+            }}
+        });
 		setTitle("Simulation Data Management");
 		setVisible(false);
 
@@ -126,11 +140,6 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         SimResultsAreaLabel = new javax.swing.JLabel();
         ViewScenarioSuggestionButton = new javax.swing.JButton();
         setScenarioScoreButton = new javax.swing.JButton();
-        professorLoginManager = new javax.swing.JPanel();
-        currentProfessorPasswordLabel = new javax.swing.JLabel();
-        changeProffessorUsernameButton = new javax.swing.JButton();
-        changeProffesorPasswordButton = new javax.swing.JButton();
-        currentProfessorUserNameLabel = new javax.swing.JLabel();
         scenarioManagerPanel = new javax.swing.JPanel();
         scenarioScrollPanel = new javax.swing.JScrollPane();
         scenarioList = new javax.swing.JList();
@@ -172,13 +181,24 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         importExportAreaLabel = new javax.swing.JLabel();
         importScenarioButton = new javax.swing.JButton();
         exportScenarioButton = new javax.swing.JButton();
+        professorLoginManager = new javax.swing.JPanel();
+        currentProfessorPasswordLabel = new javax.swing.JLabel();
+        changeProffesorPasswordButton = new javax.swing.JButton();
+        currentProfessorUserNameLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         logOutButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Simulation Maintenance Manager");
         setResizable(false);
 
         rootTabbedPane.setPreferredSize(new java.awt.Dimension(1037, 727));
+        rootTabbedPane.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                rootTabSelectionChanged(evt);
+            }
+        });
 
         studentManagerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -394,13 +414,13 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 viewSelectedScenarioButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(viewSelectedScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 200, -1));
+        studentControlPanel.add(viewSelectedScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 200, -1));
 
         studentNameLabel.setText("StudentName");
         studentControlPanel.add(studentNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 0, -1, -1));
 
         printButton.setText("Print Selected Scenario Input");
-        studentControlPanel.add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 200, -1));
+        studentControlPanel.add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 200, -1));
 
         SimulationScoreLabel.setText("AVG Simulation Score");
         studentControlPanel.add(SimulationScoreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, -1));
@@ -444,7 +464,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 ViewScenarioSuggestionButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(ViewScenarioSuggestionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, -1, -1));
+        studentControlPanel.add(ViewScenarioSuggestionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 200, -1));
 
         setScenarioScoreButton.setText("Set score for the Selected Scenario");
         setScenarioScoreButton.addActionListener(new java.awt.event.ActionListener() {
@@ -452,62 +472,13 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 setScenarioScoreButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(setScenarioScoreButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
+        studentControlPanel.add(setScenarioScoreButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, -1, -1));
 
         studentManagerControlTabbedPane.addTab("Student Control", studentControlPanel);
 
         studentManagerPanel.add(studentManagerControlTabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 1030, 490));
 
         rootTabbedPane.addTab("StudentManager", studentManagerPanel);
-
-        currentProfessorPasswordLabel.setText("CurrentPassword");
-
-        changeProffessorUsernameButton.setText("Change Username");
-        changeProffessorUsernameButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changeProffessorUsernameButtonActionPerformed(evt);
-            }
-        });
-
-        changeProffesorPasswordButton.setText("Change Password");
-        changeProffesorPasswordButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changeProffesorPasswordButtonActionPerformed(evt);
-            }
-        });
-
-        currentProfessorUserNameLabel.setText("CurrentUserName");
-
-        javax.swing.GroupLayout professorLoginManagerLayout = new javax.swing.GroupLayout(professorLoginManager);
-        professorLoginManager.setLayout(professorLoginManagerLayout);
-        professorLoginManagerLayout.setHorizontalGroup(
-            professorLoginManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(professorLoginManagerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(professorLoginManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(changeProffessorUsernameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(changeProffesorPasswordButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(professorLoginManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(currentProfessorUserNameLabel)
-                    .addComponent(currentProfessorPasswordLabel))
-                .addContainerGap(789, Short.MAX_VALUE))
-        );
-        professorLoginManagerLayout.setVerticalGroup(
-            professorLoginManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(professorLoginManagerLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(professorLoginManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(currentProfessorUserNameLabel)
-                    .addComponent(changeProffessorUsernameButton))
-                .addGap(31, 31, 31)
-                .addGroup(professorLoginManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(currentProfessorPasswordLabel)
-                    .addComponent(changeProffesorPasswordButton))
-                .addContainerGap(576, Short.MAX_VALUE))
-        );
-
-        rootTabbedPane.addTab("ProfessorLoginManager", professorLoginManager);
 
         scenarioManagerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -536,7 +507,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             new Object [][] {
                 {"Insulin", "10 units", null, "10AM,3PM"},
                 {"Morphine", "50 milligrams", null, null},
-                {"Cumadin", "1 gram", null, null}
+                {"Cocaine", "1 gram", null, null}
             },
             new String [] {
                 "Medication", "Dose", "Route", "Hour Due"
@@ -811,6 +782,30 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
         rootTabbedPane.addTab("ScenarioManager", scenarioManagerPanel);
 
+        professorLoginManager.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        currentProfessorPasswordLabel.setText("CurrentPassword");
+        professorLoginManager.add(currentProfessorPasswordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 95, -1, -1));
+
+        changeProffesorPasswordButton.setText("Change Password");
+        changeProffesorPasswordButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeProffesorPasswordButtonActionPerformed(evt);
+            }
+        });
+        professorLoginManager.add(changeProffesorPasswordButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 150, -1));
+
+        currentProfessorUserNameLabel.setText("CurrentUserName");
+        professorLoginManager.add(currentProfessorUserNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 41, -1, -1));
+
+        jLabel1.setText("Username:");
+        professorLoginManager.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 41, 60, -1));
+
+        jLabel2.setText("Password:");
+        professorLoginManager.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 95, -1, -1));
+
+        rootTabbedPane.addTab("ProfessorLoginManager", professorLoginManager);
+
         logOutButton.setBackground(new java.awt.Color(255, 0, 0));
         logOutButton.setText("Logout");
         logOutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -840,9 +835,18 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void rootTabSelectionChanged(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_rootTabSelectionChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rootTabSelectionChanged
+
 	private void classListValueChanged(javax.swing.event.ListSelectionEvent evt) {
 		// change students based on selected class
 		loadStudentsByClass();
+                while( ((DefaultTableModel)classControlJTable.getModel()).getRowCount()>0)
+               ((DefaultTableModel)classControlJTable.getModel()).removeRow(0);
+               
+               for(User user:controller.getStudentsInClass((String)classList.getSelectedValue()))
+                   ((DefaultTableModel)classControlJTable.getModel()).addRow(new Object[]{user.getRealName(),new Double(0), new Double( ((Student)user).getCompletedScenarios().size())});
 	}
 
 	private void viewSelectedScenarioButtonActionPerformed(
@@ -863,6 +867,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	private void changePasswordButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+            
 	}
 
 	private void addNarrativeButtonActionPerformed(
@@ -942,6 +947,15 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	private void changeProffesorPasswordButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+            String password = JOptionPane.showInputDialog(this, "Enter new password");
+            if(password!=null){
+                controller.getUsers().get(0).setPassword(password);
+                controller.writeUsers();
+                rootTabbedPane.setSelectedIndex(2);
+                rootTabbedPane.setSelectedIndex(1);
+                
+                
+            }
 	}
 
 	private void changeProffessorUsernameButtonActionPerformed(
@@ -1053,6 +1067,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	private void classListFocusGained(java.awt.event.FocusEvent evt) {
 		studentList.clearSelection();
 		studentManagerControlTabbedPane.setSelectedIndex(0);
+                
+               
 	}
 
 	private void removeStudentButtonActionPerformed(
@@ -1145,6 +1161,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 			if (controller.removeClass((String) classList.getSelectedValue())
 					&& classList.getSelectedIndex() > -1) {
 				sessionListModel.remove(classList.getSelectedIndex());
+                                for(User u:controller.getUsers()){
+                                    if(u.getClassName().equals((String)classList.getSelectedValue()))
+                                        controller.getUsers().remove(u);
+                                }
+                                controller.writeUsers();
 				controller.writeClassNames();
 			} else {
 				System.out.println("class not removed!");
@@ -1156,6 +1177,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	private void changeUserNameButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+            
 	}
 
 	/**
@@ -1259,7 +1281,6 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JTextArea allergiesTextArea;
     private javax.swing.JButton changePasswordButton;
     private javax.swing.JButton changeProffesorPasswordButton;
-    private javax.swing.JButton changeProffessorUsernameButton;
     private javax.swing.JButton changeUserNameButton;
     private javax.swing.JTable classControlJTable;
     private javax.swing.JPanel classControlPanel;
@@ -1280,6 +1301,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JButton exportScenarioButton;
     private javax.swing.JLabel importExportAreaLabel;
     private javax.swing.JButton importScenarioButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

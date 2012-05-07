@@ -291,9 +291,11 @@ public class SimulationController implements Serializable {
 
 		if (!users.isEmpty()) {
 			for (User student : users) {
-				if (student.getClassName().equals(className)) {
+                            if(!student.isInstructor()){
+				if ((student).getClassName().equals(className)) {
 					tempUsers.add(student);
 				}
+                            }
 			}
 		}
 		return tempUsers;

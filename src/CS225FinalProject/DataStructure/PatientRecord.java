@@ -43,6 +43,14 @@ public class PatientRecord {
         age = 0;
         narratives = new ArrayList<Narrative>();
     }
+    public PatientRecord(String patientName){
+        this.patientName = patientName;
+        medication = new ArrayList<Medication>();
+        allergies = "";
+        diagnosis = "";
+        age = 0;
+        narratives = new ArrayList<Narrative>();
+    }
     
     public  int getAge(){
         return age;

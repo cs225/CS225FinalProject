@@ -39,6 +39,13 @@ public class Scenario implements Serializable {
            this.time= time*60;
            startNumOfNarratives = patientRecord.getNarrativeList().size();
         }
+        public Scenario( String patientName){
+            this.patientRecord = new PatientRecord(patientName);
+            summary = "";
+            startNumOfNarratives = 0;
+            time= 0;
+        }
+        
 
     public int getStartNumOfNarratives() {
         return startNumOfNarratives;
