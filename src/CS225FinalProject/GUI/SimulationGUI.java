@@ -258,7 +258,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
             new Object [][] {
                 {"Insulin", null, null, null},
                 {"Morphine", null, null, null},
-                {"Cocaine", null, null, null}
+                {"Cumadin", null, null, null}
             },
             new String [] {
                 "Medication", "Dose", "Route", "Hour Due"

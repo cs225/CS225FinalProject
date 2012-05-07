@@ -533,7 +533,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             new Object [][] {
                 {"Insulin", "10 units", null, "10AM,3PM"},
                 {"Morphine", "50 milligrams", null, null},
-                {"Cocaine", "1 gram", null, null}
+                {"Cumadin", "1 gram", null, null}
             },
             new String [] {
                 "Medication", "Dose", "Route", "Hour Due"
