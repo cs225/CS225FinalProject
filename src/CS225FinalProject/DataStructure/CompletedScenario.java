@@ -17,7 +17,7 @@ public class CompletedScenario {
         private ArrayList<Narrative> narrative;
 	private String evaluationSuggestion;
 	private Scenario scenarioTaken;
-	private DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy at HH:mm:ss");
+	private DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         private  ArrayList<Narrative> studentinput;
 
 	// finish constructor, getters and setters have been generated.

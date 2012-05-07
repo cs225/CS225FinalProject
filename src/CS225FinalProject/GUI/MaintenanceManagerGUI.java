@@ -18,6 +18,8 @@ import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.xml.crypto.Data;
 
 /**
@@ -51,6 +53,56 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                     currentProfessorUserNameLabel.setText(controller.getUsers().get(0).getUserName());
                     currentProfessorPasswordLabel.setText(controller.getUsers().get(0).getPassword());
             }}
+        });
+                
+                
+                studentList.addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(studentList.getSelectedIndex()>0){
+                    studentManagerControlTabbedPane.setSelectedIndex(0);
+                    studentManagerControlTabbedPane.setSelectedIndex(1);
+                }
+            }
+        });
+                
+                studentManagerControlTabbedPane.addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if(studentManagerControlTabbedPane.getSelectedIndex()==1 && studentList.getSelectedIndex()>-1){
+                    User student = null;
+                    while(((DefaultTableModel) studentTable.getModel()).getRowCount()>0)
+                        ((DefaultTableModel) studentTable.getModel()).removeRow(0);
+                    for(User user:  controller.getStudentsInClass((String)classList.getSelectedValue())){
+                        if(!user.isInstructor()&& user.getRealName().equals(studentList.getSelectedValue())&&
+                                user.getClassName().equals(classList.getSelectedValue())){
+                            student = user;
+                            break;
+                        }
+                   
+                    }
+                    if(student!=null){
+                        studentManagerControlTabbedPane.setVisible(true);
+                    for(CompletedScenario completedScenario:((Student)student).getCompletedScenarios()){
+                        ((DefaultTableModel) studentTable.getModel()).addRow(
+                                new String[]{completedScenario.getScenarioTaken().getPatientName(),
+                                    completedScenario.getDateTaken(),
+                                    completedScenario.getEvaluationSuggestion(),
+                                    ""+completedScenario.getScore()} );
+                        
+                    }
+                    currentStudentUserNameLabel.setText(student.getUserName());
+                    currentStudentPasswordLabel.setText(student.getPassword());
+                    studentNameLabel.setText(student.getRealName());
+                    }
+                    
+                }
+                //else
+                       // studentManagerControlTabbedPane.setVisible(false);
+                   
+            }
         });
 		setTitle("Simulation Data Management");
 		setVisible(false);
@@ -867,6 +919,38 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	private void changePasswordButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+            if(studentManagerControlTabbedPane.getSelectedIndex()==1 && studentList.getSelectedIndex()>-1){
+                    User student = null;
+                    while(((DefaultTableModel) studentTable.getModel()).getRowCount()>0)
+                        ((DefaultTableModel) studentTable.getModel()).removeRow(0);
+                    for(User user:  controller.getStudentsInClass((String)classList.getSelectedValue())){
+                        if(!user.isInstructor()&& user.getRealName().equals(studentList.getSelectedValue())&&
+                                user.getClassName().equals(classList.getSelectedValue())){
+                            student = user;
+                            break;
+                        }
+                   
+                    }
+                    if(student!=null){
+                    for(CompletedScenario completedScenario:((Student)student).getCompletedScenarios()){
+                        ((DefaultTableModel) studentTable.getModel()).addRow(
+                                new String[]{completedScenario.getScenarioTaken().getPatientName(),
+                                    completedScenario.getDateTaken(),
+                                    completedScenario.getEvaluationSuggestion(),
+                                    ""+completedScenario.getScore()} );
+                        
+                    }
+                    
+                    String newUsername = JOptionPane.showInputDialog("Enter new password");
+                    if(newUsername!= null){
+                        student.setPassword(newUsername);
+                        controller.writeUsers();
+                        studentManagerControlTabbedPane.setSelectedIndex(0);
+                        studentManagerControlTabbedPane.setSelectedIndex(1);
+                    }
+                        
+                    }
+                }
             
 	}
 
@@ -1174,9 +1258,44 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 		}
 	}
 
+        /**
+         * this needs to validate if there is another username instance before changing username
+         * @param evt 
+         */
 	private void changeUserNameButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+            if(studentManagerControlTabbedPane.getSelectedIndex()==1 && studentList.getSelectedIndex()>-1){
+                    User student = null;
+                    while(((DefaultTableModel) studentTable.getModel()).getRowCount()>0)
+                        ((DefaultTableModel) studentTable.getModel()).removeRow(0);
+                    for(User user:  controller.getStudentsInClass((String)classList.getSelectedValue())){
+                        if(!user.isInstructor()&& user.getRealName().equals(studentList.getSelectedValue())&&
+                                user.getClassName().equals(classList.getSelectedValue())){
+                            student = user;
+                            break;
+                        }
+                   
+                    }
+                    if(student!=null){
+                    for(CompletedScenario completedScenario:((Student)student).getCompletedScenarios()){
+                        ((DefaultTableModel) studentTable.getModel()).addRow(
+                                new String[]{completedScenario.getScenarioTaken().getPatientName(),
+                                    completedScenario.getDateTaken(),
+                                    completedScenario.getEvaluationSuggestion(),
+                                    ""+completedScenario.getScore()} );
+                        
+                    }
+                    
+                    String newUsername = JOptionPane.showInputDialog("Enter new userName");
+                    if(newUsername!= null){
+                        student.setUserName(newUsername);
+                        controller.writeUsers();
+                        studentManagerControlTabbedPane.setSelectedIndex(0);
+                        studentManagerControlTabbedPane.setSelectedIndex(1);
+                    }
+                        
+                    }
+                }
             
 	}
 

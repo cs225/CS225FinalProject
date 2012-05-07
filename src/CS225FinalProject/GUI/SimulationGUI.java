@@ -39,6 +39,7 @@ import javax.swing.table.TableModel;
 
 import CS225FinalProject.SimulationManager;
 import CS225FinalProject.Validators.Evaluator;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -582,17 +583,24 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 	private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
 		/*
-		 * this code is a prototype of recording a Completed scenario to a
-		 * student(The one taking this test)
-		 */
-		// ((Student)SimulationManager.CURRENT_USER).
-		// addCompletedScenario
-		// (new CompletedScenario(marTable, Evaluator.giveSuggestion(),
-		// SimulationManager.CURRENT_SCENARIO));
-		setVisible(false);
+                 * this need a better implementation for recording the student's narrative and suggestion.
+                 * Eric
+                 */
+		 
+                 
+                 if(JOptionPane.YES_OPTION==JOptionPane.showConfirmDialog(this, "Are you sure you want to submit?", null, JOptionPane.YES_NO_OPTION)){
+                    setVisible(false);
 
-		controller.writeScenarios();
-		SimulationManager.state = SimulationManager.LOGIN_STATE;
+
+
+                    ((Student)SimulationManager.CURRENT_USER).
+                    addCompletedScenario
+                    (new CompletedScenario(new ArrayList<Narrative>(), "",
+                    SimulationManager.CURRENT_SCENARIO)); 
+
+                    controller.writeScenarios();
+                    SimulationManager.state = SimulationManager.LOGIN_STATE;
+                 }
 	}
 
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
