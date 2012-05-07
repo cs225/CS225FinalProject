@@ -198,7 +198,27 @@ public class SimulationController implements Serializable {
 		}
 		return userRemoved;
 	}
+        /**
+         * remove student by real name
+         * @param realName
+         * @return 
+         */
+        public boolean removeStudentByNameAndClassroom(String realName, String classroom){
+            boolean userRemoved = false;
 
+		if (!users.isEmpty()) {
+			for (User u : (ArrayList<User>) users.clone()) {
+                               if(u != null && u instanceof Student){
+				if (u.getRealName().equals(realName) && u.getClassName().equals(classroom)){
+					users.remove(u);
+					userRemoved = true;
+				}
+                               }
+			}
+		}
+		return userRemoved;
+            
+        }
 	@SuppressWarnings("unchecked")
 	public void removeStudentsFromClass(String className) {
 		if (!users.isEmpty()) {
