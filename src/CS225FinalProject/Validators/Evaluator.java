@@ -44,50 +44,50 @@ public class Evaluator {
     bothEyes = "O.U.";
     
     if(fileScan.hasNext(unit))
-        return result += unit;
+        result += unit;
     else if(fileScan.hasNext(intUnit))
-        return result += intUnit;
+        result += intUnit;
     else if(fileScan.hasNext(daily))
-        return result += daily;
+        result += daily;
     else if(fileScan.hasNext(everyOther))
-        return result += everyOther;
+        result += everyOther;
     else if(fileScan.hasNext(trailing0))
-        return result += trailing0;
+        result += trailing0;
     else if(fileScan.hasNext(morphine))
-        return result += morphine;
+        result += morphine;
     else if(fileScan.hasNext(sulfate))
-        return result += sulfate;
+        result += sulfate;
     else if(fileScan.hasNext(magSulfate))
-        return result += magSulfate;
+        result += magSulfate;
     else if(fileScan.hasNext(microgram))
-        return result += microgram;
+        result += microgram;
     else if(fileScan.hasNext(halfStrength))
-        return result += halfStrength;
+        result += halfStrength;
     else if(fileScan.hasNext(threeWeek))
-        return result += threeWeek;
+        result += threeWeek;
     else if(fileScan.hasNext(subcutaneous1))
-        return result += subcutaneous1;
+        result += subcutaneous1;
     else if(fileScan.hasNext(subcutaneous2))
-        return result += subcutaneous2;
+        result += subcutaneous2;
     else if(fileScan.hasNext(discharge))
-        return result += discharge;
+        result += discharge;
     else if(fileScan.hasNext(cubic))
-        return result += cubic;
+        result += cubic;
     else if(fileScan.hasNext(rightEar))
-        return result += rightEar;
+        result += rightEar;
     else if(fileScan.hasNext(leftEar))
-        return result += leftEar;
+        result += leftEar;
     else if(fileScan.hasNext(bothEars))
-        return result += bothEars;
+        result += bothEars;
     else if(fileScan.hasNext(rightEye))
-        return result += rightEye;
+        result += rightEye;
     else if(fileScan.hasNext(leftEye))
-        return result += leftEye;
+        result += leftEye;
     else if(fileScan.hasNext(bothEyes))
-        return result += bothEyes;
+        result += bothEyes;
     
-    else
-        return "No errors from JAHCO";
+    return result;
+    
     }
 }
 
