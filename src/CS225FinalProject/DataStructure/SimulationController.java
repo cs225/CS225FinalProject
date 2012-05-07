@@ -371,4 +371,13 @@ public class SimulationController implements Serializable {
 			// loading data failure, file not found
 		}
 	}
+
+        /**
+         * Usefull for importing Scenarios.
+         * @param scenarios 
+         */
+    public void setScenarios(ArrayList<Scenario> scenarios) {
+        this.scenarios = scenarios;
+    }
+        
 }

@@ -659,6 +659,8 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 
 		if (documentationTable.getSelectedRow() < 0)
 			JOptionPane.showMessageDialog(this, "Please Select a Narrative");
+                else if(documentationTable.getSelectedRow()< SimulationManager.CURRENT_SCENARIO.getStartNumOfNarratives() && documentationTable.getSelectedRow()>-1)
+                     JOptionPane.showMessageDialog(this, "You can not edit this narrative\n it was made by another nurse");
 		else {
 			final JDialog t = new JDialog(this,true);
 			t.setLayout(new GridLayout(1, 2));
