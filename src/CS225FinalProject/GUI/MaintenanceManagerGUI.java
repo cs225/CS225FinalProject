@@ -14,8 +14,15 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import CS225FinalProject.SimulationManager;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Scanner;
-import javax.swing.JFileChooser;
+import java.util.TimeZone;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
@@ -108,13 +115,16 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(studentList.getSelectedIndex()>0){
+                if(studentList.getSelectedIndex()>-1){
+                    if(!((DefaultListModel)studentList.getModel()).isEmpty()){
+                        
+                       
                     studentManagerControlTabbedPane.setSelectedIndex(0);
                     studentManagerControlTabbedPane.setSelectedIndex(1);
-                    int studentListnum = studentList.getSelectedIndex();
-                    studentList.clearSelection();
-                    studentList.setSelectedIndex(studentListnum);
+                    
+                    }
                 }
+                
             }
         });
                 
@@ -268,8 +278,10 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         documentationScrollPane = new javax.swing.JScrollPane();
         documentationTable = new javax.swing.JTable();
         addNarrativeButton = new javax.swing.JButton();
-        removeNarrativeButton = new javax.swing.JButton();
         removeAllNarrativeButton = new javax.swing.JButton();
+        viewSelectedNarrativeButton = new javax.swing.JButton();
+        deleteNarrativeButton = new javax.swing.JButton();
+        editNarrativeButton = new javax.swing.JButton();
         scenarioSummaryPanel = new javax.swing.JPanel();
         scenarioSummaryLabel = new javax.swing.JLabel();
         ScenarioScrollPane = new javax.swing.JScrollPane();
@@ -747,17 +759,31 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             }
         });
 
-        removeNarrativeButton.setText("Remove Narrative");
-        removeNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeNarrativeButtonActionPerformed(evt);
-            }
-        });
-
         removeAllNarrativeButton.setText("RemoveAll");
         removeAllNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeAllNarrativeButtonActionPerformed(evt);
+            }
+        });
+
+        viewSelectedNarrativeButton.setText("ViewSelectedNarrative");
+        viewSelectedNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewSelectedNarrativeButtonActionPerformed(evt);
+            }
+        });
+
+        deleteNarrativeButton.setText("Delete the Selected Narrative");
+        deleteNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteNarrativeButtonActionPerformed(evt);
+            }
+        });
+
+        editNarrativeButton.setText("Edit Selected Narrative");
+        editNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editNarrativeButtonActionPerformed(evt);
             }
         });
 
@@ -768,14 +794,18 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             .addGroup(documentationPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(documentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(documentationScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 955, Short.MAX_VALUE)
                     .addGroup(documentationPanelLayout.createSequentialGroup()
                         .addComponent(addNarrativeButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(removeNarrativeButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(viewSelectedNarrativeButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(editNarrativeButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(deleteNarrativeButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(removeAllNarrativeButton)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(documentationScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 955, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         documentationPanelLayout.setVerticalGroup(
@@ -783,12 +813,17 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             .addGroup(documentationPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(documentationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(documentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addNarrativeButton)
-                    .addComponent(removeNarrativeButton)
-                    .addComponent(removeAllNarrativeButton))
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(documentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(documentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(addNarrativeButton)
+                        .addGroup(documentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(viewSelectedNarrativeButton)
+                            .addComponent(editNarrativeButton)))
+                    .addGroup(documentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(deleteNarrativeButton)
+                        .addComponent(removeAllNarrativeButton)))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         previewTabbedPane.addTab("Documentation", documentationPanel);
@@ -942,6 +977,114 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rootTabSelectionChanged
 
+    private void viewSelectedNarrativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSelectedNarrativeButtonActionPerformed
+        // TODO add your handling code here:
+        if (documentationTable.getSelectedRow() < 0)
+			JOptionPane.showMessageDialog(this, "Please Select a Narrative");
+		else {
+			JDialog t = new JDialog(this,true);
+                        t.setSize(400, 300);
+			t.setLocation(
+					(t.getToolkit().getScreenSize().width - t.getWidth()) / 2,
+					(t.getToolkit().getScreenSize().height - t.getHeight()) / 2);
+
+			t.setTitle(patientNameTextField.getText()
+					+ ": "
+					+ (String) documentationTable.getValueAt(
+							documentationTable.getSelectedRow(), 0)
+					+ " at "
+					+ (String) documentationTable.getValueAt(
+							documentationTable.getSelectedRow(), 1));
+			
+
+			JTextPane t2 = new JTextPane();
+			t2.setEditable(false);
+			JScrollPane pane = new JScrollPane();
+			pane.setViewportView(t2);
+			t2.setText((String) documentationTable.getValueAt(
+					documentationTable.getSelectedRow(), 2));
+			t.add(pane);
+
+			t.setVisible(true);
+			t.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		}
+    }//GEN-LAST:event_viewSelectedNarrativeButtonActionPerformed
+
+    private void deleteNarrativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteNarrativeButtonActionPerformed
+        // TODO add your handling code here:
+        
+            if(documentationTable.getSelectedRow()>-1)
+                ((DefaultTableModel)documentationTable.getModel()).removeRow(documentationTable.getSelectedRow());
+            else if (documentationTable.getSelectedRow() < 0)
+			JOptionPane.showMessageDialog(this, "Please Select a Narrative");
+    }//GEN-LAST:event_deleteNarrativeButtonActionPerformed
+
+    private void editNarrativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editNarrativeButtonActionPerformed
+        // TODO add your handling code here:
+        if (documentationTable.getSelectedRow() < 0)
+			JOptionPane.showMessageDialog(this, "Please Select a Narrative");
+                
+		else {
+			final JDialog t = new JDialog(this,true);
+			t.setLayout(new GridLayout(1, 2));
+
+			t.setSize(800, 300);
+			t.setLocation(
+					(t.getToolkit().getScreenSize().width - t.getWidth()) / 2,
+					(t.getToolkit().getScreenSize().height - t.getHeight()) / 2);
+                        
+                        
+
+			t.setTitle(patientNameLabel.getText()
+					+ ": "
+					+ (String) documentationTable.getValueAt(
+							documentationTable.getSelectedRow(), 0)
+					+ " at "
+					+ (String) documentationTable.getValueAt(
+							documentationTable.getSelectedRow(), 1));
+
+			JTextPane t2 = new JTextPane();
+			t2.setSize(350, 300);
+
+			final JTextPane t3 = t2;
+
+			JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			// t2.setEditable(false);
+			JScrollPane pane = new JScrollPane();
+			pane.setViewportView(t2);
+			t2.setText((String) documentationTable.getValueAt(
+					documentationTable.getSelectedRow(), 2));
+
+			t.add(pane);
+
+			JButton saveButton = new JButton("Save");
+			saveButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					documentationTable.setValueAt((Object) t3.getText(),
+							documentationTable.getSelectedRow(), 2);
+					t.dispose();
+				}
+			});
+			panel.add(saveButton);
+			JButton cancelButton = new JButton("Cancel");
+			cancelButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					t.dispose();
+				}
+			});
+			panel.add(cancelButton);
+
+			t.add(panel);
+
+			t.setVisible(true);
+			t.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		}
+    }//GEN-LAST:event_editNarrativeButtonActionPerformed
+
 	private void classListValueChanged(javax.swing.event.ListSelectionEvent evt) {
 		// change students based on selected class
 		loadStudentsByClass();
@@ -1008,6 +1151,16 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	private void addNarrativeButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+            DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
+		DateFormat dayFormat = new SimpleDateFormat("HH:mma");
+		((DefaultTableModel) documentationTable.getModel())
+				.addRow(new String[] {
+						dateFormat.format(Calendar.getInstance(
+								TimeZone.getDefault()).getTime()),
+						dayFormat.format(Calendar.getInstance(
+								TimeZone.getDefault()).getTime()),
+						"Temperature:\nPulse:\n Resp:\n BP:\n O2 Sat:\n Pain Scale:\n FSBS:\n Site:\n Related Diagnosis/Reason for medication:\n" });
+		// documentationTable.isfo
 	}
 
 	private void removeNarrativeButtonActionPerformed(
@@ -1018,6 +1171,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	private void removeAllNarrativeButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+            while(((DefaultTableModel)documentationTable.getModel()).getRowCount()>0)
+            ((DefaultTableModel)documentationTable.getModel()).removeRow(0);
 	}
 
 	private void importScenarioButtonActionPerformed(
@@ -1148,6 +1303,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 		// TODO implement adding a new scenario to the DataStructure
 	}
 
+        /**
+         * completed
+         * @author Eric
+         * @param evt 
+         */
 	private void saveChangesButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
 		String selectedScenarioName = (String) scenarioList.getSelectedValue();
@@ -1156,15 +1316,49 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 					.getScenarioByName(selectedScenarioName);
 
 			// templates for setters when recording/editing a scenario.
-			scenario.setAge(WIDTH);
-			scenario.setAllergies(selectedScenarioName);
-			scenario.setSummary(selectedScenarioName);
+			//scenario.setAge(ag );
+			scenario.setAllergies(allergiesTextArea.getText());
+			scenario.setSummary(scenarioSummaryTextPane.getText());
 			scenario.setDiagnosis(selectedScenarioName);
 			// scenario.setPatientName(selectedScenarioName);
-			scenario.setScenarioName(selectedScenarioName);
+			scenario.getPatientRecord().setName( patientNameTextField.getText());
+                        
+                        ArrayList<Medication> medications = new ArrayList<Medication>();
+                        int num = 0;
+                        while( num< ((DefaultTableModel)medJTable.getModel()).getRowCount()){
+                            String medi[] = new String[]{
+                                (String)((DefaultTableModel)medJTable.getModel()).getValueAt(num, 0),
+                                (String)((DefaultTableModel)medJTable.getModel()).getValueAt(num, 1),
+                                (String)((DefaultTableModel)medJTable.getModel()).getValueAt(num, 2),
+                                (String)((DefaultTableModel)medJTable.getModel()).getValueAt(num, 3)
+                            };
+                            medications.add(new Medication(medi[0],medi[1],medi[2],medi[3]));
+                            num++;
+                        }
 
-			// little work to be done here.....
-			scenario.setNarrativeList(null);
+			num=0;
+			scenario.setMedicationList(medications);
+                        
+                        ArrayList<Narrative> narratives = new ArrayList<Narrative>();
+                         num = 0;
+                        while( num< ((DefaultTableModel)documentationTable.getModel()).getRowCount()){
+                            String medi[] = new String[]{
+                                (String)((DefaultTableModel)documentationTable.getModel()).getValueAt(num, 0),
+                                (String)((DefaultTableModel)documentationTable.getModel()).getValueAt(num, 1),
+                                (String)((DefaultTableModel)documentationTable.getModel()).getValueAt(num, 2),
+                                (String)((DefaultTableModel)documentationTable.getModel()).getValueAt(num, 3),
+                                (String)((DefaultTableModel)documentationTable.getModel()).getValueAt(num, 4)
+                            };
+                            narratives.add(new Narrative(medi[0],medi[1],medi[2],medi[3],medi[4]));
+                            num++;
+                        }
+
+			
+			scenario.setNarrativeList(narratives);
+                        controller.writeScenarios();
+                        rootTabbedPane.setSelectedIndex(0);
+                        rootTabbedPane.setSelectedIndex(1);
+                        
 
 		}
 	}
@@ -1303,6 +1497,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 					&& classList.getSelectedIndex() > -1) {
 				sessionListModel.remove(classList.getSelectedIndex());
                                 for(User u:controller.getUsers()){
+                                    if(!u.isInstructor())
                                     if(u.getClassName().equals((String)classList.getSelectedValue()))
                                         controller.getUsers().remove(u);
                                 }
@@ -1470,12 +1665,14 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JLabel currentProfessorUserNameLabel;
     private javax.swing.JLabel currentStudentPasswordLabel;
     private javax.swing.JLabel currentStudentUserNameLabel;
+    private javax.swing.JButton deleteNarrativeButton;
     private javax.swing.JLabel diagnosisLabel;
     private javax.swing.JScrollPane diagnosisScrollPane;
     private javax.swing.JTextArea diagnosisTextArea;
     private javax.swing.JPanel documentationPanel;
     private javax.swing.JScrollPane documentationScrollPane;
     private javax.swing.JTable documentationTable;
+    private javax.swing.JButton editNarrativeButton;
     private javax.swing.JButton exportScenarioButton;
     private javax.swing.JLabel importExportAreaLabel;
     private javax.swing.JButton importScenarioButton;
@@ -1502,7 +1699,6 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JButton removeAllNarrativeButton;
     private javax.swing.JButton removeClassButton;
     private javax.swing.JButton removeMedicationButton;
-    private javax.swing.JButton removeNarrativeButton;
     private javax.swing.JButton removeScenarioButton;
     private javax.swing.JButton removeStudentButton;
     private javax.swing.JLabel roomNumLabel;
@@ -1528,6 +1724,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane studentScrollPane;
     private javax.swing.JLabel studentScrollPaneLabel;
     private javax.swing.JTable studentTable;
+    private javax.swing.JButton viewSelectedNarrativeButton;
     private javax.swing.JButton viewSelectedScenarioButton;
     // End of variables declaration//GEN-END:variables
 }

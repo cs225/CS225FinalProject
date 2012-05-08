@@ -891,15 +891,19 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="documentationScrollPane" pref="955" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="addNarrativeButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="removeNarrativeButton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="viewSelectedNarrativeButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="editNarrativeButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="deleteNarrativeButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="removeAllNarrativeButton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="documentationScrollPane" pref="955" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -910,13 +914,21 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="documentationScrollPane" min="-2" pref="233" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="addNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="removeNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="removeAllNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="addNarrativeButton" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="viewSelectedNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="editNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                      <Component id="deleteNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="removeAllNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="173" max="32767" attributes="0"/>
+                              <EmptySpace pref="168" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -986,20 +998,36 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addNarrativeButtonActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="removeNarrativeButton">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Remove Narrative"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeNarrativeButtonActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="javax.swing.JButton" name="removeAllNarrativeButton">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="RemoveAll"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeAllNarrativeButtonActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="viewSelectedNarrativeButton">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="ViewSelectedNarrative"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewSelectedNarrativeButtonActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="deleteNarrativeButton">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Delete the Selected Narrative"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteNarrativeButtonActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="editNarrativeButton">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Edit Selected Narrative"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editNarrativeButtonActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
