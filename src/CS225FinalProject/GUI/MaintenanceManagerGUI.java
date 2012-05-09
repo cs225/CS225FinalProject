@@ -83,6 +83,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                     patientNameTextField.setText(scenario.getPatientName());
                     diagnosisTextArea.setText(scenario.getDiagnosis());
                     allergiesTextArea.setText(scenario.getAllergies());
+                    timeTextfield.setText(scenario.getTime()+"");
                     
                 }
             }
@@ -151,7 +152,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                                 new String[]{completedScenario.getScenarioTaken().getPatientName(),
                                     completedScenario.getDateTaken(),
                                     completedScenario.getEvaluationSuggestion(),
-                                    ""+completedScenario.getScore()} );
+                                    ""+(completedScenario.getScore()==null? "score not given yet": completedScenario.getScore())} );
                         
                     }
                     currentStudentUserNameLabel.setText(student.getUserName());
@@ -253,6 +254,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         SimResultsAreaLabel = new javax.swing.JLabel();
         ViewScenarioSuggestionButton = new javax.swing.JButton();
         setScenarioScoreButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         scenarioManagerPanel = new javax.swing.JPanel();
         scenarioScrollPanel = new javax.swing.JScrollPane();
         scenarioList = new javax.swing.JList();
@@ -274,6 +277,10 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         diagnosisTextArea = new javax.swing.JTextArea();
         addMedicationButton = new javax.swing.JButton();
         removeMedicationButton = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        timeTextfield = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        editHourDueButton = new javax.swing.JButton();
         documentationPanel = new javax.swing.JPanel();
         documentationScrollPane = new javax.swing.JScrollPane();
         documentationTable = new javax.swing.JTable();
@@ -514,12 +521,23 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         studentControlScrollPane.setViewportView(studentTable);
+        studentTable.getColumnModel().getColumn(0).setResizable(false);
+        studentTable.getColumnModel().getColumn(1).setResizable(false);
+        studentTable.getColumnModel().getColumn(2).setResizable(false);
+        studentTable.getColumnModel().getColumn(3).setResizable(false);
 
         studentControlPanel.add(studentControlScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 1025, 222));
 
@@ -546,7 +564,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 changePasswordButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(changePasswordButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 402, -1, -1));
+        studentControlPanel.add(changePasswordButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 330, -1, -1));
 
         changeUserNameButton.setText("Change User Name");
         changeUserNameButton.addActionListener(new java.awt.event.ActionListener() {
@@ -563,11 +581,13 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         LoginModLabel.setText("Login Modification");
         studentControlPanel.add(LoginModLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(684, 248, -1, -1));
 
+        currentStudentUserNameLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         currentStudentUserNameLabel.setText("current Username");
         studentControlPanel.add(currentStudentUserNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 311, -1, -1));
 
+        currentStudentPasswordLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         currentStudentPasswordLabel.setText("current Password");
-        studentControlPanel.add(currentStudentPasswordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 382, -1, -1));
+        studentControlPanel.add(currentStudentPasswordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 310, -1, -1));
 
         SimResultsAreaLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         SimResultsAreaLabel.setText("Simulation Results");
@@ -588,6 +608,12 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             }
         });
         studentControlPanel.add(setScenarioScoreButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, -1, -1));
+
+        jLabel3.setText("Current Student Password");
+        studentControlPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 280, -1, -1));
+
+        jLabel4.setText("Current Student Username");
+        studentControlPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, -1, -1));
 
         studentManagerControlTabbedPane.addTab("Student Control", studentControlPanel);
 
@@ -618,11 +644,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         jSeparator4.setPreferredSize(new java.awt.Dimension(0, 10));
         scenarioManagerPanel.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1030, 10));
 
+        marPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         medJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Insulin", "10 units", null, "10AM,3PM"},
-                {"Morphine", "50 milligrams", null, null},
-                {"Cocaine", "1 gram", null, null}
+
             },
             new String [] {
                 "Medication", "Dose", "Route", "Hour Due"
@@ -639,29 +665,37 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         medJTable.setRowHeight(45);
         medScrollPane.setViewportView(medJTable);
 
+        marPanel.add(medScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 31, 932, 243));
+
         roomNumLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         roomNumLabel.setText("Room:");
+        marPanel.add(roomNumLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
         diagnosisLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         diagnosisLabel.setText("Diagnosis:");
+        marPanel.add(diagnosisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
 
         patientNameLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         patientNameLabel.setText("Name:");
+        marPanel.add(patientNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, -1, -1));
 
         allergiesLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         allergiesLabel.setText("Allergies:");
-
-        roomNumberTextField.setText("jTextField1");
+        marPanel.add(allergiesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, -1, -1));
+        marPanel.add(roomNumberTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 53, -1));
 
         allergiesTextArea.setColumns(20);
         allergiesTextArea.setRows(5);
         allergiesScrollPane.setViewportView(allergiesTextArea);
 
-        patientNameTextField.setText("jTextField2");
+        marPanel.add(allergiesScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 324, 121));
+        marPanel.add(patientNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 122, -1));
 
         diagnosisTextArea.setColumns(20);
         diagnosisTextArea.setRows(5);
         diagnosisScrollPane.setViewportView(diagnosisTextArea);
+
+        marPanel.add(diagnosisScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 282, 121));
 
         addMedicationButton.setText("Add Medication");
         addMedicationButton.addActionListener(new java.awt.event.ActionListener() {
@@ -669,6 +703,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 addMedicationButtonActionPerformed(evt);
             }
         });
+        marPanel.add(addMedicationButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, -1, -1));
 
         removeMedicationButton.setText("Remove Selected Medication");
         removeMedicationButton.addActionListener(new java.awt.event.ActionListener() {
@@ -676,65 +711,23 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 removeMedicationButtonActionPerformed(evt);
             }
         });
+        marPanel.add(removeMedicationButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, -1, -1));
 
-        javax.swing.GroupLayout marPanelLayout = new javax.swing.GroupLayout(marPanel);
-        marPanel.setLayout(marPanelLayout);
-        marPanelLayout.setHorizontalGroup(
-            marPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(marPanelLayout.createSequentialGroup()
-                .addGroup(marPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(marPanelLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(medScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 932, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(marPanelLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(marPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(diagnosisLabel)
-                            .addComponent(roomNumLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(marPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(marPanelLayout.createSequentialGroup()
-                                .addComponent(roomNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(patientNameLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(patientNameTextField))
-                            .addComponent(diagnosisScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(allergiesLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(marPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(allergiesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(marPanelLayout.createSequentialGroup()
-                                .addComponent(addMedicationButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(removeMedicationButton)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        marPanelLayout.setVerticalGroup(
-            marPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(marPanelLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(medScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(marPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(roomNumLabel)
-                    .addComponent(patientNameLabel)
-                    .addComponent(roomNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(patientNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addMedicationButton)
-                    .addComponent(removeMedicationButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(marPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(diagnosisScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                    .addComponent(allergiesScrollPane)
-                    .addGroup(marPanelLayout.createSequentialGroup()
-                        .addGroup(marPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(allergiesLabel)
-                            .addComponent(diagnosisLabel))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setText("Time limit in min:");
+        marPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(764, 289, -1, -1));
+        marPanel.add(timeTextfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 286, 47, -1));
+
+        jLabel6.setText("if time is set to 0, it means unlimited");
+        marPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 320, -1, 10));
+
+        editHourDueButton.setText("Edit selected Hour Due");
+        editHourDueButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editHourDueButtonActionPerformed(evt);
+            }
+        });
+        marPanel.add(editHourDueButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, -1, -1));
 
         previewTabbedPane.addTab("MAR", marPanel);
 
@@ -1085,6 +1078,74 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_editNarrativeButtonActionPerformed
 
+    private void editHourDueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editHourDueButtonActionPerformed
+        // TODO add your handling code here:
+        
+         if (medJTable.getSelectedRow() < 0)
+			JOptionPane.showMessageDialog(this, "Please Select a Medication to edit");
+                
+		else {
+			final JDialog t = new JDialog(this,true);
+			t.setLayout(new GridLayout(1, 2));
+
+			t.setSize(800, 300);
+			t.setLocation(
+					(t.getToolkit().getScreenSize().width - t.getWidth()) / 2,
+					(t.getToolkit().getScreenSize().height - t.getHeight()) / 2);
+                        
+                        
+
+//			t.setTitle(patientNameLabel.getText()
+//					+ ": "
+//					+ (String) documentationTable.getValueAt(
+//							documentationTable.getSelectedRow(), 0)
+//					+ " at "
+//					+ (String) documentationTable.getValueAt(
+//							documentationTable.getSelectedRow(), 1));
+
+			JTextPane t2 = new JTextPane();
+			t2.setSize(350, 300);
+
+			final JTextPane t3 = t2;
+
+			JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			// t2.setEditable(false);
+			JScrollPane pane = new JScrollPane();
+			pane.setViewportView(t2);
+			t2.setText((String) medJTable.getValueAt(
+					medJTable.getSelectedRow(), 3));
+
+			t.add(pane);
+
+			JButton saveButton = new JButton("Save");
+			saveButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					medJTable.setValueAt((Object) t3.getText(),
+					  medJTable.getSelectedRow(), 3);
+					t.dispose();
+				}
+			});
+			panel.add(saveButton);
+			JButton cancelButton = new JButton("Cancel");
+			cancelButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					t.dispose();
+				}
+			});
+			panel.add(cancelButton);
+
+			t.add(panel);
+
+			t.setVisible(true);
+			t.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		}
+    
+    }//GEN-LAST:event_editHourDueButtonActionPerformed
+
 	private void classListValueChanged(javax.swing.event.ListSelectionEvent evt) {
 		// change students based on selected class
 		loadStudentsByClass();
@@ -1182,8 +1243,16 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             
             JFileChooser fileChooser = new JFileChooser();
             if(JFileChooser.APPROVE_OPTION==fileChooser.showOpenDialog(this)){
-                controller.setScenarios(io.loadScenarioList(fileChooser.getSelectedFile().getAbsolutePath()));
+                
+                ArrayList<Scenario> scenarios = io.loadScenarioList(fileChooser.getSelectedFile().getAbsolutePath());
+                if(scenarios!= null){
+                controller.setScenarios(scenarios);
                 controller.writeScenarios();
+                rootTabbedPane.setSelectedIndex(0);
+                rootTabbedPane.setSelectedIndex(1);
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "file selected is not corrected");
                 
             }
 	}
@@ -1276,7 +1345,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	private void removeScenarioButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		int n = JOptionPane.showConfirmDialog(this,
-				"Are you sure you want to delete this selection?",
+				"Are you sure you want to delete this scenario?",
 				"Confirm Removal", JOptionPane.YES_NO_OPTION);
 
 		if (n == JOptionPane.YES_OPTION) {
@@ -1292,8 +1361,10 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
 	private void addScenarioButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
-		String scenarioName = JOptionPane.showInputDialog("Enter Session name");
+		String scenarioName = JOptionPane.showInputDialog("Enter the name of the patient");
 		if (scenarioName != null) {
+                        controller.getScenarios().add(new Scenario(scenarioName));
+                        controller.writeScenarios();
 			scenarioListModel.addElement(scenarioName);
 		}
 		scenarioList.setSelectedIndex(scenarioListModel.getSize() - 1);
@@ -1312,14 +1383,26 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
 		String selectedScenarioName = (String) scenarioList.getSelectedValue();
 		if (selectedScenarioName != null) {
+                        
+                    
+                        
+                    
 			Scenario scenario = controller
 					.getScenarioByName(selectedScenarioName);
+                        try{
+                            scenario.setTime(Integer.parseInt(timeTextfield.getText()));
+                        }
+                        catch(NumberFormatException e){
+                            JOptionPane.showMessageDialog(this, "Please set the time limit by number");
+                            return;
+                        }
+                        
 
 			// templates for setters when recording/editing a scenario.
 			//scenario.setAge(ag );
 			scenario.setAllergies(allergiesTextArea.getText());
 			scenario.setSummary(scenarioSummaryTextPane.getText());
-			scenario.setDiagnosis(selectedScenarioName);
+			
 			// scenario.setPatientName(selectedScenarioName);
 			scenario.getPatientRecord().setName( patientNameTextField.getText());
                         
@@ -1353,7 +1436,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                             num++;
                         }
 
-			
+                        
+                        
+			scenario.setDiagnosis(diagnosisTextArea.getText());
 			scenario.setNarrativeList(narratives);
                         controller.writeScenarios();
                         rootTabbedPane.setSelectedIndex(0);
@@ -1434,12 +1519,13 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
 	private void addStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
+            String studentName = JOptionPane.showInputDialog(this,
+				"Enter the Student's Real Name");
 		// taking this data should be handled better. messy code
 		String userName = JOptionPane.showInputDialog(this,
 				"Enter the Student's User Name");
 
-		String studentName = JOptionPane.showInputDialog(this,
-				"Enter the Student's Real Name");
+		
 
 		String studentPW = JOptionPane.showInputDialog(this,
 				"Enter the Student Password");
@@ -1462,6 +1548,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 				controller.writeUsers();
 				loadStudentsByClass();
 			}
+                        studentList.clearSelection();
 		} else {
 			System.out.println("Student not created!");
 			// student not created -try again!
@@ -1534,7 +1621,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                                 new String[]{completedScenario.getScenarioTaken().getPatientName(),
                                     completedScenario.getDateTaken(),
                                     completedScenario.getEvaluationSuggestion(),
-                                    ""+completedScenario.getScore()} );
+                                    ""+(completedScenario.getScore()==0? "score not given yet": completedScenario.getScore())} );
                         
                     }
                     
@@ -1632,6 +1719,10 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 			loadResources();
                         rootTabbedPane.setSelectedIndex(1);
                        rootTabbedPane.setSelectedIndex(0);
+                       studentManagerControlTabbedPane.setSelectedIndex(0);
+                       studentManagerControlTabbedPane.setSelectedIndex(1);
+                       studentManagerControlTabbedPane.setSelectedIndex(0);
+                       
 		}
 		super.setVisible(b);
 	}
@@ -1672,12 +1763,17 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JPanel documentationPanel;
     private javax.swing.JScrollPane documentationScrollPane;
     private javax.swing.JTable documentationTable;
+    private javax.swing.JButton editHourDueButton;
     private javax.swing.JButton editNarrativeButton;
     private javax.swing.JButton exportScenarioButton;
     private javax.swing.JLabel importExportAreaLabel;
     private javax.swing.JButton importScenarioButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1724,6 +1820,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane studentScrollPane;
     private javax.swing.JLabel studentScrollPaneLabel;
     private javax.swing.JTable studentTable;
+    private javax.swing.JTextField timeTextfield;
     private javax.swing.JButton viewSelectedNarrativeButton;
     private javax.swing.JButton viewSelectedScenarioButton;
     // End of variables declaration//GEN-END:variables

@@ -15,13 +15,14 @@ import javax.swing.JTable;
  */
 public class Evaluator {
 
-    private Scanner fileScan;
-    private String unit, intUnit, daily, everyOther, trailing0, morphine,
+    private static Scanner fileScan;
+    private static String unit, intUnit, daily, everyOther, trailing0, morphine,
             sulfate, magSulfate, microgram, halfStrength, threeWeek,
             subcutaneous1, subcutaneous2, discharge, cubic, rightEar, leftEar,
             bothEars, leftEye, rightEye, bothEyes, result;
 
-    public String giveSuggestion(String input) {
+    public static String giveSuggestion(String input) {
+        result="";
         fileScan = new Scanner(input);
 
         unit = "u";

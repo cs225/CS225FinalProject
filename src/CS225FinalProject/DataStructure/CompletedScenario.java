@@ -13,7 +13,7 @@ import javax.swing.JTable;
 public class CompletedScenario implements Serializable{
 
 	private Date dateTaken;
-	private int score;
+	private Integer score;
 	//private JTable studentInput;
         private ArrayList<Narrative> narrative;
 	private String evaluationSuggestion;
@@ -36,6 +36,7 @@ public class CompletedScenario implements Serializable{
 		this.evaluationSuggestion = evaluationSuggestion;
 		this.scenarioTaken = scenarioTaken;
                 this.studentinput = studentinput;
+                score=null;
 	}
 	public String getDateTaken() {
 		// returns a formatted string representing the exact date and time the
@@ -43,7 +44,7 @@ public class CompletedScenario implements Serializable{
 		return dateFormat.format(dateTaken);
 	}
 
-	public int getScore() {
+	public Integer getScore() {
 		return score;
 	}
 

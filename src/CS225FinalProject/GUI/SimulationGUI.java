@@ -589,18 +589,38 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 		 
                  
                  if(JOptionPane.YES_OPTION==JOptionPane.showConfirmDialog(this, "Are you sure you want to submit?", null, JOptionPane.YES_NO_OPTION)){
-                    setVisible(false);
+                    
 
 
 
+                    String suggestion = "";
+                    int narrativePointer = 0;
+                    narrativePointer+= SimulationManager.CURRENT_SCENARIO.getStartNumOfNarratives();
+                    ArrayList<Narrative> narratives = new ArrayList<Narrative>();
+                    while(narrativePointer<documentationTable.getRowCount()){
+                        
+                        suggestion+= Evaluator.giveSuggestion((String)((DefaultTableModel)documentationTable.getModel()).getValueAt(narrativePointer, 2))+"\n\n";
+                        
+                        narratives.add(new Narrative(
+                                (String)((DefaultTableModel)documentationTable.getModel()).getValueAt(narrativePointer, 0),
+                                (String)((DefaultTableModel)documentationTable.getModel()).getValueAt(narrativePointer, 1), 
+                                (String)((DefaultTableModel)documentationTable.getModel()).getValueAt(narrativePointer, 2), 
+                                (String)((DefaultTableModel)documentationTable.getModel()).getValueAt(narrativePointer, 3), 
+                                (String)((DefaultTableModel)documentationTable.getModel()).getValueAt(narrativePointer, 4)));
+                        
+                        narrativePointer++;
+                    }
+                    
                     ((Student)SimulationManager.CURRENT_USER).
                     addCompletedScenario
-                    (new CompletedScenario(new ArrayList<Narrative>(), "",
+                    (new CompletedScenario(narratives, suggestion,
                     SimulationManager.CURRENT_SCENARIO)); 
 
                     controller.writeUsers();
                     controller.populateUsers();
+                    setVisible(false);
                     SimulationManager.state = SimulationManager.LOGIN_STATE;
+                    
                  }
 	}
 

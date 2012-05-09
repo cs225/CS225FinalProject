@@ -156,15 +156,15 @@ public class Scenario implements Serializable {
          * 
          * @param time 
          * 
-         * time is in seconds
+         * time is in minutes
          */
 
         public void setTime(int time){
-            this.time = time;
+            this.time = time*60;
         }
         
         public int getTime(){
-            return time;
+            return time/60;
         }
 
     public ArrayList<Narrative> getNarrativeList() {

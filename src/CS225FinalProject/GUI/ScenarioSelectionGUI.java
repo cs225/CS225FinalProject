@@ -107,15 +107,16 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
                 .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(summarySetter)
                     .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
-                        .addComponent(currentTimeLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(timeSetter))
-                    .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
                         .addComponent(patientNameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(patientNameSetter))
-                    .addComponent(scenarioSummaryLabel))
-                .addContainerGap(396, Short.MAX_VALUE))
+                    .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
+                            .addComponent(currentTimeLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(timeSetter))
+                        .addComponent(scenarioSummaryLabel, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(442, Short.MAX_VALUE))
         );
         scenarioDescriptionPanelLayout.setVerticalGroup(
             scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,7 +133,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
                 .addComponent(scenarioSummaryLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(summarySetter)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(270, Short.MAX_VALUE))
         );
 
         scenarioDescriptionScrollPanel.setViewportView(scenarioDescriptionPanel);
@@ -196,7 +197,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(211, 211, 211)
                         .addComponent(nextButton)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -208,6 +209,10 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 				.getPatientName());
 
 		summarySetter.setText(scenarios.get(scenarioIterator).getSummary());
+                if(scenarios.get(scenarioIterator).getTime()!=0)
+                timeSetter.setText(scenarios.get(scenarioIterator).getTime()+ " Minutes");
+                else
+                    timeSetter.setText("No time limit");
 		// timeSetter.setText(scenarios.get(scenarioIterator).get);
 		SimulationManager.CURRENT_SCENARIO = scenarios.get(scenarioIterator);
 
