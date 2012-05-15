@@ -513,7 +513,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
         private void submit(){
                     String suggestion = "";//maybe extra stuff here
                     int narrativePointer = 0;
-                    narrativePointer+= SimulationManager.CURRENT_SCENARIO.getStartNumOfNarratives();
+                    narrativePointer+= SimulationManager.CURRENT_SCENARIO.getStartNumOfNarratives()-1;
                     ArrayList<Narrative> narratives = new ArrayList<Narrative>();
                     while(narrativePointer<documentationTable.getRowCount()){
                         

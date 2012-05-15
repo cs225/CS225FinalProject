@@ -29,6 +29,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.xml.crypto.Data;
 
+import static javax.swing.JOptionPane.*;
+
 /**
  * 
  * @author Eric
@@ -146,6 +148,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                    
                     }
                     if(student!=null){
+                        int sum = 0;
+                        int total = 0;
                         studentManagerControlTabbedPane.setVisible(true);
                     for(CompletedScenario completedScenario:((Student)student).getCompletedScenarios()){
                         ((DefaultTableModel) studentTable.getModel()).addRow(
@@ -153,7 +157,20 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                                     completedScenario.getDateTaken(),
                                     completedScenario.getEvaluationSuggestion(),
                                     ""+(completedScenario.getScore()==null? "score not given yet": completedScenario.getScore())} );
+                        try{
+                            sum += Integer.parseInt(completedScenario.getScore()+"");
+                            total++;
+                        }
+                        catch(NumberFormatException n){
+                            continue;
+                        }
                         
+                    }
+                    try{
+                    SimulationScoreLabel.setText("AVG Simulation Score: "+ (sum/total));
+                    }
+                    catch(Exception exception){
+                         SimulationScoreLabel.setText("AVG Simulation Score: "+ "Not available");
                     }
                     currentStudentUserNameLabel.setText(student.getUserName());
                     currentStudentPasswordLabel.setText(student.getPassword());
@@ -261,7 +278,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         setScenarioScoreButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        editSelectedResultSuggestionButton = new javax.swing.JButton();
+        deleteSelectedResultButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         scenarioManagerPanel = new javax.swing.JPanel();
         scenarioScrollPanel = new javax.swing.JScrollPane();
@@ -613,7 +631,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         });
         studentControlPanel.add(ViewScenarioSuggestionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 250, -1));
 
-        setScenarioScoreButton.setText("Set score for the Selected Scenario");
+        setScenarioScoreButton.setText("Set score for the Selected Result");
         setScenarioScoreButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 setScenarioScoreButtonActionPerformed(evt);
@@ -627,11 +645,24 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         jLabel4.setText("Current Student Username");
         studentControlPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, -1, -1));
 
-        jButton1.setText("Edit Selected Scenario Suggestion");
-        studentControlPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 220, -1));
+        editSelectedResultSuggestionButton.setText("Edit Selected Result Suggestion");
+        editSelectedResultSuggestionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editSelectedResultSuggestionButtonActionPerformed(evt);
+            }
+        });
+        studentControlPanel.add(editSelectedResultSuggestionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 220, -1));
 
-        jButton2.setText("Delete Selected Scenario");
-        studentControlPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 220, -1));
+        deleteSelectedResultButton.setText("Delete Selected Result");
+        deleteSelectedResultButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteSelectedResultButtonActionPerformed(evt);
+            }
+        });
+        studentControlPanel.add(deleteSelectedResultButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 220, -1));
+
+        jButton2.setText("Print this Student's Record");
+        studentControlPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 250, -1));
 
         studentManagerControlTabbedPane.addTab("Student Control", studentControlPanel);
 
@@ -1185,6 +1216,95 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         scenarioSummaryTextPane.setText("");
     }//GEN-LAST:event_clearSummaryButtonActionPerformed
 
+    private void deleteSelectedResultButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSelectedResultButtonActionPerformed
+        // TODO add your handling code here:
+        
+        if(studentTable.getSelectedRow()>-1){
+            int answer = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this result?",null , JOptionPane.YES_NO_OPTION);
+            if(answer== JOptionPane.NO_OPTION)
+                return;
+            Student student = controller.getStudentByNameAndClassroom((String)studentList.getSelectedValue(), (String)classList.getSelectedValue());
+            if(student!=null){
+                student.getCompletedScenarios().remove(studentTable.getSelectedRow());
+                controller.writeUsers();
+                int i = studentList.getSelectedIndex();
+                studentList.clearSelection();
+                studentList.setSelectedIndex(i);
+                
+            }
+            else
+                JOptionPane.showMessageDialog(this,"Please make sure you have the selected student highlighted in the Selection",null, JOptionPane.OK_OPTION);
+            
+        }
+        else
+            JOptionPane.showMessageDialog(this,"Please select a Result to remove",null, JOptionPane.OK_OPTION);
+    }//GEN-LAST:event_deleteSelectedResultButtonActionPerformed
+
+    private void editSelectedResultSuggestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSelectedResultSuggestionButtonActionPerformed
+        // TODO add your handling code here:
+        if (studentTable.getSelectedRow() < 0)
+			JOptionPane.showMessageDialog(this, "Please Select a a Scenario Result");
+		else {
+			final JDialog t = new JDialog(this,true);
+			t.setLayout(new GridLayout(1, 2));
+
+			t.setSize(800, 300);
+			t.setLocation(
+					(t.getToolkit().getScreenSize().width - t.getWidth()) / 2,
+					(t.getToolkit().getScreenSize().height - t.getHeight()) / 2);
+                        
+                        
+
+//			t.setTitle(patientNameLabel.getText()
+//					+ ": "
+//					+ (String) documentationTable.getValueAt(
+//							documentationTable.getSelectedRow(), 0)
+//					+ " at "
+//					+ (String) documentationTable.getValueAt(
+//							documentationTable.getSelectedRow(), 1));
+
+			JTextPane t2 = new JTextPane();
+			t2.setSize(350, 300);
+
+			final JTextPane t3 = t2;
+
+			JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			// t2.setEditable(false);
+			JScrollPane pane = new JScrollPane();
+			pane.setViewportView(t2);
+			t2.setText((String) studentTable.getValueAt(
+					studentTable.getSelectedRow(), 2));
+
+			t.add(pane);
+
+			JButton saveButton = new JButton("Save");
+			saveButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					studentTable.setValueAt((Object) t3.getText(),
+							studentTable.getSelectedRow(), 2);
+					t.dispose();
+				}
+			});
+			panel.add(saveButton);
+			JButton cancelButton = new JButton("Cancel");
+			cancelButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					t.dispose();
+				}
+			});
+			panel.add(cancelButton);
+
+			t.add(panel);
+
+			t.setVisible(true);
+			t.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		}
+    }//GEN-LAST:event_editSelectedResultSuggestionButtonActionPerformed
+
 	private void classListValueChanged(javax.swing.event.ListSelectionEvent evt) {
 		// change students based on selected class
 		loadStudentsByClass();
@@ -1197,17 +1317,67 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
 	private void viewSelectedScenarioButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+		
 	}
 
 	private void setScenarioScoreButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+             if(studentTable.getSelectedRow()>-1){
+           
+            Student student = controller.getStudentByNameAndClassroom((String)studentList.getSelectedValue(), (String)classList.getSelectedValue());
+            if(student!=null){
+                try{
+                int score = Integer.parseInt(  JOptionPane.showInputDialog(this,"Please enter the the score for this result:"));
+                student.getCompletedScenarios().get(studentTable.getSelectedRow()).setScore(score);
+                }
+                catch(NumberFormatException e){
+                    showMessageDialog(this, "Please enter the number as integer only. Setting the score is canceled","Error", OK_OPTION);
+                    return;
+                }
+                controller.writeUsers();
+                int i = studentList.getSelectedIndex();
+                studentList.clearSelection();
+                studentList.setSelectedIndex(i);
+                
+            }
+            else
+                JOptionPane.showMessageDialog(this,"Please make sure you have the selected student highlighted in the Selection",null, JOptionPane.OK_OPTION);
+            
+        }
+        else
+            JOptionPane.showMessageDialog(this,"Please select a Result to set score to",null, JOptionPane.OK_OPTION);
 	}
 
 	private void ViewScenarioSuggestionButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+            if (studentTable.getSelectedRow() < 0)
+			JOptionPane.showMessageDialog(this, "Please Select a completed Scenario");
+		else {
+			JDialog t = new JDialog(this,true);
+                        t.setSize(400, 300);
+			t.setLocation(
+					(t.getToolkit().getScreenSize().width - t.getWidth()) / 2,
+					(t.getToolkit().getScreenSize().height - t.getHeight()) / 2);
+
+			t.setTitle((String) studentTable.getValueAt(
+					studentTable.getSelectedRow(), 0)
+					+ " at "+ (String) studentTable.getValueAt(
+					studentTable.getSelectedRow(), 1));
+			
+
+			JTextPane t2 = new JTextPane();
+			t2.setEditable(false);
+			JScrollPane pane = new JScrollPane();
+			pane.setViewportView(t2);
+			t2.setText((String) studentTable.getValueAt(
+					studentTable.getSelectedRow(), 2));
+			t.add(pane);
+
+			t.setVisible(true);
+			t.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		}
 	}
 
 	private void changePasswordButtonActionPerformed(
@@ -1692,10 +1862,14 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                     
                     String newUsername = JOptionPane.showInputDialog("Enter new userName");
                     if(newUsername!= null){
+                        if(controller.isUserNameAvailable(newUsername)){
                         student.setUserName(newUsername);
                         controller.writeUsers();
                         studentManagerControlTabbedPane.setSelectedIndex(0);
                         studentManagerControlTabbedPane.setSelectedIndex(1);
+                        }
+                        else
+                            showMessageDialog(this,"This username is already being used",null,OK_OPTION);
                     }
                         
                     }
@@ -1828,6 +2002,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JLabel currentStudentPasswordLabel;
     private javax.swing.JLabel currentStudentUserNameLabel;
     private javax.swing.JButton deleteNarrativeButton;
+    private javax.swing.JButton deleteSelectedResultButton;
     private javax.swing.JLabel diagnosisLabel;
     private javax.swing.JScrollPane diagnosisScrollPane;
     private javax.swing.JTextArea diagnosisTextArea;
@@ -1836,10 +2011,10 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JTable documentationTable;
     private javax.swing.JButton editHourDueButton;
     private javax.swing.JButton editNarrativeButton;
+    private javax.swing.JButton editSelectedResultSuggestionButton;
     private javax.swing.JButton exportScenarioButton;
     private javax.swing.JLabel importExportAreaLabel;
     private javax.swing.JButton importScenarioButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -14,8 +14,6 @@ public class CompletedScenario implements Serializable{
 
 	private Date dateTaken;
 	private Integer score;
-	//private JTable studentInput;
-        private ArrayList<Narrative> narrative;
 	private String evaluationSuggestion;
 	private Scenario scenarioTaken;
 	private DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
