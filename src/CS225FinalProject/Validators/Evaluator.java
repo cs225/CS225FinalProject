@@ -24,7 +24,9 @@ public class Evaluator {
     public static String giveSuggestion(String input) {
         result="The potential JAHCO errors are: ";
         fileScan = new Scanner(input);
-
+        fileScan.nextLine();
+        String dosage = fileScan.nextLine();
+        System.out.println(dosage);
         unit = "u";
         intUnit = "iu";
         daily = "Q.D.";
@@ -47,67 +49,68 @@ public class Evaluator {
         leftEye = "O.D.";
         bothEyes = "O.U.";
 
-        if (fileScan.hasNext(unit)) {
+        System.out.println(input);
+        if (dosage.contains(unit)) {
             result += unit + "\n";
         }
-        if (fileScan.hasNext(intUnit)) {
+        if (dosage.contains(intUnit)) {
             result += intUnit + "\n";
         }
-        if (fileScan.hasNext(daily)) {
+        if (dosage.contains(daily)) {
             result += daily + "\n";
         }
-        if (fileScan.hasNext(everyOther)) {
+        if (dosage.contains(everyOther)) {
             result += everyOther + "\n";
         }
-        if (fileScan.hasNext(trailing0)) {
+        if (dosage.contains(trailing0)) {
             result += trailing0 + "\n";
         }
-        if (fileScan.hasNext(morphine)) {
+        if (dosage.contains(morphine)) {
             result += morphine + "\n";
         }
-        if (fileScan.hasNext(sulfate)) {
+        if (dosage.contains(sulfate)) {
             result += sulfate + "\n";
         }
-        if (fileScan.hasNext(magSulfate)) {
+        if (dosage.contains(magSulfate)) {
             result += magSulfate + "\n";
         }
-        if (fileScan.hasNext(microgram)) {
+        if (dosage.contains(microgram)) {
             result += microgram + "\n";
         }
-        if (fileScan.hasNext(halfStrength)) {
+        if (dosage.contains(halfStrength)) {
             result += halfStrength + "\n";
         }
-        if (fileScan.hasNext(threeWeek)) {
+        if (dosage.contains(threeWeek)) {
             result += threeWeek + "\n";
         }
-        if (fileScan.hasNext(subcutaneous1)) {
+        if (dosage.contains(subcutaneous1)) {
             result += subcutaneous1 + "\n";
         }
-        if (fileScan.hasNext(subcutaneous2)) {
+        if (dosage.contains(subcutaneous2)) {
             result += subcutaneous2 + "\n";
         }
-        if (fileScan.hasNext(discharge)) {
+        if (dosage.contains(discharge)) {
             result += discharge + "\n";
         }
-        if (fileScan.hasNext(cubic)) {
+        if (dosage.contains(cubic)) {
             result += cubic + "\n";
         }
-        if (fileScan.hasNext(rightEar)) {
+        if (dosage.contains(rightEar)) {
             result += rightEar + "\n";
         }
-        if (fileScan.hasNext(leftEar)) {
+        if (dosage.contains(leftEar)) {
             result += leftEar + "\n";
         }
-        if (fileScan.hasNext(bothEars)) {
+        if (dosage.contains(bothEars)) {
             result += bothEars + "\n";
         }
-        if (fileScan.hasNext(rightEye)) {
+        if (dosage.contains(rightEye)) {
             result += rightEye + "\n";
         }
-        if (fileScan.hasNext(leftEye)) {
+        if (dosage.contains(leftEye)) {
             result += leftEye + "\n";
         }
-        if (fileScan.hasNext(bothEyes)) {
+        if (dosage.contains(bothEyes)) {
             result += bothEyes + "\n";
         }
 
