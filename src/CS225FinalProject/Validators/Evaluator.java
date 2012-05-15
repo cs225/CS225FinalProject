@@ -22,7 +22,7 @@ public class Evaluator {
             bothEars, leftEye, rightEye, bothEyes, result;
 
     public static String giveSuggestion(String input) {
-        result="";
+        result="The potential JAHCO errors are: ";
         fileScan = new Scanner(input);
 
         unit = "u";
