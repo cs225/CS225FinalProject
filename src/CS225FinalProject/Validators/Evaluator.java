@@ -26,7 +26,7 @@ public class Evaluator {
         fileScan = new Scanner(input);
         fileScan.nextLine();
         String dosage = fileScan.nextLine();
-        System.out.println(dosage);
+      
         unit = "u";
         intUnit = "iu";
         daily = "Q.D.";
