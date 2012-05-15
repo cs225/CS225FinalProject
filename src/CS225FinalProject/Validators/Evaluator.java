@@ -29,88 +29,88 @@ public class Evaluator {
       
         unit = "u";
         intUnit = "iu";
-        daily = "q.d.";
-        everyOther = "q.o.d.";
+        daily = "Q.D.";
+        everyOther = "Q.O.D.";
         trailing0 = ".0";
-        morphine = "ms";
-        sulfate = "mso4";
-        magSulfate = "mgso4";
+        morphine = "MS";
+        sulfate = "MSO4";
+        magSulfate = "MgSO4";
         microgram = "ug";
-        halfStrength = "h.s.";
-        threeWeek = "t.i.w.";
-        subcutaneous1 = "s.c.";
-        subcutaneous2 = "s.q.";
-        discharge = "d/c";
+        halfStrength = "H.S.";
+        threeWeek = "T.I.W.";
+        subcutaneous1 = "S.C.";
+        subcutaneous2 = "S.Q.";
+        discharge = "D/C";
         cubic = "c.c.";
-        rightEar = "a.s.";
-        leftEar = "a.d.";
-        bothEars = "a.u.";
-        rightEye = "o.s.";
-        leftEye = "o.d.";
-        bothEyes = "o.u.";
+        rightEar = "A.S.";
+        leftEar = "A.D.";
+        bothEars = "A.U.";
+        rightEye = "O.S.";
+        leftEye = "O.D.";
+        bothEyes = "O.U.";
 
         System.out.println(input);
-        if (dosage.toLowerCase().contains(unit)) {
+        if (dosage.contains(unit)) {
             result += unit + "\n";
         }
-        if (dosage.toLowerCase().contains(intUnit)) {
+        if (dosage.contains(intUnit)) {
             result += intUnit + "\n";
         }
-        if (dosage.toLowerCase().contains(daily)) {
+        if (dosage.contains(daily)) {
             result += daily + "\n";
         }
-        if (dosage.toLowerCase().contains(everyOther)) {
+        if (dosage.contains(everyOther)) {
             result += everyOther + "\n";
         }
-        if (dosage.toLowerCase().contains(trailing0)) {
+        if (dosage.contains(trailing0)) {
             result += trailing0 + "\n";
         }
-        if (dosage.toLowerCase().contains(morphine)) {
+        if (dosage.contains(morphine)) {
             result += morphine + "\n";
         }
-        if (dosage.toLowerCase().contains(sulfate)) {
+        if (dosage.contains(sulfate)) {
             result += sulfate + "\n";
         }
-        if (dosage.toLowerCase().contains(magSulfate)) {
+        if (dosage.contains(magSulfate)) {
             result += magSulfate + "\n";
         }
-        if (dosage.toLowerCase().contains(microgram)) {
+        if (dosage.contains(microgram)) {
             result += microgram + "\n";
         }
-        if (dosage.toLowerCase().contains(halfStrength)) {
+        if (dosage.contains(halfStrength)) {
             result += halfStrength + "\n";
         }
-        if (dosage.toLowerCase().contains(threeWeek)) {
+        if (dosage.contains(threeWeek)) {
             result += threeWeek + "\n";
         }
-        if (dosage.toLowerCase().contains(subcutaneous1)) {
+        if (dosage.contains(subcutaneous1)) {
             result += subcutaneous1 + "\n";
         }
-        if (dosage.toLowerCase().contains(subcutaneous2)) {
+        if (dosage.contains(subcutaneous2)) {
             result += subcutaneous2 + "\n";
         }
-        if (dosage.toLowerCase().contains(discharge)) {
+        if (dosage.contains(discharge)) {
             result += discharge + "\n";
         }
-        if (dosage.toLowerCase().contains(cubic)) {
+        if (dosage.contains(cubic)) {
             result += cubic + "\n";
         }
-        if (dosage.toLowerCase().contains(rightEar)) {
+        if (dosage.contains(rightEar)) {
             result += rightEar + "\n";
         }
-        if (dosage.toLowerCase().contains(leftEar)) {
+        if (dosage.contains(leftEar)) {
             result += leftEar + "\n";
         }
-        if (dosage.toLowerCase().contains(bothEars)) {
+        if (dosage.contains(bothEars)) {
             result += bothEars + "\n";
         }
-        if (dosage.toLowerCase().contains(rightEye)) {
+        if (dosage.contains(rightEye)) {
             result += rightEye + "\n";
         }
-        if (dosage.toLowerCase().contains(leftEye)) {
+        if (dosage.contains(leftEye)) {
             result += leftEye + "\n";
         }
-        if (dosage.toLowerCase().contains(bothEyes)) {
+        if (dosage.contains(bothEyes)) {
             result += bothEyes + "\n";
         }
 
