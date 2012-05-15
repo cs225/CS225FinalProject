@@ -566,7 +566,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="setScenarioScoreButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Set score for the Selected Scenario"/>
+                        <Property name="text" type="java.lang.String" value="Set score for the Selected Result"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setScenarioScoreButtonActionPerformed"/>
@@ -597,23 +597,39 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton1">
+                    <Component class="javax.swing.JButton" name="editSelectedResultSuggestionButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Edit Selected Scenario Suggestion"/>
+                        <Property name="text" type="java.lang.String" value="Edit Selected Result Suggestion"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editSelectedResultSuggestionButtonActionPerformed"/>
+                      </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="0" y="340" width="220" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton2">
+                    <Component class="javax.swing.JButton" name="deleteSelectedResultButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Delete Selected Scenario"/>
+                        <Property name="text" type="java.lang.String" value="Delete Selected Result"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteSelectedResultButtonActionPerformed"/>
+                      </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="0" y="370" width="220" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="jButton2">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Print this Student&apos;s Record"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="230" y="400" width="250" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
