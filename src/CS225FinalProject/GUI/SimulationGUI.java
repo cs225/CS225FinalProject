@@ -68,6 +68,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 	private void loadScenarioContents() {
 
 		START_TIME = SimulationManager.CURRENT_SCENARIO.getTime();
+                time = START_TIME*60;
 		Narrative[] narratives = new Narrative[SimulationManager.CURRENT_SCENARIO
 				.getNarrativeList().size()];
 
@@ -109,7 +110,8 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 				.getPatientName());
 		allergiesSetter.setText(SimulationManager.CURRENT_SCENARIO
 				.getAllergies());
-		diagnosisSetter.setText(SimulationManager.CURRENT_SCENARIO
+		
+                diagnosisSetterV2.setText(SimulationManager.CURRENT_SCENARIO
 				.getDiagnosis());
 		roomNumSetter
 				.setText("" + SimulationManager.CURRENT_SCENARIO.getRoom());
@@ -145,9 +147,9 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 									+ (time - (time / 60) * 60)));
 				} else if (time == 0 && isVisible()) {
 					JOptionPane.showMessageDialog(rootPane, "TIME OVER!\n"
-							+ "You will be logged off automatically");
-					setVisible(false);
-					SimulationManager.state = SimulationManager.LOGIN_STATE;
+							+ "Your progress is saved\n"
+                                                        + "Please click OK to logout.", "TIME OVER", JOptionPane.OK_OPTION);
+					submit();
 				}
 				if (!isVisible()) {
 					time = SimulationGUI.START_TIME;
@@ -186,13 +188,14 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
         patientNameText = new javax.swing.JLabel();
         patientNameLabel = new javax.swing.JLabel();
         diagnosisText = new javax.swing.JLabel();
-        diagnosisSetter = new javax.swing.JLabel();
         allergiesText = new javax.swing.JLabel();
         allergiesSetter = new javax.swing.JLabel();
         marScrollPane = new javax.swing.JScrollPane();
         marTable = new javax.swing.JTable();
         giveMedicationButton = new javax.swing.JButton();
         hourDueButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        diagnosisSetterV2 = new javax.swing.JTextPane();
         documentation_Panel = new javax.swing.JPanel();
         documentationScrollPane = new javax.swing.JScrollPane();
         documentationPane = new javax.swing.JPanel();
@@ -212,7 +215,9 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
         setTitle("Medical Administration Records");
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 0, 0));
+        setPreferredSize(new java.awt.Dimension(1024, 675));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jcahoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/JAHCO.png"))); // NOI18N
         jcahoScrollPane.setViewportView(jcahoLabel);
@@ -235,25 +240,32 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 
         rootTabbedPane.addTab("JCAHO", jcaho_Panel);
 
+        mar_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         roomNumberText.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         roomNumberText.setText("Room:");
+        mar_Panel.add(roomNumberText, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, -1, -1));
 
         roomNumSetter.setText("number");
+        mar_Panel.add(roomNumSetter, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
 
         patientNameText.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         patientNameText.setText("Name:");
+        mar_Panel.add(patientNameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         patientNameLabel.setText("patientName");
+        mar_Panel.add(patientNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
 
         diagnosisText.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         diagnosisText.setText("Diagnosis:");
-
-        diagnosisSetter.setText("jLabel8");
+        mar_Panel.add(diagnosisText, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
         allergiesText.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         allergiesText.setText("Allergies:");
+        mar_Panel.add(allergiesText, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
 
         allergiesSetter.setText("jLabel10");
+        mar_Panel.add(allergiesSetter, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, -1));
 
         marTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -282,7 +294,10 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
         });
         marTable.setRowHeight(45);
         marTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        marTable.getTableHeader().setReorderingAllowed(false);
         marScrollPane.setViewportView(marTable);
+
+        mar_Panel.add(marScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1005, 243));
 
         giveMedicationButton.setText("Give Medication");
         giveMedicationButton.addActionListener(new java.awt.event.ActionListener() {
@@ -290,74 +305,20 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                 giveMedicationButtonActionPerformed(evt);
             }
         });
+        mar_Panel.add(giveMedicationButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 260, -1, -1));
 
-        hourDueButton.setText("Hour Due Details");
+        hourDueButton.setText("View Hour Due Details");
         hourDueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hourDueButtonActionPerformed(evt);
             }
         });
+        mar_Panel.add(hourDueButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, -1, -1));
 
-        javax.swing.GroupLayout mar_PanelLayout = new javax.swing.GroupLayout(mar_Panel);
-        mar_Panel.setLayout(mar_PanelLayout);
-        mar_PanelLayout.setHorizontalGroup(
-            mar_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mar_PanelLayout.createSequentialGroup()
-                .addGroup(mar_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mar_PanelLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(mar_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(mar_PanelLayout.createSequentialGroup()
-                                .addComponent(diagnosisText)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(diagnosisSetter))
-                            .addGroup(mar_PanelLayout.createSequentialGroup()
-                                .addComponent(patientNameText)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(patientNameLabel)))
-                        .addGap(123, 123, 123)
-                        .addComponent(roomNumberText)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(roomNumSetter)
-                        .addGap(61, 61, 61)
-                        .addComponent(allergiesText)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(allergiesSetter)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(hourDueButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(giveMedicationButton))
-                    .addGroup(mar_PanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(marScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1005, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(1158, 1158, 1158))
-        );
-        mar_PanelLayout.setVerticalGroup(
-            mar_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mar_PanelLayout.createSequentialGroup()
-                .addGap(303, 303, 303)
-                .addGroup(mar_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(patientNameText)
-                    .addComponent(patientNameLabel)
-                    .addComponent(allergiesText)
-                    .addComponent(roomNumberText)
-                    .addComponent(roomNumSetter)
-                    .addComponent(allergiesSetter))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(mar_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(diagnosisText)
-                    .addComponent(diagnosisSetter))
-                .addContainerGap())
-            .addGroup(mar_PanelLayout.createSequentialGroup()
-                .addGap(0, 49, Short.MAX_VALUE)
-                .addComponent(marScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(mar_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(giveMedicationButton)
-                    .addComponent(hourDueButton))
-                .addGap(232, 232, 232))
-        );
+        diagnosisSetterV2.setEditable(false);
+        jScrollPane1.setViewportView(diagnosisSetterV2);
+
+        mar_Panel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 710, 260));
 
         rootTabbedPane.addTab("MAR", mar_Panel);
 
@@ -370,25 +331,29 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
             new String [] {
                 "Date", "Time", "Narrative", "Follow Up", "Initialls"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         documentationTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         documentationTable.setName("sample");
         documentationTable.getTableHeader().setReorderingAllowed(false);
         docTabelHolder.setViewportView(documentationTable);
-        documentationTable.getColumnModel().getColumn(0).setMinWidth(60);
+        documentationTable.getColumnModel().getColumn(0).setResizable(false);
         documentationTable.getColumnModel().getColumn(0).setPreferredWidth(60);
-        documentationTable.getColumnModel().getColumn(0).setMaxWidth(60);
-        documentationTable.getColumnModel().getColumn(1).setMinWidth(90);
+        documentationTable.getColumnModel().getColumn(1).setResizable(false);
         documentationTable.getColumnModel().getColumn(1).setPreferredWidth(90);
-        documentationTable.getColumnModel().getColumn(1).setMaxWidth(90);
         documentationTable.getColumnModel().getColumn(2).setResizable(false);
         documentationTable.getColumnModel().getColumn(2).setPreferredWidth(695);
-        documentationTable.getColumnModel().getColumn(3).setMinWidth(80);
+        documentationTable.getColumnModel().getColumn(3).setResizable(false);
         documentationTable.getColumnModel().getColumn(3).setPreferredWidth(80);
-        documentationTable.getColumnModel().getColumn(3).setMaxWidth(80);
-        documentationTable.getColumnModel().getColumn(4).setMinWidth(50);
+        documentationTable.getColumnModel().getColumn(4).setResizable(false);
         documentationTable.getColumnModel().getColumn(4).setPreferredWidth(50);
-        documentationTable.getColumnModel().getColumn(4).setMaxWidth(50);
 
         documentationPane.add(docTabelHolder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 985, 370));
 
@@ -441,6 +406,8 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 
         rootTabbedPane.addTab("Documentation", documentation_Panel);
 
+        getContentPane().add(rootTabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         cancelSimulationButton.setBackground(new java.awt.Color(204, 0, 0));
         cancelSimulationButton.setText("Cancel Simulation");
         cancelSimulationButton.addActionListener(new java.awt.event.ActionListener() {
@@ -448,11 +415,14 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                 cancelSimulationButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(cancelSimulationButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 600, -1, -1));
 
         timeLeftTextLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         timeLeftTextLabel.setText("Time Left:");
+        getContentPane().add(timeLeftTextLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, -1, 23));
 
         timeLabel.setText("15:00");
+        getContentPane().add(timeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 584, -1, 30));
 
         submitButton.setBackground(new java.awt.Color(0, 204, 0));
         submitButton.setText("Submit");
@@ -461,6 +431,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                 submitButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 600, -1, -1));
 
         printSampleButton.setText("Print");
         printSampleButton.addActionListener(new java.awt.event.ActionListener() {
@@ -468,48 +439,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                 printSampleButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(timeLeftTextLabel)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(timeLabel)
-                        .addGap(81, 915, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(cancelSimulationButton)
-                        .addGap(223, 223, 223)
-                        .addComponent(printSampleButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(submitButton)
-                        .addGap(104, 104, 104))))
-            .addComponent(rootTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(rootTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(timeLeftTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(timeLabel))
-                        .addContainerGap(43, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(printSampleButton)
-                            .addComponent(cancelSimulationButton)
-                            .addComponent(submitButton))
-                        .addGap(24, 24, 24))))
-        );
+        getContentPane().add(printSampleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 600, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -576,24 +506,12 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 								TimeZone.getDefault()).getTime()),
 						dayFormat.format(Calendar.getInstance(
 								TimeZone.getDefault()).getTime()),
-						"Temperature:\nPulse:\n Resp:\n BP:\n O2 Sat:\n Pain Scale:\n FSBS:\n Site:\n Related Diagnosis/Reason for medication:\n" });
-		// documentationTable.isfo
+						"Notes:\n\n\n\n\nTemperature:\nPulse:\nResp:\nBP:\nO2 Sat:\nPain Scale:\nFSBS:\nSite:\nRelated Diagnosis/Reason for medication:\n" });
 	}
 
-	private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {
-
-		/*
-                 * this need a better implementation for recording the student's narrative and suggestion.
-                 * Eric
-                 */
-		 
-                 
-                 if(JOptionPane.YES_OPTION==JOptionPane.showConfirmDialog(this, "Are you sure you want to submit?", null, JOptionPane.YES_NO_OPTION)){
-                    
-
-
-
-                    String suggestion = "";
+        
+        private void submit(){
+                    String suggestion = "";//maybe extra stuff here
                     int narrativePointer = 0;
                     narrativePointer+= SimulationManager.CURRENT_SCENARIO.getStartNumOfNarratives();
                     ArrayList<Narrative> narratives = new ArrayList<Narrative>();
@@ -620,7 +538,12 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                     controller.populateUsers();
                     setVisible(false);
                     SimulationManager.state = SimulationManager.LOGIN_STATE;
-                    
+            
+        }
+	private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {
+
+                 if(JOptionPane.YES_OPTION==JOptionPane.showConfirmDialog(this, "Are you sure you want to submit?", null, JOptionPane.YES_NO_OPTION)){
+                     submit();
                  }
 	}
 
@@ -992,7 +915,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 							"Medication Given: "
 									+ medicationNameLabel.getText()
 									+ "\nDose:"
-									+ amountTextField.getText()
+									+ amountTextField.getText()+" "
 									+ unitsTextField.getText()
 									+ "\nRoute: "
 									+ marTable.getValueAt(
@@ -1030,6 +953,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 		}
 
 		private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {
+                    this.dispose();
                     
                     
 			
@@ -1156,7 +1080,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
     private javax.swing.JLabel allergiesText;
     private javax.swing.JButton cancelSimulationButton;
     private javax.swing.JButton deleteNarrativeButton;
-    private javax.swing.JLabel diagnosisSetter;
+    private javax.swing.JTextPane diagnosisSetterV2;
     private javax.swing.JLabel diagnosisText;
     private javax.swing.JScrollPane docTabelHolder;
     private javax.swing.JPanel documentationPane;
@@ -1167,6 +1091,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
     private javax.swing.JButton giveMedicationButton;
     private javax.swing.JButton hourDueButton;
     private javax.swing.JButton insertNewNarrativeButton;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jcahoLabel;
     private javax.swing.JScrollPane jcahoScrollPane;
     private javax.swing.JPanel jcaho_Panel;

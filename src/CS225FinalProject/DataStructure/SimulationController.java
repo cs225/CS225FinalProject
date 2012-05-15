@@ -98,6 +98,14 @@ public class SimulationController implements Serializable {
 	public static SimulationController getInstance() {
 		return SimControl.instance;
 	}
+        
+        public boolean isUserNameAvailable(String username){
+            for(User user:users){
+                if(user.getUserName().equals(username))
+                    return false;
+            }
+            return true;
+        }
 
 	// Methods
 	/**

@@ -22,6 +22,20 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 
 	private int scenarioIterator = 0;
 
+        
+        /**
+         * this verifies that it loads the selected scenario properly.
+         */
+    @Override
+    public void setVisible(boolean b) {
+        super.setVisible(b);
+        if(b)
+            setSelectedScenarioInfo();
+    }
+        
+        
+        
+
 	/**
 	 * Creates new form ScenarioSelectionGUI
 	 */
@@ -94,7 +108,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 
         summarySetter.setText("summary");
 
-        currentTimeLabel.setText("Time:");
+        currentTimeLabel.setText("Time Limit:");
 
         timeSetter.setText("5:00PM");
 
@@ -103,33 +117,30 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
         scenarioDescriptionPanelLayout.setHorizontalGroup(
             scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scenarioSummaryLabel)
                     .addComponent(summarySetter)
                     .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
                         .addComponent(patientNameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(patientNameSetter))
-                    .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
-                            .addComponent(currentTimeLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(timeSetter))
-                        .addComponent(scenarioSummaryLabel, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(442, Short.MAX_VALUE))
+                    .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
+                        .addComponent(currentTimeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(timeSetter)))
+                .addContainerGap(486, Short.MAX_VALUE))
         );
         scenarioDescriptionPanelLayout.setVerticalGroup(
             scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(patientNameLabel)
                     .addComponent(patientNameSetter))
-                .addGap(7, 7, 7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(currentTimeLabel)
                     .addComponent(timeSetter))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addComponent(scenarioSummaryLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(summarySetter)
@@ -197,7 +208,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(211, 211, 211)
                         .addComponent(nextButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();

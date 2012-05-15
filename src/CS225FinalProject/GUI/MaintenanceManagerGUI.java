@@ -161,6 +161,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                     }
                     
                 }
+                
+                if(studentManagerControlTabbedPane.getSelectedIndex()==1 && studentList.getSelectedIndex()<0)
+                    studentManagerControlTabbedPane.setSelectedIndex(0);
+                else if(studentManagerControlTabbedPane.getSelectedIndex()==0 &&studentList.getSelectedIndex()>0)
+                    studentList.clearSelection();
                 //else
                        // studentManagerControlTabbedPane.setVisible(false);
                    
@@ -256,6 +261,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         setScenarioScoreButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         scenarioManagerPanel = new javax.swing.JPanel();
         scenarioScrollPanel = new javax.swing.JScrollPane();
         scenarioList = new javax.swing.JList();
@@ -293,6 +300,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         scenarioSummaryLabel = new javax.swing.JLabel();
         ScenarioScrollPane = new javax.swing.JScrollPane();
         scenarioSummaryTextPane = new javax.swing.JTextPane();
+        clearSummaryButton = new javax.swing.JButton();
         saveChangesButton = new javax.swing.JButton();
         scenarioPreviewLabel = new javax.swing.JLabel();
         UndoAllChangesButton = new javax.swing.JButton();
@@ -328,6 +336,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         classList.setModel(
             sessionListModel
         );
+        classList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         classList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 classListValueChanged(evt);
@@ -342,6 +351,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
         studentManagerPanel.add(classScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, 150, 120));
 
+        studentList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         studentList.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 studentListFocusGained(evt);
@@ -462,6 +472,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        classControlJTable.getTableHeader().setReorderingAllowed(false);
         classControlScrollPane.setViewportView(classControlJTable);
 
         javax.swing.GroupLayout classControlPanelLayout = new javax.swing.GroupLayout(classControlPanel);
@@ -533,6 +544,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        studentTable.getTableHeader().setReorderingAllowed(false);
         studentControlScrollPane.setViewportView(studentTable);
         studentTable.getColumnModel().getColumn(0).setResizable(false);
         studentTable.getColumnModel().getColumn(1).setResizable(false);
@@ -547,13 +559,13 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 viewSelectedScenarioButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(viewSelectedScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 200, -1));
+        studentControlPanel.add(viewSelectedScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 250, -1));
 
         studentNameLabel.setText("StudentName");
         studentControlPanel.add(studentNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 0, -1, -1));
 
         printButton.setText("Print Selected Scenario Input");
-        studentControlPanel.add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 200, -1));
+        studentControlPanel.add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 250, -1));
 
         SimulationScoreLabel.setText("AVG Simulation Score");
         studentControlPanel.add(SimulationScoreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, -1));
@@ -599,7 +611,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 ViewScenarioSuggestionButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(ViewScenarioSuggestionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 200, -1));
+        studentControlPanel.add(ViewScenarioSuggestionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 250, -1));
 
         setScenarioScoreButton.setText("Set score for the Selected Scenario");
         setScenarioScoreButton.addActionListener(new java.awt.event.ActionListener() {
@@ -607,13 +619,19 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 setScenarioScoreButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(setScenarioScoreButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, -1, -1));
+        studentControlPanel.add(setScenarioScoreButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 220, -1));
 
         jLabel3.setText("Current Student Password");
         studentControlPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 280, -1, -1));
 
         jLabel4.setText("Current Student Username");
         studentControlPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, -1, -1));
+
+        jButton1.setText("Edit Selected Scenario Suggestion");
+        studentControlPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 220, -1));
+
+        jButton2.setText("Delete Selected Scenario");
+        studentControlPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 220, -1));
 
         studentManagerControlTabbedPane.addTab("Student Control", studentControlPanel);
 
@@ -629,6 +647,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         scenarioListModel.add(0,"CS225 TESTING");
         scenarioListModel.add(0,"CS225 TESTING");
         scenarioList.setModel(scenarioListModel);
+        scenarioList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         scenarioList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 scenarioListValueChanged(evt);
@@ -662,8 +681,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        medJTable.setColumnSelectionAllowed(true);
         medJTable.setRowHeight(45);
+        medJTable.getTableHeader().setReorderingAllowed(false);
         medScrollPane.setViewportView(medJTable);
+        medJTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         marPanel.add(medScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 31, 932, 243));
 
@@ -689,7 +711,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         allergiesScrollPane.setViewportView(allergiesTextArea);
 
         marPanel.add(allergiesScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 324, 121));
-        marPanel.add(patientNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 122, -1));
+        marPanel.add(patientNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 140, -1));
 
         diagnosisTextArea.setColumns(20);
         diagnosisTextArea.setRows(5);
@@ -740,9 +762,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             }
         ));
         documentationTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        documentationTable.setColumnSelectionAllowed(true);
         documentationTable.setName("sample");
         documentationTable.getTableHeader().setReorderingAllowed(false);
         documentationScrollPane.setViewportView(documentationTable);
+        documentationTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         documentationTable.getColumnModel().getColumn(2).setPreferredWidth(625);
 
         addNarrativeButton.setText("Add New Narrative");
@@ -825,6 +849,13 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
         ScenarioScrollPane.setViewportView(scenarioSummaryTextPane);
 
+        clearSummaryButton.setText("Clear Summary");
+        clearSummaryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearSummaryButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout scenarioSummaryPanelLayout = new javax.swing.GroupLayout(scenarioSummaryPanel);
         scenarioSummaryPanel.setLayout(scenarioSummaryPanelLayout);
         scenarioSummaryPanelLayout.setHorizontalGroup(
@@ -833,7 +864,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(scenarioSummaryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scenarioSummaryLabel)
-                    .addComponent(ScenarioScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ScenarioScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clearSummaryButton))
                 .addContainerGap(488, Short.MAX_VALUE))
         );
         scenarioSummaryPanelLayout.setVerticalGroup(
@@ -843,7 +875,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 .addComponent(scenarioSummaryLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ScenarioScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(clearSummaryButton)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         previewTabbedPane.addTab("Summary", scenarioSummaryPanel);
@@ -1146,6 +1180,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     
     }//GEN-LAST:event_editHourDueButtonActionPerformed
 
+    private void clearSummaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearSummaryButtonActionPerformed
+        // TODO add your handling code here:
+        scenarioSummaryTextPane.setText("");
+    }//GEN-LAST:event_clearSummaryButtonActionPerformed
+
 	private void classListValueChanged(javax.swing.event.ListSelectionEvent evt) {
 		// change students based on selected class
 		loadStudentsByClass();
@@ -1250,6 +1289,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 controller.writeScenarios();
                 rootTabbedPane.setSelectedIndex(0);
                 rootTabbedPane.setSelectedIndex(1);
+                if(scenarioList.getModel().getSize()>0)
+                    scenarioList.setSelectedIndex(0);
                 }
                 else
                     JOptionPane.showMessageDialog(this, "file selected is not corrected");
@@ -1396,6 +1437,13 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(this, "Please set the time limit by number");
                             return;
                         }
+                        try{
+                            scenario.setRoom(Integer.parseInt(roomNumberTextField.getText()));
+                        }
+                        catch(NumberFormatException e){
+                            JOptionPane.showMessageDialog(this, "Please set the room number by number");
+                            return;
+                        }
                         
 
 			// templates for setters when recording/editing a scenario.
@@ -1443,6 +1491,13 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                         controller.writeScenarios();
                         rootTabbedPane.setSelectedIndex(0);
                         rootTabbedPane.setSelectedIndex(1);
+                        
+                        for(int i = 0 ; i< scenarioList.getModel().getSize();i++){
+                            if(patientNameTextField.getText().equals(scenarioList.getModel().getElementAt(i))){
+                                scenarioList.setSelectedIndex(i);
+                                break;
+                            }
+                        }
                         
 
 		}
@@ -1494,11 +1549,14 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	private void removeStudentButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 
+            
 		if (studentList.getSelectedIndex() != -1) {
+                    if(JOptionPane.showConfirmDialog(this, "Are you sure you want to remove "+(String)studentList.getSelectedValue()+"?", null, JOptionPane.YES_NO_OPTION)== JOptionPane.YES_OPTION){
                   String name = ((String)studentList.getSelectedValue());
 
                     controller.removeStudentByNameAndClassroom(name,(String) classList.getSelectedValue());
                     classListValueChanged(null);
+                    }
 //			String studentName = JOptionPane.showInputDialog(this,
 //					"Enter the Student User Name");
 //
@@ -1515,6 +1573,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 //		} else {
 //			JOptionPane.showMessageDialog(this, "Please Select a Student.");
 		}
+                else
+                    JOptionPane.showMessageDialog(this, "Please select a student to remove", "Student Removal", JOptionPane.OK_OPTION);
+            
 	}
 
 	private void addStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1575,8 +1636,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
 	private void removeClassButtonActionPerformed(ActionEvent evt) {
 
+            if(classList.getSelectedIndex()>-1){
 		int n = JOptionPane.showConfirmDialog(this,
-				"Are you sure you want to delete this selection?",
+				"Are you sure you want to delete "+ (String)classList.getSelectedValue() +" and its students?",
 				"Confirm Removal", JOptionPane.YES_NO_OPTION);
 
 		if (n == JOptionPane.YES_OPTION) {
@@ -1595,6 +1657,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 				// class removal unsuccessful -try again!
 			}
 		}
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Please select a classroom to remove", null, JOptionPane.OK_OPTION);
 	}
 
         /**
@@ -1723,6 +1788,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                        studentManagerControlTabbedPane.setSelectedIndex(1);
                        studentManagerControlTabbedPane.setSelectedIndex(0);
                        
+                       if(classList.getModel().getSize()>0)
+                           classList.setSelectedIndex(0);
+                       if(scenarioList.getModel().getSize()>0)
+                           scenarioList.setSelectedIndex(0);
+                       
 		}
 		super.setVisible(b);
 	}
@@ -1752,6 +1822,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JList classList;
     private javax.swing.JScrollPane classScrollPane;
     private javax.swing.JLabel classScrollPaneLabel;
+    private javax.swing.JButton clearSummaryButton;
     private javax.swing.JLabel currentProfessorPasswordLabel;
     private javax.swing.JLabel currentProfessorUserNameLabel;
     private javax.swing.JLabel currentStudentPasswordLabel;
@@ -1768,6 +1839,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JButton exportScenarioButton;
     private javax.swing.JLabel importExportAreaLabel;
     private javax.swing.JButton importScenarioButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
