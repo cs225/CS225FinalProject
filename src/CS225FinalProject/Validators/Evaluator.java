@@ -30,7 +30,7 @@ public class Evaluator {
             fileScan.nextLine();
         if(fileScan.hasNextLine())
             dosage = fileScan.nextLine();
-      System.err.println(dosage);
+      System.out.println(dosage);
         unit = "u";
         intUnit = "iu";
         daily = "q.d.";
