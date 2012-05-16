@@ -1,4 +1,4 @@
-package CS225FinalProject.printer;
+ package CS225FinalProject.printer;
 
 import CS225FinalProject.DataStructure.CompletedScenario;
 import CS225FinalProject.DataStructure.Scenario;
