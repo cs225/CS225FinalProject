@@ -124,6 +124,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                        
                     studentManagerControlTabbedPane.setSelectedIndex(0);
                     studentManagerControlTabbedPane.setSelectedIndex(1);
+                        
                     
                     }
                 }
@@ -181,8 +182,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 
                 if(studentManagerControlTabbedPane.getSelectedIndex()==1 && studentList.getSelectedIndex()<0)
                     studentManagerControlTabbedPane.setSelectedIndex(0);
-                else if(studentManagerControlTabbedPane.getSelectedIndex()==0 &&studentList.getSelectedIndex()>0)
+                else if(studentManagerControlTabbedPane.getSelectedIndex()==0 &&studentList.getSelectedIndex()>-1){
+                    int selected = studentList.getSelectedIndex();
                     studentList.clearSelection();
+                    studentList.setSelectedIndex(selected);
+                }
                 //else
                        // studentManagerControlTabbedPane.setVisible(false);
                    
@@ -1317,6 +1321,24 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
 	private void viewSelectedScenarioButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
+            
+            if(studentTable.getSelectedRow()>-1){
+            
+            Student student = controller.getStudentByNameAndClassroom((String)studentList.getSelectedValue(), (String)classList.getSelectedValue());
+            if(student!=null){
+                SimulationGUI preview = new SimulationGUI(student.getCompletedScenarios().get(studentTable.getSelectedRow()).getScenarioTaken(),
+                        
+                        student.getCompletedScenarios().get(studentTable.getSelectedRow()).getStudentInput());
+                
+            }
+            else
+                JOptionPane.showMessageDialog(this,"Please make sure you have the selected student highlighted in the Selection",null, JOptionPane.OK_OPTION);
+            
+        }
+        else
+            JOptionPane.showMessageDialog(this,"Please select a Result to view",null, JOptionPane.OK_OPTION);
+            
+            
 		
 	}
 
@@ -1750,40 +1772,14 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
 	private void addStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
-            String studentName = JOptionPane.showInputDialog(this,
-				"Enter the Student's Real Name");
-		// taking this data should be handled better. messy code
-		String userName = JOptionPane.showInputDialog(this,
-				"Enter the Student's User Name");
-
-		
-
-		String studentPW = JOptionPane.showInputDialog(this,
-				"Enter the Student Password");
-
-		Object[] choices = new Object[sessionListModel.getSize()];
-		for (int i = 0; i < sessionListModel.getSize(); i++) {
-			choices[i] = (String) sessionListModel.get(i);
-		}
-
-		String className = (String) JOptionPane.showInputDialog(this,
-				"Enter the Class Name:", "Class Name",
-				JOptionPane.PLAIN_MESSAGE, null, choices, "ham");
-
-		if (userName != "" && studentName != "" && studentPW != "") {
-			if (controller.addStudent(userName, studentName, studentPW,
-					className)
-					&& className.equalsIgnoreCase(classList.getSelectedValue()
-							.toString())) {
-				studentListModel.addElement(studentName);
-				controller.writeUsers();
-				loadStudentsByClass();
-			}
-                        studentList.clearSelection();
-		} else {
-			System.out.println("Student not created!");
-			// student not created -try again!
-		}
+           if(classList.getModel().getSize()>0){
+              AddStudentDialog t =  new AddStudentDialog(this,true); 
+              t.setLocation(
+					(t.getToolkit().getScreenSize().width - t.getWidth()) / 2,
+					(t.getToolkit().getScreenSize().height - t.getHeight()) / 2);
+           }
+           else
+               showMessageDialog(this, "No Classrooms are available to add a student to", "No classroom Error", OK_OPTION);
 	}
 
 	private void addClassButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1970,6 +1966,182 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 		}
 		super.setVisible(b);
 	}
+        /**
+ *
+ * @author Eric Santana
+ */
+    private class AddStudentDialog extends javax.swing.JDialog {
+
+        /**
+        * Creates new form AddStudentDialog
+        */
+        public AddStudentDialog(java.awt.Frame parent, boolean modal) {
+            super(parent, modal);
+            initComponents();
+            classListS.setListData(((DefaultListModel)classList.getModel()).toArray());
+            setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            setVisible(true);
+        }
+
+        /**
+        * This method is called from within the constructor to initialize the form.
+        * WARNING: Do NOT modify this code. The content of this method is always
+        * regenerated by the Form Editor.
+        */
+        @SuppressWarnings("unchecked")
+        // <editor-fold defaultstate="collapsed" desc="Generated Code">
+        private void initComponents() {
+
+            jLabel1 = new javax.swing.JLabel();
+            studentRealNameTextField = new javax.swing.JTextField();
+            jLabel2 = new javax.swing.JLabel();
+            studentUserNameTextField = new javax.swing.JTextField();
+            jLabel3 = new javax.swing.JLabel();
+            studentPasswordTextField = new javax.swing.JTextField();
+            jLabel4 = new javax.swing.JLabel();
+            jScrollPane1 = new javax.swing.JScrollPane();
+            classListS = new javax.swing.JList();
+            addStudentButton = new javax.swing.JButton();
+            cancelButton = new javax.swing.JButton();
+
+            setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+            setTitle("Add Student");
+            setResizable(false);
+
+            jLabel1.setText("Student's Real Name:");
+
+            jLabel2.setText("Desired Username:");
+
+            jLabel3.setText("Desired Password:");
+
+            jLabel4.setText("Class:");
+
+            classListS.setModel(new javax.swing.AbstractListModel() {
+                String[] strings = { };
+                public int getSize() { return strings.length; }
+                public Object getElementAt(int i) { return strings[i]; }
+            });
+            classListS.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+            jScrollPane1.setViewportView(classListS);
+
+            addStudentButton.setText("Add Student");
+            addStudentButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    addStudentButtonActionPerformed(evt);
+                }
+            });
+
+            cancelButton.setText("Cancel");
+            cancelButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    cancelButtonActionPerformed(evt);
+                }
+            });
+
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(studentUserNameTextField)
+                                .addComponent(studentRealNameTextField)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(14, 14, 14)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel3))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(addStudentButton)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(cancelButton)
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jScrollPane1)
+                                .addComponent(studentPasswordTextField))))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(26, 26, 26)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(studentRealNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(studentUserNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(studentPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(addStudentButton)
+                        .addComponent(cancelButton))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            );
+
+            pack();
+        }// </editor-fold>
+
+        private void addStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {
+            if(!studentRealNameTextField.getText().isEmpty()&& 
+               !studentUserNameTextField.getText().isEmpty()&&
+               !studentPasswordTextField.getText().isEmpty() &&
+                classListS.getSelectedIndex()>-1)
+            {
+                boolean isUsernameAvailable = controller.isUserNameAvailable(studentUserNameTextField.getText());
+                if(isUsernameAvailable){
+                    controller.addStudent(
+                            studentUserNameTextField.getText(),
+                            studentRealNameTextField.getText(), 
+                            studentPasswordTextField.getText(), 
+                            (String)classListS.getSelectedValue());
+                    controller.writeUsers();
+                    studentList.clearSelection();
+                    dispose();
+                }
+                else{
+                    showMessageDialog(this, "The username provided is not available. Please provide another ","Username not available", OK_OPTION);
+                }   
+            }
+            else{
+                showMessageDialog(this, "Please fill all required fields inorder to add a student","error", OK_OPTION);  
+            }
+        }
+
+        private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {
+            dispose();
+        }
+        // Variables declaration - do not modify
+        private javax.swing.JButton addStudentButton;
+        private javax.swing.JButton cancelButton;
+        private javax.swing.JList classListS;
+        private javax.swing.JLabel jLabel1;
+        private javax.swing.JLabel jLabel2;
+        private javax.swing.JLabel jLabel3;
+        private javax.swing.JLabel jLabel4;
+        private javax.swing.JScrollPane jScrollPane1;
+        private javax.swing.JTextField studentPasswordTextField;
+        private javax.swing.JTextField studentRealNameTextField;
+        private javax.swing.JTextField studentUserNameTextField;
+        // End of variables declaration
+    }
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LoginModLabel;

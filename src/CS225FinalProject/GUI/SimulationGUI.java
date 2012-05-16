@@ -39,8 +39,10 @@ import javax.swing.table.TableModel;
 
 import CS225FinalProject.SimulationManager;
 import CS225FinalProject.Validators.Evaluator;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.*;
 
 /**
  * 
@@ -55,6 +57,15 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 	private SimulationController controller = SimulationController
 			.getInstance();
 
+    public SimulationGUI(Scenario scenario, ArrayList<Narrative> studentInput)  {
+        initComponents();
+        loadScenarioContents( scenario, studentInput);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        super.setVisible(true);
+    }
+        
+        
+
 	@Override
 	public void setVisible(boolean b) {
 		super.setVisible(b);
@@ -64,6 +75,72 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 		}
 
 	}
+        
+        
+        private void loadScenarioContents(Scenario scenario, ArrayList<Narrative> studentInput){
+            
+            START_TIME = scenario.getTime();
+                time = START_TIME*60;
+		Narrative[] narratives = new Narrative[scenario
+				.getNarrativeList().size()];
+
+		if (!scenario.getNarrativeList().isEmpty())
+			scenario.getNarrativeList().toArray(
+					narratives);
+
+		// cleans up all narratives
+		while (documentationTable.getRowCount() > 0)
+			((DefaultTableModel) documentationTable.getModel()).removeRow(0);
+
+		// loads the scenario narratives
+		if (narratives.length != 0)
+			for (Narrative narrative : narratives) {
+				((DefaultTableModel) documentationTable.getModel())
+						.addRow(narrative.getNarrativeAsArrayStrings());
+			}
+                if(studentInput.toArray().length!=0){
+                    for(Narrative narrative:studentInput){
+                        ((DefaultTableModel) documentationTable.getModel())
+						.addRow(narrative.getNarrativeAsArrayStrings());
+                    }
+                }
+		// ------------------------------------------------------------------------------------
+
+		Medication[] medications = new Medication[scenario
+				.getMedicationList().size()];
+		// cleans up all medications
+		while (marTable.getRowCount() > 0)
+			((DefaultTableModel) marTable.getModel()).removeRow(0);
+		if (!scenario.getMedicationList().isEmpty())
+			scenario.getMedicationList().toArray(
+					medications);
+
+		// loads the medications
+		if (medications.length != 0)
+			for (Medication medication : medications) {
+				((DefaultTableModel) marTable.getModel()).addRow(new String[] {
+						medication.getMedicationName(), medication.getDosage(),
+						medication.getRouteOfMedication(),
+						medication.getMedicationDueTimes() });
+			}
+
+		patientNameLabel.setText(scenario
+				.getPatientName());
+		allergiesSetter.setText(scenario
+				.getAllergies());
+		
+                diagnosisSetterV2.setText(scenario
+				.getDiagnosis());
+		roomNumSetter
+				.setText("" + scenario.getRoom());
+                 giveMedicationButton.removeActionListener(giveMedicationButton.getActionListeners()[0]);
+                 insertNewNarrativeButton.removeActionListener(insertNewNarrativeButton.getActionListeners()[0]);
+                 editNarrativeButton.removeActionListener(editNarrativeButton.getActionListeners()[0]);
+                 deleteNarrativeButton.removeActionListener(deleteNarrativeButton.getActionListeners()[0]);
+                 cancelSimulationButton.removeActionListener(cancelSimulationButton.getActionListeners()[0]);
+                 submitButton.removeActionListener(submitButton.getActionListeners()[0]);
+            
+        }
 
 	private void loadScenarioContents() {
 
