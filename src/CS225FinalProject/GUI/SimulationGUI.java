@@ -590,11 +590,13 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
         private void submit(){
                     String suggestion = "";//maybe extra stuff here
                     int narrativePointer = 0;
-                    narrativePointer+= SimulationManager.CURRENT_SCENARIO.getStartNumOfNarratives()-1;
+                    narrativePointer+= SimulationManager.CURRENT_SCENARIO.getStartNumOfNarratives();
                     ArrayList<Narrative> narratives = new ArrayList<Narrative>();
+                    if(!(SimulationManager.CURRENT_SCENARIO.getStartNumOfNarratives()== documentationTable.getRowCount())){
                     while(narrativePointer<documentationTable.getRowCount()){
-                        
-                        suggestion+= Evaluator.giveSuggestion((String)((DefaultTableModel)documentationTable.getModel()).getValueAt(narrativePointer, 2))+"\n\n";
+                       
+                        //TODZO: Wait for clean implementation of give sugestion by Kevin.
+                       // suggestion+= Evaluator.giveSuggestion((String)((DefaultTableModel)documentationTable.getModel()).getValueAt(narrativePointer, 2))+"\n\n";
                         
                         narratives.add(new Narrative(
                                 (String)((DefaultTableModel)documentationTable.getModel()).getValueAt(narrativePointer, 0),
@@ -604,6 +606,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                                 (String)((DefaultTableModel)documentationTable.getModel()).getValueAt(narrativePointer, 4)));
                         
                         narrativePointer++;
+                    }
                     }
                     
                     ((Student)SimulationManager.CURRENT_USER).

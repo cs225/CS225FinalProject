@@ -583,13 +583,13 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         });
         studentControlPanel.add(viewSelectedScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 250, -1));
 
-        studentNameLabel.setText("Student Name");
+        studentNameLabel.setText("StudentName");
         studentControlPanel.add(studentNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 0, -1, -1));
 
         printButton.setText("Print Selected Scenario Input");
         studentControlPanel.add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 250, -1));
 
-        SimulationScoreLabel.setText("Average Simulation Score");
+        SimulationScoreLabel.setText("AVG Simulation Score");
         studentControlPanel.add(SimulationScoreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, -1));
 
         changePasswordButton.setText("Change Student Password");
@@ -616,18 +616,18 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         studentControlPanel.add(LoginModLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(684, 248, -1, -1));
 
         currentStudentUserNameLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        currentStudentUserNameLabel.setText("Current Username");
+        currentStudentUserNameLabel.setText("current Username");
         studentControlPanel.add(currentStudentUserNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 311, -1, -1));
 
         currentStudentPasswordLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        currentStudentPasswordLabel.setText("Current Password");
+        currentStudentPasswordLabel.setText("current Password");
         studentControlPanel.add(currentStudentPasswordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 310, -1, -1));
 
         SimResultsAreaLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         SimResultsAreaLabel.setText("Simulation Results");
         studentControlPanel.add(SimResultsAreaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 248, -1, -1));
 
-        ViewScenarioSuggestionButton.setText("View selected scenario suggestion");
+        ViewScenarioSuggestionButton.setText("View Selected Scenario Suggestion");
         ViewScenarioSuggestionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ViewScenarioSuggestionButtonActionPerformed(evt);
@@ -635,7 +635,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         });
         studentControlPanel.add(ViewScenarioSuggestionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 250, -1));
 
-        setScenarioScoreButton.setText("Set score for the selected result");
+        setScenarioScoreButton.setText("Set score for the Selected Result");
         setScenarioScoreButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 setScenarioScoreButtonActionPerformed(evt);
@@ -672,7 +672,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
         studentManagerPanel.add(studentManagerControlTabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 1030, 490));
 
-        rootTabbedPane.addTab("Student Manager", studentManagerPanel);
+        rootTabbedPane.addTab("StudentManager", studentManagerPanel);
 
         scenarioManagerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -692,7 +692,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
         scenarioManagerPanel.add(scenarioScrollPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 160, 76));
 
-        selectScenarioLabel.setText("Select Scenario to Edit");
+        selectScenarioLabel.setText("Select Scenario to edit");
         scenarioManagerPanel.add(selectScenarioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 12, -1, -1));
 
         jSeparator4.setPreferredSize(new java.awt.Dimension(0, 10));
@@ -771,11 +771,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         marPanel.add(removeMedicationButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setText("Time limit in minutes:");
+        jLabel5.setText("Time limit in min:");
         marPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(764, 289, -1, -1));
         marPanel.add(timeTextfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 286, 47, -1));
 
-        jLabel6.setText("Enter 0 for unlimited time");
+        jLabel6.setText("if time is set to 0, it means unlimited");
         marPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 320, -1, 10));
 
         editHourDueButton.setText("Edit selected Hour Due");
@@ -793,7 +793,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Date", "Time", "Narrative", "Follow Up", "Initials"
+                "Date", "Time", "Narrative", "Follow Up", "Initialls"
             }
         ));
         documentationTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
@@ -804,35 +804,35 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         documentationTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         documentationTable.getColumnModel().getColumn(2).setPreferredWidth(625);
 
-        addNarrativeButton.setText("Add a new note");
+        addNarrativeButton.setText("Add New Narrative");
         addNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addNarrativeButtonActionPerformed(evt);
             }
         });
 
-        removeAllNarrativeButton.setText("Remove All");
+        removeAllNarrativeButton.setText("RemoveAll");
         removeAllNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeAllNarrativeButtonActionPerformed(evt);
             }
         });
 
-        viewSelectedNarrativeButton.setText("View the selected note");
+        viewSelectedNarrativeButton.setText("ViewSelectedNarrative");
         viewSelectedNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewSelectedNarrativeButtonActionPerformed(evt);
             }
         });
 
-        deleteNarrativeButton.setText("Delete the selected note");
+        deleteNarrativeButton.setText("Delete the Selected Narrative");
         deleteNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteNarrativeButtonActionPerformed(evt);
             }
         });
 
-        editNarrativeButton.setText("Edit the selected note");
+        editNarrativeButton.setText("Edit Selected Narrative");
         editNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editNarrativeButtonActionPerformed(evt);
@@ -941,7 +941,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
         scenarioManagerPanel.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 10, 120));
 
-        addScenarioButton.setText("Add a Scenario");
+        addScenarioButton.setText("addScenario");
         addScenarioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addScenarioButtonActionPerformed(evt);
@@ -980,11 +980,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         });
         scenarioManagerPanel.add(exportScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, 110, 60));
 
-        rootTabbedPane.addTab("Scenario Manager", scenarioManagerPanel);
+        rootTabbedPane.addTab("ScenarioManager", scenarioManagerPanel);
 
         professorLoginManager.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        currentProfessorPasswordLabel.setText("Current Password");
+        currentProfessorPasswordLabel.setText("CurrentPassword");
         professorLoginManager.add(currentProfessorPasswordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 95, -1, -1));
 
         changeProffesorPasswordButton.setText("Change Password");
@@ -995,7 +995,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         });
         professorLoginManager.add(changeProffesorPasswordButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 150, -1));
 
-        currentProfessorUserNameLabel.setText("Current User Name");
+        currentProfessorUserNameLabel.setText("CurrentUserName");
         professorLoginManager.add(currentProfessorUserNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 41, -1, -1));
 
         jLabel1.setText("Username:");
@@ -1004,7 +1004,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         jLabel2.setText("Password:");
         professorLoginManager.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 95, -1, -1));
 
-        rootTabbedPane.addTab("Professor Login Manager", professorLoginManager);
+        rootTabbedPane.addTab("ProfessorLoginManager", professorLoginManager);
 
         logOutButton.setBackground(new java.awt.Color(255, 0, 0));
         logOutButton.setText("Logout");
@@ -1774,9 +1774,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
            if(classList.getModel().getSize()>0){
               AddStudentDialog t =  new AddStudentDialog(this,true); 
-              t.setLocation(
-					(t.getToolkit().getScreenSize().width - t.getWidth()) / 2,
-					(t.getToolkit().getScreenSize().height - t.getHeight()) / 2);
+              
            }
            else
                showMessageDialog(this, "No Classrooms are available to add a student to", "No classroom Error", OK_OPTION);
@@ -1980,6 +1978,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             initComponents();
             classListS.setListData(((DefaultListModel)classList.getModel()).toArray());
             setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            setLocation(
+					(getToolkit().getScreenSize().width - this.getWidth()) / 2,
+					(getToolkit().getScreenSize().height - this.getHeight()) / 2);
             setVisible(true);
         }
 
