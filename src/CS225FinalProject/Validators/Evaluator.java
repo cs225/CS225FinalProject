@@ -19,16 +19,18 @@ public class Evaluator {
     private static String unit, intUnit, daily, everyOther, trailing0, morphine,
             sulfate, magSulfate, microgram, halfStrength, threeWeek,
             subcutaneous1, subcutaneous2, discharge, cubic, rightEar, leftEar,
-            bothEars, leftEye, rightEye, bothEyes, result;
+            bothEars, leftEye, rightEye, bothEyes, result, dosage;
 
     public static String giveSuggestion(String input) {
         result="The potential JCAHO errors are: ";
         System.out.println(input);
         fileScan = new Scanner(input);
-        System.out.println(input);
-        fileScan.nextLine();
-        String dosage = fileScan.nextLine();
-      
+        
+        if(fileScan.hasNextLine())
+            fileScan.nextLine();
+        if(fileScan.hasNextLine())
+            dosage = fileScan.nextLine();
+      System.err.println(dosage);
         unit = "u";
         intUnit = "iu";
         daily = "q.d.";
