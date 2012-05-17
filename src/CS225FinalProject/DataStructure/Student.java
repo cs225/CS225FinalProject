@@ -56,4 +56,21 @@ public class Student extends User {
 			ArrayList<CompletedScenario> completedScenarios) {
 		this.completedScenarios = completedScenarios;
 	}
+        public Integer getAverageScore(){
+            int total =0;
+            int sum = 0;
+            for(CompletedScenario m: completedScenarios){
+                if(m.getScore() != null){
+                    total++;
+                    sum+= m.getScore();
+                }
+            }
+            if(total!=0){
+                return sum/total;
+                
+            }
+            else
+                return null;
+            
+        }
 }

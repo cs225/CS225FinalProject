@@ -103,6 +103,12 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                     for(Scenario scenario: controller.getScenarios())
                         ((DefaultListModel)scenarioList.getModel()).addElement(scenario.getPatientName());
                 }
+                if(scenarioList.getSelectedIndex()<0){
+                    if(scenarioList.getModel().getSize()>0)
+                        scenarioList.setSelectedIndex(0);
+                    else
+                        previewTabbedPane.setVisible(false);
+                }
                 if(rootTabbedPane.getSelectedIndex()==2){
                     currentProfessorUserNameLabel.setText(controller.getUsers().get(0).getUserName());
                     currentProfessorPasswordLabel.setText(controller.getUsers().get(0).getPassword());
@@ -151,6 +157,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                     if(student!=null){
                         int sum = 0;
                         int total = 0;
+                        
+                        
+                        int sumC = 0;
+                        int totalC = 0;
+                        
                         studentManagerControlTabbedPane.setVisible(true);
                     for(CompletedScenario completedScenario:((Student)student).getCompletedScenarios()){
                         ((DefaultTableModel) studentTable.getModel()).addRow(
@@ -264,6 +275,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         classControlPanel = new javax.swing.JPanel();
         classControlScrollPane = new javax.swing.JScrollPane();
         classControlJTable = new javax.swing.JTable();
+        averageClassScoreLabel = new javax.swing.JLabel();
         studentControlPanel = new javax.swing.JPanel();
         studentControlScrollPane = new javax.swing.JScrollPane();
         studentTable = new javax.swing.JTable();
@@ -487,27 +499,43 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         classControlJTable.getTableHeader().setReorderingAllowed(false);
         classControlScrollPane.setViewportView(classControlJTable);
+
+        averageClassScoreLabel.setText("Average Class Score:");
 
         javax.swing.GroupLayout classControlPanelLayout = new javax.swing.GroupLayout(classControlPanel);
         classControlPanel.setLayout(classControlPanelLayout);
         classControlPanelLayout.setHorizontalGroup(
             classControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(classControlScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1025, Short.MAX_VALUE)
+            .addGroup(classControlPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(averageClassScoreLabel)
+                .addContainerGap())
         );
         classControlPanelLayout.setVerticalGroup(
             classControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(classControlPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(classControlScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE))
+                .addComponent(classControlScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(averageClassScoreLabel)
+                .addGap(25, 25, 25))
         );
 
         studentManagerControlTabbedPane.addTab("Class Control", classControlPanel);
@@ -716,11 +744,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        medJTable.setColumnSelectionAllowed(true);
         medJTable.setRowHeight(45);
         medJTable.getTableHeader().setReorderingAllowed(false);
         medScrollPane.setViewportView(medJTable);
-        medJTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         marPanel.add(medScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 31, 932, 243));
 
@@ -775,7 +801,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         marPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(764, 289, -1, -1));
         marPanel.add(timeTextfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 286, 47, -1));
 
-        jLabel6.setText("if time is set to 0, it means unlimited");
+        jLabel6.setText("To allow unlimited time, enter 0");
         marPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 320, -1, 10));
 
         editHourDueButton.setText("Edit selected Hour Due");
@@ -797,11 +823,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             }
         ));
         documentationTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        documentationTable.setColumnSelectionAllowed(true);
         documentationTable.setName("sample");
         documentationTable.getTableHeader().setReorderingAllowed(false);
         documentationScrollPane.setViewportView(documentationTable);
-        documentationTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         documentationTable.getColumnModel().getColumn(2).setPreferredWidth(625);
 
         addNarrativeButton.setText("Add New Narrative");
@@ -1234,6 +1258,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 int i = studentList.getSelectedIndex();
                 studentList.clearSelection();
                 studentList.setSelectedIndex(i);
+                classListValueChanged(null);
                 
             }
             else
@@ -1249,6 +1274,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         if (studentTable.getSelectedRow() < 0)
 			JOptionPane.showMessageDialog(this, "Please Select a Scenario Result");
 		else {
+   final Student student = controller.getStudentByNameAndClassroom((String)studentList.getSelectedValue(), (String)classList.getSelectedValue());
+
 			final JDialog t = new JDialog(this,true);
 			t.setLayout(new GridLayout(1, 2));
 
@@ -1288,6 +1315,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 				public void actionPerformed(ActionEvent e) {
 					studentTable.setValueAt((Object) t3.getText(),
 							studentTable.getSelectedRow(), 2);
+                                        student.getCompletedScenarios().get(studentTable.getSelectedRow()).setEvaluationSuggestion(t3.getText());
+                                        controller.writeUsers();
 					t.dispose();
 				}
 			});
@@ -1315,8 +1344,32 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 while( ((DefaultTableModel)classControlJTable.getModel()).getRowCount()>0)
                ((DefaultTableModel)classControlJTable.getModel()).removeRow(0);
                
-               for(User user:controller.getStudentsInClass((String)classList.getSelectedValue()))
-                   ((DefaultTableModel)classControlJTable.getModel()).addRow(new Object[]{user.getRealName(),new Double(0), new Double( ((Student)user).getCompletedScenarios().size())});
+                Integer sumAVG =null;
+                int total = controller.getStudentsInClass((String)classList.getSelectedValue()).size();
+               for(User user:controller.getStudentsInClass((String)classList.getSelectedValue())){
+                   ((DefaultTableModel)classControlJTable.getModel()).addRow(new Object[]{
+                       user.getRealName(),
+                      (((Student)user).getAverageScore() != null ? ((Student)user).getAverageScore():"not available"),
+                       new Integer( ((Student)user).getCompletedScenarios().size())});
+                   if(((Student)user).getAverageScore()!=null){
+                      if(sumAVG==null)
+                          sumAVG = 0;
+                       sumAVG += ((Student)user).getAverageScore();
+                       
+                   }
+                   else if(((Student)user).getAverageScore()==null)
+                           total --;
+                   
+               }
+               if(!controller.getStudentsInClass((String)classList.getSelectedValue()).isEmpty() && sumAVG!=null && total>0){
+                   averageClassScoreLabel.setText("Average Class Score: "+ sumAVG/total);
+               }
+               else if(sumAVG ==null)
+                  averageClassScoreLabel.setText("Average Class Score: "+ "Not Available"); 
+               else
+                  averageClassScoreLabel.setText("Average Class Score: "+ "Not Available");
+
+               
 	}
 
 	private void viewSelectedScenarioButtonActionPerformed(
@@ -1361,6 +1414,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 int i = studentList.getSelectedIndex();
                 studentList.clearSelection();
                 studentList.setSelectedIndex(i);
+               // classListValueChanged(null);
                 
             }
             else
@@ -1407,8 +1461,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 		// TODO add your handling code here:
             if(studentManagerControlTabbedPane.getSelectedIndex()==1 && studentList.getSelectedIndex()>-1){
                     User student = null;
-                    while(((DefaultTableModel) studentTable.getModel()).getRowCount()>0)
-                        ((DefaultTableModel) studentTable.getModel()).removeRow(0);
+
                     for(User user:  controller.getStudentsInClass((String)classList.getSelectedValue())){
                         if(!user.isInstructor()&& user.getRealName().equals(studentList.getSelectedValue())&&
                                 user.getClassName().equals(classList.getSelectedValue())){
@@ -1418,18 +1471,14 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                    
                     }
                     if(student!=null){
-                    for(CompletedScenario completedScenario:((Student)student).getCompletedScenarios()){
-                        ((DefaultTableModel) studentTable.getModel()).addRow(
-                                new String[]{completedScenario.getScenarioTaken().getPatientName(),
-                                    completedScenario.getDateTaken(),
-                                    completedScenario.getEvaluationSuggestion(),
-                                    ""+completedScenario.getScore()} );
-                        
-                    }
                     
                     String newUsername = JOptionPane.showInputDialog("Enter a new password");
                     if(newUsername!= null){
+                        if(!newUsername.equals(""))
                         student.setPassword(newUsername);
+                        else{
+                            showMessageDialog(this,"Please enter an appropiate password",null, OK_OPTION);
+                        }
                         controller.writeUsers();
                         studentManagerControlTabbedPane.setSelectedIndex(0);
                         studentManagerControlTabbedPane.setSelectedIndex(1);
@@ -1451,9 +1500,21 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 								TimeZone.getDefault()).getTime()),
 						dayFormat.format(Calendar.getInstance(
 								TimeZone.getDefault()).getTime()),
-						"Temperature:\nPulse:\n Resp:\n BP:\n O2 Sat:\n Pain Scale:\n FSBS:\n Site:\n Related Diagnosis/Reason for medication:\n" });
+						"Temperature:"
+                                        + "\nPulse:"
+                        + "\nResp:\n"
+                        + "BP:\n"
+                        + "O2 Sat:\n"
+                        + "Pain Scale:\n"
+                        + "FSBS:\n"
+                        + "Site:\n"
+                        + "Related Diagnosis/Reason for medication:\n" });
 		// documentationTable.isfo
-	}
+                documentationTable.setRowSelectionInterval(
+					documentationTable.getRowCount() - 1,
+					documentationTable.getRowCount() - 1);
+                editNarrativeButtonActionPerformed(null);
+	}        
 
 	private void removeNarrativeButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
@@ -1497,7 +1558,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             
             JFileChooser fileChooser = new JFileChooser();
             if(JFileChooser.APPROVE_OPTION==fileChooser.showSaveDialog(this)){
-                io.writeScenarioList(fileChooser.getSelectedFile().getAbsolutePath(),controller.getScenarios());
+                io.writeScenarioList(fileChooser.getSelectedFile().getAbsolutePath()+".eMAR_ScenarioList",controller.getScenarios());
                 
                 
             }
@@ -1546,8 +1607,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             if(password!=null){
                 controller.getUsers().get(0).setPassword(password);
                 controller.writeUsers();
-                rootTabbedPane.setSelectedIndex(2);
                 rootTabbedPane.setSelectedIndex(1);
+                rootTabbedPane.setSelectedIndex(2);
                 
                 
             }
@@ -1698,8 +1759,13 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	private void removeMedicationButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 
+            
+            if(medJTable.getSelectedRow()>-1){
 		((DefaultTableModel) medJTable.getModel()).removeRow(medJTable
 				.getSelectedRow());
+            }
+            else
+                showMessageDialog(this, "PLease select a medication to remove", "Removing Error", OK_OPTION);
 	}
 
 	private void addMedicationButtonActionPerformed(
@@ -1735,6 +1801,10 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 		studentList.clearSelection();
 		studentManagerControlTabbedPane.setSelectedIndex(0);
                 
+                int loc = classList.getSelectedIndex();
+                classList.clearSelection();
+                classList.setSelectedIndex(loc);
+                
                
 	}
 
@@ -1747,23 +1817,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                   String name = ((String)studentList.getSelectedValue());
 
                     controller.removeStudentByNameAndClassroom(name,(String) classList.getSelectedValue());
+                    studentList.clearSelection();
+                    studentManagerControlTabbedPane.setSelectedIndex(0);
                     classListValueChanged(null);
+                    
                     }
-//			String studentName = JOptionPane.showInputDialog(this,
-//					"Enter the Student User Name");
-//
-//			String studentPW = JOptionPane.showInputDialog(this,
-//					"Enter the Student Password");
-//
-//			if (controller.removeStudent(studentName, studentPW)
-//					&& studentList.getSelectedIndex() > -1) {
-//				studentListModel.remove(studentList.getSelectedIndex());
-//				controller.writeUsers();
-//			} else {
-//				// student not removed - try again!
-//			}
-//		} else {
-//			JOptionPane.showMessageDialog(this, "Please Select a Student.");
 		}
                 else
                     JOptionPane.showMessageDialog(this, "Please select a student to remove", "Student Removal", JOptionPane.OK_OPTION);
@@ -1788,14 +1846,16 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 		String className = JOptionPane.showInputDialog(this,
 				"Enter the class name:");
 
-		if (className != "" && controller.addClass(className)) {
+                if(className!=null){
+		if (!className.equals("") && controller.addClass(className)) {
 			sessionListModel.addElement(className);
 			controller.writeClassNames();
 		} else {
 			// class name exists - prompt re-entry.
-			className = JOptionPane.showInputDialog(this,
-					"Invalid name, enter a different name:");
+			 showMessageDialog(this,
+					"Invalid or already existing class name.","Error", OK_OPTION);
 		}
+                }
 	}
 
 	private void removeClassButtonActionPerformed(ActionEvent evt) {
@@ -1834,8 +1894,6 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 			java.awt.event.ActionEvent evt) {
             if(studentManagerControlTabbedPane.getSelectedIndex()==1 && studentList.getSelectedIndex()>-1){
                     User student = null;
-                    while(((DefaultTableModel) studentTable.getModel()).getRowCount()>0)
-                        ((DefaultTableModel) studentTable.getModel()).removeRow(0);
                     for(User user:  controller.getStudentsInClass((String)classList.getSelectedValue())){
                         if(!user.isInstructor()&& user.getRealName().equals(studentList.getSelectedValue())&&
                                 user.getClassName().equals(classList.getSelectedValue())){
@@ -1845,19 +1903,26 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                    
                     }
                     if(student!=null){
-                    for(CompletedScenario completedScenario:((Student)student).getCompletedScenarios()){
-                        ((DefaultTableModel) studentTable.getModel()).addRow(
-                                new String[]{completedScenario.getScenarioTaken().getPatientName(),
-                                    completedScenario.getDateTaken(),
-                                    completedScenario.getEvaluationSuggestion(),
-                                    ""+(completedScenario.getScore()==0? "A score hasn't been issued yet": completedScenario.getScore())} );
-                        
-                    }
+//                    for(CompletedScenario completedScenario:((Student)student).getCompletedScenarios()){
+//                        ((DefaultTableModel) studentTable.getModel()).addRow(
+//                                new String[]{completedScenario.getScenarioTaken().getPatientName(),
+//                                    completedScenario.getDateTaken(),
+//                                    completedScenario.getEvaluationSuggestion(),
+//                                    ""+(completedScenario.getScore()==0? "A score hasn't been issued yet": completedScenario.getScore())} );
+//                        
+//                    }
                     
                     String newUsername = JOptionPane.showInputDialog("Enter a new username");
                     if(newUsername!= null){
                         if(controller.isUserNameAvailable(newUsername)){
+                        
+                        
+                        if(!newUsername.equals(""))
                         student.setUserName(newUsername);
+                        else{
+                            showMessageDialog(this,"Please enter an appropiate username",null, OK_OPTION);
+                        }
+                        
                         controller.writeUsers();
                         studentManagerControlTabbedPane.setSelectedIndex(0);
                         studentManagerControlTabbedPane.setSelectedIndex(1);
@@ -1960,6 +2025,10 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                            classList.setSelectedIndex(0);
                        if(scenarioList.getModel().getSize()>0)
                            scenarioList.setSelectedIndex(0);
+                       
+                       int loc = classList.getSelectedIndex();
+                       classList.clearSelection();
+                       classList.setSelectedIndex(loc);
                        
 		}
 		super.setVisible(b);
@@ -2113,7 +2182,10 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                             studentPasswordTextField.getText(), 
                             (String)classListS.getSelectedValue());
                     controller.writeUsers();
-                    studentList.clearSelection();
+                    int classIndex = classListS.getSelectedIndex();
+                    classList.clearSelection();
+                    classList.setSelectedIndex(classIndex);
+                    
                     dispose();
                 }
                 else{
@@ -2160,6 +2232,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JLabel allergiesLabel;
     private javax.swing.JScrollPane allergiesScrollPane;
     private javax.swing.JTextArea allergiesTextArea;
+    private javax.swing.JLabel averageClassScoreLabel;
     private javax.swing.JButton changePasswordButton;
     private javax.swing.JButton changeProffesorPasswordButton;
     private javax.swing.JButton changeUserNameButton;

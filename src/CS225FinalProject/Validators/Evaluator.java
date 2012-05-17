@@ -22,17 +22,7 @@ public class Evaluator {
             bothEars, leftEye, rightEye, bothEyes, result, dosage;
 
     public static String giveSuggestion(String input) {
-        result="The potential JCAHO errors are: ";
-        System.out.println(input);
-        fileScan = new Scanner(input);
-        
-        if(fileScan.hasNextLine())
-            fileScan.nextLine();
-        if(fileScan.hasNextLine())
-            dosage = fileScan.nextLine();
-      System.out.println(dosage);
-      
-      
+        dosage = "";
         unit = "u";
         intUnit = "iu";
         daily = "q.d.";
@@ -54,73 +44,81 @@ public class Evaluator {
         rightEye = "o.s.";
         leftEye = "o.d.";
         bothEyes = "o.u.";
+        result="";
+        String err = "";
+      //  System.out.println(input);
+        fileScan = new Scanner(input);
+        
+     // System.out.println(dosage);
+      
+      /**
+       * this loop is implemented by 
+       * @author Eric Santana
+       */
+      while(fileScan.hasNextLine()){
+          String line = fileScan.nextLine();
+          String[] words = line.split("([\\s|\\n])+");//([\\s|\\n]+?)
+          for(String word: words){
+              //System.out.println(word.trim());
+              if(!word.equals("")){
+                  if(unit.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(intUnit.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(daily.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(everyOther.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(trailing0.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(morphine.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(sulfate.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(magSulfate.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(microgram.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(halfStrength.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(threeWeek.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(subcutaneous1.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(subcutaneous2.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(discharge.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(cubic.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(rightEar.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(leftEar.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(bothEars.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(rightEye.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(leftEye.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  else if(bothEyes.equalsIgnoreCase(word))
+                      err+=word+"\n";
+                  
+//                  else if( PATTERN fits the word){
+//                      err+= word;
+//                  }
+              }
+              
+          }
+          
+          
+      }
 
-        System.out.println(input);
-        if (dosage.toLowerCase().contains(unit)) {
-            result += unit + "\n";
-        }
-        if (dosage.toLowerCase().contains(intUnit)) {
-            result += intUnit + "\n";
-        }
-        if (dosage.toLowerCase().contains(daily)) {
-            result += daily + "\n";
-        }
-        if (dosage.toLowerCase().contains(everyOther)) {
-            result += everyOther + "\n";
-        }
-        if (dosage.toLowerCase().contains(trailing0)) {
-            result += trailing0 + "\n";
-        }
-        if (dosage.toLowerCase().contains(morphine)) {
-            result += morphine + "\n";
-        }
-        if (dosage.toLowerCase().contains(sulfate)) {
-            result += sulfate + "\n";
-        }
-        if (dosage.toLowerCase().contains(magSulfate)) {
-            result += magSulfate + "\n";
-        }
-        if (dosage.toLowerCase().contains(microgram)) {
-            result += microgram + "\n";
-        }
-        if (dosage.toLowerCase().contains(halfStrength)) {
-            result += halfStrength + "\n";
-        }
-        if (dosage.toLowerCase().contains(threeWeek)) {
-            result += threeWeek + "\n";
-        }
-        if (dosage.toLowerCase().contains(subcutaneous1)) {
-            result += subcutaneous1 + "\n";
-        }
-        if (dosage.toLowerCase().contains(subcutaneous2)) {
-            result += subcutaneous2 + "\n";
-        }
-        if (dosage.toLowerCase().contains(discharge)) {
-            result += discharge + "\n";
-        }
-        if (dosage.toLowerCase().contains(cubic)) {
-            result += cubic + "\n";
-        }
-        if (dosage.toLowerCase().contains(rightEar)) {
-            result += rightEar + "\n";
-        }
-        if (dosage.toLowerCase().contains(leftEar)) {
-            result += leftEar + "\n";
-        }
-        if (dosage.toLowerCase().contains(bothEars)) {
-            result += bothEars + "\n";
-        }
-        if (dosage.toLowerCase().contains(rightEye)) {
-            result += rightEye + "\n";
-        }
-        if (dosage.toLowerCase().contains(leftEye)) {
-            result += leftEye + "\n";
-        }
-        if (dosage.toLowerCase().contains(bothEyes)) {
-            result += bothEyes + "\n";
-        }
-
-        return result;
+      if(!err.equals(""))
+              return ""+err;
+          else
+              return "";
+        
 
     }
 }

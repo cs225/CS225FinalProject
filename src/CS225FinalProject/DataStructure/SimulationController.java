@@ -137,13 +137,24 @@ public class SimulationController implements Serializable {
 		boolean classRemoved = false;
 
 		if (!classNames.isEmpty()) {
-			for (String cn : (ArrayList<String>) classNames.clone()) {
+			for (String cn :  (ArrayList<String>) classNames.clone()) {
 				if (cn.equalsIgnoreCase(classesName)) {
 					classNames.remove(cn);
 					classRemoved = true;
+                                        
+                                        for(User user: (ArrayList<User>)users.clone()){
+                                            if(user instanceof Student){
+                                                if(((Student)user).getClassName().equals(classesName))
+                                                   users.remove(user);
+                                            }
+                                            
+                                        }
 				}
 			}
+                        
 		}
+                writeClassNames();
+                writeUsers();
 		return classRemoved;
 	}
 

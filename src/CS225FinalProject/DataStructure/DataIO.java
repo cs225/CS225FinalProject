@@ -16,6 +16,7 @@ import javax.crypto.CipherOutputStream;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
+import javax.swing.JOptionPane;
 
 /*
  * Author: Ramsey
@@ -213,6 +214,7 @@ public class DataIO {
 
 		} catch (Exception e) {
 
+                    JOptionPane.showMessageDialog(null, "Could not the record of the students. Please check that you have free space in your computer");
 			System.out.println(e);
 			return false;
 		}
@@ -235,6 +237,8 @@ public class DataIO {
 			return true;
 
 		} catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, "Could not the records of the scenarios Please check that you have free space in your computer");
 
 			System.out.println(e.getMessage());
 			return false;
@@ -264,6 +268,8 @@ public class DataIO {
 			return true;
 
 		} catch (Exception e) {
+
+                               JOptionPane.showMessageDialog(null, "Could not the records of the scenarios Please check that you have free space in your computer");
 
 			System.out.println(e.getMessage());
 			return false;

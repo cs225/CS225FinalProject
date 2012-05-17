@@ -61,6 +61,8 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
         initComponents();
         loadScenarioContents( scenario, studentInput);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocation((getToolkit().getScreenSize().width - getWidth()) / 2,
+				(getToolkit().getScreenSize().height - getHeight()) / 2);
         super.setVisible(true);
     }
         
@@ -72,6 +74,9 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 		if (b) {
 			rootTabbedPane.setSelectedIndex(0);
 			loadScenarioContents();
+                        didGiveMedAfterDoc=false;
+                        isGaveMed = false;
+                        medBdoc=false;
 		}
 
 	}
@@ -139,6 +144,15 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                  deleteNarrativeButton.removeActionListener(deleteNarrativeButton.getActionListeners()[0]);
                  cancelSimulationButton.removeActionListener(cancelSimulationButton.getActionListeners()[0]);
                  submitButton.removeActionListener(submitButton.getActionListeners()[0]);
+                 
+                 submitButton.setVisible(false);
+                 cancelSimulationButton.setVisible(false);
+                 
+                 editNarrativeButton.setVisible(false);
+                 insertNewNarrativeButton.setVisible(false);
+                 deleteNarrativeButton.setVisible(false);
+                 
+                 
             
         }
 
@@ -295,6 +309,17 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
         setPreferredSize(new java.awt.Dimension(1024, 675));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        rootTabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                rootTabbedPaneStateChanged(evt);
+            }
+        });
+        rootTabbedPane.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                rootTabbedPanePropertyChange(evt);
+            }
+        });
 
         jcahoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/JAHCO.png"))); // NOI18N
         jcahoScrollPane.setViewportView(jcahoLabel);
@@ -521,6 +546,19 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+        
+    private void rootTabbedPanePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_rootTabbedPanePropertyChange
+        // TODO add your handling code here:
+        if(rootTabbedPane.getSelectedIndex()==2)
+            didGiveMedAfterDoc=true;
+    }//GEN-LAST:event_rootTabbedPanePropertyChange
+
+    private void rootTabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rootTabbedPaneStateChanged
+        // TODO add your handling code here:
+        if(rootTabbedPane.getSelectedIndex()==2)
+            didGiveMedAfterDoc=true;
+    }//GEN-LAST:event_rootTabbedPaneStateChanged
+
 	private void cancelSimulationButtonActionPerformed(ActionEvent evt) {
             if(JOptionPane.YES_OPTION==JOptionPane.showConfirmDialog(this,
                                 "Are you sure you want to cancel the simulation and select another problem?", null, JOptionPane.YES_NO_OPTION))
@@ -584,9 +622,16 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 						dayFormat.format(Calendar.getInstance(
 								TimeZone.getDefault()).getTime()),
 						"Notes:\n\n\n\n\nTemperature:\nPulse:\nResp:\nBP:\nO2 Sat:\nPain Scale:\nFSBS:\nSite:\nRelated Diagnosis/Reason for medication:\n" });
+                documentationTable.setRowSelectionInterval(
+					documentationTable.getRowCount() - 1,
+					documentationTable.getRowCount() - 1);
+                editNarrativeButtonActionPerformed(null);
 	}
 
         
+        private boolean didGiveMedAfterDoc = false;
+        private boolean isGaveMed = false;
+        private boolean  medBdoc = false;
         private void submit(){
                     String suggestion = "";//maybe extra stuff here
                     int narrativePointer = 0;
@@ -596,7 +641,10 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                     while(narrativePointer<documentationTable.getRowCount()){
                        
                         //TODZO: Wait for clean implementation of give sugestion by Kevin.
-                       // suggestion+= Evaluator.giveSuggestion((String)((DefaultTableModel)documentationTable.getModel()).getValueAt(narrativePointer, 2))+"\n\n";
+                        suggestion+= 
+                                Evaluator.giveSuggestion((String)((DefaultTableModel)documentationTable.getModel()).getValueAt(narrativePointer, 2))+
+                                
+                                (!Evaluator.giveSuggestion((String)((DefaultTableModel)documentationTable.getModel()).getValueAt(narrativePointer, 2)).equals("")?"\n":"");
                         
                         narratives.add(new Narrative(
                                 (String)((DefaultTableModel)documentationTable.getModel()).getValueAt(narrativePointer, 0),
@@ -608,10 +656,12 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                         narrativePointer++;
                     }
                     }
-                    
+                    String giveMedBeforeDoc = "";
+                    if(medBdoc)
+                        giveMedBeforeDoc+="Student gave medication before looking at the Narratives\n";
                     ((Student)SimulationManager.CURRENT_USER).
                     addCompletedScenario
-                    (new CompletedScenario(narratives, suggestion,
+                    (new CompletedScenario(narratives,giveMedBeforeDoc+ (!suggestion.equals("")? "Potential JCAHO errors found:\n"+suggestion: "No Potential JCAHO errors found."),
                     SimulationManager.CURRENT_SCENARIO)); 
 
                     controller.writeUsers();
@@ -982,6 +1032,10 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 
 		private void giveMedicationConfirmButtonActionPerformed(
 				java.awt.event.ActionEvent evt) {
+                    
+                    isGaveMed = true;
+                        
+                        medBdoc = isGaveMed && !didGiveMedAfterDoc;
 			// TODO add your handling code here:
 			DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
 			DateFormat dayFormat = new SimpleDateFormat("HH:mma");
@@ -1009,7 +1063,12 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 			documentationTable.setRowSelectionInterval(
 					documentationTable.getRowCount() - 1,
 					documentationTable.getRowCount() - 1);
+                        
+                        
 			this.dispose();
+                        
+                        editNarrativeButtonActionPerformed(null);
+                        
 
 		}
 

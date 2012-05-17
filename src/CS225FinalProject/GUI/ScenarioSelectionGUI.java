@@ -80,6 +80,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
         setTitle("Scenario Selection");
         setAlwaysOnTop(true);
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nextButton.setText("Next");
         nextButton.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +88,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
                 nextButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(nextButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(629, 211, -1, -1));
 
         previosButton.setText("Previous");
         previosButton.addActionListener(new java.awt.event.ActionListener() {
@@ -94,9 +96,11 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
                 previosButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(previosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 217, -1, -1));
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         titleLabel.setText("Select Scenenario");
+        getContentPane().add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 11, -1, -1));
 
         scenarioDescriptionPanel.setBackground(new java.awt.Color(200, 200, 200));
 
@@ -149,6 +153,8 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 
         scenarioDescriptionScrollPanel.setViewportView(scenarioDescriptionPanel);
 
+        getContentPane().add(scenarioDescriptionScrollPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 61, 518, -1));
+
         startButton.setBackground(new java.awt.Color(0, 204, 0));
         startButton.setText("Start");
         startButton.addActionListener(new java.awt.event.ActionListener() {
@@ -156,6 +162,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
                 startButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 460, -1, -1));
 
         logOutButton.setBackground(new java.awt.Color(255, 0, 0));
         logOutButton.setText("Logout");
@@ -164,52 +171,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
                 logOutButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(titleLabel)
-                .addGap(192, 192, 192))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(previosButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(scenarioDescriptionScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(logOutButton)
-                        .addGap(221, 221, 221)
-                        .addComponent(startButton)))
-                .addGap(18, 18, 18)
-                .addComponent(nextButton)
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(titleLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scenarioDescriptionScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(startButton)
-                            .addComponent(logOutButton)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(217, 217, 217)
-                        .addComponent(previosButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(nextButton)))
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
+        getContentPane().add(logOutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 456, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
