@@ -31,6 +31,8 @@ public class Evaluator {
         if(fileScan.hasNextLine())
             dosage = fileScan.nextLine();
       System.out.println(dosage);
+      
+      
         unit = "u";
         intUnit = "iu";
         daily = "q.d.";
