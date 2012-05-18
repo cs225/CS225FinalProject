@@ -236,7 +236,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 							+ ((time - (time / 60) * 60) >= 10 ? ""
 									+ (time - (time / 60) * 60) : "0"
 									+ (time - (time / 60) * 60)));
-				} else if (time == 0 && isVisible()) {
+				} else if (time == 0 && isVisible()) {                          
 					JOptionPane.showMessageDialog(rootPane, "TIME OVER!\n"
 							+ "Your progress is saved\n"
                                                         + "Please click OK to logout.", "TIME OVER", JOptionPane.OK_OPTION);
@@ -304,7 +304,6 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Medical Administration Records");
-        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 0, 0));
         setPreferredSize(new java.awt.Dimension(1024, 675));
         setResizable(false);
@@ -688,7 +687,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 		if (documentationTable.getSelectedRow() < 0)
 			JOptionPane.showMessageDialog(this, "Please Select a Narrative");
 		else {
-			JDialog t = new JDialog(this,true);
+			final JDialog t = new JDialog(this,true);
                         t.setSize(400, 300);
 			t.setLocation(
 					(t.getToolkit().getScreenSize().width - t.getWidth()) / 2,
@@ -710,7 +709,39 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 			t2.setText((String) documentationTable.getValueAt(
 					documentationTable.getSelectedRow(), 2));
 			t.add(pane);
-
+//-------------------------------------------------
+                        //Debug the error for 
+                        
+                       
+                        Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    
+                        while(true){
+                            if(SimulationGUI.START_TIME!=0 && time==0){
+//                                documentationTable.setValueAt((Object) t3.getText(),
+//							documentationTable.getSelectedRow(), 2);
+					t.dispose();
+                                       break;
+                            }
+                            try{
+                            Thread.sleep(500);
+                               }
+                    catch(Exception e){
+                        return;
+                        
+                    } 
+                        }
+                }
+            };
+                        
+                       final Thread thread = new Thread(runnable,"CHECKER!!!");
+                       
+                       thread.start();
+                       
+                       //------------------------------------------------
+                        
+                        
 			t.setVisible(true);
 			t.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		}
@@ -736,6 +767,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 
 	}
 
+        private Thread thread;
 	private void editNarrativeButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 
@@ -745,6 +777,10 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                      JOptionPane.showMessageDialog(this, "You can not edit this narrative\n it was made by another nurse");
 		else {
 			final JDialog t = new JDialog(this,true);
+                        
+                       
+                        
+                        
 			t.setLayout(new GridLayout(1, 2));
 
 			t.setSize(800, 300);
@@ -799,8 +835,66 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 
 			t.add(panel);
 
+                        t.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                        //-------------------------------------------------
+                        //Debug the error for 
+                        
+                       
+                        Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    
+                        while(true){
+                            if(SimulationGUI.START_TIME!=0 && time==0){
+//                                documentationTable.setValueAt((Object) t3.getText(),
+//							documentationTable.getSelectedRow(), 2);
+					t.dispose();
+                                       break;
+                            }
+                            try{
+                            Thread.sleep(500);
+                               }
+                    catch(Exception e){
+                        return;
+                        
+                    } 
+                        }
+                }
+            };
+                        
+                       final Thread thread = new Thread(runnable,"CHECKER!!!");
+                       
+                       thread.start();
+                       
+                       //------------------------------------------------
 			t.setVisible(true);
-			t.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			
+                        
+                       
+                       
+//                       Thread thread2 = new Thread(new Runnable() {
+//
+//                @Override
+//                public void run() {
+//                    try{
+//                    while(true){
+//                        if(!thread.isAlive()){
+//                            thread.interrupt();
+//                            break;
+//                        }
+//                        Thread.sleep(1000);
+//                        
+//                    }
+//                    }
+//                    catch(Exception e){
+//                        
+//                    }
+//                }
+//            });
+//                       thread2.start();
+                       
+                        
+                        
 		}
 	}
 
@@ -845,6 +939,24 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 					.getValueAt(
 							((SimulationGUI) parent).getMarTable()
 									.getSelectedRow(), 0));
+                        
+                        final MedicationDialog dialog = this;
+                        final ActionListener checkTimer = new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                   if(SimulationGUI.START_TIME!=0 && time ==0){
+                       dialog.giveMedicationConfirmButtonActionPerformed(e);
+                   }
+                    
+                }
+            };
+                        
+                        
+                        Timer timer = new Timer(1000, checkTimer);
+                        timer.start();
+                        
+                        
 
 			setVisible(true);
 

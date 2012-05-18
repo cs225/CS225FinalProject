@@ -49,6 +49,8 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 
 		setAlwaysOnTop(true);
 		setSelectedScenarioInfo();
+                
+              
 	}
 
 	/**
@@ -78,7 +80,6 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Scenario Selection");
-        setAlwaysOnTop(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

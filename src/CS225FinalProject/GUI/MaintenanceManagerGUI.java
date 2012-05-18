@@ -17,11 +17,16 @@ import CS225FinalProject.SimulationManager;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.print.PageFormat;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Scanner;
 import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -276,6 +281,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         classControlScrollPane = new javax.swing.JScrollPane();
         classControlJTable = new javax.swing.JTable();
         averageClassScoreLabel = new javax.swing.JLabel();
+        printAllStudentRecordsButton = new javax.swing.JButton();
         studentControlPanel = new javax.swing.JPanel();
         studentControlScrollPane = new javax.swing.JScrollPane();
         studentTable = new javax.swing.JTable();
@@ -296,7 +302,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         editSelectedResultSuggestionButton = new javax.swing.JButton();
         deleteSelectedResultButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        printSelectedStudentRecordButton = new javax.swing.JButton();
         scenarioManagerPanel = new javax.swing.JPanel();
         scenarioScrollPanel = new javax.swing.JScrollPane();
         scenarioList = new javax.swing.JList();
@@ -345,6 +351,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         importExportAreaLabel = new javax.swing.JLabel();
         importScenarioButton = new javax.swing.JButton();
         exportScenarioButton = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
         professorLoginManager = new javax.swing.JPanel();
         currentProfessorPasswordLabel = new javax.swing.JLabel();
         changeProffesorPasswordButton = new javax.swing.JButton();
@@ -518,14 +527,26 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
         averageClassScoreLabel.setText("Average Class Score:");
 
+        printAllStudentRecordsButton.setText("Print the Records of All Students");
+        printAllStudentRecordsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printAllStudentRecordsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout classControlPanelLayout = new javax.swing.GroupLayout(classControlPanel);
         classControlPanel.setLayout(classControlPanelLayout);
         classControlPanelLayout.setHorizontalGroup(
             classControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(classControlScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1025, Short.MAX_VALUE)
             .addGroup(classControlPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(averageClassScoreLabel)
+                .addGroup(classControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(classControlPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(averageClassScoreLabel))
+                    .addGroup(classControlPanelLayout.createSequentialGroup()
+                        .addGap(362, 362, 362)
+                        .addComponent(printAllStudentRecordsButton)))
                 .addContainerGap())
         );
         classControlPanelLayout.setVerticalGroup(
@@ -534,8 +555,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(classControlScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(averageClassScoreLabel)
-                .addGap(25, 25, 25))
+                .addGroup(classControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, classControlPanelLayout.createSequentialGroup()
+                        .addComponent(averageClassScoreLabel)
+                        .addGap(25, 25, 25))
+                    .addComponent(printAllStudentRecordsButton, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
         studentManagerControlTabbedPane.addTab("Class Control", classControlPanel);
@@ -693,8 +717,13 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         });
         studentControlPanel.add(deleteSelectedResultButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 220, -1));
 
-        jButton2.setText("Print this Student's Record");
-        studentControlPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 250, -1));
+        printSelectedStudentRecordButton.setText("Print this Student's Record");
+        printSelectedStudentRecordButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printSelectedStudentRecordButtonActionPerformed(evt);
+            }
+        });
+        studentControlPanel.add(printSelectedStudentRecordButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 250, -1));
 
         studentManagerControlTabbedPane.addTab("Student Control", studentControlPanel);
 
@@ -718,10 +747,11 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         });
         scenarioScrollPanel.setViewportView(scenarioList);
 
-        scenarioManagerPanel.add(scenarioScrollPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 160, 76));
+        scenarioManagerPanel.add(scenarioScrollPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 260, 76));
 
+        selectScenarioLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         selectScenarioLabel.setText("Select Scenario to edit");
-        scenarioManagerPanel.add(selectScenarioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 12, -1, -1));
+        scenarioManagerPanel.add(selectScenarioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jSeparator4.setPreferredSize(new java.awt.Dimension(0, 10));
         scenarioManagerPanel.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1030, 10));
@@ -963,7 +993,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         scenarioManagerPanel.add(UndoAllChangesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 626, -1, -1));
 
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        scenarioManagerPanel.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 10, 120));
+        scenarioManagerPanel.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 10, 120));
 
         addScenarioButton.setText("addScenario");
         addScenarioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -971,7 +1001,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 addScenarioButtonActionPerformed(evt);
             }
         });
-        scenarioManagerPanel.add(addScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
+        scenarioManagerPanel.add(addScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, -1));
 
         removeScenarioButton.setText("Remove Scenario");
         removeScenarioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -979,14 +1009,14 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 removeScenarioButtonActionPerformed(evt);
             }
         });
-        scenarioManagerPanel.add(removeScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
+        scenarioManagerPanel.add(removeScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, -1, -1));
 
         jSeparator7.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        scenarioManagerPanel.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 40, 120));
+        scenarioManagerPanel.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 40, 120));
 
         importExportAreaLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         importExportAreaLabel.setText("Import and Export Scenario List");
-        scenarioManagerPanel.add(importExportAreaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, -1, -1));
+        scenarioManagerPanel.add(importExportAreaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, -1));
 
         importScenarioButton.setText("Import");
         importScenarioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -994,7 +1024,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 importScenarioButtonActionPerformed(evt);
             }
         });
-        scenarioManagerPanel.add(importScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 100, 60));
+        scenarioManagerPanel.add(importScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, 100, 60));
 
         exportScenarioButton.setText("Export");
         exportScenarioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1002,7 +1032,19 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 exportScenarioButtonActionPerformed(evt);
             }
         });
-        scenarioManagerPanel.add(exportScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, 110, 60));
+        scenarioManagerPanel.add(exportScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 50, 110, 60));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel7.setText("Adding");
+        scenarioManagerPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel8.setText("Removal");
+        scenarioManagerPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
+
+        jSeparator8.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        scenarioManagerPanel.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, 30, 120));
 
         rootTabbedPane.addTab("ScenarioManager", scenarioManagerPanel);
 
@@ -1338,6 +1380,37 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_editSelectedResultSuggestionButtonActionPerformed
 
+    private void printAllStudentRecordsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printAllStudentRecordsButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_printAllStudentRecordsButtonActionPerformed
+
+    private void printSelectedStudentRecordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printSelectedStudentRecordButtonActionPerformed
+        // TODO add your handling code here:
+        if(studentList.getSelectedIndex()>-1){
+            
+            try {
+
+			setAlwaysOnTop(false);
+
+			PrinterJob job = PrinterJob.getPrinterJob();
+
+			PageFormat format = new PageFormat();
+			format.setOrientation(PageFormat.PORTRAIT);
+
+			job.setPrintable(studentTable.getPrintable(JTable.PrintMode.FIT_WIDTH, null, null), format);
+			if (job.printDialog())
+				job.print();
+			setAlwaysOnTop(true);
+		} catch (PrinterException ex) {
+			Logger.getLogger(SimulationGUI.class.getName()).log(Level.SEVERE,
+					null, ex);
+		}
+            
+        }
+        else
+            showMessageDialog(this, "Please select a student to print its record", null, OK_OPTION);
+    }//GEN-LAST:event_printSelectedStudentRecordButtonActionPerformed
+
 	private void classListValueChanged(javax.swing.event.ListSelectionEvent evt) {
 		// change students based on selected class
 		loadStudentsByClass();
@@ -1638,6 +1711,8 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
 	private void removeScenarioButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
+            
+            if(scenarioList.getSelectedIndex()>-1){
 		int n = JOptionPane.showConfirmDialog(this,
 				"Are you sure you want to delete this scenario?",
 				"Confirm Removal", JOptionPane.YES_NO_OPTION);
@@ -1650,7 +1725,19 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 				previewTabbedPane.setVisible(false);
 			}
                         controller.removeScenarioByName(scenario);
+                        if(((DefaultListModel)scenarioList.getModel()).size()>0)
+                            scenarioList.setSelectedIndex(0);
 		}
+            }
+            else if(((DefaultListModel)scenarioList.getModel()).size()==0){
+                showMessageDialog(this, "There is no Scenario to remove", null, OK_OPTION);
+                
+            }
+            else{
+                showMessageDialog(this, "Please select a Scenario to remove", null, OK_OPTION);
+            }
+                
+                
 	}
 
 	private void addScenarioButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1742,15 +1829,16 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 			scenario.setDiagnosis(diagnosisTextArea.getText());
 			scenario.setNarrativeList(narratives);
                         controller.writeScenarios();
+                        
+                      
+                        int i = scenarioList.getSelectedIndex();
+                        
                         rootTabbedPane.setSelectedIndex(0);
                         rootTabbedPane.setSelectedIndex(1);
                         
-                        for(int i = 0 ; i< scenarioList.getModel().getSize();i++){
-                            if(patientNameTextField.getText().equals(scenarioList.getModel().getElementAt(i))){
-                                scenarioList.setSelectedIndex(i);
-                                break;
-                            }
-                        }
+                        scenarioList.setSelectedIndex(i);
+                        
+                        
                         
 
 		}
@@ -2261,13 +2349,14 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JButton exportScenarioButton;
     private javax.swing.JLabel importExportAreaLabel;
     private javax.swing.JButton importScenarioButton;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -2275,6 +2364,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JButton logOutButton;
     private javax.swing.JPanel marPanel;
     private javax.swing.JTable medJTable;
@@ -2282,7 +2372,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JLabel patientNameLabel;
     private javax.swing.JTextField patientNameTextField;
     private javax.swing.JTabbedPane previewTabbedPane;
+    private javax.swing.JButton printAllStudentRecordsButton;
     private javax.swing.JButton printButton;
+    private javax.swing.JButton printSelectedStudentRecordButton;
     private javax.swing.JPanel professorLoginManager;
     private javax.swing.JLabel removalAreaLabel;
     private javax.swing.JButton removeAllButton;
