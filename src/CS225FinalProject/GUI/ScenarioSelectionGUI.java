@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- * 
+ * Student practice version
  * @author Eric
  */
 public class ScenarioSelectionGUI extends javax.swing.JFrame {
@@ -42,7 +42,8 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 	public ScenarioSelectionGUI(SimulationManager manager) {
 		initComponents();
 		setTitle("Scenario Selection");
-		summarySetter.setText("");
+		
+                summarySetterV2.setText("");
 
 		setLocation((getToolkit().getScreenSize().width - getWidth()) / 2,
 				(getToolkit().getScreenSize().height - getHeight()) / 2);
@@ -72,13 +73,14 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
         patientNameLabel = new javax.swing.JLabel();
         patientNameSetter = new javax.swing.JLabel();
         scenarioSummaryLabel = new javax.swing.JLabel();
-        summarySetter = new javax.swing.JLabel();
         currentTimeLabel = new javax.swing.JLabel();
         timeSetter = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        summarySetterV2 = new javax.swing.JTextArea();
         startButton = new javax.swing.JButton();
         logOutButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Scenario Selection");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -111,11 +113,15 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 
         scenarioSummaryLabel.setText("Scenario Summary:");
 
-        summarySetter.setText("summary");
-
         currentTimeLabel.setText("Time Limit:");
 
         timeSetter.setText("5:00PM");
+
+        summarySetterV2.setColumns(20);
+        summarySetterV2.setEditable(false);
+        summarySetterV2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        summarySetterV2.setRows(5);
+        jScrollPane1.setViewportView(summarySetterV2);
 
         javax.swing.GroupLayout scenarioDescriptionPanelLayout = new javax.swing.GroupLayout(scenarioDescriptionPanel);
         scenarioDescriptionPanel.setLayout(scenarioDescriptionPanelLayout);
@@ -124,7 +130,6 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
             .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
                 .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scenarioSummaryLabel)
-                    .addComponent(summarySetter)
                     .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
                         .addComponent(patientNameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -132,8 +137,9 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
                     .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
                         .addComponent(currentTimeLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(timeSetter)))
-                .addContainerGap(486, Short.MAX_VALUE))
+                        .addComponent(timeSetter))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         scenarioDescriptionPanelLayout.setVerticalGroup(
             scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,8 +154,8 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(scenarioSummaryLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(summarySetter)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         scenarioDescriptionScrollPanel.setViewportView(scenarioDescriptionPanel);
@@ -163,7 +169,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
                 startButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 460, -1, -1));
+        getContentPane().add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 450, -1, -1));
 
         logOutButton.setBackground(new java.awt.Color(255, 0, 0));
         logOutButton.setText("Logout");
@@ -182,7 +188,9 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 		patientNameSetter.setText(scenarios.get(scenarioIterator)
 				.getPatientName());
 
-		summarySetter.setText(scenarios.get(scenarioIterator).getSummary());
+		summarySetterV2.setEditable(true);
+                summarySetterV2.setText(scenarios.get(scenarioIterator).getSummary());
+                summarySetterV2.setEditable(false);
                 if(scenarios.get(scenarioIterator).getTime()!=0)
                 timeSetter.setText(scenarios.get(scenarioIterator).getTime()+ " Minutes");
                 else
@@ -219,7 +227,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 		setSelectedScenarioInfo();
 	}
 
-	private void previosButtonActionPerformed(java.awt.event.ActionEvent evt) {
+ private void previosButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
 
 		if (-1 == scenarioIterator - 1)
@@ -286,6 +294,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel currentTimeLabel;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logOutButton;
     private javax.swing.JButton nextButton;
     private javax.swing.JLabel patientNameLabel;
@@ -295,7 +304,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane scenarioDescriptionScrollPanel;
     private javax.swing.JLabel scenarioSummaryLabel;
     private javax.swing.JButton startButton;
-    private javax.swing.JLabel summarySetter;
+    private javax.swing.JTextArea summarySetterV2;
     private javax.swing.JLabel timeSetter;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables

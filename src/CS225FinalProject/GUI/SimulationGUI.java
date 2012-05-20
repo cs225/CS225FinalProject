@@ -302,7 +302,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
         submitButton = new javax.swing.JButton();
         printSampleButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Medical Administration Records");
         setBackground(new java.awt.Color(0, 0, 0));
         setPreferredSize(new java.awt.Dimension(1024, 675));
@@ -458,7 +458,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 
         documentationPane.add(docTabelHolder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 985, 370));
 
-        insertNewNarrativeButton.setText("Insert a new Narrative");
+        insertNewNarrativeButton.setText("Insert a New Narrative");
         insertNewNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertNewNarrativeButtonActionPerformed(evt);
@@ -466,7 +466,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
         });
         documentationPane.add(insertNewNarrativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
 
-        viewSelectedNarrativeButton.setText("ViewSelectedNarrative");
+        viewSelectedNarrativeButton.setText("View Selected Narrative");
         viewSelectedNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewSelectedNarrativeButtonActionPerformed(evt);
@@ -474,7 +474,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
         });
         documentationPane.add(viewSelectedNarrativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, -1, -1));
 
-        deleteNarrativeButton.setText("Delete the Selected Narrative");
+        deleteNarrativeButton.setText("Delete Selected Narrative");
         deleteNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteNarrativeButtonActionPerformed(evt);
@@ -845,7 +845,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                 public void run() {
                     
                         while(true){
-                            if(SimulationGUI.START_TIME!=0 && time==0){
+                            if(SimulationGUI.START_TIME!=0 && time==0 && t.isVisible()){
 //                                documentationTable.setValueAt((Object) t3.getText(),
 //							documentationTable.getSelectedRow(), 2);
 					t.dispose();
@@ -855,6 +855,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                             Thread.sleep(500);
                                }
                     catch(Exception e){
+                        System.out.println("Timed exit");
                         return;
                         
                     } 
@@ -945,15 +946,16 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                   if(SimulationGUI.START_TIME!=0 && time ==0){
-                       dialog.giveMedicationConfirmButtonActionPerformed(e);
+                   if(SimulationGUI.START_TIME!=0 && time ==0 && dialog.isVisible()){
+                      // dialog.giveMedicationConfirmButtonActionPerformed(e);
+                       dialog.dispose();
                    }
                     
                 }
             };
                         
                         
-                        Timer timer = new Timer(1000, checkTimer);
+                        Timer timer = new Timer(100, checkTimer);
                         timer.start();
                         
                         

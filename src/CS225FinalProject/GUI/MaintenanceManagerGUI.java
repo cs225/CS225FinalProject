@@ -600,7 +600,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ScenarioName", "DateTaken", "Suggestion", "Score"
+                "Name of Completed Scenario", "DateTaken", "Suggestion", "Score"
             }
         ) {
             Class[] types = new Class [] {
@@ -627,19 +627,19 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
         studentControlPanel.add(studentControlScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 1025, 222));
 
-        viewSelectedScenarioButton.setText("View Selected Scenario Input");
+        viewSelectedScenarioButton.setText("View Selected Completed Scenario Input");
         viewSelectedScenarioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewSelectedScenarioButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(viewSelectedScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 250, -1));
+        studentControlPanel.add(viewSelectedScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 270, -1));
 
         studentNameLabel.setText("StudentName");
         studentControlPanel.add(studentNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 0, -1, -1));
 
-        printButton.setText("Print Selected Scenario Input");
-        studentControlPanel.add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 250, -1));
+        printButton.setText("Print Selected Completed Scenario Input");
+        studentControlPanel.add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 270, -1));
 
         SimulationScoreLabel.setText("AVG Simulation Score");
         studentControlPanel.add(SimulationScoreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, -1));
@@ -658,10 +658,10 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 changeUserNameButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(changeUserNameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 331, -1, -1));
+        studentControlPanel.add(changeUserNameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 330, -1, -1));
 
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        studentControlPanel.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 258, 50, 202));
+        studentControlPanel.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 250, 50, 202));
 
         LoginModLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         LoginModLabel.setText("Login Modification");
@@ -669,7 +669,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
         currentStudentUserNameLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         currentStudentUserNameLabel.setText("current Username");
-        studentControlPanel.add(currentStudentUserNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 311, -1, -1));
+        studentControlPanel.add(currentStudentUserNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 310, -1, -1));
 
         currentStudentPasswordLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         currentStudentPasswordLabel.setText("current Password");
@@ -679,43 +679,43 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         SimResultsAreaLabel.setText("Simulation Results");
         studentControlPanel.add(SimResultsAreaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 248, -1, -1));
 
-        ViewScenarioSuggestionButton.setText("View Selected Scenario Suggestion");
+        ViewScenarioSuggestionButton.setText("View Selected Completed Scenario Suggestion");
         ViewScenarioSuggestionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ViewScenarioSuggestionButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(ViewScenarioSuggestionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 250, -1));
+        studentControlPanel.add(ViewScenarioSuggestionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 270, -1));
 
-        setScenarioScoreButton.setText("Set score for the Selected Result");
+        setScenarioScoreButton.setText("Set Score for the Selected Scenario");
         setScenarioScoreButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 setScenarioScoreButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(setScenarioScoreButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 220, -1));
+        studentControlPanel.add(setScenarioScoreButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 260, -1));
 
         jLabel3.setText("Current Student Password");
         studentControlPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 280, -1, -1));
 
         jLabel4.setText("Current Student Username");
-        studentControlPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, -1, -1));
+        studentControlPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, -1, -1));
 
-        editSelectedResultSuggestionButton.setText("Edit Selected Result Suggestion");
+        editSelectedResultSuggestionButton.setText("Edit Selected Completed Scenario Suggestion");
         editSelectedResultSuggestionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editSelectedResultSuggestionButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(editSelectedResultSuggestionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 220, -1));
+        studentControlPanel.add(editSelectedResultSuggestionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 260, -1));
 
-        deleteSelectedResultButton.setText("Delete Selected Result");
+        deleteSelectedResultButton.setText("Delete Selected Completed Scenario");
         deleteSelectedResultButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteSelectedResultButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(deleteSelectedResultButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 220, -1));
+        studentControlPanel.add(deleteSelectedResultButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 260, -1));
 
         printSelectedStudentRecordButton.setText("Print this Student's Record");
         printSelectedStudentRecordButton.addActionListener(new java.awt.event.ActionListener() {
@@ -723,7 +723,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 printSelectedStudentRecordButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(printSelectedStudentRecordButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 250, -1));
+        studentControlPanel.add(printSelectedStudentRecordButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, 270, -1));
 
         studentManagerControlTabbedPane.addTab("Student Control", studentControlPanel);
 
@@ -865,21 +865,21 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             }
         });
 
-        removeAllNarrativeButton.setText("RemoveAll");
+        removeAllNarrativeButton.setText("Remove All Narratives");
         removeAllNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeAllNarrativeButtonActionPerformed(evt);
             }
         });
 
-        viewSelectedNarrativeButton.setText("ViewSelectedNarrative");
+        viewSelectedNarrativeButton.setText("View Selected Narrative");
         viewSelectedNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewSelectedNarrativeButtonActionPerformed(evt);
             }
         });
 
-        deleteNarrativeButton.setText("Delete the Selected Narrative");
+        deleteNarrativeButton.setText("Delete Selected Narrative");
         deleteNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteNarrativeButtonActionPerformed(evt);
@@ -995,7 +995,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
         scenarioManagerPanel.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 10, 120));
 
-        addScenarioButton.setText("addScenario");
+        addScenarioButton.setText("Add Scenario");
         addScenarioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addScenarioButtonActionPerformed(evt);
@@ -1009,7 +1009,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 removeScenarioButtonActionPerformed(evt);
             }
         });
-        scenarioManagerPanel.add(removeScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, -1, -1));
+        scenarioManagerPanel.add(removeScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, -1, -1));
 
         jSeparator7.setOrientation(javax.swing.SwingConstants.VERTICAL);
         scenarioManagerPanel.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 40, 120));
@@ -1041,7 +1041,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 0, 0));
         jLabel8.setText("Removal");
-        scenarioManagerPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
+        scenarioManagerPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
 
         jSeparator8.setOrientation(javax.swing.SwingConstants.VERTICAL);
         scenarioManagerPanel.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, 30, 120));

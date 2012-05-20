@@ -2,7 +2,7 @@
 
 <Form version="1.6" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="0"/>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Medical Administration Records"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="0" green="0" red="0" type="rgb"/>
@@ -390,7 +390,7 @@
                     </Container>
                     <Component class="javax.swing.JButton" name="insertNewNarrativeButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Insert a new Narrative"/>
+                        <Property name="text" type="java.lang.String" value="Insert a New Narrative"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertNewNarrativeButtonActionPerformed"/>
@@ -403,7 +403,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="viewSelectedNarrativeButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="ViewSelectedNarrative"/>
+                        <Property name="text" type="java.lang.String" value="View Selected Narrative"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewSelectedNarrativeButtonActionPerformed"/>
@@ -416,7 +416,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="deleteNarrativeButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Delete the Selected Narrative"/>
+                        <Property name="text" type="java.lang.String" value="Delete Selected Narrative"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteNarrativeButtonActionPerformed"/>
