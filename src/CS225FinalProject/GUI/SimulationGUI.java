@@ -296,6 +296,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
         viewSelectedNarrativeButton = new javax.swing.JButton();
         deleteNarrativeButton = new javax.swing.JButton();
         editNarrativeButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         cancelSimulationButton = new javax.swing.JButton();
         timeLeftTextLabel = new javax.swing.JLabel();
         timeLabel = new javax.swing.JLabel();
@@ -406,7 +407,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                 giveMedicationButtonActionPerformed(evt);
             }
         });
-        mar_Panel.add(giveMedicationButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 260, -1, -1));
+        mar_Panel.add(giveMedicationButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 260, -1, -1));
 
         hourDueButton.setText("View Hour Due Details");
         hourDueButton.addActionListener(new java.awt.event.ActionListener() {
@@ -414,7 +415,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
                 hourDueButtonActionPerformed(evt);
             }
         });
-        mar_Panel.add(hourDueButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, -1, -1));
+        mar_Panel.add(hourDueButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 260, -1, -1));
 
         diagnosisSetterV2.setEditable(false);
         jScrollPane1.setViewportView(diagnosisSetterV2);
@@ -430,7 +431,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 
             },
             new String [] {
-                "Date", "Time", "Narrative", "Follow Up", "Initialls"
+                "Date", "Time", "Narrative", "Follow Up", "Initials"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -489,6 +490,9 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
             }
         });
         documentationPane.add(editNarrativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
+
+        jLabel1.setText("Note: After adding a new narrative, you may edit the narrative's follow up, initials, date, and time columms by double clicking its corresponding area.");
+        documentationPane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, -1, -1));
 
         documentationScrollPane.setViewportView(documentationPane);
 
@@ -1344,6 +1348,7 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
     private javax.swing.JButton giveMedicationButton;
     private javax.swing.JButton hourDueButton;
     private javax.swing.JButton insertNewNarrativeButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jcahoLabel;
     private javax.swing.JScrollPane jcahoScrollPane;

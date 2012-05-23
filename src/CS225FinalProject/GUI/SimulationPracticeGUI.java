@@ -45,7 +45,7 @@ import java.util.Arrays;
 import javax.swing.*;
 
 /**
- * practice vrsion
+ * 
  * @author Eric
  */
 public class SimulationPracticeGUI extends javax.swing.JFrame implements Printable {
@@ -302,7 +302,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
         submitButton = new javax.swing.JButton();
         printSampleButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Medical Administration Records");
         setBackground(new java.awt.Color(0, 0, 0));
         setResizable(false);
@@ -405,7 +405,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
                 giveMedicationButtonActionPerformed(evt);
             }
         });
-        mar_Panel.add(giveMedicationButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 260, -1, -1));
+        mar_Panel.add(giveMedicationButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 260, -1, -1));
 
         hourDueButton.setText("View Hour Due Details");
         hourDueButton.addActionListener(new java.awt.event.ActionListener() {
@@ -413,7 +413,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
                 hourDueButtonActionPerformed(evt);
             }
         });
-        mar_Panel.add(hourDueButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, -1, -1));
+        mar_Panel.add(hourDueButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 260, -1, -1));
 
         diagnosisSetterV2.setEditable(false);
         jScrollPane1.setViewportView(diagnosisSetterV2);
@@ -429,7 +429,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 
             },
             new String [] {
-                "Date", "Time", "Narrative", "Follow Up", "Initialls"
+                "Date", "Time", "Narrative", "Follow Up", "Initials"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -457,7 +457,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 
         documentationPane.add(docTabelHolder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 985, 370));
 
-        insertNewNarrativeButton.setText("Insert a new Narrative");
+        insertNewNarrativeButton.setText("Insert a New Narrative");
         insertNewNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertNewNarrativeButtonActionPerformed(evt);
@@ -465,7 +465,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
         });
         documentationPane.add(insertNewNarrativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
 
-        viewSelectedNarrativeButton.setText("ViewSelectedNarrative");
+        viewSelectedNarrativeButton.setText("View Selected Narrative");
         viewSelectedNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewSelectedNarrativeButtonActionPerformed(evt);
@@ -473,7 +473,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
         });
         documentationPane.add(viewSelectedNarrativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, -1, -1));
 
-        deleteNarrativeButton.setText("Delete the Selected Narrative");
+        deleteNarrativeButton.setText("Delete Selected Narrative");
         deleteNarrativeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteNarrativeButtonActionPerformed(evt);
@@ -844,7 +844,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
                 public void run() {
                     
                         while(true){
-                            if(SimulationGUI.START_TIME!=0 && time==0){
+                            if(SimulationGUI.START_TIME!=0 && time==0 && t.isVisible()){
 //                                documentationTable.setValueAt((Object) t3.getText(),
 //							documentationTable.getSelectedRow(), 2);
 					t.dispose();
@@ -854,6 +854,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
                             Thread.sleep(500);
                                }
                     catch(Exception e){
+                        System.out.println("Timed exit");
                         return;
                         
                     } 
@@ -932,11 +933,11 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 			setLocation((getToolkit().getScreenSize().width - getWidth()) / 2,
 					(getToolkit().getScreenSize().height - getHeight()) / 2);
 
-			medicationNameLabel.setText((String) ((SimulationPracticeGUI) parent)
+			medicationNameLabel.setText((String) ((SimulationGUI) parent)
 					.getMarTable()
 					.getModel()
 					.getValueAt(
-							((SimulationPracticeGUI) parent).getMarTable()
+							((SimulationGUI) parent).getMarTable()
 									.getSelectedRow(), 0));
                         
                         final MedicationDialog dialog = this;
@@ -944,15 +945,16 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                   if(SimulationGUI.START_TIME!=0 && time ==0){
-                       dialog.giveMedicationConfirmButtonActionPerformed(e);
+                   if(SimulationGUI.START_TIME!=0 && time ==0 && dialog.isVisible()){
+                      // dialog.giveMedicationConfirmButtonActionPerformed(e);
+                       dialog.dispose();
                    }
                     
                 }
             };
                         
                         
-                        Timer timer = new Timer(1000, checkTimer);
+                        Timer timer = new Timer(100, checkTimer);
                         timer.start();
                         
                         

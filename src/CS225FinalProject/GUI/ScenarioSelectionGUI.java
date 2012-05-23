@@ -29,8 +29,14 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
     @Override
     public void setVisible(boolean b) {
         super.setVisible(b);
-        if(b)
+        if(b){
+            if(controller.getScenarios().size()>0)
             setSelectedScenarioInfo();
+            else{
+                JOptionPane.showMessageDialog(this, "This program does not have any Scenarios to select. Please contact your professor",null,JOptionPane.OK_OPTION);
+                SimulationManager.state = SimulationManager.LOGIN_STATE;
+            }
+        }
     }
         
         
@@ -49,7 +55,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
 				(getToolkit().getScreenSize().height - getHeight()) / 2);
 
 		setAlwaysOnTop(true);
-		setSelectedScenarioInfo();
+		//setSelectedScenarioInfo();
                 
               
 	}
@@ -106,57 +112,29 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
         getContentPane().add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 11, -1, -1));
 
         scenarioDescriptionPanel.setBackground(new java.awt.Color(200, 200, 200));
+        scenarioDescriptionPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         patientNameLabel.setText("Patient Name:");
+        scenarioDescriptionPanel.add(patientNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         patientNameSetter.setText("name");
+        scenarioDescriptionPanel.add(patientNameSetter, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, -1, -1));
 
         scenarioSummaryLabel.setText("Scenario Summary:");
+        scenarioDescriptionPanel.add(scenarioSummaryLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, -1, -1));
 
         currentTimeLabel.setText("Time Limit:");
+        scenarioDescriptionPanel.add(currentTimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
 
         timeSetter.setText("5:00PM");
+        scenarioDescriptionPanel.add(timeSetter, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
         summarySetterV2.setColumns(20);
-        summarySetterV2.setEditable(false);
         summarySetterV2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         summarySetterV2.setRows(5);
         jScrollPane1.setViewportView(summarySetterV2);
 
-        javax.swing.GroupLayout scenarioDescriptionPanelLayout = new javax.swing.GroupLayout(scenarioDescriptionPanel);
-        scenarioDescriptionPanel.setLayout(scenarioDescriptionPanelLayout);
-        scenarioDescriptionPanelLayout.setHorizontalGroup(
-            scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
-                .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scenarioSummaryLabel)
-                    .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
-                        .addComponent(patientNameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(patientNameSetter))
-                    .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
-                        .addComponent(currentTimeLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(timeSetter))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(157, Short.MAX_VALUE))
-        );
-        scenarioDescriptionPanelLayout.setVerticalGroup(
-            scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(scenarioDescriptionPanelLayout.createSequentialGroup()
-                .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(patientNameLabel)
-                    .addComponent(patientNameSetter))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(scenarioDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(currentTimeLabel)
-                    .addComponent(timeSetter))
-                .addGap(20, 20, 20)
-                .addComponent(scenarioSummaryLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
+        scenarioDescriptionPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 510, 255));
 
         scenarioDescriptionScrollPanel.setViewportView(scenarioDescriptionPanel);
 

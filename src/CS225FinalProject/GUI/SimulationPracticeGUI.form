@@ -2,7 +2,7 @@
 
 <Form version="1.6" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="0"/>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Medical Administration Records"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="0" green="0" red="0" type="rgb"/>
@@ -251,7 +251,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="910" y="260" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="890" y="260" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -264,7 +264,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="750" y="260" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="730" y="260" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -344,7 +344,7 @@
                                 <Column editable="true" title="Time" type="java.lang.Object"/>
                                 <Column editable="false" title="Narrative" type="java.lang.Object"/>
                                 <Column editable="true" title="Follow Up" type="java.lang.Object"/>
-                                <Column editable="true" title="Initialls" type="java.lang.Object"/>
+                                <Column editable="true" title="Initials" type="java.lang.Object"/>
                               </Table>
                             </Property>
                             <Property name="autoResizeMode" type="int" value="0"/>
@@ -387,7 +387,7 @@
                     </Container>
                     <Component class="javax.swing.JButton" name="insertNewNarrativeButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Insert a new Narrative"/>
+                        <Property name="text" type="java.lang.String" value="Insert a New Narrative"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertNewNarrativeButtonActionPerformed"/>
@@ -400,7 +400,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="viewSelectedNarrativeButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="ViewSelectedNarrative"/>
+                        <Property name="text" type="java.lang.String" value="View Selected Narrative"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewSelectedNarrativeButtonActionPerformed"/>
@@ -413,7 +413,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="deleteNarrativeButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Delete the Selected Narrative"/>
+                        <Property name="text" type="java.lang.String" value="Delete Selected Narrative"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteNarrativeButtonActionPerformed"/>

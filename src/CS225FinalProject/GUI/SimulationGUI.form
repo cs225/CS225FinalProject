@@ -254,7 +254,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="910" y="260" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="890" y="260" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -267,7 +267,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="750" y="260" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="730" y="260" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -347,7 +347,7 @@
                                 <Column editable="true" title="Time" type="java.lang.Object"/>
                                 <Column editable="false" title="Narrative" type="java.lang.Object"/>
                                 <Column editable="true" title="Follow Up" type="java.lang.Object"/>
-                                <Column editable="true" title="Initialls" type="java.lang.Object"/>
+                                <Column editable="true" title="Initials" type="java.lang.Object"/>
                               </Table>
                             </Property>
                             <Property name="autoResizeMode" type="int" value="0"/>
@@ -437,6 +437,16 @@
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="380" y="390" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel1">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Note: After adding a new narrative, you may edit the narrative&apos;s follow up, initials, date, and time columms by double clicking its corresponding area."/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="30" y="430" width="-1" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>

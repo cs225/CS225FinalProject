@@ -58,8 +58,8 @@
         <Container class="javax.swing.JPanel" name="studentManagerPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="StudentManager">
-                <Property name="tabTitle" type="java.lang.String" value="StudentManager"/>
+              <JTabbedPaneConstraints tabName="Student Manager">
+                <Property name="tabTitle" type="java.lang.String" value="Student Manager"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -194,7 +194,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="550" y="110" width="110" height="-1"/>
+                  <AbsoluteConstraints x="550" y="110" width="120" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -463,7 +463,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="280" y="340" width="270" height="-1"/>
+                          <AbsoluteConstraints x="310" y="340" width="320" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -483,7 +483,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="280" y="370" width="270" height="-1"/>
+                          <AbsoluteConstraints x="310" y="370" width="320" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -506,20 +506,20 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="790" y="330" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="660" y="420" width="190" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
                     <Component class="javax.swing.JButton" name="changeUserNameButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Change User Name"/>
+                        <Property name="text" type="java.lang.String" value="Change Student Username"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changeUserNameButtonActionPerformed"/>
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="570" y="330" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="660" y="330" width="190" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -529,7 +529,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="560" y="250" width="50" height="202"/>
+                          <AbsoluteConstraints x="640" y="250" width="50" height="202"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -542,7 +542,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="684" y="248" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="750" y="250" width="-1" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -555,7 +555,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="570" y="310" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="660" y="310" width="-1" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -568,7 +568,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="790" y="310" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="660" y="400" width="-1" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -581,7 +581,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="121" y="248" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="220" y="250" width="-1" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -594,7 +594,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="280" y="310" width="270" height="-1"/>
+                          <AbsoluteConstraints x="310" y="310" width="320" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -607,7 +607,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="0" y="310" width="260" height="-1"/>
+                          <AbsoluteConstraints x="0" y="310" width="290" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -617,7 +617,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="790" y="280" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="660" y="370" width="-1" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -627,7 +627,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="570" y="280" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="660" y="280" width="-1" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -640,7 +640,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="0" y="340" width="260" height="-1"/>
+                          <AbsoluteConstraints x="0" y="340" width="290" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -653,7 +653,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="0" y="370" width="260" height="-1"/>
+                          <AbsoluteConstraints x="0" y="370" width="290" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -666,7 +666,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="280" y="400" width="270" height="-1"/>
+                          <AbsoluteConstraints x="310" y="400" width="320" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -679,8 +679,8 @@
         <Container class="javax.swing.JPanel" name="scenarioManagerPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="ScenarioManager">
-                <Property name="tabTitle" type="java.lang.String" value="ScenarioManager"/>
+              <JTabbedPaneConstraints tabName="Scenario Manager">
+                <Property name="tabTitle" type="java.lang.String" value="Scenario Manager"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -722,7 +722,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Select Scenario to edit"/>
+                <Property name="text" type="java.lang.String" value="Select Scenario to Edit"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -989,7 +989,17 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="590" y="290" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="600" y="290" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel9">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Note: after adding a medication with its Route, you may double click on the area that is empty or with content, so you can edit it."/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="40" y="10" width="-1" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -1010,21 +1020,33 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="documentationScrollPane" pref="955" max="32767" attributes="0"/>
+                                  <Component id="documentationScrollPane" alignment="0" pref="955" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Component id="addNarrativeButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="viewSelectedNarrativeButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="editNarrativeButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="deleteNarrativeButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="removeAllNarrativeButton" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="addNarrativeButton" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="viewSelectedNarrativeButton" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="editNarrativeButton" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="deleteNarrativeButton" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="removeAllNarrativeButton" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="0" pref="221" max="32767" attributes="0"/>
+                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="221" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1032,22 +1054,25 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Component id="documentationScrollPane" min="-2" pref="233" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="addNarrativeButton" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="viewSelectedNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="editNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="deleteNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="removeAllNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="addNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="viewSelectedNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="deleteNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="removeAllNarrativeButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="168" max="32767" attributes="0"/>
+                              <EmptySpace pref="142" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="0" pref="216" max="32767" attributes="0"/>
+                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="216" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1148,6 +1173,16 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editNarrativeButtonActionPerformed"/>
                       </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel10">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Note: after adding a medication with its Route, you may double click on the area that is empty so you can edit  "/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel11">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Note: after adding a narrative, you may double click on the area that is empty or with content, so you can edit it.  "/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1382,8 +1417,8 @@
         <Container class="javax.swing.JPanel" name="professorLoginManager">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="ProfessorLoginManager">
-                <Property name="tabTitle" type="java.lang.String" value="ProfessorLoginManager"/>
+              <JTabbedPaneConstraints tabName="Professor Login Manager">
+                <Property name="tabTitle" type="java.lang.String" value="Professor Login Manager"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
