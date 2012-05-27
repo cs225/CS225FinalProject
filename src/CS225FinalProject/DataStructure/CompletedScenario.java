@@ -13,6 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 
 //This will hold user session data
 public class CompletedScenario implements Serializable, Printable{
@@ -94,7 +95,11 @@ public class CompletedScenario implements Serializable, Printable{
          */
     @Override
     public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
-        throw new UnsupportedOperationException("Not supported yet.");
+       // throw new UnsupportedOperationException("Not supported yet.");
         //student.getRealName(); sample of getting the name of the student . it is functional :).
+        //JTextArea jTextArea = new JTextArea();
+        //jTextArea.getp
+        
+        return 1;
     }
 }

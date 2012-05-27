@@ -1314,23 +1314,35 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 		if (pageIndex == 0) {
 			rootTabbedPane.setSelectedIndex(1);
 			pageFormat.setOrientation(PageFormat.LANDSCAPE);
-			g2d.translate(pageFormat.getImageableX() + 20,
-					pageFormat.getImageableY() + 20);
+			g2d.translate(pageFormat.getImageableX(),
+					pageFormat.getImageableY());
 			g2d.scale(.60, .60);
 			rootTabbedPane.paint(graphics);
-			graphics.drawString("Hello world!", 100, 100);
+			//graphics.drawString("Hello world!", 100, 100);
 		} else {
 			rootTabbedPane.setSelectedIndex(2);
 			pageFormat.setOrientation(PageFormat.LANDSCAPE);
-			g2d.translate(pageFormat.getImageableX() + 20,
-					pageFormat.getImageableY() + 20);
+			g2d.translate(pageFormat.getImageableX(),
+					pageFormat.getImageableY());
 			g2d.scale(.60, .60);
 			rootTabbedPane.paint(graphics);
-			graphics.drawString("Hello world!", 100, 100);
+			//graphics.drawString("Hello world!", 100, 100);
 		}
 
 		return PAGE_EXISTS;
 	}
+        public void setSelectedRootTabbedPaneIndex(int i){
+            if(i>-1 && i<3)
+                rootTabbedPane.setSelectedIndex(i);
+            else 
+                throw new IndexOutOfBoundsException();
+        }
+
+    public JTabbedPane getRootTabbedPane() {
+        return rootTabbedPane;
+    }
+        
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel allergiesSetter;

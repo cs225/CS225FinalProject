@@ -14,13 +14,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import CS225FinalProject.SimulationManager;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import CS225FinalProject.printer.SimulationPrinter;
+import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.print.PageFormat;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
+import java.awt.print.*;
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Scanner;
@@ -35,6 +34,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.xml.crypto.Data;
 
 import static javax.swing.JOptionPane.*;
+import sun.print.PageableDoc;
 
 /**
  * 
@@ -287,7 +287,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         studentTable = new javax.swing.JTable();
         viewSelectedScenarioButton = new javax.swing.JButton();
         studentNameLabel = new javax.swing.JLabel();
-        printButton = new javax.swing.JButton();
+        printCompletedScenarioButton = new javax.swing.JButton();
         SimulationScoreLabel = new javax.swing.JLabel();
         changePasswordButton = new javax.swing.JButton();
         changeUserNameButton = new javax.swing.JButton();
@@ -296,7 +296,6 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         currentStudentUserNameLabel = new javax.swing.JLabel();
         currentStudentPasswordLabel = new javax.swing.JLabel();
         SimResultsAreaLabel = new javax.swing.JLabel();
-        ViewScenarioSuggestionButton = new javax.swing.JButton();
         setScenarioScoreButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -530,7 +529,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
         averageClassScoreLabel.setText("Average Class Score:");
 
-        printAllStudentRecordsButton.setText("Print the Records of All Students");
+        printAllStudentRecordsButton.setText("Print the Records of All Students of this Class");
         printAllStudentRecordsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 printAllStudentRecordsButtonActionPerformed(evt);
@@ -636,13 +635,18 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 viewSelectedScenarioButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(viewSelectedScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 320, -1));
+        studentControlPanel.add(viewSelectedScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 320, -1));
 
         studentNameLabel.setText("StudentName");
         studentControlPanel.add(studentNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 0, -1, -1));
 
-        printButton.setText("Print Selected Completed Scenario Input");
-        studentControlPanel.add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 320, -1));
+        printCompletedScenarioButton.setText("Print Selected Completed Scenario Result");
+        printCompletedScenarioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printCompletedScenarioButtonActionPerformed(evt);
+            }
+        });
+        studentControlPanel.add(printCompletedScenarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 320, -1));
 
         SimulationScoreLabel.setText("AVG Simulation Score");
         studentControlPanel.add(SimulationScoreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, -1));
@@ -682,15 +686,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
         SimResultsAreaLabel.setText("Simulation Results");
         studentControlPanel.add(SimResultsAreaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, -1));
 
-        ViewScenarioSuggestionButton.setText("View Selected Completed Scenario Suggestion");
-        ViewScenarioSuggestionButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewScenarioSuggestionButtonActionPerformed(evt);
-            }
-        });
-        studentControlPanel.add(ViewScenarioSuggestionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 320, -1));
-
-        setScenarioScoreButton.setText("Set Score for the Selected Scenario");
+        setScenarioScoreButton.setText("Set Score for the Selected Completed Scenario");
         setScenarioScoreButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 setScenarioScoreButtonActionPerformed(evt);
@@ -726,7 +722,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 printSelectedStudentRecordButtonActionPerformed(evt);
             }
         });
-        studentControlPanel.add(printSelectedStudentRecordButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, 320, -1));
+        studentControlPanel.add(printSelectedStudentRecordButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 320, -1));
 
         studentManagerControlTabbedPane.addTab("Student Control", studentControlPanel);
 
@@ -1405,25 +1401,109 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 
     private void printAllStudentRecordsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printAllStudentRecordsButtonActionPerformed
         // TODO add your handling code here:
+        if(classList.getSelectedIndex()>-1 && studentList.getModel().getSize()>0){
+        try {
+			PrinterJob job = PrinterJob.getPrinterJob();
+                        int index = classList.getSelectedIndex();
+                        
+                        if (job.printDialog()){
+                            PageFormat format = new PageFormat();
+                                format.setOrientation(PageFormat.LANDSCAPE);
+                            for(int i =0; i<studentList.getModel().getSize();i++){
+                                studentList.setSelectedIndex(i);
+                                
+                                Student student = controller.getStudentByNameAndClassroom(
+                                (String)studentList.getSelectedValue(),
+                                (String)classList.getSelectedValue());
+
+                                Printable printable = studentTable.getPrintable(JTable.PrintMode.FIT_WIDTH, 
+                                        new MessageFormat(
+                                        student.getRealName()+ " "+
+                                        student.getClassName()+
+                                        " Report as of "+new SimpleDateFormat("M-d-yy").format(Calendar.getInstance().getTime())), 
+
+                                        new MessageFormat(
+                                        "Completed Scenarios:"+student.getCompletedScenarios().size()+
+                                        " Average Score: "+ (student.getAverageScore()==null?"not available":student.getAverageScore()) + 
+                                        " Page - {0}"));
+                                        job.setPrintable(printable, format);
+                                        job.print();
+                            }
+                        }
+                        studentList.clearSelection();
+                        classControlJTable.clearSelection();
+                        classList.setSelectedIndex(index);
+		} catch (PrinterException ex) {
+			Logger.getLogger(SimulationGUI.class.getName()).log(Level.SEVERE,
+					null, ex);
+		}
+            
+        }
+        else if(studentList.getModel().getSize()==0&&classList.getSelectedIndex()>-1)
+            showMessageDialog(this, "This class does not have any students to print.", null, OK_OPTION);
+        else if(classList.getSelectedIndex()<0)
+            showMessageDialog(this, "Please select a Classroom to print the Records of its students.", null, OK_OPTION);
     }//GEN-LAST:event_printAllStudentRecordsButtonActionPerformed
 
     private void printSelectedStudentRecordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printSelectedStudentRecordButtonActionPerformed
         // TODO add your handling code here:
-        if(studentList.getSelectedIndex()>-1){
+        if(studentList.getSelectedIndex()>-1 && studentTable.getRowCount()>0){
             
-            try {
-
-			setAlwaysOnTop(false);
-
+ //           Printable printable =  new Printable() {
+//
+//                @Override
+//                public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
+//                   // throw new UnsupportedOperationException("Not supported yet.");
+//                    if(pageIndex==0){
+//                        System.out.println(pageFormat.getImageableWidth()/12);
+//                    Graphics2D g2d = (Graphics2D) graphics;
+//                    g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY()+24);
+//                    g2d.setColor(Color.black);
+//                    g2d.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 12));
+//                    
+//                    Font font = new Font(Font.SANS_SERIF, Font.BOLD, 12);
+//                    
+//                    g2d.drawString("Eric Santana",0,0);
+//                    g2d.drawString("CS225\n",0,12);
+//                    g2d.drawString("AVG Score: 100", 0, 24);
+//                   // g2d.drawString("00000000000000000000000000000000000000000000000000000000000000000000000000000000", 0, 36);
+//                    Printable p =  studentTable.getPrintable(JTable.PrintMode.FIT_WIDTH, null, null);
+//                   
+//                    g2d.translate(-pageFormat.getImageableX(), -24);
+//                    p.print(g2d, pageFormat, pageIndex);
+//                    
+//                    return PAGE_EXISTS;
+//                    }
+//                    else
+//                        return NO_SUCH_PAGE;
+//                }
+//            };   
+            
+        try {
 			PrinterJob job = PrinterJob.getPrinterJob();
-
+                        
 			PageFormat format = new PageFormat();
-			format.setOrientation(PageFormat.PORTRAIT);
+			format.setOrientation(PageFormat.LANDSCAPE);
+                        Student student = controller.getStudentByNameAndClassroom(
+                   (String)studentList.getSelectedValue(),
+                    (String)classList.getSelectedValue());
+                        
 
-			job.setPrintable(studentTable.getPrintable(JTable.PrintMode.FIT_WIDTH, null, null), format);
+                        Printable printable = studentTable.getPrintable(JTable.PrintMode.FIT_WIDTH, 
+                                new MessageFormat(
+                                student.getRealName()+ " "+
+                                student.getClassName()+
+                                " Report as of "+new SimpleDateFormat("M-d-yy").format(Calendar.getInstance().getTime())), 
+                                
+                                new MessageFormat(
+                                "Completed Scenarios:"+student.getCompletedScenarios().size()+
+                                " Average Score: "+ (student.getAverageScore()==null?"not available":student.getAverageScore()) + 
+                                " Page - {0}"));
+                        
+			job.setPrintable(printable, format);
 			if (job.printDialog())
 				job.print();
-			setAlwaysOnTop(true);
+			
 		} catch (PrinterException ex) {
 			Logger.getLogger(SimulationGUI.class.getName()).log(Level.SEVERE,
 					null, ex);
@@ -1431,8 +1511,34 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
             
         }
         else
-            showMessageDialog(this, "Please select a student to print its record", null, OK_OPTION);
+            showMessageDialog(this, "This student does not have any record to print.", null, OK_OPTION);
+        
+        
+        
+//        Student student = controller.getStudentByNameAndClassroom(
+//                  (String)studentList.getSelectedValue(),
+//                    (String)classList.getSelectedValue());
+//        SimulationPrinter.printStudentRecord(student, studentTable.getModel(), studentTable.getColumnModel());
     }//GEN-LAST:event_printSelectedStudentRecordButtonActionPerformed
+
+    
+    
+    private void printCompletedScenarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printCompletedScenarioButtonActionPerformed
+        // TODO add your handling code here:
+        if(studentTable.getSelectedRow()>-1 ){
+        SimulationPrinter.printCompletedScenario(
+                controller.getStudentByNameAndClassroom(
+                    (String)studentList.getSelectedValue(),
+                    (String)classList.getSelectedValue()),
+                studentTable.getSelectedRow());
+        }
+        else if(studentTable.getRowCount()==0){
+            showMessageDialog(this, "There is no scenarios to select", null,OK_OPTION);
+        }
+        else
+            showMessageDialog(this, "Please select a completed scenario", null,OK_OPTION);
+
+    }//GEN-LAST:event_printCompletedScenarioButtonActionPerformed
 
 	private void classListValueChanged(javax.swing.event.ListSelectionEvent evt) {
 		// change students based on selected class
@@ -1491,11 +1597,17 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 		
 	}
 
+    public JTable getStudentTable() {
+        return studentTable;
+    }
+        
+
 	private void setScenarioScoreButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
              if(studentTable.getSelectedRow()>-1){
            
+                 int index = studentTable.getSelectedRow();
             Student student = controller.getStudentByNameAndClassroom((String)studentList.getSelectedValue(), (String)classList.getSelectedValue());
             if(student!=null){
                 try{
@@ -1508,6 +1620,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 int i = studentList.getSelectedIndex();
                 studentList.clearSelection();
                 studentList.setSelectedIndex(i);
+                studentTable.setRowSelectionInterval(index, index);
                 }
                 
                 }
@@ -1633,6 +1746,9 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
 	private void importScenarioButtonActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+            if(showConfirmDialog(this, "Are you sure you want to import a list of scenarios from a file?\n"
+                    + "By doing so, it replaces your current list of scenarios.\n"
+                    + "You may backup your list by exporting your list by clicking export. ", "Import Verification", YES_NO_OPTION) == YES_OPTION){
             DataIO io = new DataIO();
             
             JFileChooser fileChooser = new JFileChooser();
@@ -1650,6 +1766,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
                 else
                     JOptionPane.showMessageDialog(this, "This is not a valid file");
                 
+            }
             }
 	}
 
@@ -2345,7 +2462,6 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JLabel SimResultsAreaLabel;
     private javax.swing.JLabel SimulationScoreLabel;
     private javax.swing.JButton UndoAllChangesButton;
-    private javax.swing.JButton ViewScenarioSuggestionButton;
     private javax.swing.JButton addClassButton;
     private javax.swing.JButton addMedicationButton;
     private javax.swing.JButton addNarrativeButton;
@@ -2411,7 +2527,7 @@ public class MaintenanceManagerGUI extends javax.swing.JFrame {
     private javax.swing.JTextField patientNameTextField;
     private javax.swing.JTabbedPane previewTabbedPane;
     private javax.swing.JButton printAllStudentRecordsButton;
-    private javax.swing.JButton printButton;
+    private javax.swing.JButton printCompletedScenarioButton;
     private javax.swing.JButton printSelectedStudentRecordButton;
     private javax.swing.JPanel professorLoginManager;
     private javax.swing.JLabel removalAreaLabel;

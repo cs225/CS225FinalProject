@@ -380,7 +380,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="printAllStudentRecordsButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Print the Records of All Students"/>
+                        <Property name="text" type="java.lang.String" value="Print the Records of All Students of this Class"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printAllStudentRecordsButtonActionPerformed"/>
@@ -463,7 +463,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="310" y="340" width="320" height="-1"/>
+                          <AbsoluteConstraints x="310" y="310" width="320" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -477,13 +477,16 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JButton" name="printButton">
+                    <Component class="javax.swing.JButton" name="printCompletedScenarioButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Print Selected Completed Scenario Input"/>
+                        <Property name="text" type="java.lang.String" value="Print Selected Completed Scenario Result"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printCompletedScenarioButtonActionPerformed"/>
+                      </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="310" y="370" width="320" height="-1"/>
+                          <AbsoluteConstraints x="310" y="340" width="320" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -585,22 +588,9 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JButton" name="ViewScenarioSuggestionButton">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="View Selected Completed Scenario Suggestion"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewScenarioSuggestionButtonActionPerformed"/>
-                      </Events>
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="310" y="310" width="320" height="-1"/>
-                        </Constraint>
-                      </Constraints>
-                    </Component>
                     <Component class="javax.swing.JButton" name="setScenarioScoreButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Set Score for the Selected Scenario"/>
+                        <Property name="text" type="java.lang.String" value="Set Score for the Selected Completed Scenario"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setScenarioScoreButtonActionPerformed"/>
@@ -666,7 +656,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="310" y="400" width="320" height="-1"/>
+                          <AbsoluteConstraints x="310" y="370" width="320" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
