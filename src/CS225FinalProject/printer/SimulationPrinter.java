@@ -187,7 +187,7 @@ public class SimulationPrinter implements Printable{
            int index = 0;
            int counter = 0;
            char[] chars = suggestion.toCharArray();
-           StringBuffer buffer = new StringBuffer("        ");
+           StringBuffer buffer = new StringBuffer("");
            while(index<chars.length){
                char c = chars[index];
                if(c=='\n'){
@@ -200,7 +200,7 @@ public class SimulationPrinter implements Printable{
                    buffer.append(""+c+"-");
                    stringBuffers.add(buffer);
                    
-                   buffer = new StringBuffer("        ");
+                   buffer = new StringBuffer("");
                    counter=buffer.length();
                }
                else if(c!='\n'&& counter<70){

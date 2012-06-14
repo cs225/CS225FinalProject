@@ -133,6 +133,8 @@ public class SimulationGUI extends javax.swing.JFrame implements Printable {
 				.getPatientName());
 		allergiesSetter.setText(scenario
 				.getAllergies());
+                
+                giveMedicationButton.setVisible(false);
 		
                 diagnosisSetterV2.setText(scenario
 				.getDiagnosis());

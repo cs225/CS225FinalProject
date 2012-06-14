@@ -38,6 +38,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import CS225FinalProject.SimulationManager;
+import CS225FinalProject.SimulationPracticeManager;
 import CS225FinalProject.Validators.Evaluator;
 import java.awt.*;
 import java.util.ArrayList;
@@ -54,8 +55,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 
 	int time;
 
-	private SimulationController controller = SimulationController
-			.getInstance();
+	private SimulationController controller ;
 
     public SimulationPracticeGUI(Scenario scenario, ArrayList<Narrative> studentInput)  {
         initComponents();
@@ -158,13 +158,13 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 
 	private void loadScenarioContents() {
 
-		START_TIME = SimulationManager.CURRENT_SCENARIO.getTime();
+		START_TIME = SimulationPracticeManager.CURRENT_SCENARIO.getTime();
                 time = START_TIME*60;
-		Narrative[] narratives = new Narrative[SimulationManager.CURRENT_SCENARIO
+		Narrative[] narratives = new Narrative[SimulationPracticeManager.CURRENT_SCENARIO
 				.getNarrativeList().size()];
 
-		if (!SimulationManager.CURRENT_SCENARIO.getNarrativeList().isEmpty())
-			SimulationManager.CURRENT_SCENARIO.getNarrativeList().toArray(
+		if (!SimulationPracticeManager.CURRENT_SCENARIO.getNarrativeList().isEmpty())
+			SimulationPracticeManager.CURRENT_SCENARIO.getNarrativeList().toArray(
 					narratives);
 
 		// cleans up all narratives
@@ -179,13 +179,13 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 			}
 		// ------------------------------------------------------------------------------------
 
-		Medication[] medications = new Medication[SimulationManager.CURRENT_SCENARIO
+		Medication[] medications = new Medication[SimulationPracticeManager.CURRENT_SCENARIO
 				.getMedicationList().size()];
 		// cleans up all medications
 		while (marTable.getRowCount() > 0)
 			((DefaultTableModel) marTable.getModel()).removeRow(0);
-		if (!SimulationManager.CURRENT_SCENARIO.getMedicationList().isEmpty())
-			SimulationManager.CURRENT_SCENARIO.getMedicationList().toArray(
+		if (!SimulationPracticeManager.CURRENT_SCENARIO.getMedicationList().isEmpty())
+			SimulationPracticeManager.CURRENT_SCENARIO.getMedicationList().toArray(
 					medications);
 
 		// loads the medications
@@ -197,22 +197,22 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 						medication.getMedicationDueTimes() });
 			}
 
-		patientNameLabel.setText(SimulationManager.CURRENT_SCENARIO
+		patientNameLabel.setText(SimulationPracticeManager.CURRENT_SCENARIO
 				.getPatientName());
-		allergiesSetter.setText(SimulationManager.CURRENT_SCENARIO
+		allergiesSetter.setText(SimulationPracticeManager.CURRENT_SCENARIO
 				.getAllergies());
 		
-                diagnosisSetterV2.setText(SimulationManager.CURRENT_SCENARIO
+                diagnosisSetterV2.setText(SimulationPracticeManager.CURRENT_SCENARIO
 				.getDiagnosis());
 		roomNumSetter
-				.setText("" + SimulationManager.CURRENT_SCENARIO.getRoom());
+				.setText("" + SimulationPracticeManager.CURRENT_SCENARIO.getRoom());
 
 	}
 
 	/**
 	 * Creates new form PrototypeGUI2
 	 */
-	public SimulationPracticeGUI(SimulationManager manager) {
+	public SimulationPracticeGUI(SimulationPracticeManager manager) {
 		initComponents();
 
 		setLocation((getToolkit().getScreenSize().width - getWidth()) / 2,
@@ -223,7 +223,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (SimulationGUI.START_TIME == 0) {
+				if (SimulationPracticeGUI.START_TIME == 0) {
 					time = 0xff;
 					timeLabel.setText("No Time Limit");
 				}
@@ -243,7 +243,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 					submit();
 				}
 				if (!isVisible()) {
-					time = SimulationGUI.START_TIME;
+					time = SimulationPracticeGUI.START_TIME;
 
 				}
 
@@ -306,6 +306,11 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
         setTitle("Medical Administration Records");
         setBackground(new java.awt.Color(0, 0, 0));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         rootTabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -557,15 +562,22 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
             didGiveMedAfterDoc=true;
     }//GEN-LAST:event_rootTabbedPaneStateChanged
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        if(JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", null, JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+         System.exit(0);
+
+    }//GEN-LAST:event_formWindowClosing
+
 	private void cancelSimulationButtonActionPerformed(ActionEvent evt) {
             if(JOptionPane.YES_OPTION==JOptionPane.showConfirmDialog(this,
                                 "Are you sure you want to cancel the simulation and select another problem?", null, JOptionPane.YES_NO_OPTION))
-                                SimulationManager.state = SimulationManager.SCENARIO_STATE;
+                                SimulationPracticeManager.state = SimulationManager.SCENARIO_STATE;
 
 	}
 
 	private void deleteNarrativeButtonActionPerformed(Object evt) {
-            if(documentationTable.getSelectedRow()< SimulationManager.CURRENT_SCENARIO.getStartNumOfNarratives() && documentationTable.getSelectedRow()>-1)
+            if(documentationTable.getSelectedRow()< SimulationPracticeManager.CURRENT_SCENARIO.getStartNumOfNarratives() && documentationTable.getSelectedRow()>-1)
                 JOptionPane.showMessageDialog(this, "You can not delete this narrative\n it was made by another nurse");
             else if(documentationTable.getSelectedRow()>-1)
                 ((DefaultTableModel)documentationTable.getModel()).removeRow(documentationTable.getSelectedRow());
@@ -633,9 +645,9 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
         private void submit(){
                     String suggestion = "";//maybe extra stuff here
                     int narrativePointer = 0;
-                    narrativePointer+= SimulationManager.CURRENT_SCENARIO.getStartNumOfNarratives();
+                    narrativePointer+= SimulationPracticeManager.CURRENT_SCENARIO.getStartNumOfNarratives();
                     ArrayList<Narrative> narratives = new ArrayList<Narrative>();
-                    if(!(SimulationManager.CURRENT_SCENARIO.getStartNumOfNarratives()== documentationTable.getRowCount())){
+                    if(!(SimulationPracticeManager.CURRENT_SCENARIO.getStartNumOfNarratives()== documentationTable.getRowCount())){
                     while(narrativePointer<documentationTable.getRowCount()){
                        
                         //TODZO: Wait for clean implementation of give sugestion by Kevin.
@@ -656,16 +668,21 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
                     }
                     String giveMedBeforeDoc = "";
                     if(medBdoc)
-                        giveMedBeforeDoc+="Student gave medication before looking at the Narratives\n";
-                    ((Student)SimulationManager.CURRENT_USER).
-                    addCompletedScenario
-                    (new CompletedScenario(narratives,giveMedBeforeDoc+ (!suggestion.equals("")? "Potential JCAHO errors found:\n"+suggestion: "No Potential JCAHO errors found."),
-                    SimulationManager.CURRENT_SCENARIO)); 
+                        giveMedBeforeDoc+="You gave medication before looking at the Narratives\n";
+//                    ((Student)SimulationManager.CURRENT_USER).
+//                    addCompletedScenario
+//                    (new CompletedScenario(narratives,giveMedBeforeDoc+ (!suggestion.equals("")? "Potential JCAHO errors found:\n"+suggestion: "No Potential JCAHO errors found."),
+//                    SimulationManager.CURRENT_SCENARIO)); 
+                    
+                    PracticeResultGUI resultGUI = new PracticeResultGUI(this, true, giveMedBeforeDoc+ (!suggestion.equals("")? "Potential JCAHO errors found:\n"+suggestion: "No Potential JCAHO errors found."));
 
-                    controller.writeUsers();
-                    controller.populateUsers();
-                    setVisible(false);
-                    SimulationManager.state = SimulationManager.LOGIN_STATE;
+                    resultGUI.setLocation((getToolkit().getScreenSize().width -  resultGUI.getWidth()) / 2,
+				(getToolkit().getScreenSize().height -  resultGUI.getHeight()) / 2);
+                    resultGUI.setVisible(true);
+//                    controller.writeUsers();
+//                    controller.populateUsers();
+                //    setVisible(false);
+                    SimulationPracticeManager.state = SimulationManager.SCENARIO_STATE;
             
         }
 	private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -717,7 +734,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
                 public void run() {
                     
                         while(true){
-                            if(SimulationGUI.START_TIME!=0 && time==0){
+                            if(SimulationPracticeGUI.START_TIME!=0 && time==0){
 //                                documentationTable.setValueAt((Object) t3.getText(),
 //							documentationTable.getSelectedRow(), 2);
 					t.dispose();
@@ -772,7 +789,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 
 		if (documentationTable.getSelectedRow() < 0)
 			JOptionPane.showMessageDialog(this, "Please Select a Narrative");
-                else if(documentationTable.getSelectedRow()< SimulationManager.CURRENT_SCENARIO.getStartNumOfNarratives() && documentationTable.getSelectedRow()>-1)
+                else if(documentationTable.getSelectedRow()< SimulationPracticeManager.CURRENT_SCENARIO.getStartNumOfNarratives() && documentationTable.getSelectedRow()>-1)
                      JOptionPane.showMessageDialog(this, "You can not edit this narrative\n it was made by another nurse");
 		else {
 			final JDialog t = new JDialog(this,true);
@@ -844,7 +861,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
                 public void run() {
                     
                         while(true){
-                            if(SimulationGUI.START_TIME!=0 && time==0 && t.isVisible()){
+                            if(SimulationPracticeGUI.START_TIME!=0 && time==0 && t.isVisible()){
 //                                documentationTable.setValueAt((Object) t3.getText(),
 //							documentationTable.getSelectedRow(), 2);
 					t.dispose();
@@ -933,11 +950,11 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 			setLocation((getToolkit().getScreenSize().width - getWidth()) / 2,
 					(getToolkit().getScreenSize().height - getHeight()) / 2);
 
-			medicationNameLabel.setText((String) ((SimulationGUI) parent)
+			medicationNameLabel.setText((String) ((SimulationPracticeGUI) parent)
 					.getMarTable()
 					.getModel()
 					.getValueAt(
-							((SimulationGUI) parent).getMarTable()
+							((SimulationPracticeGUI) parent).getMarTable()
 									.getSelectedRow(), 0));
                         
                         final MedicationDialog dialog = this;
@@ -945,7 +962,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                   if(SimulationGUI.START_TIME!=0 && time ==0 && dialog.isVisible()){
+                   if(SimulationPracticeGUI.START_TIME!=0 && time ==0 && dialog.isVisible()){
                       // dialog.giveMedicationConfirmButtonActionPerformed(e);
                        dialog.dispose();
                    }
@@ -1313,7 +1330,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 					pageFormat.getImageableY() + 20);
 			g2d.scale(.60, .60);
 			rootTabbedPane.paint(graphics);
-			graphics.drawString("Hello world!", 100, 100);
+			//graphics.drawString("Hello world!", 100, 100);
 		} else {
 			rootTabbedPane.setSelectedIndex(2);
 			pageFormat.setOrientation(PageFormat.LANDSCAPE);
@@ -1321,7 +1338,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 					pageFormat.getImageableY() + 20);
 			g2d.scale(.60, .60);
 			rootTabbedPane.paint(graphics);
-			graphics.drawString("Hello world!", 100, 100);
+			//graphics.drawString("Hello world!", 100, 100);
 		}
 
 		return PAGE_EXISTS;

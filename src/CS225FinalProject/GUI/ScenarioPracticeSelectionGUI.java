@@ -4,10 +4,13 @@
  */
 package CS225FinalProject.GUI;
 
+import CS225FinalProject.DataStructure.DataIO;
 import CS225FinalProject.DataStructure.Scenario;
 import CS225FinalProject.SimulationManager;
 import CS225FinalProject.DataStructure.SimulationController;
+import CS225FinalProject.SimulationPracticeManager;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 
 import javax.swing.JOptionPane;
 
@@ -17,31 +20,11 @@ import javax.swing.JOptionPane;
  */
 public class ScenarioPracticeSelectionGUI extends javax.swing.JFrame {
 
-	private SimulationController controller = SimulationController
-			.getInstance();
+	
 
 	private int scenarioIterator = 0;
 
-        
-        /**
-         * this verifies that it loads the selected scenario properly.
-         */
-    @Override
-    public void setVisible(boolean b) {
-        super.setVisible(b);
-        if(b){
-            if(controller.getScenarios().size()>0)
-            setSelectedScenarioInfo();
-            else{
-                JOptionPane.showMessageDialog(this, "This program does not have any Scenarios to select. Please contact your professor",null,JOptionPane.OK_OPTION);
-                SimulationManager.state = SimulationManager.LOGIN_STATE;
-            }
-        }
-    }
-        
-        
-        
-
+  
 	/**
 	 * Creates new form ScenarioSelectionGUI
 	 */
@@ -55,7 +38,7 @@ public class ScenarioPracticeSelectionGUI extends javax.swing.JFrame {
 				(getToolkit().getScreenSize().height - getHeight()) / 2);
 
 		setAlwaysOnTop(true);
-		//setSelectedScenarioInfo();
+		setSelectedScenarioInfo();
                 
               
 	}
@@ -85,6 +68,7 @@ public class ScenarioPracticeSelectionGUI extends javax.swing.JFrame {
         summarySetterV2 = new javax.swing.JTextArea();
         startButton = new javax.swing.JButton();
         logOutButton = new javax.swing.JButton();
+        LoadButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Scenario Selection");
@@ -150,7 +134,7 @@ public class ScenarioPracticeSelectionGUI extends javax.swing.JFrame {
         getContentPane().add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 450, -1, -1));
 
         logOutButton.setBackground(new java.awt.Color(255, 0, 0));
-        logOutButton.setText("Logout");
+        logOutButton.setText("Exit");
         logOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logOutButtonActionPerformed(evt);
@@ -158,11 +142,39 @@ public class ScenarioPracticeSelectionGUI extends javax.swing.JFrame {
         });
         getContentPane().add(logOutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 456, -1, -1));
 
+        LoadButton.setText("Load From a file");
+        LoadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoadButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(LoadButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 420, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void LoadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadButtonActionPerformed
+        // TODO add your handling code here:
+        DataIO io = new DataIO();
+            
+            JFileChooser fileChooser = new JFileChooser();
+            if(JFileChooser.APPROVE_OPTION==fileChooser.showOpenDialog(this)){
+                
+                ArrayList<Scenario> scenarios = io.loadScenarioList(fileChooser.getSelectedFile().getAbsolutePath());
+                if(scenarios!= null ){
+                    
+                    SimulationPracticeManager.SCENARIOS = scenarios;
+                    nextButtonActionPerformed(null);
+
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "This is not a valid file");
+                
+            }
+    }//GEN-LAST:event_LoadButtonActionPerformed
+
 	private void setSelectedScenarioInfo() {
-		ArrayList<Scenario> scenarios = controller.getScenarios();
+		ArrayList<Scenario> scenarios = SimulationPracticeManager.SCENARIOS;
 		patientNameSetter.setText(scenarios.get(scenarioIterator)
 				.getPatientName());
 
@@ -174,31 +186,24 @@ public class ScenarioPracticeSelectionGUI extends javax.swing.JFrame {
                 else
                     timeSetter.setText("No time limit");
 		// timeSetter.setText(scenarios.get(scenarioIterator).get);
-		SimulationManager.CURRENT_SCENARIO = scenarios.get(scenarioIterator);
+		SimulationPracticeManager.CURRENT_SCENARIO = scenarios.get(scenarioIterator);
 
 	}
 
 	private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		if (JOptionPane.showConfirmDialog(this,
-				"Are You Sure You want to Log out?", null,
-				JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
-			// System.exit(0);
-			controller.writeClassNames();
-			controller.writeScenarios();
-			controller.writeUsers();
-
-			SimulationManager.state = SimulationManager.LOGIN_STATE;
-		}
+		System.exit(0);
 	}
 
 	private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
-		SimulationManager.state = SimulationManager.SIMULATION_STATE;
+		SimulationPracticeManager.state = SimulationPracticeManager.SIMULATION_STATE;
+                //setVisible(false);
+                System.out.println("State:"+ SimulationPracticeManager.state);
 	}
 
 	private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
-		if (controller.getScenarios().size() == scenarioIterator + 1)
+		if (SimulationPracticeManager.SCENARIOS.size() == scenarioIterator + 1)
 			scenarioIterator = 0;
 		else
 			scenarioIterator++;
@@ -209,7 +214,7 @@ public class ScenarioPracticeSelectionGUI extends javax.swing.JFrame {
 		// TODO add your handling code here:
 
 		if (-1 == scenarioIterator - 1)
-			scenarioIterator = controller.getScenarios().size() - 1;
+			scenarioIterator = SimulationPracticeManager.SCENARIOS.size() - 1;
 		else
 			scenarioIterator--;
 		setSelectedScenarioInfo();
@@ -271,6 +276,7 @@ public class ScenarioPracticeSelectionGUI extends javax.swing.JFrame {
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton LoadButton;
     private javax.swing.JLabel currentTimeLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logOutButton;
