@@ -79,7 +79,7 @@ public class SimulationManager {
 				if (!loginDialog.isVisible()) {
 					JOptionPane.showMessageDialog(loginDialog,
 							"Welcome to Massbay General Hospital\n"
-									+ "Please Log in\n");
+									+ "                   Please log in\n");
 					loginDialog.setVisible(true);
 				}
 
@@ -87,7 +87,7 @@ public class SimulationManager {
 				if (!loginDialog.isVisible()) {
 					JOptionPane.showMessageDialog(loginDialog,
 							"Welcome to Massbay General Hospital\n"
-									+ "Please Log in");
+									+ "                   Please log in");
 					loginDialog.setVisible(true);
 				}
 				mainGUI.setVisible(false);

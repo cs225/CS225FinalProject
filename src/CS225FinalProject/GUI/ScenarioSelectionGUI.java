@@ -108,7 +108,7 @@ public class ScenarioSelectionGUI extends javax.swing.JFrame {
         getContentPane().add(previosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 217, -1, -1));
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        titleLabel.setText("Select Scenenario");
+        titleLabel.setText("Select Scenario");
         getContentPane().add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 11, -1, -1));
 
         scenarioDescriptionPanel.setBackground(new java.awt.Color(200, 200, 200));

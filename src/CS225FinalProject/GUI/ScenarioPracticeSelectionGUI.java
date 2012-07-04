@@ -142,7 +142,7 @@ public class ScenarioPracticeSelectionGUI extends javax.swing.JFrame {
         });
         getContentPane().add(logOutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 456, -1, -1));
 
-        LoadButton.setText("Load From a file");
+        LoadButton.setText("Load from a file");
         LoadButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoadButtonActionPerformed(evt);

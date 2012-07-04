@@ -6,7 +6,7 @@ package CS225FinalProject.Validators;
 import static CS225FinalProject.SimulationManager.*;
 import java.util.Scanner;
 
-
+  
 import javax.swing.JTable;
 
 /**

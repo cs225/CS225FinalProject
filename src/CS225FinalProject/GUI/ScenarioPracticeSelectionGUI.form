@@ -196,7 +196,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="LoadButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Load From a file"/>
+        <Property name="text" type="java.lang.String" value="Load from a file"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LoadButtonActionPerformed"/>

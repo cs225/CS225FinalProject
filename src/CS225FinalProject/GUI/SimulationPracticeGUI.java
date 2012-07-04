@@ -564,8 +564,7 @@ public class SimulationPracticeGUI extends javax.swing.JFrame implements Printab
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        if(JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", null, JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
-         System.exit(0);
+        JOptionPane.showMessageDialog(this, "The program will now be closed.");
 
     }//GEN-LAST:event_formWindowClosing
 
